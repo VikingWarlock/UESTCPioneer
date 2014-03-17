@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>IDESourceControlProjectFavoriteDictionaryKey</key>
+	<false/>
+	<key>IDESourceControlProjectIdentifier</key>
+	<string>20B24D24-0E0F-4684-804B-FF05092C4C80</string>
+	<key>IDESourceControlProjectName</key>
+	<string>UESTCPioneer</string>
+	<key>IDESourceControlProjectOriginsDictionary</key>
+	<dict>
+		<key>462636AB-15FD-43A2-A5FB-B56E86A10E2C</key>
+		<string>http://www.svnchina.com/svn/uestc_pioneer</string>
+	</dict>
+	<key>IDESourceControlProjectPath</key>
+	<string>UESTCPioneer/UESTCPioneer.xcodeproj/project.xcworkspace</string>
+	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
+	<dict>
+		<key>462636AB-15FD-43A2-A5FB-B56E86A10E2C</key>
+		<string>../../..</string>
+	</dict>
+	<key>IDESourceControlProjectRepositoryRootDictionary</key>
+	<dict>
+		<key>462636AB-15FD-43A2-A5FB-B56E86A10E2C</key>
+		<string>http://www.svnchina.com/svn/uestc_pioneer</string>
+	</dict>
+	<key>IDESourceControlProjectURL</key>
+	<string>http://www.svnchina.com/svn/uestc_pioneer/UESTCPioneer/UESTCPioneer.xcodeproj</string>
+	<key>IDESourceControlProjectVersion</key>
+	<integer>110</integer>
+	<key>IDESourceControlProjectWCCIdentifier</key>
+	<string>462636AB-15FD-43A2-A5FB-B56E86A10E2C</string>
+	<key>IDESourceControlProjectWCConfigurations</key>
+	<array>
+		<dict>
+			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
+			<string>public.vcs.subversion</string>
+			<key>IDESourceControlWCCIdentifierKey</key>
+			<string>462636AB-15FD-43A2-A5FB-B56E86A10E2C</string>
+			<key>IDESourceControlWCCName</key>
+			<string>svn_part</string>
+		</dict>
+	</array>
+</dict>
+</plist>

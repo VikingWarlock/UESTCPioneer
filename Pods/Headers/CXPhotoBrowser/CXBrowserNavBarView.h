@@ -1,0 +1,1 @@
+../../CXPhotoBrowser/CXPhotoBrowser/CXBrowserNavBarView.h
