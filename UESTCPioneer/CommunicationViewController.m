@@ -8,6 +8,7 @@
 
 #import "CommunicationViewController.h"
 #import "LeveyTabBarController.h"
+#import "NetworkCenter.h"
 @interface CommunicationViewController ()
 
 @end
@@ -26,6 +27,7 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+
 	// Do any additional setup after loading the view.
 }
 

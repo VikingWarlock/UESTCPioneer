@@ -41,6 +41,8 @@
 		8834BA1A18D6EF980023BA87 /* QA.png in Resources */ = {isa = PBXBuildFile; fileRef = 8834BA1118D6EF980023BA87 /* QA.png */; };
 		8834BA1B18D6EF980023BA87 /* spcail.png in Resources */ = {isa = PBXBuildFile; fileRef = 8834BA1218D6EF980023BA87 /* spcail.png */; };
 		8834BA1C18D6EF980023BA87 /* theory.png in Resources */ = {isa = PBXBuildFile; fileRef = 8834BA1318D6EF980023BA87 /* theory.png */; };
+		8834BA2018D6F0C20023BA87 /* NetworkCenter.m in Sources */ = {isa = PBXBuildFile; fileRef = 8834BA1F18D6F0C20023BA87 /* NetworkCenter.m */; };
+		8834BA2318D6F12F0023BA87 /* MessageEntity.m in Sources */ = {isa = PBXBuildFile; fileRef = 8834BA2218D6F12F0023BA87 /* MessageEntity.m */; };
 		887FD56618D1A564003F0E4D /* NewsEntity.m in Sources */ = {isa = PBXBuildFile; fileRef = 887FD56518D1A564003F0E4D /* NewsEntity.m */; };
 		8889F91918D02E13001416C0 /* UserEntity.m in Sources */ = {isa = PBXBuildFile; fileRef = 8889F91818D02E13001416C0 /* UserEntity.m */; };
 		88E1AFCC18CAC6DD008D92B7 /* Podfile in Resources */ = {isa = PBXBuildFile; fileRef = 88E1AFCB18CAC6DD008D92B7 /* Podfile */; };
@@ -159,6 +161,10 @@
 		8834BA1118D6EF980023BA87 /* QA.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = QA.png; sourceTree = "<group>"; };
 		8834BA1218D6EF980023BA87 /* spcail.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = spcail.png; sourceTree = "<group>"; };
 		8834BA1318D6EF980023BA87 /* theory.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = theory.png; sourceTree = "<group>"; };
+		8834BA1E18D6F0C20023BA87 /* NetworkCenter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NetworkCenter.h; sourceTree = "<group>"; };
+		8834BA1F18D6F0C20023BA87 /* NetworkCenter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NetworkCenter.m; sourceTree = "<group>"; };
+		8834BA2118D6F12F0023BA87 /* MessageEntity.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MessageEntity.h; path = CoreData_Model/MessageEntity.h; sourceTree = "<group>"; };
+		8834BA2218D6F12F0023BA87 /* MessageEntity.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MessageEntity.m; path = CoreData_Model/MessageEntity.m; sourceTree = "<group>"; };
 		887FD56418D1A564003F0E4D /* NewsEntity.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NewsEntity.h; path = CoreData_Model/NewsEntity.h; sourceTree = "<group>"; };
 		887FD56518D1A564003F0E4D /* NewsEntity.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NewsEntity.m; path = CoreData_Model/NewsEntity.m; sourceTree = "<group>"; };
 		887FD56818D1A789003F0E4D /* UESTCPioneer_API_Address.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = UESTCPioneer_API_Address.h; path = Constant/UESTCPioneer_API_Address.h; sourceTree = "<group>"; };
@@ -345,6 +351,15 @@
 			path = partydata;
 			sourceTree = "<group>";
 		};
+		8834BA1D18D6F0C20023BA87 /* NetworkManager */ = {
+			isa = PBXGroup;
+			children = (
+				8834BA1E18D6F0C20023BA87 /* NetworkCenter.h */,
+				8834BA1F18D6F0C20023BA87 /* NetworkCenter.m */,
+			);
+			path = NetworkManager;
+			sourceTree = "<group>";
+		};
 		887FD56718D1A716003F0E4D /* Constant */ = {
 			isa = PBXGroup;
 			children = (
@@ -364,6 +379,8 @@
 				8889F91818D02E13001416C0 /* UserEntity.m */,
 				887FD56418D1A564003F0E4D /* NewsEntity.h */,
 				887FD56518D1A564003F0E4D /* NewsEntity.m */,
+				8834BA2118D6F12F0023BA87 /* MessageEntity.h */,
+				8834BA2218D6F12F0023BA87 /* MessageEntity.m */,
 			);
 			name = CoreData;
 			sourceTree = "<group>";
@@ -444,6 +461,7 @@
 		DCB5136118C6C43700B7EE95 /* UESTCPioneer */ = {
 			isa = PBXGroup;
 			children = (
+				8834BA1D18D6F0C20023BA87 /* NetworkManager */,
 				887FD56718D1A716003F0E4D /* Constant */,
 				88E1AFD118CAC8B3008D92B7 /* CoreData */,
 				DCB5144318C6D37200B7EE95 /* Bottom */,
@@ -835,6 +853,7 @@
 				DCB22CFA18CC9F37004F36D0 /* helper.m in Sources */,
 				DCB5137218C6C43700B7EE95 /* PionnerViewController.m in Sources */,
 				DCB5145018C6D6B500B7EE95 /* UPMainViewController.m in Sources */,
+				8834BA2018D6F0C20023BA87 /* NetworkCenter.m in Sources */,
 				DCB5146918C6E29700B7EE95 /* PublicityViewController.m in Sources */,
 				DCB5141E18C6CC0C00B7EE95 /* LeveyTabBar.m in Sources */,
 				DCB5143A18C6D14F00B7EE95 /* PartyNoticeViewController.m in Sources */,
@@ -854,6 +873,7 @@
 				DCB5144918C6D3ED00B7EE95 /* PartyDataViewController.m in Sources */,
 				DCB5145818C6DDFD00B7EE95 /* UPTableView.m in Sources */,
 				DCB5144C18C6D3F900B7EE95 /* PersonalViewController.m in Sources */,
+				8834BA2318D6F12F0023BA87 /* MessageEntity.m in Sources */,
 				8889F91918D02E13001416C0 /* UserEntity.m in Sources */,
 				DCB5146C18C6E2AF00B7EE95 /* PartyActivityViewController.m in Sources */,
 				DCA5962618C81A0F00F001D9 /* UPSwitch.m in Sources */,
