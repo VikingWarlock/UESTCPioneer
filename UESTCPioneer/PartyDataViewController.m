@@ -8,11 +8,62 @@
 
 #import "PartyDataViewController.h"
 #import "LeveyTabBarController.h"
+#import "helper.h"
 @interface PartyDataViewController ()
-
+@property (nonatomic,strong) NSDictionary * dic;
+@property (nonatomic,strong) NSMutableArray * views;
+@property (nonatomic,strong) NSMutableArray * buttons;
 @end
 
 @implementation PartyDataViewController
+
+- (NSDictionary *) dic{
+    if (!_dic) {
+        _dic = @{@"中央精神": @"censpi.png",@"党的知识":@"knowledge.png",@"党的理论":@"theory.png",@"党校学习":@"learn.png",@"入党流程":@"process.png",@"组织架构":@"organ.png",@"办事指南":@"guide.png",@"Q&A":@"QA.png",@"专业学习":@"spcail.png"};
+    }
+    return _dic;
+}
+
+
+- (NSMutableArray *)buttons{
+    if (!_buttons) {
+        _buttons = [[NSMutableArray alloc] init];
+        NSArray * arr = @[@"中央精神",@"党的知识",@"党的理论",@"党校学习",@"入党流程",@"组织架构",@"办事指南",@"Q&A",@"专业学习"];
+        for (int i = 0; i < 3; i ++) {
+            for (int j = 0;  j < 3; j++) {
+                UIButton * btn = [[UIButton alloc] initWithFrame:CGRectMake(j*100+10, i*110+10, 100, 110)];
+                UIImage * image = [helper getCustomImage:[UIImage imageNamed:self.dic[arr[i*3+j]]] insets:UIEdgeInsetsMake(20, 30, 60, 60)];
+                [btn setBackgroundImage:image forState:UIControlStateNormal];
+                [btn setBackgroundColor:[UIColor whiteColor]];
+                [btn setTitleEdgeInsets:UIEdgeInsetsMake(60, 20, 0, 20)];
+                btn.titleLabel.font = [UIFont systemFontOfSize:12.0];
+                [btn setTitle:arr[i*3+j] forState:UIControlStateNormal];
+                [btn setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
+                [_buttons addObject:btn];
+            }
+        }
+    }
+    return _buttons;
+}
+
+
+-(NSMutableArray *)views{
+    if (!_views) {
+        _views = [[NSMutableArray alloc] init];
+        for (int i = 1; i < 3;  i ++) {
+            for (int j = 0; j<3; j++) {
+                UIView * view = [[UIView alloc] initWithFrame:CGRectMake(i*100+10, j*110+20, 1, 90)];
+                [view setBackgroundColor:[UIColor colorWithRed:0.9 green:0.9 blue:0.9 alpha:1]];
+                [_views addObject:view];
+                
+                UIView * view2 = [[UIView alloc] initWithFrame:CGRectMake(j*100+20, i*110+10, 80, 1)];
+                [view2 setBackgroundColor:[UIColor colorWithRed:0.9 green:0.9 blue:0.9 alpha:1]];
+                [_views addObject:view2];
+            }
+        }
+    }
+    return _views;
+}
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -26,6 +77,13 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    for (UIButton * btn in self.buttons) {
+        [self.view addSubview:btn];
+    }
+    
+    for (UIView * view in self.views) {
+        [self.view addSubview:view];
+    }
 	// Do any additional setup after loading the view.
 }
 
