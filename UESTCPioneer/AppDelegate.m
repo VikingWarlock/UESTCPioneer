@@ -19,9 +19,15 @@
 #import "PartyNoticeViewController.h"
 
 
-@interface AppDelegate(){
 
+@interface AppDelegate(){
+    
 }
+@end
+
+@interface NSManagedObjectContext()
++ (void) MR_setDefaultContext:(NSManagedObjectContext *)moc;
++ (void) MR_setRootSavingContext:(NSManagedObjectContext *)context;
 @end
 
 @implementation AppDelegate
@@ -29,13 +35,44 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
+    
+    
+    
+    
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     
     //    RootViewController *main = [[RootViewController alloc] initWithStyle:UITableViewStyleGrouped];
     
     ///////////////CoreDate Init
     [MagicalRecord setupCoreDataStack];
-
+    
+    
+    NSManagedObjectModel *managedObjectModel = [NSManagedObjectModel mergedModelFromBundles:nil];
+    
+    RKManagedObjectStore *managedObjectStore = [[RKManagedObjectStore alloc] initWithManagedObjectModel:managedObjectModel];
+    
+    
+    NSError *error = nil;
+    BOOL success = RKEnsureDirectoryExistsAtPath(RKApplicationDataDirectory(), &error);
+    if (! success) {
+        RKLogError(@"Failed to create Application Data Directory at path '%@': %@", RKApplicationDataDirectory(), error);
+    }
+    NSString *path = [RKApplicationDataDirectory() stringByAppendingPathComponent:@"Store.sqlite"];
+    NSPersistentStore *persistentStore = [managedObjectStore addSQLitePersistentStoreAtPath:path fromSeedDatabaseAtPath:nil withConfiguration:nil options:nil error:&error];
+    if (! persistentStore) {
+        RKLogError(@"Failed adding persistent store at path '%@': %@", path, error);
+    }
+    
+    [managedObjectStore createManagedObjectContexts];
+    
+    
+    
+    
+    
+    [NSPersistentStoreCoordinator MR_setDefaultStoreCoordinator:managedObjectStore.persistentStoreCoordinator];
+    [NSManagedObjectContext MR_setRootSavingContext:managedObjectStore.persistentStoreManagedObjectContext];
+    [NSManagedObjectContext MR_setDefaultContext:managedObjectStore.mainQueueManagedObjectContext];
+    
     [PublicMethod refreshStaticCoreData];
     
     /////////////// APN register
@@ -56,7 +93,7 @@
     PersonalViewController *personalViewController =  [[PersonalViewController alloc]init];
     
     
-
+    
     if(IS_IOS7)[[UINavigationBar appearance]setBarTintColor:kNavigationBarColor];
     else [[UINavigationBar appearance] setTintColor:kNavigationBarColor];
     
@@ -78,20 +115,20 @@
 	[imgDic4 setObject:[UIImage imageNamed:@"personal_highlighted.png"] forKey:@"Highlighted"];
 	[imgDic4 setObject:[UIImage imageNamed:@"personal_highlighted.png"] forKey:@"Seleted"];
     NSArray *imgArr = [NSArray arrayWithObjects:imgDic,imgDic2,imgDic3,imgDic4,nil];
-
+    
     
     NSArray *titleArray = @[@"首页",@"交流",@"资料",@"个人"];
     
     
-        LeveyTabBarController *tab = [[LeveyTabBarController alloc] initWithViewControllers:@[main,communicationViewController,partyDataViewController,personalViewController] imageArray:imgArr titles:titleArray];
+    LeveyTabBarController *tab = [[LeveyTabBarController alloc] initWithViewControllers:@[main,communicationViewController,partyDataViewController,personalViewController] imageArray:imgArr titles:titleArray];
     
     UINavigationController *nav=[[UINavigationController alloc]initWithRootViewController:tab];
     [tab.navigationController.navigationBar setTitleTextAttributes:@{UITextAttributeTextColor:[UIColor whiteColor]}];
     [nav.navigationBar setTranslucent:NO];
-//    [nav.navigationBar setTintColor:kNavigationBarColor];
-//    [nav.navigationBar setBarTintColor:[UIColor redColor]];
+    //    [nav.navigationBar setTintColor:kNavigationBarColor];
+    //    [nav.navigationBar setBarTintColor:[UIColor redColor]];
     [constant setCenterController:nav];
-
+    
     
     self.revealSideViewController = [[PPRevealSideViewController alloc] initWithRootViewController:nav];
     
@@ -106,7 +143,7 @@
     // Override point for customization after application launch.
     return YES;
 }
-							
+
 - (void)applicationWillResignActive:(UIApplication *)application
 {
     // Sent when the application is about to move from active to inactive state. This can occur for certain types of temporary interruptions (such as an incoming phone call or SMS message) or when the user quits the application and it begins the transition to the background state.
@@ -115,7 +152,7 @@
 
 - (void)applicationDidEnterBackground:(UIApplication *)application
 {
-    // Use this method to release shared resources, save user data, invalidate timers, and store enough application state information to restore your application to its current state in case it is terminated later. 
+    // Use this method to release shared resources, save user data, invalidate timers, and store enough application state information to restore your application to its current state in case it is terminated later.
     // If your application supports background execution, this method is called instead of applicationWillTerminate: when the user quits.
 }
 
@@ -140,13 +177,13 @@
 #pragma Remote Notification
 -(void)application:(UIApplication *)application didReceiveRemoteNotification:(NSDictionary *)userInfo
 {
-
+    
 }
 
 #pragma Local Notification
 -(void)application:(UIApplication *)application didReceiveLocalNotification:(UILocalNotification *)notification
 {
-
-
+    
+    
 }
 @end

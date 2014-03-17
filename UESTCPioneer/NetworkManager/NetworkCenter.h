@@ -33,7 +33,7 @@
 
 /**
  AFNetworking的GET请求 ，返回Json数据
- @param data :请求参数如@{@"type":@"getNews",@"page":"1"}
+ @param data 请求参数如@{@"type":@"getNews",@"page":"1"}
  @param successBlock:请求成功后返回调用的回调
  @param failureBLock:请求失败后的回调
  */
