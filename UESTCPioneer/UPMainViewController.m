@@ -7,7 +7,7 @@
 //
 
 #import "UPMainViewController.h"
-#import "UPTableView.h"
+
 @interface UPMainViewController ()
 
 @end

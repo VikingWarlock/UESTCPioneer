@@ -54,7 +54,7 @@
     [button setFrame:customView.bounds];
     [customView addSubview:button];
     [button setImage:[UIImage imageNamed:@"logout.png"] forState:UIControlStateNormal];
-    [button setImageEdgeInsets:UIEdgeInsetsMake(8, 8, 8, 8)];
+    [button setImageEdgeInsets:UIEdgeInsetsMake(12, 12, 12, 12)];
     [button addTarget:self action:@selector(logout:) forControlEvents:UIControlEventTouchUpInside];
     UIBarButtonItem *right=[[UIBarButtonItem alloc]initWithCustomView:customView];
     [self.leveyTabBarController.navigationItem setRightBarButtonItem:right];

@@ -8,9 +8,9 @@
 
 #import <UIKit/UIKit.h>
 #import "constant.h"
+#import "UPTableView.h"
 
-@class UPTableView;
 
-@interface UPMainViewController : UINavigationController
+@interface UPMainViewController : UIViewController
 @property (nonatomic,strong)UPTableView *tableView;
 @end

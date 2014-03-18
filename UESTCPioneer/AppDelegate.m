@@ -17,11 +17,10 @@
 #import "PartyDataViewController.h"
 #import "constant.h"
 #import "PartyNoticeViewController.h"
+#import "UPMainViewController.h"
 
-
-
-@interface AppDelegate(){
-    
+@interface AppDelegate()<PPRevealSideViewControllerDelegate>{
+    LeveyTabBarController *tab;
 }
 @end
 
@@ -36,7 +35,7 @@
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
     
-    
+
     
     
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
@@ -120,7 +119,7 @@
     NSArray *titleArray = @[@"首页",@"交流",@"资料",@"个人"];
     
     
-    LeveyTabBarController *tab = [[LeveyTabBarController alloc] initWithViewControllers:@[main,communicationViewController,partyDataViewController,personalViewController] imageArray:imgArr titles:titleArray];
+    tab = [[LeveyTabBarController alloc] initWithViewControllers:@[main,communicationViewController,partyDataViewController,personalViewController] imageArray:imgArr titles:titleArray];
     
     UINavigationController *nav=[[UINavigationController alloc]initWithRootViewController:tab];
     [tab.navigationController.navigationBar setTitleTextAttributes:@{UITextAttributeTextColor:[UIColor whiteColor]}];
@@ -131,6 +130,7 @@
     
     
     self.revealSideViewController = [[PPRevealSideViewController alloc] initWithRootViewController:nav];
+    nav.revealSideViewController.delegate=self;
     
     [self.revealSideViewController preloadViewController:[[LeftMenuTableViewController alloc]init] forSide:PPRevealSideDirectionLeft withOffset:70];
     
@@ -141,6 +141,12 @@
     self.window.backgroundColor = [UIColor whiteColor];
     [self.window makeKeyAndVisible];
     // Override point for customization after application launch.
+    
+    
+    //运营商和时间的风格
+    [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent];
+    
+    
     return YES;
 }
 
@@ -185,5 +191,30 @@
 {
     
     
+}
+
+
+-(void)pprevealSideViewController:(PPRevealSideViewController *)controller willPushController:(UIViewController *)pushedController{
+//    NSLog(@"push");
+//    [pushedController.view setUserInteractionEnabled:YES];
+//    for (UIView *view in tab.view.subviews){
+//        if ([view isKindOfClass:[UITableView class]]){
+//            NSLog(@"aaa:%@",view);
+////            [view setUserInteractionEnabled:NO];
+//        }
+//    }
+//    UPMainViewController *up=(UPMainViewController*)tab.selectedViewController;
+//    [up.tableView setUserInteractionEnabled:NO];
+    [tab.selectedViewController.view setUserInteractionEnabled:NO];
+    
+}
+
+-(void)pprevealSideViewController:(PPRevealSideViewController *)controller didPopToController:(UIViewController *)centerController{
+        [tab.selectedViewController.view setUserInteractionEnabled:YES];
+//    NSLog(@"pop");
+//    UPMainViewController *up=(UPMainViewController*)tab.selectedViewController;
+//    [up.tableView setUserInteractionEnabled:YES];
+//    [centerController.view setUserInteractionEnabled:NO];
+
 }
 @end

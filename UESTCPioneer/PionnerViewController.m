@@ -24,12 +24,9 @@
 {
     [super viewDidLoad];
 //    [self.view setBackgroundColor:[UIColor blackColor]];
-        [self.leveyTabBarController.navigationItem setTitle:@"成电先锋"];
+        [self.leveyTabBarController.navigationItem setTitle:@"成电视角"];
 
 
-
-    
-    
     
     
     self.tableView.delegate = self;
