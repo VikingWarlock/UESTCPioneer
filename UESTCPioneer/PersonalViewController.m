@@ -26,6 +26,8 @@
     return self;
 }
 
+#pragma mark - view display entranc
+
 - (void)viewDidLoad
 {
     [super viewDidLoad];
@@ -43,6 +45,25 @@
     [self.view addSubview:self.name];
     //[self setPersonalInformation:xxpp];
 }
+-(void)viewWillAppear:(BOOL)animated{
+    [self.leveyTabBarController.navigationItem setTitle:@"个人"];
+    
+    
+    UIView *customView = [[UIView alloc]initWithFrame:CGRectMake(0, 0, 44, 44)];
+    UIButton *button = [UIButton buttonWithType:UIButtonTypeCustom];
+    [button setFrame:customView.bounds];
+    [customView addSubview:button];
+    [button setImage:[UIImage imageNamed:@"logout.png"] forState:UIControlStateNormal];
+    [button setImageEdgeInsets:UIEdgeInsetsMake(8, 8, 8, 8)];
+    [button addTarget:self action:@selector(logout:) forControlEvents:UIControlEventTouchUpInside];
+    UIBarButtonItem *right=[[UIBarButtonItem alloc]initWithCustomView:customView];
+    [self.leveyTabBarController.navigationItem setRightBarButtonItem:right];
+}
+
+-(void)viewDidDisappear:(BOOL)animated{
+    [self.leveyTabBarController.navigationItem setRightBarButtonItem:Nil];
+}
+
 
 - (void)setPersonalInformation:(id)person
 {
@@ -56,9 +77,7 @@
     return 3;
 }
 
--(void)viewWillAppear:(BOOL)animated{
-    [self.leveyTabBarController.navigationItem setTitle:@"个人"];
-}
+
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
@@ -194,6 +213,11 @@
 {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+
+#pragma mark - logout function 
+-(void)logout:(id)sender{
+    
 }
 
 @end

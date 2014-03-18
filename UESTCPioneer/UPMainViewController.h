@@ -11,6 +11,6 @@
 
 @class UPTableView;
 
-@interface UPMainViewController : UIViewController
+@interface UPMainViewController : UINavigationController
 @property (nonatomic,strong)UPTableView *tableView;
 @end
