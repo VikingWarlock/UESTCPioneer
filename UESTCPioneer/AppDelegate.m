@@ -127,7 +127,7 @@
     //    [nav.navigationBar setTintColor:kNavigationBarColor];
     //    [nav.navigationBar setBarTintColor:[UIColor redColor]];
     [constant setCenterController:nav];
-    
+
     
     self.revealSideViewController = [[PPRevealSideViewController alloc] initWithRootViewController:nav];
     nav.revealSideViewController.delegate=self;

@@ -51,7 +51,7 @@
     
     UIView *customView = [[UIView alloc]initWithFrame:CGRectMake(0, 0, 44, 44)];
     UIButton *button = [UIButton buttonWithType:UIButtonTypeCustom];
-    [button setFrame:customView.bounds];
+    [button setFrame:custogimView.bounds];
     [customView addSubview:button];
     [button setImage:[UIImage imageNamed:@"logout.png"] forState:UIControlStateNormal];
     [button setImageEdgeInsets:UIEdgeInsetsMake(12, 12, 12, 12)];
@@ -217,7 +217,9 @@
 
 #pragma mark - logout function 
 -(void)logout:(id)sender{
-    
+    UIViewController *v=[[UIViewController alloc]init];
+    [v.view setBackgroundColor:[UIColor blackColor]];
+    [self.leveyTabBarController.navigationController pushViewController:v animated:YES];
 }
 
 @end
