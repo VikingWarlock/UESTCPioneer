@@ -193,6 +193,10 @@
     
 }
 
+-(PPRevealSideDirection)pprevealSideViewController:(PPRevealSideViewController *)controller directionsAllowedForPanningOnView:(UIView *)view{
+    NSLog(@"controller:@%@",controller);
+    return PPRevealSideDirectionNone;
+}
 
 -(void)pprevealSideViewController:(PPRevealSideViewController *)controller willPushController:(UIViewController *)pushedController{
 //    NSLog(@"push");
