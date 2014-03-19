@@ -575,6 +575,14 @@ typedef NSUInteger   PPRevealSideOptions;
 @protocol PPRevealSideViewControllerDelegate <NSObject>
 @optional
 
+
+/**
+ 左右panning回调
+ 
+ */
+-(void)pprevealSideViewController:(PPRevealSideViewController *)controller panningHorizontally:(UIGestureRecognizer*)gesture;
+
+
 /** Called when the center controller has changed
  @param controller The reveal side view controller
  @param newCenterController The new center controller

@@ -1172,7 +1172,6 @@ static const CGFloat MAX_TRIGGER_OFFSET = 100.0;
 
 - (void)gestureRecognizerDidPan:(UIPanGestureRecognizer *)panGesture {
     if (_animationInProgress) return;
-    
     CGPoint currentPoint = [panGesture translationInView:self.view];
     
     CGFloat x = currentPoint.x + _panOrigin.x;
@@ -1195,6 +1194,8 @@ static const CGFloat MAX_TRIGGER_OFFSET = 100.0;
     }
     
     if (_currentPanDirection == PPRevealSideDirectionNone) return;
+//    if (_currentPanDirection==PPRevealSideDirectionBottom)return;
+//    if (_currentPanDirection==PPRevealSideDirectionTop)return;
     
     // if the direction is disabled, then cancel the gesture
     if ((_currentPanDirection & _disabledPanGestureDirection) != _currentPanDirection) {
@@ -1213,6 +1214,9 @@ static const CGFloat MAX_TRIGGER_OFFSET = 100.0;
         // This is a simple way to cancel a gesture
         _tableViewSwipeGestureRecognizer.enabled = NO;
         _tableViewSwipeGestureRecognizer.enabled = YES;
+        if ([self.delegate respondsToSelector:@selector(pprevealSideViewController:panningHorizontally:)]){
+            [self.delegate pprevealSideViewController:self panningHorizontally:panGesture];
+        }
         PP_RELEASE(_tableViewSwipeGestureRecognizer);
     }
     
