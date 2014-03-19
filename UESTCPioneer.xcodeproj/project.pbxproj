@@ -125,6 +125,7 @@
 		DCB5146918C6E29700B7EE95 /* PublicityViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DCB5146818C6E29700B7EE95 /* PublicityViewController.m */; };
 		DCB5146C18C6E2AF00B7EE95 /* PartyActivityViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DCB5146B18C6E2AF00B7EE95 /* PartyActivityViewController.m */; };
 		DCB5146F18C6E2DB00B7EE95 /* MoodShareViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DCB5146E18C6E2DB00B7EE95 /* MoodShareViewController.m */; };
+		DCBF46CC18D9ED32008932C4 /* Unread.m in Sources */ = {isa = PBXBuildFile; fileRef = DCBF46CB18D9ED32008932C4 /* Unread.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -290,6 +291,8 @@
 		DCB5146B18C6E2AF00B7EE95 /* PartyActivityViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PartyActivityViewController.m; sourceTree = "<group>"; };
 		DCB5146D18C6E2DB00B7EE95 /* MoodShareViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MoodShareViewController.h; sourceTree = "<group>"; };
 		DCB5146E18C6E2DB00B7EE95 /* MoodShareViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MoodShareViewController.m; sourceTree = "<group>"; };
+		DCBF46CA18D9ED32008932C4 /* Unread.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Unread.h; sourceTree = "<group>"; };
+		DCBF46CB18D9ED32008932C4 /* Unread.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Unread.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -501,6 +504,7 @@
 		DCB5136118C6C43700B7EE95 /* UESTCPioneer */ = {
 			isa = PBXGroup;
 			children = (
+				DCBF46C918D9E768008932C4 /* Global */,
 				8834BA1D18D6F0C20023BA87 /* NetworkManager */,
 				887FD56718D1A716003F0E4D /* Constant */,
 				88E1AFD118CAC8B3008D92B7 /* CoreData */,
@@ -511,8 +515,6 @@
 				DCB5139018C6C76700B7EE95 /* OpenSourceControls */,
 				DCB22CF818CC9F37004F36D0 /* helper.h */,
 				DCB22CF918CC9F37004F36D0 /* helper.m */,
-				DCB22CFB18CCBCD0004F36D0 /* constant.h */,
-				DCB22CFC18CCBCD0004F36D0 /* constant.m */,
 				DCB5136A18C6C43700B7EE95 /* AppDelegate.h */,
 				DCB5136B18C6C43700B7EE95 /* AppDelegate.m */,
 				DCB5136D18C6C43700B7EE95 /* Main.storyboard */,
@@ -691,6 +693,17 @@
 				DCB5146518C6DF4500B7EE95 /* UPFooterCell.m */,
 			);
 			name = TableViewCell;
+			sourceTree = "<group>";
+		};
+		DCBF46C918D9E768008932C4 /* Global */ = {
+			isa = PBXGroup;
+			children = (
+				DCB22CFB18CCBCD0004F36D0 /* constant.h */,
+				DCB22CFC18CCBCD0004F36D0 /* constant.m */,
+				DCBF46CA18D9ED32008932C4 /* Unread.h */,
+				DCBF46CB18D9ED32008932C4 /* Unread.m */,
+			);
+			name = Global;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -899,6 +912,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				DCBF46CC18D9ED32008932C4 /* Unread.m in Sources */,
 				DCB5144618C6D3CE00B7EE95 /* CommunicationViewController.m in Sources */,
 				DCB5146F18C6E2DB00B7EE95 /* MoodShareViewController.m in Sources */,
 				DCB5146318C6DF3800B7EE95 /* UPMainInfoCell.m in Sources */,

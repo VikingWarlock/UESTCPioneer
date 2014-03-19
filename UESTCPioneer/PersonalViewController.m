@@ -193,6 +193,7 @@
             _name.backgroundColor = [UIColor clearColor];
     }
     return _name;
+
 }
 
 - (UILabel *)department
