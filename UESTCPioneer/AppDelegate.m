@@ -19,7 +19,7 @@
 #import "PartyNoticeViewController.h"
 #import "UPMainViewController.h"
 
-@interface AppDelegate()<PPRevealSideViewControllerDelegate>{
+@interface AppDelegate()<PPRevealSideViewControllerDelegate,UINavigationControllerDelegate>{
     LeveyTabBarController *tab;
 }
 @end
@@ -124,6 +124,8 @@
     UINavigationController *nav=[[UINavigationController alloc]initWithRootViewController:tab];
     [tab.navigationController.navigationBar setTitleTextAttributes:@{UITextAttributeTextColor:[UIColor whiteColor]}];
     [nav.navigationBar setTranslucent:NO];
+    tab.navigationController.delegate=self;
+    
     //    [nav.navigationBar setTintColor:kNavigationBarColor];
     //    [nav.navigationBar setBarTintColor:[UIColor redColor]];
     [constant setCenterController:nav];
@@ -192,6 +194,8 @@
     
     
 }
+
+#pragma mark - PPRevealSideViewController delegate
 
 - (PPRevealSideDirection)pprevealSideViewController:(PPRevealSideViewController *)controller directionsAllowedForPanningOnView:(UIView *)view{
 //    NSLog(@"aaa");
@@ -270,5 +274,12 @@
 //    [up.view setUserInteractionEnabled:YES];
 //    [centerController.view setUserInteractionEnabled:NO];
 
+}
+
+#pragma mark - UINavigationController delegate
+- (void)navigationController:(UINavigationController *)navigationController willShowViewController:(UIViewController *)viewController animated:(BOOL)animated{
+//    [viewController viewWillAppear:animated];
+    [viewController willMoveToParentViewController:viewController.parentViewController];
+//    [viewController viewDidAppear:animated];
 }
 @end

@@ -7,7 +7,7 @@
 //
 
 #import "PersonalViewController.h"
-#import "LeveyTabBarController.h"
+
 @interface PersonalViewController ()
 {
     NSArray *nameArray ;
@@ -51,7 +51,7 @@
     
     UIView *customView = [[UIView alloc]initWithFrame:CGRectMake(0, 0, 44, 44)];
     UIButton *button = [UIButton buttonWithType:UIButtonTypeCustom];
-    [button setFrame:custogimView.bounds];
+    [button setFrame:customView.bounds];
     [customView addSubview:button];
     [button setImage:[UIImage imageNamed:@"logout.png"] forState:UIControlStateNormal];
     [button setImageEdgeInsets:UIEdgeInsetsMake(12, 12, 12, 12)];
