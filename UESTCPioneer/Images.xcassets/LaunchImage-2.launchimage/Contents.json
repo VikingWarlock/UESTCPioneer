@@ -3,39 +3,34 @@
     {
       "orientation" : "portrait",
       "idiom" : "iphone",
-      "extent" : "full-screen",
+      "filename" : "Default@2x.png",
       "minimum-system-version" : "7.0",
-      "filename" : "app_launch_640_960.png",
       "scale" : "2x"
     },
     {
-      "extent" : "full-screen",
+      "orientation" : "portrait",
       "idiom" : "iphone",
+      "filename" : "Default-568h@2x.png",
+      "minimum-system-version" : "7.0",
       "subtype" : "retina4",
-      "filename" : "app_launch_640_1136.png",
-      "minimum-system-version" : "7.0",
-      "orientation" : "portrait",
       "scale" : "2x"
     },
     {
       "orientation" : "portrait",
       "idiom" : "iphone",
-      "extent" : "full-screen",
-      "filename" : "app_launch_320_480.png",
+      "filename" : "Default~iphone.png",
       "scale" : "1x"
     },
     {
       "orientation" : "portrait",
       "idiom" : "iphone",
-      "extent" : "full-screen",
-      "filename" : "app_launch_640_960-1.png",
+      "filename" : "Default@2x.png",
       "scale" : "2x"
     },
     {
       "orientation" : "portrait",
       "idiom" : "iphone",
-      "extent" : "full-screen",
-      "filename" : "app_launch_640_1136-1.png",
+      "filename" : "Default-568h@2x.png",
       "subtype" : "retina4",
       "scale" : "2x"
     }
