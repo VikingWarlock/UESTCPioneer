@@ -45,6 +45,7 @@
 
 
 -(void)viewWillAppear:(BOOL)animated{
+    [super viewWillAppear:animated];
             [self.leveyTabBarController.navigationItem setTitle:@"公示公告"];
 }
 

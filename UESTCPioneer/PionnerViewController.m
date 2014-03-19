@@ -46,10 +46,15 @@
 }
 
 -(void)viewWillAppear:(BOOL)animated{
+    [super viewWillAppear:animated];
         [self.leveyTabBarController.navigationItem setTitle:@"成电先锋"];
+    [helper performBlock:^{
+        [self.revealSideViewController pushOldViewControllerOnDirection:PPRevealSideDirectionLeft animated:YES];
+    } afterDelay:3];
 }
 
 -(void)viewDidAppear:(BOOL)animated{
+    [super viewDidAppear:animated];
 //    NSLog(@"%@",self.leveyTabBarController.navigationController);
 //    [self.leveyTabBarController.navigationController setTitle:@"aa"];
 //    [self.leveyTabBarController.navigationController.navigationItem setTitle:@"bb"];

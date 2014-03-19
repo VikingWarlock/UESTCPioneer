@@ -13,4 +13,5 @@
 
 @interface UPMainViewController : UIViewController
 @property (nonatomic,strong)UPTableView *tableView;
+-(void)leftBarButtonAction:(UIButton*)button;
 @end

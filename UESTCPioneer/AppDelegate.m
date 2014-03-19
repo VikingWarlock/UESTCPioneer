@@ -137,7 +137,7 @@
     [self.revealSideViewController preloadViewController:[[LeftMenuTableViewController alloc]init] forSide:PPRevealSideDirectionLeft withOffset:70];
     
     [self.revealSideViewController setDirectionsToShowBounce:PPRevealSideDirectionNone];
-    [self.revealSideViewController setPanInteractionsWhenClosed:PPRevealSideInteractionContentView | PPRevealSideInteractionNavigationBar];
+    [self.revealSideViewController setPanInteractionsWhenClosed:PPRevealSideInteractionContentView];
     self.window.rootViewController = self.revealSideViewController;
     
     self.window.backgroundColor = [UIColor whiteColor];
@@ -198,29 +198,11 @@
 #pragma mark - PPRevealSideViewController delegate
 
 - (PPRevealSideDirection)pprevealSideViewController:(PPRevealSideViewController *)controller directionsAllowedForPanningOnView:(UIView *)view{
-//    NSLog(@"aaa");
+
     return PPRevealSideDirectionRight|PPRevealSideDirectionLeft;
 }
 
-//-(PPRevealSideDirection)pprevealSideViewController:(PPRevealSideViewController *)controller directionsAllowedForPanningOnView:(UIView *)view{
-////    UPMainViewController *up = (UPMainViewController*)tab.selectedViewController;
-////    [up.view setUserInteractionEnabled:NO];
-//        [tab.selectedViewController.view setUserInteractionEnabled:NO];
-//    NSLog(@"will");
-//    return PPRevealSideDirectionLeft | PPRevealSideDirectionRight |PPRevealSideDirectionTop|PPRevealSideDirectionBottom;
-//}
 
-//- (BOOL)pprevealSideViewController:(PPRevealSideViewController *)controller shouldDeactivateGesture:(UIGestureRecognizer *)gesture forView:(UIView *)view{
-////    if ([gesture isMemberOfClass:[UIPanGestureRecognizer class]]){
-////    if (gesture.state){
-//        NSLog(@"changed,%d",gesture.state);
-////    }
-////    NSLog(@"gesture,%@",gesture);
-////        NSLog(@"view:%@",view);
-////    }
-//
-//    return NO;
-//}
 -(void)pprevealSideViewController:(PPRevealSideViewController *)controller panningHorizontally:(UIGestureRecognizer *)gesture{
     
     for (UIView *view in tab.selectedViewController.view.subviews){
@@ -229,38 +211,19 @@
             [sc setScrollEnabled:NO];
         }
     }
-    
-//    NSLog(@"panning");
-//    [tab.view setUserInteractionEnabled:];
-//    for (UIView *view in tab.view.subviews){
-//        [view setUserInteractionEnabled:NO];
-//    }
-//    NSLog(@"%@",tab.view.subviews);
-//    [tab.view setUserInteractionEnabled:NO];
-//    UPMainViewController *up=(UPMainViewController*)tab.selectedViewController;
-//    [up.tableView setScrollEnabled:NO];
+
 }
 
 
 -(void)pprevealSideViewController:(PPRevealSideViewController *)controller willPushController:(UIViewController *)pushedController{
-//    NSLog(@"push");
-//    [pushedController.view setUserInteractionEnabled:YES];
-//    for (UIView *view in tab.view.subviews){
-//        if ([view isKindOfClass:[UITableView class]]){
-//            NSLog(@"aaa:%@",view);
-////            [view setUserInteractionEnabled:NO];
-//        }
-//    }
-//    UPMainViewController *up=(UPMainViewController*)tab.selectedViewController;
-//    [up.view setUserInteractionEnabled:NO];
-//    NSLog(@"push");
+
     [tab.selectedViewController.view setUserInteractionEnabled:NO];
-//    ]
+
     
 }
 
 -(void)pprevealSideViewController:(PPRevealSideViewController *)controller didPopToController:(UIViewController *)centerController{
-//    [centerController se]
+
         [tab.selectedViewController.view setUserInteractionEnabled:YES];
     for (UIView *view in tab.selectedViewController.view.subviews){
         if ([view isKindOfClass:[UIScrollView class]]){
@@ -268,18 +231,21 @@
             [sc setScrollEnabled:YES];
         }
     }
-//        NSLog(@"pop");
-//    NSLog(@"pop");
-//    UPMainViewController *up=(UPMainViewController*)tab.selectedViewController;
-//    [up.view setUserInteractionEnabled:YES];
-//    [centerController.view setUserInteractionEnabled:NO];
 
 }
 
 #pragma mark - UINavigationController delegate
 - (void)navigationController:(UINavigationController *)navigationController willShowViewController:(UIViewController *)viewController animated:(BOOL)animated{
-//    [viewController viewWillAppear:animated];
-    [viewController willMoveToParentViewController:viewController.parentViewController];
-//    [viewController viewDidAppear:animated];
+    if ([viewController isKindOfClass:[LeveyTabBarController class]]){
+        LeveyTabBarController *l = (LeveyTabBarController*)viewController;
+        [l.selectedViewController viewWillAppear:animated];
+    }
+}
+
+-(void)navigationController:(UINavigationController *)navigationController didShowViewController:(UIViewController *)viewController animated:(BOOL)animated{
+    if ([viewController isKindOfClass:[LeveyTabBarController class]]){
+        LeveyTabBarController *l = (LeveyTabBarController*)viewController;
+        [l.selectedViewController viewDidAppear:animated];
+    }
 }
 @end

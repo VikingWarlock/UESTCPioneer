@@ -44,6 +44,7 @@
 }
 
 -(void)viewWillAppear:(BOOL)animated{
+    [super viewWillAppear:animated];
             [self.leveyTabBarController.navigationItem setTitle:@"组织活动"];
 }
 

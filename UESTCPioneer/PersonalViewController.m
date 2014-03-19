@@ -47,11 +47,12 @@
 }
 -(void)viewWillAppear:(BOOL)animated{
     [self.leveyTabBarController.navigationItem setTitle:@"个人"];
-    
-    
     UIView *customView = [[UIView alloc]initWithFrame:CGRectMake(0, 0, 44, 44)];
     UIButton *button = [UIButton buttonWithType:UIButtonTypeCustom];
-    [button setFrame:customView.bounds];
+    CGRect bo=customView.bounds;
+    bo.origin.x+=5;
+    bo.origin.y+=0;
+    [button setFrame:bo];
     [customView addSubview:button];
     [button setImage:[UIImage imageNamed:@"logout.png"] forState:UIControlStateNormal];
     [button setImageEdgeInsets:UIEdgeInsetsMake(12, 12, 12, 12)];
@@ -217,9 +218,9 @@
 
 #pragma mark - logout function 
 -(void)logout:(id)sender{
-    UIViewController *v=[[UIViewController alloc]init];
-    [v.view setBackgroundColor:[UIColor blackColor]];
-    [self.leveyTabBarController.navigationController pushViewController:v animated:YES];
+//    UIViewController *v=[[UIViewController alloc]init];
+//    [v.view setBackgroundColor:[UIColor blackColor]];
+//    [self.leveyTabBarController.navigationController pushViewController:v animated:YES];
 }
 
 @end

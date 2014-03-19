@@ -7,6 +7,7 @@
 //
 
 #import "UPMainViewController.h"
+#import "PPRevealSideViewController.h"
 
 @interface UPMainViewController ()
 
@@ -37,10 +38,30 @@
 	// Do any additional setup after loading the view.
 }
 
+-(void)viewWillAppear:(BOOL)animated{
+    UIButton *b = [UIButton buttonWithType:UIButtonTypeCustom];
+    [b setImage:[UIImage imageNamed:@"menu.png"] forState:UIControlStateNormal];
+    [b setImageEdgeInsets:UIEdgeInsetsMake(12, 12, 12, 12)];
+    [b addTarget:self action:@selector(leftBarButtonAction:) forControlEvents:UIControlEventTouchUpInside];
+    UIBarButtonItem *barItem=[helper BarButtonItemWithUIButton:b ButtonOrigin:CGPointMake(-10, 0)];
+    [self.leveyTabBarController.navigationItem setLeftBarButtonItem:barItem];
+}
+
+-(void)viewWillDisappear:(BOOL)animated{
+    [self.leveyTabBarController.navigationItem setLeftBarButtonItem:Nil];
+}
+
+
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+
+-(void)leftBarButtonAction:(UIButton*)button{
+    NSLog(@"aa");
+    [self.leveyTabBarController.revealSideViewController pushOldViewControllerOnDirection:PPRevealSideDirectionLeft animated:YES];
+
 }
 
 @end
