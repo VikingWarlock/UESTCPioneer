@@ -33,7 +33,7 @@
     [super viewDidLoad];
     self.PersonalTableView.delegate = self;
     self.PersonalTableView.dataSource = self;
-    nameArray = @[@"个人信息",@"我的收藏",@"查看意见",@"我的消息",@"生日关怀",@"日常关怀",@"发起活动",@"发布通知",@"这是什么?设计图被遮住了"];
+    nameArray = @[@"个人信息",@"我的收藏",@"查看意见",@"我的消息",@"生日关怀",@"日常关怀",@"发起活动",@"发布通知",@"我的通知"];
     cellIcon = @[@"inf.png",@"pcollect.png",@"view.png",@"mymsg.png",@"birth.png",@"care.png",@"activity.png",@"sendmsg.png",@"mynotice.png"];
     //self.PersonalTableView.rowHeight = 42;
     if(IS_IOS7)
