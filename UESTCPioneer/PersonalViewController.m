@@ -8,10 +8,22 @@
 
 #import "PersonalViewController.h"
 #import "LeveyTabBarController.h"
+#import "PersonalInformation.h"
+#import "MyCollection.h"
+#import "CheckForSuggestion.h"
+#import "MyMessage.h"
+#import "BirthCare.h"
+#import "DailyCare.h"
+#import "StartActivity.h"
+#import "PublishNotice.h"
+#import "MyNotice.h"
+
+
 @interface PersonalViewController ()
 {
-    NSArray *nameArray ;
+    NSArray *nameArray;
     NSArray *cellIcon;
+    NSArray *pushArray;
 }
 @end
 
@@ -21,7 +33,7 @@
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
-
+        
     }
     return self;
 }
@@ -35,6 +47,7 @@
     self.PersonalTableView.dataSource = self;
     nameArray = @[@"个人信息",@"我的收藏",@"查看意见",@"我的消息",@"生日关怀",@"日常关怀",@"发起活动",@"发布通知",@"我的通知"];
     cellIcon = @[@"inf.png",@"pcollect.png",@"view.png",@"mymsg.png",@"birth.png",@"care.png",@"activity.png",@"sendmsg.png",@"mynotice.png"];
+    pushArray = @[@"personalinformation",@"mycollection",@"checkforsuggestion",@"mymessage",@"birthcare",@"dailycare",@"startactivity",@"publishnotice",@"mynotice"];
     //self.PersonalTableView.rowHeight = 42;
     if(IS_IOS7)
         self.PersonalTableView.separatorInset = UIEdgeInsetsZero;
@@ -72,12 +85,12 @@
     self.name.text = person;
 }//获得个人信息的接口
 
+#pragma mark -datasource
+
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
     return 3;
 }
-
-
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
@@ -139,6 +152,65 @@
     [cell.contentView addSubview:leftImage];
     return cell;
 }
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    id aCell;
+    switch (indexPath.section) {
+        case 0:
+            switch (indexPath.row) {
+                case 0:
+                    aCell = [[PersonalInformation alloc] initWithStyle:UITableViewStyleGrouped];
+                    break;
+                case 1:
+                    aCell = [[MyCollection alloc] init];
+                    break;
+                case 2:
+                    aCell = [[CheckForSuggestion alloc] init];
+                    break;
+                case 3:
+                    aCell = [[MyMessage alloc] init];
+                    break;
+                default:
+                    break;
+            }
+            break;
+        case 1:
+            switch (indexPath.row) {
+                case 0:
+                    aCell = [[BirthCare alloc] init];
+                    break;
+                case 1:
+                    aCell = [[DailyCare alloc] initWithStyle:UITableViewStyleGrouped];
+                    break;
+                    
+                default:
+                    break;
+            }
+            break;
+        case 2:
+            switch (indexPath.row) {
+                case 0:
+                    aCell = [[StartActivity alloc] init];
+                    break;
+                case 1:
+                    aCell = [[PublishNotice alloc] init];
+                    break;
+                case 2:
+                    aCell = [[MyNotice alloc] init];
+                    break;
+                default:
+                    break;
+            }
+            break;
+        default:
+            break;
+    }
+    [self.leveyTabBarController.navigationController pushViewController:aCell animated:YES];
+    
+}
+
+#pragma mark - property lazy initialization
 
 - (UIImageView *)topBackground
 {

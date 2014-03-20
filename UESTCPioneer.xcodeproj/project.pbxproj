@@ -8,6 +8,16 @@
 
 /* Begin PBXBuildFile section */
 		0B7334DD377543298C1B3E52 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 75368970CB1E4D818A55D2DE /* libPods.a */; settings = {ATTRIBUTES = (Required, ); }; };
+		5153823A18DAE0EA007C4675 /* PersonalInformation.m in Sources */ = {isa = PBXBuildFile; fileRef = 5153823918DAE0EA007C4675 /* PersonalInformation.m */; };
+		5153823D18DAE132007C4675 /* MyCollection.m in Sources */ = {isa = PBXBuildFile; fileRef = 5153823C18DAE132007C4675 /* MyCollection.m */; };
+		5153824018DAE1CE007C4675 /* CheckForSuggestion.m in Sources */ = {isa = PBXBuildFile; fileRef = 5153823F18DAE1CE007C4675 /* CheckForSuggestion.m */; };
+		5153824318DAE1F1007C4675 /* MyMessage.m in Sources */ = {isa = PBXBuildFile; fileRef = 5153824218DAE1F1007C4675 /* MyMessage.m */; };
+		5153824618DAE216007C4675 /* BirthCare.m in Sources */ = {isa = PBXBuildFile; fileRef = 5153824518DAE216007C4675 /* BirthCare.m */; };
+		5153824918DAE23E007C4675 /* DailyCare.m in Sources */ = {isa = PBXBuildFile; fileRef = 5153824818DAE23E007C4675 /* DailyCare.m */; };
+		5153825218DAE40E007C4675 /* MyNotice.m in Sources */ = {isa = PBXBuildFile; fileRef = 5153825118DAE40E007C4675 /* MyNotice.m */; };
+		5153825518DB03A4007C4675 /* StartActivity.m in Sources */ = {isa = PBXBuildFile; fileRef = 5153825418DB03A4007C4675 /* StartActivity.m */; };
+		5153825818DB03F9007C4675 /* PublishNotice.m in Sources */ = {isa = PBXBuildFile; fileRef = 5153825718DB03F9007C4675 /* PublishNotice.m */; };
+		5153825B18DB289B007C4675 /* ShortCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 5153825A18DB289B007C4675 /* ShortCell.m */; };
 		517485BD18CA056F00413228 /* act1.png in Resources */ = {isa = PBXBuildFile; fileRef = 517485B218CA056F00413228 /* act1.png */; };
 		517485BE18CA056F00413228 /* act2.png in Resources */ = {isa = PBXBuildFile; fileRef = 517485B318CA056F00413228 /* act2.png */; };
 		517485BF18CA056F00413228 /* menu.png in Resources */ = {isa = PBXBuildFile; fileRef = 517485B418CA056F00413228 /* menu.png */; };
@@ -138,6 +148,26 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		5153823818DAE0EA007C4675 /* PersonalInformation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PersonalInformation.h; path = PersonalTableViewCell/PersonalInformation.h; sourceTree = "<group>"; };
+		5153823918DAE0EA007C4675 /* PersonalInformation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PersonalInformation.m; path = PersonalTableViewCell/PersonalInformation.m; sourceTree = "<group>"; };
+		5153823B18DAE132007C4675 /* MyCollection.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MyCollection.h; path = PersonalTableViewCell/MyCollection.h; sourceTree = "<group>"; };
+		5153823C18DAE132007C4675 /* MyCollection.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MyCollection.m; path = PersonalTableViewCell/MyCollection.m; sourceTree = "<group>"; };
+		5153823E18DAE1CE007C4675 /* CheckForSuggestion.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CheckForSuggestion.h; path = PersonalTableViewCell/CheckForSuggestion.h; sourceTree = "<group>"; };
+		5153823F18DAE1CE007C4675 /* CheckForSuggestion.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CheckForSuggestion.m; path = PersonalTableViewCell/CheckForSuggestion.m; sourceTree = "<group>"; };
+		5153824118DAE1F1007C4675 /* MyMessage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MyMessage.h; path = PersonalTableViewCell/MyMessage.h; sourceTree = "<group>"; };
+		5153824218DAE1F1007C4675 /* MyMessage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MyMessage.m; path = PersonalTableViewCell/MyMessage.m; sourceTree = "<group>"; };
+		5153824418DAE216007C4675 /* BirthCare.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BirthCare.h; path = PersonalTableViewCell/BirthCare.h; sourceTree = "<group>"; };
+		5153824518DAE216007C4675 /* BirthCare.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = BirthCare.m; path = PersonalTableViewCell/BirthCare.m; sourceTree = "<group>"; };
+		5153824718DAE23E007C4675 /* DailyCare.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DailyCare.h; path = PersonalTableViewCell/DailyCare.h; sourceTree = "<group>"; };
+		5153824818DAE23E007C4675 /* DailyCare.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = DailyCare.m; path = PersonalTableViewCell/DailyCare.m; sourceTree = "<group>"; };
+		5153825018DAE40E007C4675 /* MyNotice.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MyNotice.h; path = PersonalTableViewCell/MyNotice.h; sourceTree = "<group>"; };
+		5153825118DAE40E007C4675 /* MyNotice.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MyNotice.m; path = PersonalTableViewCell/MyNotice.m; sourceTree = "<group>"; };
+		5153825318DB03A4007C4675 /* StartActivity.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = StartActivity.h; path = PersonalTableViewCell/StartActivity.h; sourceTree = "<group>"; };
+		5153825418DB03A4007C4675 /* StartActivity.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = StartActivity.m; path = PersonalTableViewCell/StartActivity.m; sourceTree = "<group>"; };
+		5153825618DB03F8007C4675 /* PublishNotice.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PublishNotice.h; path = PersonalTableViewCell/PublishNotice.h; sourceTree = "<group>"; };
+		5153825718DB03F9007C4675 /* PublishNotice.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PublishNotice.m; path = PersonalTableViewCell/PublishNotice.m; sourceTree = "<group>"; };
+		5153825918DB289B007C4675 /* ShortCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ShortCell.h; path = PersonalTableViewCell/ShortCell.h; sourceTree = "<group>"; };
+		5153825A18DB289B007C4675 /* ShortCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ShortCell.m; path = PersonalTableViewCell/ShortCell.m; sourceTree = "<group>"; };
 		517485B218CA056F00413228 /* act1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = act1.png; sourceTree = "<group>"; };
 		517485B318CA056F00413228 /* act2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = act2.png; sourceTree = "<group>"; };
 		517485B418CA056F00413228 /* menu.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = menu.png; sourceTree = "<group>"; };
@@ -319,6 +349,33 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		5153823718DAE02E007C4675 /* PersonalTableViewCell */ = {
+			isa = PBXGroup;
+			children = (
+				5153825918DB289B007C4675 /* ShortCell.h */,
+				5153825A18DB289B007C4675 /* ShortCell.m */,
+				5153823818DAE0EA007C4675 /* PersonalInformation.h */,
+				5153823918DAE0EA007C4675 /* PersonalInformation.m */,
+				5153823B18DAE132007C4675 /* MyCollection.h */,
+				5153823C18DAE132007C4675 /* MyCollection.m */,
+				5153823E18DAE1CE007C4675 /* CheckForSuggestion.h */,
+				5153823F18DAE1CE007C4675 /* CheckForSuggestion.m */,
+				5153824118DAE1F1007C4675 /* MyMessage.h */,
+				5153824218DAE1F1007C4675 /* MyMessage.m */,
+				5153824418DAE216007C4675 /* BirthCare.h */,
+				5153824518DAE216007C4675 /* BirthCare.m */,
+				5153824718DAE23E007C4675 /* DailyCare.h */,
+				5153824818DAE23E007C4675 /* DailyCare.m */,
+				5153825318DB03A4007C4675 /* StartActivity.h */,
+				5153825418DB03A4007C4675 /* StartActivity.m */,
+				5153825618DB03F8007C4675 /* PublishNotice.h */,
+				5153825718DB03F9007C4675 /* PublishNotice.m */,
+				5153825018DAE40E007C4675 /* MyNotice.h */,
+				5153825118DAE40E007C4675 /* MyNotice.m */,
+			);
+			name = PersonalTableViewCell;
+			sourceTree = "<group>";
+		};
 		517485B118CA056F00413228 /* leftSide */ = {
 			isa = PBXGroup;
 			children = (
@@ -647,6 +704,7 @@
 				DCB5144818C6D3ED00B7EE95 /* PartyDataViewController.m */,
 				DCB5144A18C6D3F900B7EE95 /* PersonalViewController.h */,
 				DCB5144B18C6D3F900B7EE95 /* PersonalViewController.m */,
+				5153823718DAE02E007C4675 /* PersonalTableViewCell */,
 			);
 			name = Bottom;
 			sourceTree = "<group>";
@@ -902,33 +960,43 @@
 				DCB5144618C6D3CE00B7EE95 /* CommunicationViewController.m in Sources */,
 				DCB5146F18C6E2DB00B7EE95 /* MoodShareViewController.m in Sources */,
 				DCB5146318C6DF3800B7EE95 /* UPMainInfoCell.m in Sources */,
+				5153825B18DB289B007C4675 /* ShortCell.m in Sources */,
 				DCB22CFA18CC9F37004F36D0 /* helper.m in Sources */,
+				5153824018DAE1CE007C4675 /* CheckForSuggestion.m in Sources */,
 				DCB5137218C6C43700B7EE95 /* PionnerViewController.m in Sources */,
 				DCB5145018C6D6B500B7EE95 /* UPMainViewController.m in Sources */,
 				8834BA2018D6F0C20023BA87 /* NetworkCenter.m in Sources */,
 				DCB5146918C6E29700B7EE95 /* PublicityViewController.m in Sources */,
 				DCB5141E18C6CC0C00B7EE95 /* LeveyTabBar.m in Sources */,
 				DCB5143A18C6D14F00B7EE95 /* PartyNoticeViewController.m in Sources */,
+				5153823A18DAE0EA007C4675 /* PersonalInformation.m in Sources */,
 				DCB5145C18C6DE7D00B7EE95 /* UPMenuTableViewCell.m in Sources */,
 				DCB5136C18C6C43700B7EE95 /* AppDelegate.m in Sources */,
 				DCB5141F18C6CC0C00B7EE95 /* LeveyTabBarController.m in Sources */,
 				DCB5141818C6C81000B7EE95 /* PPRevealSideViewController.m in Sources */,
 				DCB5146618C6DF4500B7EE95 /* UPFooterCell.m in Sources */,
 				DCB5146018C6DF1C00B7EE95 /* UPTitleCell.m in Sources */,
+				5153825818DB03F9007C4675 /* PublishNotice.m in Sources */,
 				DCB22CFD18CCBCD0004F36D0 /* constant.m in Sources */,
+				5153824318DAE1F1007C4675 /* MyMessage.m in Sources */,
+				5153824918DAE23E007C4675 /* DailyCare.m in Sources */,
 				DCB5144018C6D27000B7EE95 /* LeftMenuTableViewController.m in Sources */,
+				5153825518DB03A4007C4675 /* StartActivity.m in Sources */,
 				887FD56618D1A564003F0E4D /* NewsEntity.m in Sources */,
 				DCA5962918C81AED00F001D9 /* UPComplexSwitch.m in Sources */,
+				5153825218DAE40E007C4675 /* MyNotice.m in Sources */,
 				DCB5136818C6C43700B7EE95 /* main.m in Sources */,
 				88E1AFD718CACC3C008D92B7 /* PublicMethod.m in Sources */,
 				88E1AFD418CAC91E008D92B7 /* Pioneer_DataModel.xcdatamodeld in Sources */,
 				DCB5144918C6D3ED00B7EE95 /* PartyDataViewController.m in Sources */,
 				DCB5145818C6DDFD00B7EE95 /* UPTableView.m in Sources */,
 				DCB5144C18C6D3F900B7EE95 /* PersonalViewController.m in Sources */,
+				5153823D18DAE132007C4675 /* MyCollection.m in Sources */,
 				8834BA2318D6F12F0023BA87 /* MessageEntity.m in Sources */,
 				8889F91918D02E13001416C0 /* UserEntity.m in Sources */,
 				DCB5146C18C6E2AF00B7EE95 /* PartyActivityViewController.m in Sources */,
 				DCA5962618C81A0F00F001D9 /* UPSwitch.m in Sources */,
+				5153824618DAE216007C4675 /* BirthCare.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
