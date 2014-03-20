@@ -98,7 +98,24 @@
 
 //未读消息有更新
 -(void)notificationUnreadrefresh:(NSNotification*)notify{
-        [self _initBarButton];
+    [self _initBarButton];
+    
+//    [imgDic setObject:[UIImage imageNamed:@"home.png"] forKey:@"Default"];
+//	[imgDic setObject:[UIImage imageNamed:@"home_highlighted.png"] forKey:@"Highlighted"];
+//	[imgDic setObject:[UIImage imageNamed:@"home_highlighted"]
+    
+    
+    //当前控制器是否有新值
+    NSInteger unread= [Unread getUnreadNumWithKey:UnreadKey];
+    NSDictionary *dic;
+    if (unread){
+        
+        dic= @{@"Default":[UIImage imageNamed:@"home_msg"],@"Highlighted":[UIImage imageNamed:@"home_highlighted_msg"],@"Seleted":[UIImage imageNamed:@"home_highlighted_msg"]};
+    }
+    else {
+        dic=@{@"Default":[UIImage imageNamed:@"home"],@"Highlighted":[UIImage imageNamed:@"home_highlighted"],@"Seleted":[UIImage imageNamed:@"home_highlighted"]};
+    }
+    [self.leveyTabBarController setTabBarItemWithImageDicationary:dic ForIndex:0];
 }
 
 @end

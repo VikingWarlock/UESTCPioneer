@@ -19,7 +19,7 @@
 #import "PartyNoticeViewController.h"
 #import "UPMainViewController.h"
 
-
+#define unreadSimulate 1 //是否模拟未读消息
 
 
 @interface AppDelegate()<PPRevealSideViewControllerDelegate,UINavigationControllerDelegate>{
@@ -152,8 +152,14 @@
     [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent];
     
     
-    [Unread setUnreadNum:10 ForKey:kUnreadMoodShare];
     
+    
+    
+#if unreadSimulate
+    [Unread setUnreadNum:10 ForKey:kUnreadMoodShare];
+    [dnread setUnreadNum:10 ForKey:kUnreadPioneerKey];
+    
+#endif
     return YES;
 }
 

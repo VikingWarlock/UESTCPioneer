@@ -23,6 +23,7 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    UnreadKey=kUnreadPioneerKey;
 //    [self.view setBackgroundColor:[UIColor blackColor]];
         [self.leveyTabBarController.navigationItem setTitle:@"成电视角"];
 
@@ -39,7 +40,6 @@
         [self.view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|[tableView]|" options:0 metrics:nil views:NSDictionaryOfVariableBindings(tableView)]];
     */
      
-    
     
     NSLog(@"self.view=%f",self.view.bounds.size.height);
 	// Do any additional setup after loading the view, typically from a nib.

@@ -8,6 +8,12 @@
 
 #import "LeveyTabBar.h"
 
+@interface LeveyTabBar(){
+    UIEdgeInsets buttonImageInsets;
+}
+
+@end
+
 @implementation LeveyTabBar
 @synthesize backgroundView = _backgroundView;
 @synthesize delegate = _delegate;
@@ -44,7 +50,7 @@
            
       
              UIEdgeInsets insets= UIEdgeInsetsMake(6, 22, 35, 45);
-            
+            buttonImageInsets=insets;
             
 			[btn setBackgroundImage:[self getCustomImage:imageArray[i][@"Default"] insets:insets] forState:UIControlStateNormal];
 			[btn setBackgroundImage:[self getCustomImage:imageArray[i][@"Highlighted"] insets:insets] forState:UIControlStateHighlighted];
@@ -166,6 +172,13 @@
     [_backgroundView release];
     [_buttons release];
     [super dealloc];
+}
+
+-(void)setTabBarItemWithImageDicationary:(NSDictionary*)imageArray ForIndex:(NSInteger)index{
+    UIButton *btn = self.buttons[index];
+    [btn setBackgroundImage:[self getCustomImage:imageArray[@"Default"] insets:buttonImageInsets] forState:UIControlStateNormal];
+    [btn setBackgroundImage:[self getCustomImage:imageArray[@"Highlighted"] insets:buttonImageInsets] forState:UIControlStateHighlighted];
+    [btn setBackgroundImage:[self getCustomImage:imageArray[@"Seleted"] insets:buttonImageInsets] forState:UIControlStateSelected];
 }
 
 @end

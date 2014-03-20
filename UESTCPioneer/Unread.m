@@ -45,6 +45,7 @@
 
 ///通过key获取未读消息数
 +(NSInteger)getUnreadNumWithKey:(NSString*)key{
+    if (key==nil || [key isEqualToString:@""])return 0;
     NSUserDefaults *defaultData= [NSUserDefaults standardUserDefaults];
     return [defaultData integerForKey:key];
 }

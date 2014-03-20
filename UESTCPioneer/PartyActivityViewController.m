@@ -31,6 +31,7 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    UnreadKey=kUnreadPartyActivity;
 	// Do any additional setup after loading the view.
 //    UILabel *label=[[UILabel alloc]initWithFrame:CGRectMake(0, 0, 100, 100)];
 //    label.text=@"组织活动";

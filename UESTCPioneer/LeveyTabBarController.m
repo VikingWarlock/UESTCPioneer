@@ -289,6 +289,10 @@ static LeveyTabBarController *leveyTabBarController;
     }
 }
 
+-(void)setTabBarItemWithImageDicationary:(NSDictionary*)imageArray ForIndex:(NSInteger)index{
+    [_tabBar setTabBarItemWithImageDicationary:imageArray ForIndex:index];
+}
+
 #pragma mark -
 #pragma mark tabBar delegates
 - (void)tabBar:(LeveyTabBar *)tabBar didSelectIndex:(NSInteger)index

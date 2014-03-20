@@ -178,10 +178,10 @@
     UIViewController *controller = [[theClass alloc] init];
     [self.leveyTabBarController removeViewControllerAtIndex:0];
     [self.leveyTabBarController setSelectedIndex:1];
-    NSMutableDictionary *imgDic = [NSMutableDictionary dictionaryWithCapacity:3];
-	[imgDic setObject:[UIImage imageNamed:@"chat.png"] forKey:@"Default"];
-	[imgDic setObject:[UIImage imageNamed:@"chat_highlighted.png"] forKey:@"Highlighted"];
-	[imgDic setObject:[UIImage imageNamed:@"chat_highlighted.png"] forKey:@"Seleted"];
+//    NSMutableDictionary *imgDic = [NSMutableDictionary dictionaryWithCapacity:3];
+//	[imgDic setObject:[UIImage imageNamed:@"chat.png"] forKey:@"Default"];
+//	[imgDic setObject:[UIImage imageNamed:@"chat_highlighted.png"] forKey:@"Highlighted"];
+//	[imgDic setObject:[UIImage imageNamed:@"chat_highlighted.png"] forKey:@"Seleted"];
     [controller willMoveToParentViewController:self.leveyTabBarController];
     [self.leveyTabBarController insertViewController:controller  atIndex:0];
     [self.revealSideViewController popViewControllerWithNewCenterController:[constant getCenterController] animated:YES];

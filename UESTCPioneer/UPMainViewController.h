@@ -11,7 +11,10 @@
 #import "UPTableView.h"
 
 
-@interface UPMainViewController : UIViewController
+@interface UPMainViewController : UIViewController{
+    //用于显示未读消息和样式
+    NSString *UnreadKey;
+}
 @property (nonatomic,strong)UPTableView *tableView;
 -(void)leftBarButtonAction:(UIButton*)button;
 @end
