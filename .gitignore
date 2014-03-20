@@ -1,5 +1,4 @@
 # Xcode
-.DS_Store
 */build/*
 *.pbxuser
 !default.pbxuser
@@ -21,6 +20,7 @@ _Store
 log/*.log
 #CocoaPods
 Pods
+.DS_Store
 
 *.swm
 
