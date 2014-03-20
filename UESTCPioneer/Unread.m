@@ -12,21 +12,16 @@
 
 #import "Unread.h"
 
-
-
-
-
-
-
-
 @implementation Unread
 
 
 ///通过key来设置未读值，若清零请把响应值设为0，不要操作总值
 +(void)setUnreadNum:(NSInteger)num ForKey:(NSString*)key{
-    if ([key isEqualToString:kUnreadTotalKey])return;
-    NSLog(@"请勿操作总值");
-    
+    if ([key isEqualToString:kUnreadTotalKey]){
+      NSLog(@"请勿操作总值");
+        return;
+    }
+
     NSUserDefaults *defaultData= [NSUserDefaults standardUserDefaults];
     
     NSInteger totalUnread = [defaultData integerForKey:kUnreadTotalKey];
@@ -37,7 +32,14 @@
     [defaultData setInteger:totalUnread forKey:kUnreadTotalKey];
     [defaultData setInteger:num forKey:key];
     //保存数据
-    [defaultData synchronize];
+    BOOL success=[defaultData synchronize];
+    
+
+    
+    
+    //发个通知消息
+    if (success)[[NSNotificationCenter defaultCenter] postNotificationName:kNotificationUnreadTotalRefreshed object:@(totalUnread)];
+    
 }
 
 

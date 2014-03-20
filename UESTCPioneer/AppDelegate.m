@@ -19,6 +19,9 @@
 #import "PartyNoticeViewController.h"
 #import "UPMainViewController.h"
 
+
+
+
 @interface AppDelegate()<PPRevealSideViewControllerDelegate,UINavigationControllerDelegate>{
     LeveyTabBarController *tab;
 }
@@ -148,6 +151,8 @@
     //运营商和时间的风格
     [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent];
     
+    
+    [Unread setUnreadNum:10 ForKey:kUnreadMoodShare];
     
     return YES;
 }

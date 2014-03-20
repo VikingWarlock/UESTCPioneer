@@ -17,5 +17,6 @@
 
 
 @interface Unread : NSObject
-
++(NSInteger)getUnreadNumWithKey:(NSString*)key;
++(void)setUnreadNum:(NSInteger)num ForKey:(NSString*)key;
 @end

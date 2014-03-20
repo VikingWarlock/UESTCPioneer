@@ -9,7 +9,9 @@
 #import "UPMainViewController.h"
 #import "PPRevealSideViewController.h"
 
-@interface UPMainViewController ()
+@interface UPMainViewController (){
+    UIButton *barButton;
+}
 
 @end
 
@@ -39,15 +41,20 @@
 }
 
 -(void)viewWillAppear:(BOOL)animated{
-    UIButton *b = [UIButton buttonWithType:UIButtonTypeCustom];
-    [b setImage:[UIImage imageNamed:@"menu.png"] forState:UIControlStateNormal];
-    [b setImageEdgeInsets:UIEdgeInsetsMake(12, 12, 12, 12)];
-    [b addTarget:self action:@selector(leftBarButtonAction:) forControlEvents:UIControlEventTouchUpInside];
-    UIBarButtonItem *barItem=[helper BarButtonItemWithUIButton:b ButtonOrigin:CGPointMake(-10, 0)];
-    [self.leveyTabBarController.navigationItem setLeftBarButtonItem:barItem];
+    [self _initBarButton];
+    
+    
+    //界面显示，监听通知
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(notificationUnreadrefresh:) name:kNotificationUnreadTotalRefreshed object:nil];
+    
+
+
 }
 
+
 -(void)viewWillDisappear:(BOOL)animated{
+        //界面消失，取消接受通知
+    [[NSNotificationCenter defaultCenter] removeObserver:self name:kNotificationUnreadTotalRefreshed object:nil];
     [self.leveyTabBarController.navigationItem setLeftBarButtonItem:Nil];
 }
 
@@ -59,9 +66,39 @@
 }
 
 -(void)leftBarButtonAction:(UIButton*)button{
-    NSLog(@"aa");
+//    NSLog(@"aa");
     [self.leveyTabBarController.revealSideViewController pushOldViewControllerOnDirection:PPRevealSideDirectionLeft animated:YES];
 
+}
+
+
+///能根据未读消息自动刷新或生成并显示一个barButtonItem
+-(void)_initBarButton{
+    if (barButton==nil){
+        UIButton *b = [UIButton buttonWithType:UIButtonTypeCustom];
+ 
+        [b addTarget:self action:@selector(leftBarButtonAction:) forControlEvents:UIControlEventTouchUpInside];
+        barButton=b;
+    }
+    NSInteger unreadTotal=[Unread getUnreadNumWithKey:kUnreadTotalKey];
+    
+    if (unreadTotal){
+        [barButton setImage:[UIImage imageNamed:@"menu_msg.png"] forState:UIControlStateNormal];
+        [barButton setImageEdgeInsets:UIEdgeInsetsMake(12, 12, 9, 9)];
+    }
+    else {
+        [barButton setImage:[UIImage imageNamed:@"menu.png"] forState:UIControlStateNormal];
+        [barButton setImageEdgeInsets:UIEdgeInsetsMake(12, 12, 12, 12)];
+    }
+    UIBarButtonItem *barItem=[helper BarButtonItemWithUIButton:barButton ButtonOrigin:CGPointMake(-10, 0)];
+    [self.leveyTabBarController.navigationItem setLeftBarButtonItem:barItem];
+}
+
+#pragma mark - Notification 
+
+//未读消息有更新
+-(void)notificationUnreadrefresh:(NSNotification*)notify{
+        [self _initBarButton];
 }
 
 @end
