@@ -157,7 +157,7 @@
     
 #if unreadSimulate
     [Unread setUnreadNum:10 ForKey:kUnreadMoodShare];
-    [dnread setUnreadNum:10 ForKey:kUnreadPioneerKey];
+    [Unread setUnreadNum:10 ForKey:kUnreadPioneerKey];
     
 #endif
     return YES;
