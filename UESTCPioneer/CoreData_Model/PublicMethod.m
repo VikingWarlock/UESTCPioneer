@@ -7,6 +7,7 @@
 //
 
 #import "PublicMethod.h"
+#import "MoodShareNewsEntity.h"
 
 static id CoreDataQueue;
 static id NewsQueue;
@@ -20,6 +21,10 @@ static id UserQueue;
 
 @implementation PublicMethod
 
+
++(NSInteger)NumberOfEntity:(NSString*)entityName{
+    return [NSClassFromString(entityName) MR_countOfEntities];
+}
 
 +(NSInteger)NumberOfUsers
 {
@@ -43,11 +48,19 @@ static id UserQueue;
     
 }
 
+
+
 +(UserEntity*)UserInformationWithUserName:(NSString*)username
 {
     return [UserEntity MR_findFirstByAttribute:@"userName" withValue:username];
     
 }
+
++(NSArray*)EntityArrayWithEntityName:(NSString*)entityName{
+    
+    return [NSClassFromString(entityName) MR_findAllSortedBy:@"theId" ascending:NO];
+}
+
 
 +(NSArray*)NewsArray_AllFromCoreData
 {
@@ -113,6 +126,7 @@ static id UserQueue;
     CoreDataQueue=nil;
     [UserEntity MR_truncateAll];
     [NewsEntity MR_truncateAll];
+//    [MoodShareNewsEntity MR_truncateAll];
 }
 
 

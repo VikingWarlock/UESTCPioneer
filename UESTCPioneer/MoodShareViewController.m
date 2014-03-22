@@ -12,8 +12,24 @@
 #import "UPMainInfoCell.h"
 #import "UPFooterCell.h"
 #import "LeveyTabBarController.h"
+#import "MoodShareNewsEntity.h"
+#define MoodShareMapping @{@"commentNum":@"numberOfComment"\
+                            ,@"content":@"newsBody"\
+                            ,@"id":@"theId"\
+                            ,@"picUrl":@"picUrl"\
+                            ,@"time":@"timeAndDate"\
+                            ,@"userId":@"userId"\
+                            ,@"userName":@"titleBody"\
+}
 
-@interface MoodShareViewController ()
+#define requestTestData @{@"type":@"getEventShare",@"userId":@"0010013110361",@"page":@"1"}
+
+#define MoodShareEntityName @"MoodShareNewsEntity"
+
+@interface MoodShareViewController (){
+    UIRefreshControl *refreshControl;
+    NSArray *tableViewEntitiesArray;
+}
 
 @end
 
@@ -32,21 +48,73 @@
 {
     [super viewDidLoad];
     UnreadKey=kUnreadMoodShare;
+    tableViewEntitiesArray=[PublicMethod EntityArrayWithEntityName:MoodShareEntityName];
 	// Do any additional setup after loading the view.
 //    UILabel *label=[[UILabel alloc]initWithFrame:CGRectMake(0, 0, 100, 100)];
 //    label.text=@"心情分享";
 //    label.center=self.view.center;
     
+
     
+#pragma 下拉刷新菜单
+    UIRefreshControl *pullDownRefresh = [[UIRefreshControl alloc]init];
+    [pullDownRefresh setAttributedTitle:[[NSAttributedString alloc]initWithString:@"下拉刷新" ]];
+    [pullDownRefresh addTarget:self action:@selector(pullDownRefresh:) forControlEvents:UIControlEventValueChanged];
+    [self.tableView addSubview:pullDownRefresh];
+
+    refreshControl=pullDownRefresh;
     
-//    [self.view addSubview:label];
     self.tableView.delegate = self;
     self.tableView.dataSource = self;
+
+    
+}
+
+-(void)viewDidAppear:(BOOL)animated{
+//    [helper performBlock:^{
+//        [self.tableView setContentOffset:CGPointMake(0, -84) animated:YES];
+//                [refreshControl setAttributedTitle:[[NSAttributedString alloc]initWithString:@"正在刷新"]];
+//        [self pullDownRefresh:refreshControl];
+//    } afterDelay:3];
+    NSArray *da=[PublicMethod EntityArrayWithEntityName:MoodShareEntityName];
+    for (MoodShareNewsEntity *entity in da){
+        NSLog(@"theId:%d",[entity.theId integerValue]);
+    }
+//+(NSArray*)EntityArrayWithEntityName:(NSString*)entityName
+}
+
+-(void)pullDownRefresh:(UIRefreshControl*)sender{
+    [refreshControl beginRefreshing];
+    NSLog(@"正在刷新");
+    [sender setAttributedTitle:[[NSAttributedString alloc]initWithString:@"正在刷新"]];
+    
+    
+//    type=getEventShare&userId=0010013110361&page=1
+    
+    [NetworkCenter RKRequestWithData:requestTestData EntityName:@"MoodShareNewsEntity" Mapping:MoodShareMapping SuccessBlock:^(NSArray *resultArray) {
+        for (MoodShareNewsEntity *entity in resultArray){
+            NSLog(@"%d",[entity.theId integerValue]);
+        }
+        
+        
+        
+        tableViewEntitiesArray=resultArray;
+        [self.tableView reloadData];
+        [PublicMethod ClearAllCoreData];
+        NSLog(@"刷新完成");
+        [sender endRefreshing];
+        [sender setAttributedTitle:[[NSAttributedString alloc]initWithString:@"下拉刷新"]];
+        
+    } failure:^(NSError *error) {
+        NSLog(@"error:%@",error);
+    }];
+
+    
 }
 
 -(void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
-    [self.leveyTabBarController.navigationItem setTitle:@"心情分享"];
+    [self.leveyTabBarController.navigationItem setTitle:@"活动分享"];
 }
 
 //每个分区的行数
@@ -56,10 +124,15 @@
 
 //表的分区数
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView{
-    return 10;
+    return [tableViewEntitiesArray count];
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
+    
+    
+    
+    MoodShareNewsEntity *DataEntity=tableViewEntitiesArray[indexPath.section];
+    
     if (indexPath.row == 0) {
         static NSString *customTitleCellIndentifier = @"CustomTitleCellIndentifier";
         UPTitleCell *cell = [tableView dequeueReusableCellWithIdentifier:customTitleCellIndentifier];
@@ -71,10 +144,10 @@
         [cell.contentView addSubview:img];
         UILabel *title = (UILabel *)[cell.contentView viewWithTag:titleTag];
         title.frame = CGRectMake(60, 10, 250, 20);
-        title.text = @"title";
+        title.text = DataEntity.titleBody;
         UILabel *time = (UILabel *)[cell.contentView viewWithTag:timeTag];
         time.frame = CGRectMake(60, 30, 250, 20);
-        time.text = @"time";
+        time.text = [DataEntity.timeAndDate description];
         return cell;
     }
     else if (indexPath.row == 1) {
@@ -84,7 +157,8 @@
             cell2 = [[UPMainInfoCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:customMainCellIndentifier];
         }
         UILabel *words = (UILabel *)[cell2.contentView viewWithTag:wordsTag];
-        words.text = @"在讨论这部纪录片之前，为了避免现在中文网络江湖盛行的动机论，我先要说明：我和崔永元老师没有个人恩怨，相反，对他的主持功力和以前取得的成绩都非常钦佩。我们也至少有一名共同的好朋友，《读库》的出版人张立宪。";
+//        words.text = @"在讨论这部纪录片之前，为了避免现在中文网络江湖盛行的动机论，我先要说明：我和崔永元老师没有个人恩怨，相反，对他的主持功力和以前取得的成绩都非常钦佩。我们也至少有一名共同的好朋友，《读库》的出版人张立宪。";
+        words.text=DataEntity.newsBody;
         return cell2;
     }
     else {

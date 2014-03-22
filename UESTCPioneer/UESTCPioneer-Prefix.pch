@@ -22,5 +22,6 @@
 #import"constant.h"
 #import"helper.h"
 #import"Unread.h"
+#import"NetworkCenter.h"
 
 #endif

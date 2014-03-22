@@ -54,7 +54,6 @@
 		8839C32C18D96557008D01B9 /* icon80.png in Resources */ = {isa = PBXBuildFile; fileRef = 8839C32318D96557008D01B9 /* icon80.png */; };
 		8839C32D18D96557008D01B9 /* icon114.png in Resources */ = {isa = PBXBuildFile; fileRef = 8839C32418D96557008D01B9 /* icon114.png */; };
 		8839C32E18D96557008D01B9 /* icon120.png in Resources */ = {isa = PBXBuildFile; fileRef = 8839C32518D96557008D01B9 /* icon120.png */; };
-		887FD56618D1A564003F0E4D /* NewsEntity.m in Sources */ = {isa = PBXBuildFile; fileRef = 887FD56518D1A564003F0E4D /* NewsEntity.m */; };
 		8889F91918D02E13001416C0 /* UserEntity.m in Sources */ = {isa = PBXBuildFile; fileRef = 8889F91818D02E13001416C0 /* UserEntity.m */; };
 		88E1AFCC18CAC6DD008D92B7 /* Podfile in Resources */ = {isa = PBXBuildFile; fileRef = 88E1AFCB18CAC6DD008D92B7 /* Podfile */; };
 		88E1AFCE18CAC852008D92B7 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 88E1AFCD18CAC852008D92B7 /* SystemConfiguration.framework */; };
@@ -128,6 +127,8 @@
 		DCB5A92D18DA768900842198 /* menu_msg.png in Resources */ = {isa = PBXBuildFile; fileRef = DCB5A92C18DA768900842198 /* menu_msg.png */; };
 		DCB5A93018DA91AE00842198 /* home_msg.png in Resources */ = {isa = PBXBuildFile; fileRef = DCB5A92E18DA91AE00842198 /* home_msg.png */; };
 		DCB5A93118DA91AE00842198 /* home_highlighted_msg.png in Resources */ = {isa = PBXBuildFile; fileRef = DCB5A92F18DA91AE00842198 /* home_highlighted_msg.png */; };
+		DCB7D6FE18DD4CFA002C1D5D /* NewsEntity.m in Sources */ = {isa = PBXBuildFile; fileRef = DCB7D6FD18DD4CFA002C1D5D /* NewsEntity.m */; };
+		DCB7D70118DD4CFB002C1D5D /* MoodShareNewsEntity.m in Sources */ = {isa = PBXBuildFile; fileRef = DCB7D70018DD4CFB002C1D5D /* MoodShareNewsEntity.m */; };
 		DCBF46CC18D9ED32008932C4 /* Unread.m in Sources */ = {isa = PBXBuildFile; fileRef = DCBF46CB18D9ED32008932C4 /* Unread.m */; };
 /* End PBXBuildFile section */
 
@@ -191,8 +192,6 @@
 		8839C32318D96557008D01B9 /* icon80.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon80.png; sourceTree = "<group>"; };
 		8839C32418D96557008D01B9 /* icon114.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon114.png; sourceTree = "<group>"; };
 		8839C32518D96557008D01B9 /* icon120.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon120.png; sourceTree = "<group>"; };
-		887FD56418D1A564003F0E4D /* NewsEntity.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NewsEntity.h; path = CoreData_Model/NewsEntity.h; sourceTree = "<group>"; };
-		887FD56518D1A564003F0E4D /* NewsEntity.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NewsEntity.m; path = CoreData_Model/NewsEntity.m; sourceTree = "<group>"; };
 		887FD56818D1A789003F0E4D /* UESTCPioneer_API_Address.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = UESTCPioneer_API_Address.h; path = Constant/UESTCPioneer_API_Address.h; sourceTree = "<group>"; };
 		887FD56918D1A79F003F0E4D /* SettingConstant.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = SettingConstant.h; path = Constant/SettingConstant.h; sourceTree = "<group>"; };
 		8889F91718D02E13001416C0 /* UserEntity.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = UserEntity.h; path = CoreData_Model/UserEntity.h; sourceTree = "<group>"; };
@@ -297,6 +296,10 @@
 		DCB5A92C18DA768900842198 /* menu_msg.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = menu_msg.png; sourceTree = "<group>"; };
 		DCB5A92E18DA91AE00842198 /* home_msg.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = home_msg.png; sourceTree = "<group>"; };
 		DCB5A92F18DA91AE00842198 /* home_highlighted_msg.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = home_highlighted_msg.png; sourceTree = "<group>"; };
+		DCB7D6FC18DD4CFA002C1D5D /* NewsEntity.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NewsEntity.h; path = CoreData_Model/NewsEntity.h; sourceTree = "<group>"; };
+		DCB7D6FD18DD4CFA002C1D5D /* NewsEntity.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NewsEntity.m; path = CoreData_Model/NewsEntity.m; sourceTree = "<group>"; };
+		DCB7D6FF18DD4CFB002C1D5D /* MoodShareNewsEntity.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MoodShareNewsEntity.h; path = CoreData_Model/MoodShareNewsEntity.h; sourceTree = "<group>"; };
+		DCB7D70018DD4CFB002C1D5D /* MoodShareNewsEntity.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MoodShareNewsEntity.m; path = CoreData_Model/MoodShareNewsEntity.m; sourceTree = "<group>"; };
 		DCBF46CA18D9ED32008932C4 /* Unread.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Unread.h; sourceTree = "<group>"; };
 		DCBF46CB18D9ED32008932C4 /* Unread.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Unread.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -426,10 +429,12 @@
 				88E1AFD618CACC3C008D92B7 /* PublicMethod.m */,
 				8889F91718D02E13001416C0 /* UserEntity.h */,
 				8889F91818D02E13001416C0 /* UserEntity.m */,
-				887FD56418D1A564003F0E4D /* NewsEntity.h */,
-				887FD56518D1A564003F0E4D /* NewsEntity.m */,
 				8834BA2118D6F12F0023BA87 /* MessageEntity.h */,
 				8834BA2218D6F12F0023BA87 /* MessageEntity.m */,
+				DCB7D6FF18DD4CFB002C1D5D /* MoodShareNewsEntity.h */,
+				DCB7D70018DD4CFB002C1D5D /* MoodShareNewsEntity.m */,
+				DCB7D6FC18DD4CFA002C1D5D /* NewsEntity.h */,
+				DCB7D6FD18DD4CFA002C1D5D /* NewsEntity.m */,
 			);
 			name = CoreData;
 			sourceTree = "<group>";
@@ -936,6 +941,7 @@
 				DCB5141E18C6CC0C00B7EE95 /* LeveyTabBar.m in Sources */,
 				DCB5143A18C6D14F00B7EE95 /* PartyNoticeViewController.m in Sources */,
 				DCB5145C18C6DE7D00B7EE95 /* UPMenuTableViewCell.m in Sources */,
+				DCB7D70118DD4CFB002C1D5D /* MoodShareNewsEntity.m in Sources */,
 				DCB5136C18C6C43700B7EE95 /* AppDelegate.m in Sources */,
 				DCB5141F18C6CC0C00B7EE95 /* LeveyTabBarController.m in Sources */,
 				DCB5141818C6C81000B7EE95 /* PPRevealSideViewController.m in Sources */,
@@ -943,10 +949,10 @@
 				DCB5146018C6DF1C00B7EE95 /* UPTitleCell.m in Sources */,
 				DCB22CFD18CCBCD0004F36D0 /* constant.m in Sources */,
 				DCB5144018C6D27000B7EE95 /* LeftMenuTableViewController.m in Sources */,
-				887FD56618D1A564003F0E4D /* NewsEntity.m in Sources */,
 				DCA5962918C81AED00F001D9 /* UPComplexSwitch.m in Sources */,
 				DCB5136818C6C43700B7EE95 /* main.m in Sources */,
 				88E1AFD718CACC3C008D92B7 /* PublicMethod.m in Sources */,
+				DCB7D6FE18DD4CFA002C1D5D /* NewsEntity.m in Sources */,
 				88E1AFD418CAC91E008D92B7 /* Pioneer_DataModel.xcdatamodeld in Sources */,
 				DCB5144918C6D3ED00B7EE95 /* PartyDataViewController.m in Sources */,
 				DCB5145818C6DDFD00B7EE95 /* UPTableView.m in Sources */,
