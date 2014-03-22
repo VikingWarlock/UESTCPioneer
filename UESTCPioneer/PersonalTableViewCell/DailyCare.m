@@ -7,7 +7,9 @@
 //
 
 #import "DailyCare.h"
-
+#import "constant.h"
+#import "ShortMainInfoCell.h"
+#import "ShortTitleCell.h"
 @interface DailyCare ()
 
 @end
@@ -18,22 +20,84 @@
 {
     self = [super initWithStyle:style];
     if (self) {
-        UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, 320, 40)];
-        label.text = @"dailycare";
-        [self.view addSubview:label];
+        
     }
     return self;
 }
-
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    
-    // Uncomment the following line to preserve selection between presentations.
-    // self.clearsSelectionOnViewWillAppear = NO;
-    
-    // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-    // self.navigationItem.rightBarButtonItem = self.editButtonItem;
+    self.tableView.delegate = self;
+    self.tableView.dataSource = self;
+    [self.tableView setAllowsSelection:NO];
+    [self.tableView registerClass:[ShortTitleCell class] forCellReuseIdentifier:@"CustomTitleCellIndentifier"];
+    [self.tableView registerClass:[ShortMainInfocell class] forCellReuseIdentifier:@"CustomMainCellIndentifier"];
+
+}
+
+
+//每个分区的行数
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
+    return 2;
+}
+
+//表的分区数
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView{
+    return 2;
+}
+
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
+    if (indexPath.row == 0) {
+        static NSString *customTitleCellIndentifier = @"CustomTitleCellIndentifier";
+        ShortTitleCell *cell = [tableView dequeueReusableCellWithIdentifier:customTitleCellIndentifier];
+        if(cell == nil){
+            cell = [[ShortTitleCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:customTitleCellIndentifier];
+        }
+        UIImageView *img = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"default_head_image.png"]];
+        img.frame = CGRectMake(5, 5, 45, 45);
+        [cell.contentView addSubview:img];
+        UILabel *title = (UILabel *)[cell.contentView viewWithTag:titleTag];
+        title.frame = CGRectMake(60, 10, 250, 20);
+        title.text = @"title";
+        UILabel *time = (UILabel *)[cell.contentView viewWithTag:timeTag];
+        time.frame = CGRectMake(60, 30, 250, 20);
+        time.text = @"time";
+        return cell;
+    }
+    else if (indexPath.row == 1) {
+        static NSString *customMainCellIndentifier = @"CustomMainCellIndentifier";
+        ShortMainInfocell *cell2 = [tableView dequeueReusableCellWithIdentifier:customMainCellIndentifier];;
+        if(cell2 == nil){
+            cell2 = [[ShortMainInfocell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:customMainCellIndentifier];
+        }
+        UILabel *words = (UILabel *)[cell2.contentView viewWithTag:wordsTag];
+        words.text = @"在讨论这部纪录片之前，为了避免现在中文网络江湖盛行的动机论，我先要说明：我和崔永元老师没有个人恩怨，相反，对他的主持功力和以前取得的成绩都非常钦佩。我们也至少有一名共同的好朋友，《读库》的出版人张立宪。";
+        return cell2;
+    }
+    return nil;
+}
+
+//修改行高度的位置
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
+    if (indexPath.row == 0) {
+        return 55;
+    }
+    else if (indexPath.row == 1){
+        return 110;
+    }
+    else
+        return 0;
+}
+
+- (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section{
+    if (section == 0) {
+        return 10;
+    }
+    return 5;
+}
+- (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section{
+    // indexPath.section,根据分组进行更精确的配置
+    return 5;
 }
 
 - (void)didReceiveMemoryWarning
@@ -42,80 +106,5 @@
     // Dispose of any resources that can be recreated.
 }
 
-#pragma mark - Table view data source
-
-- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
-{
-#warning Potentially incomplete method implementation.
-    // Return the number of sections.
-    return 0;
-}
-
-- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
-{
-#warning Incomplete method implementation.
-    // Return the number of rows in the section.
-    return 0;
-}
-
-/*
-- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:<#@"reuseIdentifier"#> forIndexPath:indexPath];
-    
-    // Configure the cell...
-    
-    return cell;
-}
-*/
-
-/*
-// Override to support conditional editing of the table view.
-- (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    // Return NO if you do not want the specified item to be editable.
-    return YES;
-}
-*/
-
-/*
-// Override to support editing the table view.
-- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    if (editingStyle == UITableViewCellEditingStyleDelete) {
-        // Delete the row from the data source
-        [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
-    } else if (editingStyle == UITableViewCellEditingStyleInsert) {
-        // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-    }   
-}
-*/
-
-/*
-// Override to support rearranging the table view.
-- (void)tableView:(UITableView *)tableView moveRowAtIndexPath:(NSIndexPath *)fromIndexPath toIndexPath:(NSIndexPath *)toIndexPath
-{
-}
-*/
-
-/*
-// Override to support conditional rearranging of the table view.
-- (BOOL)tableView:(UITableView *)tableView canMoveRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    // Return NO if you do not want the item to be re-orderable.
-    return YES;
-}
-*/
-
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
-{
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
-
 @end
+

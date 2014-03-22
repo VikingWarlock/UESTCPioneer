@@ -8,6 +8,6 @@
 
 #import <UIKit/UIKit.h>
 
-@interface PublishNotice : UIViewController
+@interface PublishNotice : UIViewController <UITextViewDelegate>
 
 @end

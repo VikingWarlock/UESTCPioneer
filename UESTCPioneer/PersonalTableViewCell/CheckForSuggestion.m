@@ -7,7 +7,7 @@
 //
 
 #import "CheckForSuggestion.h"
-
+#import "constant.h"
 @interface CheckForSuggestion ()
 
 @end
@@ -19,10 +19,6 @@
     self = [super initWithStyle:style];
     if (self) {
         // Custom initialization
-        
-        UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, 320, 40)];
-        label.text = @"checkforsuggestion";
-        [self.view addSubview:label];
     }
     return self;
 }
@@ -30,7 +26,11 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    
+    self.tableView.delegate = self;
+    self.tableView.dataSource = self;
+    if(IS_IOS7)
+        self.tableView.separatorInset = UIEdgeInsetsZero;
+    [self setExtraCellLineHidden];
     // Uncomment the following line to preserve selection between presentations.
     // self.clearsSelectionOnViewWillAppear = NO;
     
@@ -48,68 +48,49 @@
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
-#warning Potentially incomplete method implementation.
     // Return the number of sections.
-    return 0;
+    return 1;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-#warning Incomplete method implementation.
     // Return the number of rows in the section.
-    return 0;
+    return 4;
 }
 
-/*
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:<#@"reuseIdentifier"#> forIndexPath:indexPath];
+    static NSString *CellIdentifier = @"setcell";
+    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+    if (cell == nil) {
+        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
+    }
+    UIImageView *imageView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, 28, 18)];
+    imageView.center = CGPointMake(20, cell.center.y);
+    imageView.image = [UIImage imageNamed:@"vw.png"];
+    UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(40, 0, 270, cell.frame.size.height)];
+    label.text = @"天气通知";
+    
+    [cell.contentView addSubview:imageView];
+    [cell.contentView addSubview:label];
     
     // Configure the cell...
     
     return cell;
 }
-*/
 
-/*
-// Override to support conditional editing of the table view.
-- (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath
+- (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
 {
-    // Return NO if you do not want the specified item to be editable.
-    return YES;
+    return 0.1;
 }
-*/
 
-/*
-// Override to support editing the table view.
-- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath
+-(void)setExtraCellLineHidden
 {
-    if (editingStyle == UITableViewCellEditingStyleDelete) {
-        // Delete the row from the data source
-        [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
-    } else if (editingStyle == UITableViewCellEditingStyleInsert) {
-        // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-    }   
+    UIView *view = [[UIView alloc] init];
+    view.backgroundColor = [UIColor clearColor];
+    [self.tableView setTableFooterView:view];
 }
-*/
 
-/*
-// Override to support rearranging the table view.
-- (void)tableView:(UITableView *)tableView moveRowAtIndexPath:(NSIndexPath *)fromIndexPath toIndexPath:(NSIndexPath *)toIndexPath
-{
-}
-*/
-
-/*
-// Override to support conditional rearranging of the table view.
-- (BOOL)tableView:(UITableView *)tableView canMoveRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    // Return NO if you do not want the item to be re-orderable.
-    return YES;
-}
-*/
-
-/*
 #pragma mark - Navigation
 
 // In a storyboard-based application, you will often want to do a little preparation before navigation
@@ -118,6 +99,7 @@
     // Get the new view controller using [segue destinationViewController].
     // Pass the selected object to the new view controller.
 }
-*/
+
 
 @end
+

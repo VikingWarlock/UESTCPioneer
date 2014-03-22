@@ -7,6 +7,7 @@
 //
 
 #import "StartActivity.h"
+#import <QuartzCore/QuartzCore.h>
 
 @interface StartActivity ()
 
@@ -18,6 +19,7 @@
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
+        self.view.backgroundColor = [UIColor colorWithRed:0.937255 green:0.937255 blue:0.956863 alpha:1];
         // Custom initialization
     }
     return self;
@@ -26,6 +28,13 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    UITextView *textView = [[UITextView alloc] initWithFrame:CGRectMake(10, 20, 300, 250)];
+    textView.layer.borderColor = [[UIColor colorWithRed:187.0/255.0 green:187.0/255.0 blue:187.0/255.0 alpha:1] CGColor];
+    textView.layer.borderWidth =1.0;
+    textView.layer.cornerRadius =4.0;
+    textView.delegate = self;
+
+    [self.view addSubview:textView];
     // Do any additional setup after loading the view.
 }
 

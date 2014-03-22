@@ -71,6 +71,7 @@
     [button addTarget:self action:@selector(logout:) forControlEvents:UIControlEventTouchUpInside];
     UIBarButtonItem *right=[[UIBarButtonItem alloc]initWithCustomView:customView];
     [self.leveyTabBarController.navigationItem setRightBarButtonItem:right];
+    
 }
 
 -(void)viewDidDisappear:(BOOL)animated{
@@ -163,13 +164,13 @@
                     aCell = [[PersonalInformation alloc] initWithStyle:UITableViewStyleGrouped];
                     break;
                 case 1:
-                    aCell = [[MyCollection alloc] init];
+                    aCell = [[MyCollection alloc] initWithStyle:UITableViewStyleGrouped];
                     break;
                 case 2:
-                    aCell = [[CheckForSuggestion alloc] init];
+                    aCell = [[CheckForSuggestion alloc] initWithStyle:UITableViewStyleGrouped];
                     break;
                 case 3:
-                    aCell = [[MyMessage alloc] init];
+                    aCell = [[MyMessage alloc] initWithStyle:UITableViewStyleGrouped];
                     break;
                 default:
                     break;
@@ -178,7 +179,7 @@
         case 1:
             switch (indexPath.row) {
                 case 0:
-                    aCell = [[BirthCare alloc] init];
+                    aCell = [[BirthCare alloc] initWithStyle:UITableViewStyleGrouped];
                     break;
                 case 1:
                     aCell = [[DailyCare alloc] initWithStyle:UITableViewStyleGrouped];
@@ -197,7 +198,7 @@
                     aCell = [[PublishNotice alloc] init];
                     break;
                 case 2:
-                    aCell = [[MyNotice alloc] init];
+                    aCell = [[MyNotice alloc] initWithStyle:UITableViewStyleGrouped];
                     break;
                 default:
                     break;
@@ -207,7 +208,8 @@
             break;
     }
     [self.leveyTabBarController.navigationController pushViewController:aCell animated:YES];
-    
+    [self.PersonalTableView deselectRowAtIndexPath:indexPath animated:YES];
+
 }
 
 #pragma mark - property lazy initialization

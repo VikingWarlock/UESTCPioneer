@@ -8,6 +8,6 @@
 
 #import <UIKit/UIKit.h>
 
-@interface CheckForSuggestion : UITableViewController
+@interface CheckForSuggestion : UITableViewController <UITableViewDelegate,UITableViewDataSource>
 
 @end

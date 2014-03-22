@@ -14,7 +14,7 @@
 {
     self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
     if (self) {
-        [self addSubview:self.alabel];
+        [self addSubview:self.staticLabel];
         // Initialization code
     }
     return self;
@@ -39,15 +39,14 @@
     [super setFrame:frame];
 }
 
-- (UILabel *)alabel
+- (UILabel *)staticLabel
 {
-    if (!_alabel)
+    if (!_staticLabel)
     {
-        _alabel = [[UILabel alloc] initWithFrame:CGRectMake(10, self.frame.origin.y, 70, self.frame.size.height)];
-        _alabel.textColor = [UIColor colorWithRed:119.0/255.0 green:123.0/255.0 blue:134.0/255.0 alpha:1];
+        _staticLabel = [[UILabel alloc] initWithFrame:CGRectMake(10, self.frame.origin.y, 70, self.frame.size.height)];
+        _staticLabel.textColor = [UIColor colorWithRed:119.0/255.0 green:123.0/255.0 blue:134.0/255.0 alpha:1];
     }
-    
-    return _alabel;
+    return _staticLabel;
 }
 
 @end

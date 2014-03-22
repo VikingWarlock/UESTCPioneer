@@ -9,6 +9,6 @@
 #import <UIKit/UIKit.h>
 
 @interface ShortCell : UITableViewCell
-@property (nonatomic,strong) UILabel *alabel;
+@property (nonatomic,strong) UILabel *staticLabel;
 
 @end

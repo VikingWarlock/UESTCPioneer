@@ -8,6 +8,6 @@
 
 #import <UIKit/UIKit.h>
 
-@interface StartActivity : UIViewController
+@interface StartActivity : UIViewController <UITextViewDelegate>
 
 @end

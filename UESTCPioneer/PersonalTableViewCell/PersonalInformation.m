@@ -40,7 +40,8 @@
     self.tableView.allowsSelection = NO;
     self.tableView.separatorInset = UIEdgeInsetsZero;
     
-    array = @[@"",@"姓名",@"性别",@"民族",@"籍贯",@"入党时间",@"转正时间",@"政治面貌",@"所属支部"];
+    array = @[@"",@"姓       名",@"性       别",@"民       族",@"籍       贯",@"入党时间",@"转正时间",@"政治面貌",@"所属支部"];
+    NSLog(@"%@",self.tableView.backgroundColor);
     // Uncomment the following line to preserve selection between presentations.
     // self.clearsSelectionOnViewWillAppear = NO;
     
@@ -84,6 +85,13 @@
     return 0;
 }
 
+- (NSInteger)tableView:(UITableView *)tableView indentationLevelForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    if (indexPath.section)
+        return 9;
+    else return 7;
+}
+
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     static NSString *CellIdentifier = @"setcell";
@@ -92,12 +100,19 @@
         cell = [[ShortCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
     }
     if (indexPath.section ==0 )
-        cell.alabel.text = array[indexPath.row];
+    {
+        cell.staticLabel.text = array[indexPath.row];
+        UIImageView *imageview = [[UIImageView alloc] init];
+        [imageview setFrame:CGRectMake(cell.frame.origin.x ,4,55,55)];
+        imageview.image = [UIImage imageNamed:@"touxiang.png"];
+        [cell.contentView addSubview:imageview];
+    }
     else if (indexPath.section ==1 )
-        cell.alabel.text = array[indexPath.row + 1];
+        cell.staticLabel.text = array[indexPath.row + 1];
     else
-        cell.alabel.text = array[indexPath.row + 5];
-    // Configure the cell...
+        cell.staticLabel.text = array[indexPath.row + 5];
+    cell.textLabel.font = [UIFont systemFontOfSize:17];
+    cell.textLabel.text = @"李强";
     return cell;
 }
 

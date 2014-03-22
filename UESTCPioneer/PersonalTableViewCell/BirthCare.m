@@ -7,7 +7,7 @@
 //
 
 #import "BirthCare.h"
-
+#import "constant.h"
 @interface BirthCare ()
 
 @end
@@ -18,9 +18,7 @@
 {
     self = [super initWithStyle:style];
     if (self) {
-        UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, 320, 40)];
-        label.text = @"birthcare";
-        [self.view addSubview:label];
+        
     }
     return self;
 }
@@ -28,7 +26,12 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    
+    self.tableView.delegate = self;
+    self.tableView.dataSource = self;
+    if(IS_IOS7)
+        self.tableView.separatorInset = UIEdgeInsetsZero;
+    [self setExtraCellLineHidden];
+    [self.tableView setAllowsSelection:NO];
     // Uncomment the following line to preserve selection between presentations.
     // self.clearsSelectionOnViewWillAppear = NO;
     
@@ -46,68 +49,70 @@
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
-#warning Potentially incomplete method implementation.
     // Return the number of sections.
-    return 0;
+    return 1;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-#warning Incomplete method implementation.
     // Return the number of rows in the section.
-    return 0;
+    return 2;
 }
 
-/*
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:<#@"reuseIdentifier"#> forIndexPath:indexPath];
+    static NSString *CellIdentifier = @"setcell";
+    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+    if (cell == nil) {
+        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:CellIdentifier];
+    }
+    
+    UIImageView *imageView = [[UIImageView alloc] init];
+    [imageView setFrame:CGRectMake(10,4,55,55)];
+    imageView.image = [UIImage imageNamed:@"touxiang.png"];
+    
+    UILabel *name = [[UILabel alloc] initWithFrame:CGRectMake(75, 5, 100, 30)];
+    UILabel *date = [[UILabel alloc] initWithFrame:CGRectMake(75, 30, 100, 30)];
+    name.font = [UIFont boldSystemFontOfSize:18];
+    date.font = [UIFont systemFontOfSize:15];
+    date.textColor = [UIColor colorWithRed:119.0/255.0 green:123.0/255.0 blue:134.0/255.0 alpha:1];
+    name.text = @"徐涛";
+    date.text = @"4天后过生日";
+    
+    UIButton *button = [[UIButton alloc] initWithFrame:CGRectMake(250, 21, 55,22)];
+    [button setBackgroundImage:[UIImage imageNamed:@"birremind.png" ] forState:UIControlStateNormal];
+    button.titleLabel.font = [UIFont systemFontOfSize:10];
+    [button setTitle:@"送祝福" forState:UIControlStateNormal];
+    [button setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
+    [button setTitleEdgeInsets:UIEdgeInsetsMake(1, 18, 1, 1)];
+    
+    [cell.contentView addSubview:button];
+    [cell.contentView addSubview:name];
+    [cell.contentView addSubview:date];
+    [cell.contentView addSubview:imageView];
     
     // Configure the cell...
     
     return cell;
 }
-*/
 
-/*
-// Override to support conditional editing of the table view.
-- (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath
+- (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
 {
-    // Return NO if you do not want the specified item to be editable.
-    return YES;
+    return 0.1;
 }
-*/
 
-/*
-// Override to support editing the table view.
-- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath
+-(void)setExtraCellLineHidden
 {
-    if (editingStyle == UITableViewCellEditingStyleDelete) {
-        // Delete the row from the data source
-        [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
-    } else if (editingStyle == UITableViewCellEditingStyleInsert) {
-        // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-    }   
+    UIView *view = [[UIView alloc] init];
+    view.backgroundColor = [UIColor clearColor];
+    [self.tableView setTableFooterView:view];
 }
-*/
 
-/*
-// Override to support rearranging the table view.
-- (void)tableView:(UITableView *)tableView moveRowAtIndexPath:(NSIndexPath *)fromIndexPath toIndexPath:(NSIndexPath *)toIndexPath
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
+    return 64;
 }
-*/
 
-/*
-// Override to support conditional rearranging of the table view.
-- (BOOL)tableView:(UITableView *)tableView canMoveRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    // Return NO if you do not want the item to be re-orderable.
-    return YES;
-}
-*/
-
-/*
 #pragma mark - Navigation
 
 // In a storyboard-based application, you will often want to do a little preparation before navigation
@@ -116,6 +121,6 @@
     // Get the new view controller using [segue destinationViewController].
     // Pass the selected object to the new view controller.
 }
-*/
+
 
 @end
