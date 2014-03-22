@@ -170,14 +170,14 @@
 
 
 -(void)refreshRequest{
-    
-    [NetworkCenter AFRequestWithData:testData SuccessBlock:^(AFHTTPRequestOperation *operation, id resultObject) {
-        NSLog(@"%@",resultObject);
-        [refreshControl endRefreshing];
-    } FailureBlock:^(AFHTTPRequestOperation *operation, NSError *error) {
-        NSLog(@"pioneer request error:%@",error);
-        [refreshControl endRefreshing];
-    }];
+    [refreshControl endRefreshing];
+//    [NetworkCenter AFRequestWithData:testData SuccessBlock:^(AFHTTPRequestOperation *operation, id resultObject) {
+//        NSLog(@"%@",resultObject);
+//        [refreshControl endRefreshing];
+//    } FailureBlock:^(AFHTTPRequestOperation *operation, NSError *error) {
+//        NSLog(@"pioneer request error:%@",error);
+//        [refreshControl endRefreshing];
+//    }];
     
     
 //        [NetworkCenter RKRequestWithData:testData EntityName:PioneerEntityName Mapping:mapping SuccessBlock:^(NSArray *resultArray) {

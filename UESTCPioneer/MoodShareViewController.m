@@ -13,6 +13,9 @@
 #import "UPFooterCell.h"
 #import "LeveyTabBarController.h"
 #import "MoodShareNewsEntity.h"
+
+
+
 #define MoodShareMapping @{@"commentNum":@"numberOfComment"\
                             ,@"content":@"newsBody"\
                             ,@"id":@"theId"\
@@ -123,7 +126,14 @@
         if(cell3 == nil){
             cell3 = [[UPFooterCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:customFooterCellIndentifier];
         }
-        UIButton *btn3 = (UIButton *)[cell3.contentView viewWithTag:btn3Tag];
+        
+        
+        
+        commentButton *btn3 = (commentButton *)[cell3.contentView viewWithTag:btn3Tag];
+        [btn3 setTitle:[NSString stringWithFormat:@"%d",[DataEntity.numberOfComment integerValue]] forState:UIControlStateNormal];
+        btn3.theId=[DataEntity.theId integerValue];
+        
+        [btn3 addTarget:self action:@selector(commentButtonPress:) forControlEvents:UIControlEventTouchUpInside];
         return cell3;
     }
     
@@ -177,6 +187,15 @@
         NSLog(@"error:%@",error);
         [refreshControl endRefreshing];
     }];
+}
+
+#pragma mark - commentButton press
+
+-(void)commentButtonPress:(commentButton*)button{
+    commentViewController *comment = [[commentViewController alloc]init];
+    comment.theId=button.theId;
+    comment.numberOfComment=[button.titleLabel.text integerValue];
+    [self.leveyTabBarController.navigationController pushViewController:comment animated:YES];
 }
 
 @end

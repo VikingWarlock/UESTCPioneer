@@ -9,7 +9,8 @@
 #import <UIKit/UIKit.h>
 #import "constant.h"
 #import "UPTableView.h"
-
+#import "commentButton.h"
+#import "commentViewController.h"
 
 @interface UPMainViewController : UIViewController{
     //用于显示未读消息和样式

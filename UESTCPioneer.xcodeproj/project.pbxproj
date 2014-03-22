@@ -130,6 +130,11 @@
 		DCB5A93118DA91AE00842198 /* home_highlighted_msg.png in Resources */ = {isa = PBXBuildFile; fileRef = DCB5A92F18DA91AE00842198 /* home_highlighted_msg.png */; };
 		DCB7D6FE18DD4CFA002C1D5D /* NewsEntity.m in Sources */ = {isa = PBXBuildFile; fileRef = DCB7D6FD18DD4CFA002C1D5D /* NewsEntity.m */; };
 		DCB7D70118DD4CFB002C1D5D /* MoodShareNewsEntity.m in Sources */ = {isa = PBXBuildFile; fileRef = DCB7D70018DD4CFB002C1D5D /* MoodShareNewsEntity.m */; };
+		DCB972A318DDB78E00A36DEC /* commentButton.m in Sources */ = {isa = PBXBuildFile; fileRef = DCB972A218DDB78E00A36DEC /* commentButton.m */; };
+		DCB972A618DDBA6200A36DEC /* commentViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DCB972A518DDBA6200A36DEC /* commentViewController.m */; };
+		DCB972AC18DDC1F700A36DEC /* touxiang.png in Resources */ = {isa = PBXBuildFile; fileRef = DCB972AB18DDC1F700A36DEC /* touxiang.png */; };
+		DCB972B018DDC49600A36DEC /* UIViewController+Network.m in Sources */ = {isa = PBXBuildFile; fileRef = DCB972AF18DDC49600A36DEC /* UIViewController+Network.m */; };
+		DCB972B418DDD69E00A36DEC /* com.png in Resources */ = {isa = PBXBuildFile; fileRef = DCB972B318DDD69E00A36DEC /* com.png */; };
 		DCBF46CC18D9ED32008932C4 /* Unread.m in Sources */ = {isa = PBXBuildFile; fileRef = DCBF46CB18D9ED32008932C4 /* Unread.m */; };
 /* End PBXBuildFile section */
 
@@ -303,6 +308,14 @@
 		DCB7D6FD18DD4CFA002C1D5D /* NewsEntity.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NewsEntity.m; path = CoreData_Model/NewsEntity.m; sourceTree = "<group>"; };
 		DCB7D6FF18DD4CFB002C1D5D /* MoodShareNewsEntity.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MoodShareNewsEntity.h; path = CoreData_Model/MoodShareNewsEntity.h; sourceTree = "<group>"; };
 		DCB7D70018DD4CFB002C1D5D /* MoodShareNewsEntity.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MoodShareNewsEntity.m; path = CoreData_Model/MoodShareNewsEntity.m; sourceTree = "<group>"; };
+		DCB972A118DDB78E00A36DEC /* commentButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = commentButton.h; sourceTree = "<group>"; };
+		DCB972A218DDB78E00A36DEC /* commentButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = commentButton.m; sourceTree = "<group>"; };
+		DCB972A418DDBA6200A36DEC /* commentViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = commentViewController.h; sourceTree = "<group>"; };
+		DCB972A518DDBA6200A36DEC /* commentViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = commentViewController.m; sourceTree = "<group>"; };
+		DCB972AB18DDC1F700A36DEC /* touxiang.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = touxiang.png; sourceTree = "<group>"; };
+		DCB972AE18DDC49600A36DEC /* UIViewController+Network.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIViewController+Network.h"; sourceTree = "<group>"; };
+		DCB972AF18DDC49600A36DEC /* UIViewController+Network.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIViewController+Network.m"; sourceTree = "<group>"; };
+		DCB972B318DDD69E00A36DEC /* com.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = com.png; sourceTree = "<group>"; };
 		DCBF46CA18D9ED32008932C4 /* Unread.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Unread.h; sourceTree = "<group>"; };
 		DCBF46CB18D9ED32008932C4 /* Unread.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Unread.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -447,6 +460,7 @@
 		D2A2CB1E18D03E77001AD968 /* center */ = {
 			isa = PBXGroup;
 			children = (
+				DCB972AA18DDC1EF00A36DEC /* forCommentView */,
 				D24336DE18D2CA1400845121 /* collect_highlighted.png */,
 				D24336DF18D2CA1400845121 /* collect.png */,
 				D24336E018D2CA1400845121 /* comment.png */,
@@ -478,6 +492,8 @@
 				DCA5962518C81A0F00F001D9 /* UPSwitch.m */,
 				DCA5962718C81AED00F001D9 /* UPComplexSwitch.h */,
 				DCA5962818C81AED00F001D9 /* UPComplexSwitch.m */,
+				DCB972A118DDB78E00A36DEC /* commentButton.h */,
+				DCB972A218DDB78E00A36DEC /* commentButton.m */,
 			);
 			name = Button;
 			sourceTree = "<group>";
@@ -536,6 +552,7 @@
 				DCB5136D18C6C43700B7EE95 /* Main.storyboard */,
 				DCB5137318C6C43700B7EE95 /* Images.xcassets */,
 				DCB5136218C6C43700B7EE95 /* Supporting Files */,
+				DCB972B218DDC4BB00A36DEC /* CategoryClass */,
 			);
 			path = UESTCPioneer;
 			sourceTree = "<group>";
@@ -615,6 +632,7 @@
 			isa = PBXGroup;
 			children = (
 				DCB5142318C6D00500B7EE95 /* chat.png */,
+				DCB972B318DDD69E00A36DEC /* com.png */,
 				DCB5142418C6D00500B7EE95 /* chat_highlighted.png */,
 				DCB5142518C6D00500B7EE95 /* file.png */,
 				DCB5142618C6D00500B7EE95 /* file_highlighted.png */,
@@ -655,6 +673,8 @@
 				DCB5146B18C6E2AF00B7EE95 /* PartyActivityViewController.m */,
 				DCB5146D18C6E2DB00B7EE95 /* MoodShareViewController.h */,
 				DCB5146E18C6E2DB00B7EE95 /* MoodShareViewController.m */,
+				DCB972A418DDBA6200A36DEC /* commentViewController.h */,
+				DCB972A518DDBA6200A36DEC /* commentViewController.m */,
 			);
 			name = "Center'sMainViewController";
 			sourceTree = "<group>";
@@ -712,6 +732,23 @@
 				DCB5146518C6DF4500B7EE95 /* UPFooterCell.m */,
 			);
 			name = TableViewCell;
+			sourceTree = "<group>";
+		};
+		DCB972AA18DDC1EF00A36DEC /* forCommentView */ = {
+			isa = PBXGroup;
+			children = (
+				DCB972AB18DDC1F700A36DEC /* touxiang.png */,
+			);
+			name = forCommentView;
+			sourceTree = "<group>";
+		};
+		DCB972B218DDC4BB00A36DEC /* CategoryClass */ = {
+			isa = PBXGroup;
+			children = (
+				DCB972AE18DDC49600A36DEC /* UIViewController+Network.h */,
+				DCB972AF18DDC49600A36DEC /* UIViewController+Network.m */,
+			);
+			name = CategoryClass;
 			sourceTree = "<group>";
 		};
 		DCBF46C918D9E768008932C4 /* Global */ = {
@@ -828,6 +865,7 @@
 				D24336F618D2CA1400845121 /* dig.png in Resources */,
 				8834B9FF18D6EDBC0023BA87 /* care.png in Resources */,
 				DCB5136F18C6C43700B7EE95 /* Main.storyboard in Resources */,
+				DCB972B418DDD69E00A36DEC /* com.png in Resources */,
 				D24336FD18D2CA1400845121 /* plus_gray.png in Resources */,
 				517485BE18CA056F00413228 /* act2.png in Resources */,
 				517485C618CA056F00413228 /* share1.png in Resources */,
@@ -870,6 +908,7 @@
 				D243370418D2CA1500845121 /* sign.png in Resources */,
 				8834BA1818D6EF980023BA87 /* organ.png in Resources */,
 				517485C518CA056F00413228 /* notice2.png in Resources */,
+				DCB972AC18DDC1F700A36DEC /* touxiang.png in Resources */,
 				D24336FC18D2CA1400845121 /* news_num_tag.png in Resources */,
 				8839C32D18D96557008D01B9 /* icon114.png in Resources */,
 				D24336FA18D2CA1400845121 /* hook_blue.png in Resources */,
@@ -935,11 +974,13 @@
 			buildActionMask = 2147483647;
 			files = (
 				DCBF46CC18D9ED32008932C4 /* Unread.m in Sources */,
+				DCB972A318DDB78E00A36DEC /* commentButton.m in Sources */,
 				DCB5144618C6D3CE00B7EE95 /* CommunicationViewController.m in Sources */,
 				DCB5146F18C6E2DB00B7EE95 /* MoodShareViewController.m in Sources */,
 				DCB5146318C6DF3800B7EE95 /* UPMainInfoCell.m in Sources */,
 				DCB22CFA18CC9F37004F36D0 /* helper.m in Sources */,
 				DCB5137218C6C43700B7EE95 /* PionnerViewController.m in Sources */,
+				DCB972A618DDBA6200A36DEC /* commentViewController.m in Sources */,
 				DCB5145018C6D6B500B7EE95 /* UPMainViewController.m in Sources */,
 				8834BA2018D6F0C20023BA87 /* NetworkCenter.m in Sources */,
 				DC28762818DD888C00FD0892 /* PioneerNewsEntity.m in Sources */,
@@ -963,6 +1004,7 @@
 				DCB5144918C6D3ED00B7EE95 /* PartyDataViewController.m in Sources */,
 				DCB5145818C6DDFD00B7EE95 /* UPTableView.m in Sources */,
 				DCB5144C18C6D3F900B7EE95 /* PersonalViewController.m in Sources */,
+				DCB972B018DDC49600A36DEC /* UIViewController+Network.m in Sources */,
 				8834BA2318D6F12F0023BA87 /* MessageEntity.m in Sources */,
 				8889F91918D02E13001416C0 /* UserEntity.m in Sources */,
 				DCB5146C18C6E2AF00B7EE95 /* PartyActivityViewController.m in Sources */,

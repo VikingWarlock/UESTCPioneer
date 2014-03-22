@@ -47,7 +47,7 @@ static LeveyTabBarController *leveyTabBarController;
         
 		
 		_transitionView = [[UIView alloc] init];
-		_transitionView.backgroundColor =  [UIColor clearColor];
+		_transitionView.backgroundColor =  [UIColor whiteColor];
 		
 		_tabBar = [[LeveyTabBar alloc] initWithFrame:CGRectMake(0, _containerView.frame.size.height - kTabBarHeight, 320.0f, kTabBarHeight) buttonImages:arr titles:titleArray];
 		_tabBar.delegate = self;

@@ -24,4 +24,6 @@
 #import"Unread.h"
 #import"NetworkCenter.h"
 
+#import"UIViewController+Network.h"
+
 #endif
