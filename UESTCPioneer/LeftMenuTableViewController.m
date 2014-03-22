@@ -50,7 +50,7 @@
         cellsIndex = [[NSMutableArray alloc] initWithCapacity:5];
         self.tableView.rowHeight = 53;
         if(IS_IOS7)
-            self.tableView.separatorInset = UIEdgeInsetsZero;//ios7分割线不同于ios6
+            self.tableView.separatorInset = UIEdgeInsetsZero;
         self.tableView.backgroundColor = backGroundColor;
         self.tableView.separatorColor = separatorColor;
         // Custom initialization
