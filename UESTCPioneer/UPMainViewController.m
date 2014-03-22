@@ -11,6 +11,7 @@
 
 @interface UPMainViewController (){
     UIButton *barButton;
+
 }
 
 @end
@@ -37,7 +38,16 @@
     [background setBackgroundColor:self.tableView.backgroundColor];
     [self.view addSubview:background];
     [self.view addSubview:self.tableView];
-	// Do any additional setup after loading the view.
+    [refreshControl beginRefreshing];
+    [self refreshRequest];
+    
+#pragma refreshControl
+    refreshControl = [[UIRefreshControl alloc]init];
+    [refreshControl addTarget:self action:@selector(pullDownRefresh:) forControlEvents:UIControlEventValueChanged];
+    [self.tableView addSubview:refreshControl];
+    
+
+//    [refreshControl setAttributedTitle:[[NSAttributedString alloc]initWithString:@"下拉刷新"]];
 }
 
 -(void)viewWillAppear:(BOOL)animated{
@@ -117,5 +127,18 @@
     }
     [self.leveyTabBarController setTabBarItemWithImageDicationary:dic ForIndex:0];
 }
+
+#pragma  mark RefreshFuntion 
+-(void)pullDownRefresh:(UIRefreshControl*)control{
+    [self refreshRequest];
+}
+
+
+
+-(void)refreshRequest{
+    
+}
+
+
 
 @end

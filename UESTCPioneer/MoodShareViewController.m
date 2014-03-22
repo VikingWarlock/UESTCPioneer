@@ -27,8 +27,7 @@
 #define MoodShareEntityName @"MoodShareNewsEntity"
 
 @interface MoodShareViewController (){
-    UIRefreshControl *refreshControl;
-    NSArray *tableViewEntitiesArray;
+
 }
 
 @end
@@ -48,21 +47,12 @@
 {
     [super viewDidLoad];
     UnreadKey=kUnreadMoodShare;
-    tableViewEntitiesArray=[PublicMethod EntityArrayWithEntityName:MoodShareEntityName];
-	// Do any additional setup after loading the view.
-//    UILabel *label=[[UILabel alloc]initWithFrame:CGRectMake(0, 0, 100, 100)];
-//    label.text=@"心情分享";
-//    label.center=self.view.center;
+//    tableViewEntitiesArray=[PublicMethod EntityArrayWithEntityName:MoodShareEntityName];
+
     
 
     
-#pragma 下拉刷新菜单
-    UIRefreshControl *pullDownRefresh = [[UIRefreshControl alloc]init];
-    [pullDownRefresh setAttributedTitle:[[NSAttributedString alloc]initWithString:@"下拉刷新" ]];
-    [pullDownRefresh addTarget:self action:@selector(pullDownRefresh:) forControlEvents:UIControlEventValueChanged];
-    [self.tableView addSubview:pullDownRefresh];
 
-    refreshControl=pullDownRefresh;
     
     self.tableView.delegate = self;
     self.tableView.dataSource = self;
@@ -71,46 +61,12 @@
 }
 
 -(void)viewDidAppear:(BOOL)animated{
-//    [helper performBlock:^{
-//        [self.tableView setContentOffset:CGPointMake(0, -84) animated:YES];
-//                [refreshControl setAttributedTitle:[[NSAttributedString alloc]initWithString:@"正在刷新"]];
-//        [self pullDownRefresh:refreshControl];
-//    } afterDelay:3];
-    NSArray *da=[PublicMethod EntityArrayWithEntityName:MoodShareEntityName];
-    for (MoodShareNewsEntity *entity in da){
-        NSLog(@"theId:%d",[entity.theId integerValue]);
-    }
-//+(NSArray*)EntityArrayWithEntityName:(NSString*)entityName
+
 }
 
--(void)pullDownRefresh:(UIRefreshControl*)sender{
-    [refreshControl beginRefreshing];
-    NSLog(@"正在刷新");
-    [sender setAttributedTitle:[[NSAttributedString alloc]initWithString:@"正在刷新"]];
-    
-    
-//    type=getEventShare&userId=0010013110361&page=1
-    
-    [NetworkCenter RKRequestWithData:requestTestData EntityName:@"MoodShareNewsEntity" Mapping:MoodShareMapping SuccessBlock:^(NSArray *resultArray) {
-        for (MoodShareNewsEntity *entity in resultArray){
-            NSLog(@"%d",[entity.theId integerValue]);
-        }
-        
-        
-        
-        tableViewEntitiesArray=resultArray;
-        [self.tableView reloadData];
-        [PublicMethod ClearAllCoreData];
-        NSLog(@"刷新完成");
-        [sender endRefreshing];
-        [sender setAttributedTitle:[[NSAttributedString alloc]initWithString:@"下拉刷新"]];
-        
-    } failure:^(NSError *error) {
-        NSLog(@"error:%@",error);
-    }];
 
-    
-}
+
+
 
 -(void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
@@ -200,6 +156,26 @@
 {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+
+#pragma mark -  pullDown Refresh
+
+
+
+-(void)refreshRequest{
+    [NetworkCenter RKRequestWithData:requestTestData EntityName:MoodShareEntityName Mapping:MoodShareMapping SuccessBlock:^(NSArray *resultArray) {
+//        for (MoodShareNewsEntity *entity in resultArray){
+//            NSLog(@"%d",[entity.theId integerValue]);
+//        }
+        tableViewEntitiesArray=resultArray;
+        [self.tableView reloadData];
+        [PublicMethod ClearAllCoreData];
+        [refreshControl endRefreshing];
+
+        
+    } failure:^(NSError *error) {
+        NSLog(@"error:%@",error);
+    }];
 }
 
 @end
