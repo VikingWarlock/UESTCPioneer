@@ -124,4 +124,20 @@
     // Dispose of any resources that can be recreated.
 }
 
+
+/*
+ 
+ &type=getNoticeOrAnnounce&typepid=1&page=1&userid=0100001110011
+ typepid用于表示请求的是通知还是公示。1为通知0为公示
+ 
+ 
+ */
+
+//#define testData @{@"getNotice"}
+
+-(void)refreshRequest{
+//    [NetworkCenter RKRequestWithData:<#(NSDictionary *)#> EntityName:<#(NSString *)#> Mapping:<#(NSDictionary *)#> SuccessBlock:<#^(NSArray *resultArray)successBlock#> failure:<#^(NSError *error)failureBlock#>]
+    [refreshControl endRefreshing];
+}
+
 @end

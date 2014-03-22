@@ -80,6 +80,7 @@
 		D243370318D2CA1500845121 /* sign_mark.png in Resources */ = {isa = PBXBuildFile; fileRef = D24336EF18D2CA1400845121 /* sign_mark.png */; };
 		D243370418D2CA1500845121 /* sign.png in Resources */ = {isa = PBXBuildFile; fileRef = D24336F018D2CA1400845121 /* sign.png */; };
 		D243370518D2CA1500845121 /* write.png in Resources */ = {isa = PBXBuildFile; fileRef = D24336F118D2CA1400845121 /* write.png */; };
+		DC28762818DD888C00FD0892 /* PioneerNewsEntity.m in Sources */ = {isa = PBXBuildFile; fileRef = DC28762718DD888C00FD0892 /* PioneerNewsEntity.m */; };
 		DCA5962618C81A0F00F001D9 /* UPSwitch.m in Sources */ = {isa = PBXBuildFile; fileRef = DCA5962518C81A0F00F001D9 /* UPSwitch.m */; };
 		DCA5962918C81AED00F001D9 /* UPComplexSwitch.m in Sources */ = {isa = PBXBuildFile; fileRef = DCA5962818C81AED00F001D9 /* UPComplexSwitch.m */; };
 		DCB22CFA18CC9F37004F36D0 /* helper.m in Sources */ = {isa = PBXBuildFile; fileRef = DCB22CF918CC9F37004F36D0 /* helper.m */; };
@@ -223,6 +224,8 @@
 		D24336EF18D2CA1400845121 /* sign_mark.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = sign_mark.png; sourceTree = "<group>"; };
 		D24336F018D2CA1400845121 /* sign.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = sign.png; sourceTree = "<group>"; };
 		D24336F118D2CA1400845121 /* write.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = write.png; sourceTree = "<group>"; };
+		DC28762618DD888C00FD0892 /* PioneerNewsEntity.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PioneerNewsEntity.h; path = CoreData_Model/PioneerNewsEntity.h; sourceTree = "<group>"; };
+		DC28762718DD888C00FD0892 /* PioneerNewsEntity.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PioneerNewsEntity.m; path = CoreData_Model/PioneerNewsEntity.m; sourceTree = "<group>"; };
 		DCA5962418C81A0F00F001D9 /* UPSwitch.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UPSwitch.h; sourceTree = "<group>"; };
 		DCA5962518C81A0F00F001D9 /* UPSwitch.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UPSwitch.m; sourceTree = "<group>"; };
 		DCA5962718C81AED00F001D9 /* UPComplexSwitch.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UPComplexSwitch.h; sourceTree = "<group>"; };
@@ -435,6 +438,8 @@
 				DCB7D70018DD4CFB002C1D5D /* MoodShareNewsEntity.m */,
 				DCB7D6FC18DD4CFA002C1D5D /* NewsEntity.h */,
 				DCB7D6FD18DD4CFA002C1D5D /* NewsEntity.m */,
+				DC28762618DD888C00FD0892 /* PioneerNewsEntity.h */,
+				DC28762718DD888C00FD0892 /* PioneerNewsEntity.m */,
 			);
 			name = CoreData;
 			sourceTree = "<group>";
@@ -937,6 +942,7 @@
 				DCB5137218C6C43700B7EE95 /* PionnerViewController.m in Sources */,
 				DCB5145018C6D6B500B7EE95 /* UPMainViewController.m in Sources */,
 				8834BA2018D6F0C20023BA87 /* NetworkCenter.m in Sources */,
+				DC28762818DD888C00FD0892 /* PioneerNewsEntity.m in Sources */,
 				DCB5146918C6E29700B7EE95 /* PublicityViewController.m in Sources */,
 				DCB5141E18C6CC0C00B7EE95 /* LeveyTabBar.m in Sources */,
 				DCB5143A18C6D14F00B7EE95 /* PartyNoticeViewController.m in Sources */,

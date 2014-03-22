@@ -133,8 +133,15 @@
 
 #pragma mark - refresh request
 
+//）type：getEvent  （2）userId：查看着的用户账号
+//（3）page：页码
+//
+//#define testData @{@"type":@"getEvent",@"userId":@"0010013110361",@"page",@"1"}
+//#define
+
 -(void)refreshRequest{
-    
+//    [NetworkCenter RKRequestWithData:testData EntityName:<#(NSString *)#> Mapping:<#(NSDictionary *)#> SuccessBlock:<#^(NSArray *resultArray)successBlock#> failure:<#^(NSError *error)failureBlock#>]
+    [refreshControl endRefreshing];
 }
 
 @end

@@ -18,6 +18,14 @@
         <attribute name="timeAndDate" optional="YES" attributeType="Date" syncable="YES"/>
         <attribute name="titleBody" optional="YES" attributeType="String" syncable="YES"/>
     </entity>
+    <entity name="PioneerNewsEntity" representedClassName="PioneerNewsEntity" parentEntity="NewsEntity" syncable="YES">
+        <attribute name="content" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="count" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="desc" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="picName" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="picUrl" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="type" optional="YES" attributeType="String" syncable="YES"/>
+    </entity>
     <entity name="UserEntity" representedClassName="UserEntity" syncable="YES">
         <attribute name="avatarID" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="userID" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
@@ -25,8 +33,9 @@
     </entity>
     <elements>
         <element name="MessageEntity" positionX="0" positionY="0" width="0" height="0"/>
+        <element name="MoodShareNewsEntity" positionX="0" positionY="0" width="0" height="0"/>
         <element name="NewsEntity" positionX="0" positionY="0" width="0" height="0"/>
         <element name="UserEntity" positionX="0" positionY="0" width="0" height="0"/>
-        <element name="MoodShareNewsEntity" positionX="0" positionY="0" width="0" height="0"/>
+        <element name="PioneerNewsEntity" positionX="0" positionY="0" width="0" height="0"/>
     </elements>
 </model>

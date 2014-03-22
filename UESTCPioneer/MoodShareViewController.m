@@ -175,6 +175,7 @@
         
     } failure:^(NSError *error) {
         NSLog(@"error:%@",error);
+        [refreshControl endRefreshing];
     }];
 }
 

@@ -13,6 +13,7 @@
 #import "UPFooterCell.h"
 #import "constant.h"
 #import "LeveyTabBarController.h"
+#import "PioneerNewsEntity.h"
 
 @interface PioneerViewController ()
 
@@ -69,10 +70,14 @@
 
 //表的分区数
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView{
-    return 10;
+    return [tableViewEntitiesArray count];
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
+    
+    
+    PioneerNewsEntity *entity = tableViewEntitiesArray[indexPath.section];
+    
     if (indexPath.row == 0) {
     static NSString *customTitleCellIndentifier = @"CustomTitleCellIndentifier";
     UPTitleCell *cell = [tableView dequeueReusableCellWithIdentifier:customTitleCellIndentifier];
@@ -80,9 +85,9 @@
         cell = [[UPTitleCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:customTitleCellIndentifier];
     }
     UILabel *title = (UILabel *)[cell.contentView viewWithTag:titleTag];
-    title.text = @"title";
+        title.text =entity.titleBody;
     UILabel *time = (UILabel *)[cell.contentView viewWithTag:timeTag];
-    time.text = @"time";
+//        time.text = [entity.timeAndDate descriptionWithLocale:[NSLocale systemLocale]];
     return cell;
     }
     else if (indexPath.row == 1) {
@@ -92,7 +97,8 @@
             cell2 = [[UPMainInfoCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:customMainCellIndentifier];
         }
         UILabel *words = (UILabel *)[cell2.contentView viewWithTag:wordsTag];
-        words.text = @"在讨论这部纪录片之前，为了避免现在中文网络江湖盛行的动机论，我先要说明：我和崔永元老师没有个人恩怨，相反，对他的主持功力和以前取得的成绩都非常钦佩。我们也至少有一名共同的好朋友，《读库》的出版人张立宪。";
+//        words.text = @"在讨论这部纪录片之前，为了避免现在中文网络江湖盛行的动机论，我先要说明：我和崔永元老师没有个人恩怨，相反，对他的主持功力和以前取得的成绩都非常钦佩。我们也至少有一名共同的好朋友，《读库》的出版人张立宪。";
+        words.text=entity.newsBody;
         return cell2;
     }
     else {
@@ -134,6 +140,56 @@
 {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+
+#pragma mark - refresh request
+
+
+
+/*
+ 
+ 
+ page=1&type=getNews
+ 
+ {"content":"","count":0,"desc":"东莞市科技局系统党的群众路线教育实践活动简报第5期","id":26,"picName":"","picUrl":"","time":"2014-03-13 15:36:18","title":"践行群众路线，打造莞韶协同创新平台","type":""},
+ */
+
+#define testData @{@"page":@"1",@"type":@"getNews"}
+#define mapping @{@"content":@"content"\
+                    ,@"count":@"count"\
+                    ,@"desc":@"desc"\
+                    ,@"id":@"theId"\
+                    ,@"picName":@"picName"\
+                    ,@"picUrl":@"picUrl"\
+                    ,@"time":@"timeAndDate"\
+                    ,@"title":@"newsBody"\
+                    ,@"type":@"type"\
+}
+#define PioneerEntityName @"PioneerNewsEntity"
+
+
+
+-(void)refreshRequest{
+    
+    [NetworkCenter AFRequestWithData:testData SuccessBlock:^(AFHTTPRequestOperation *operation, id resultObject) {
+        NSLog(@"%@",resultObject);
+        [refreshControl endRefreshing];
+    } FailureBlock:^(AFHTTPRequestOperation *operation, NSError *error) {
+        NSLog(@"pioneer request error:%@",error);
+        [refreshControl endRefreshing];
+    }];
+    
+    
+//        [NetworkCenter RKRequestWithData:testData EntityName:PioneerEntityName Mapping:mapping SuccessBlock:^(NSArray *resultArray) {
+//            
+//            tableViewEntitiesArray=resultArray;
+//            [PublicMethod ClearAllCoreData];
+//            [self.tableView reloadData];
+//            [refreshControl endRefreshing];
+//        } failure:^(NSError *error) {
+//            NSLog(@"pioneer mapping request error:%@",error);
+//            [refreshControl endRefreshing];
+//        }];
 }
 
 @end
