@@ -7,6 +7,7 @@
 //
 
 #import "commentViewController.h"
+#import"commentView.h"
 #define backgroundColor [UIColor colorWithRed:237.0/255.0 green:237.0/255.0 blue:237.0/255.0 alpha:1]
 
 
@@ -201,7 +202,12 @@ static NSString *cellIdentifier=@"cell";
 
 #pragma mark - commentButton press
 
--(void)commentButtonPress:(UIButton*)button{}
+-(void)commentButtonPress:(UIButton*)button{
+    
+    
+    [commentView popUpCommentView];
+
+}
 
 @end
 
