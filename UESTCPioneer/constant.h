@@ -16,7 +16,13 @@
 #define kNotificationUnreadTotalRefreshed @"NotificationUnreadTotalRefreshed"
 
 
+#define debugMode 1
+
 @interface constant : NSObject
 +(id)getCenterController;
 +(void)setCenterController:(id)con;
++(NSString*)getUserId;
++(void)setUserId:(NSString*)user;
++(NSString*)getUserName;
++(void)setUserName:(NSString*)name;
 @end

@@ -8,6 +8,9 @@
 
 #import <UIKit/UIKit.h>
 
+
 @interface commentView : UIView
-+(void)popUpCommentView;
+@property (nonatomic,copy) void (^commitBlock)(NSString* commentBody);
+-(void)popUpCommentViewWithCommitBlock:(void(^)(NSString *commentBody))commitBlock;
+-(void)closeCommentView;
 @end

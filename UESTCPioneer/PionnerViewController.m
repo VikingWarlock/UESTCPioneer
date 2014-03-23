@@ -173,6 +173,11 @@
     [refreshControl endRefreshing];
 //    [NetworkCenter AFRequestWithData:testData SuccessBlock:^(AFHTTPRequestOperation *operation, id resultObject) {
 //        NSLog(@"%@",resultObject);
+//        
+//        
+//        NSArray *a=[NSJSONSerialization JSONObjectWithData:resultObject options:NSJSONReadingMutableLeaves error:nil];
+//        
+//        
 //        [refreshControl endRefreshing];
 //    } FailureBlock:^(AFHTTPRequestOperation *operation, NSError *error) {
 //        NSLog(@"pioneer request error:%@",error);

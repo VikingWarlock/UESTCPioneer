@@ -193,7 +193,22 @@
 
 -(void)commentButtonPress:(commentButton*)button{
     commentViewController *comment = [[commentViewController alloc]init];
-    comment.theId=button.theId;
+    
+    
+//    1）type：writeShareComment  （2）user_id：用户的账号
+//    （3）username：用户姓名      （4）shareId：活动分享的id
+//    （5）comment：评论的内容
+
+    
+    
+    //请求评论列表用的参数
+    comment.commentListRequestData=@{@"type":@"getShareComment",@"page":@"1",@"shareId":[NSString stringWithFormat:@"%d",button.theId]};
+    
+    
+    //写评论请求用的参数
+    comment.commentRequestData=@{@"type":@"writeShareComment",@"user_id":[constant getUserId],@"username":[constant getUserName],@"shareId":[NSString stringWithFormat:@"%d",button.theId],@"comment":@""};
+    
+//    comment.theId=button.theId;
     comment.numberOfComment=[button.titleLabel.text integerValue];
     [self.leveyTabBarController.navigationController pushViewController:comment animated:YES];
 }

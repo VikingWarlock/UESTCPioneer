@@ -13,6 +13,7 @@
     UIButton *closeButton,*commitButton;
     UITextField *commentTextField;
     UILabel *titleLabel;
+
 }
 
 @end
@@ -39,6 +40,7 @@
         [closeButton setImage:[UIImage imageNamed:@"cancel.png"] forState:UIControlStateNormal];
         [commitButton setImage:[UIImage imageNamed:@"complete2.png"] forState:UIControlStateNormal];
         [closeButton addTarget:self action:@selector(closeButtonPress:) forControlEvents:UIControlEventTouchUpInside];
+        [commitButton addTarget:self action:@selector(commitButtonPress:) forControlEvents:UIControlEventTouchUpInside];
         
         
     }
@@ -54,16 +56,9 @@
 }
 
 -(void)_viewsLayout{
-    UIView *keyWindow=[[UIApplication sharedApplication]keyWindow];
+
     
-    //把self加到window
-    [keyWindow addSubview:self];
-    [self setBackgroundColor:[UIColor redColor]];
-    [self setTranslatesAutoresizingMaskIntoConstraints:NO];
-    [keyWindow addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|[self]|" options:0 metrics:nil views:NSDictionaryOfVariableBindings(self)]];
-    [keyWindow addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|[self]|" options:0 metrics:nil views:NSDictionaryOfVariableBindings(self)]];
     
-    [self setBackgroundColor:[UIColor colorWithWhite:0.8 alpha:0.8]];
     
     //把评论框＋到背景上
     commentRectView=[[UIView alloc]init];
@@ -109,15 +104,34 @@
     [commentRectView addConstraint:[NSLayoutConstraint constraintWithItem:commentRectView attribute:NSLayoutAttributeCenterX relatedBy:NSLayoutRelationEqual toItem:titleLabel attribute:NSLayoutAttributeCenterX multiplier:1 constant:0]];
 }
 
-+(void)popUpCommentView{
-    commentView *comment=[[commentView alloc]init];
-//    UIView *keyWindow=[[UIApplication sharedApplication]keyWindow];
-//    [keyWindow addSubview:comment];
-    [comment setAlpha:0];
+-(void)popUpCommentViewWithCommitBlock:(void(^)(NSString *commentBody))commitBlock{
+        UIView *keyWindow=[[UIApplication sharedApplication]keyWindow];
+    
+    //把self加到window
+    [keyWindow addSubview:self];
+    [self setBackgroundColor:[UIColor redColor]];
+    [self setTranslatesAutoresizingMaskIntoConstraints:NO];
+    [keyWindow addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|[self]|" options:0 metrics:nil views:NSDictionaryOfVariableBindings(self)]];
+    [keyWindow addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|[self]|" options:0 metrics:nil views:NSDictionaryOfVariableBindings(self)]];
+    
+    [self setBackgroundColor:[UIColor colorWithWhite:0.8 alpha:0.8]];
+
+//    commentView *comment=[[commentView alloc]init];
+    self.commitBlock=commitBlock;
+    [self setAlpha:0];
     
     [UIView beginAnimations:nil context:NULL];
-    [comment setAlpha:1];
+    [self setAlpha:1];
     [UIView commitAnimations];
+    
+/*    （1）type：writeShareComment  （2）user_id：用户的账号
+    （3）username：用户姓名      （4）shareId：活动分享的id
+    （5）comment：评论的内容
+ */
+}
+
+-(void)closeCommentView{
+    [self closeButtonPress:Nil];
 }
 
 
@@ -127,6 +141,11 @@
     } completion:^(BOOL finished) {
         [self removeFromSuperview];
     }];
+}
+
+-(void)commitButtonPress:(UIButton*)button{
+    
+    self.commitBlock(commentTextField.text);
 }
 
 

@@ -41,7 +41,7 @@
         [self.userName setTranslatesAutoresizingMaskIntoConstraints:NO];
         [self.commentBody setTranslatesAutoresizingMaskIntoConstraints:NO];
 
-
+        
 
         
         
@@ -119,7 +119,6 @@ static NSString *cellIdentifier=@"cell";
     TableView.delegate=self;
     TableView.dataSource=self;
     
-    
 
     
     
@@ -142,10 +141,23 @@ static NSString *cellIdentifier=@"cell";
     [self.navigationItem setRightBarButtonItem:rightCommentBarButton];
 
     
+    //求情评论列表
+    [self _requestList];
     
     
+    
+	// Do any additional setup after loading the view.
+}
 
-    [NetworkCenter AFRequestWithData:@{@"type":@"getShareComment",@"page":@"1",@"shareId":[NSString stringWithFormat:@"%d",self.theId]} SuccessBlock:^(AFHTTPRequestOperation *operation, id resultObject) {
+- (void)didReceiveMemoryWarning
+{
+    [super didReceiveMemoryWarning];
+    // Dispose of any resources that can be recreated.
+}
+
+-(void)_requestList{
+    
+    [NetworkCenter AFRequestWithData:self.commentListRequestData SuccessBlock:^(AFHTTPRequestOperation *operation, id resultObject) {
         
         NSError *error;
         NSArray *arr=[NSJSONSerialization JSONObjectWithData:resultObject options:NSJSONReadingMutableLeaves error:&error];
@@ -153,7 +165,7 @@ static NSString *cellIdentifier=@"cell";
         
         NSMutableArray *targetArray = [[NSMutableArray alloc]init];
         for (NSDictionary *sourceDic in arr){
-        
+            
             NSMutableDictionary *targetDic = [[NSMutableDictionary alloc]init];
             [targetDic setObject:@"" forKey:@"headImageUrl"];
             [targetDic setObject:sourceDic[@"userName"] forKey:@"userName"];
@@ -166,15 +178,7 @@ static NSString *cellIdentifier=@"cell";
     } FailureBlock:^(AFHTTPRequestOperation *operation, NSError *error) {
         NSLog(@"commentViewController init request error:%@",error);
     }];
-    
-    
-	// Do any additional setup after loading the view.
-}
 
-- (void)didReceiveMemoryWarning
-{
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
 }
 
 #pragma mark - tableview Delegate and DataSource
@@ -204,8 +208,27 @@ static NSString *cellIdentifier=@"cell";
 
 -(void)commentButtonPress:(UIButton*)button{
     
+   __weak commentViewController *weakSelf=self;
     
-    [commentView popUpCommentView];
+    commentView *co=[[commentView alloc]init];
+    
+    [co popUpCommentViewWithCommitBlock:^(NSString *commentBody) {
+        NSMutableDictionary *dic= [[NSMutableDictionary alloc]initWithDictionary:weakSelf.commentRequestData];
+//        [weakSelf.commentRequestData setObject:@"comment" forKey:commentBody];
+        dic[@"comment"]=commentBody;
+        self.commentRequestData=[[NSDictionary alloc]initWithDictionary:dic];
+        [NetworkCenter AFRequestWithData:self.commentRequestData SuccessBlock:^(AFHTTPRequestOperation *operation, id resultObject) {
+
+            //弹出提示：评论成功
+            NSLog(@"评论成功");
+            [co closeCommentView];
+            [self _requestList];
+            
+        } FailureBlock:^(AFHTTPRequestOperation *operation, NSError *error) {
+            //弹出提示：评论失败
+            NSLog(@"评论失败");
+        }];
+    }];
 
 }
 
