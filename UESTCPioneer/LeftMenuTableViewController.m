@@ -197,7 +197,6 @@
         cell.leftImageView.image = [UIImage imageNamed:[NSString stringWithFormat:@"%@",cellIcon[indexForHighlight.row]]];
         cell.titleLabel.textColor = textColor;
     }//这里没有直接使用indexPath是因为在ios6下有bug，indexPath没有正确的指向相应的cell而是返回NSNotFound,不太明白这是怎么回事，所以通过indexForHighlight和indexForSelected绕过了参数indexPath
-    NSLog(@"%@",indexPath);
 }
 
 /*

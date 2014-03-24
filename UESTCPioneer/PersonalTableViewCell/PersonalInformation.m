@@ -9,6 +9,7 @@
 #import "PersonalInformation.h"
 #import "constant.h"
 #import "ShortCell.h"
+#import "LeveyTabBarController.h"
 
 @interface PersonalInformation ()
 {
@@ -42,16 +43,21 @@
     
     array = @[@"",@"姓       名",@"性       别",@"民       族",@"籍       贯",@"入党时间",@"转正时间",@"政治面貌",@"所属支部"];
     NSLog(@"%@",self.tableView.backgroundColor);
+    NSLog(@"xxxxx%@",self.leveyTabBarController.navigationController.parentViewController);
     // Uncomment the following line to preserve selection between presentations.
     // self.clearsSelectionOnViewWillAppear = NO;
     
     // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
     // self.navigationItem.rightBarButtonItem = self.editButtonItem;
 }
+-(void)viewWillAppear:(BOOL)animated{
+    [super viewWillAppear:animated];
+    [self.leveyTabBarController.navigationItem setTitle:@""];
+}
 
-- (void)viewDidAppear:(BOOL)animated
-{
-    [super viewDidAppear:animated];
+-(void)viewDidDisappear:(BOOL)animated{
+    [super viewDidDisappear:animated];
+    //[self.leveyTabBarController.navigationItem setRightBarButtonItem:Nil];
 }
 
 - (void)didReceiveMemoryWarning
@@ -99,7 +105,7 @@
     if (cell == nil) {
         cell = [[ShortCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
     }
-    if (indexPath.section ==0 )
+    if (indexPath.section == 0 )
     {
         cell.staticLabel.text = array[indexPath.row];
         UIImageView *imageview = [[UIImageView alloc] init];

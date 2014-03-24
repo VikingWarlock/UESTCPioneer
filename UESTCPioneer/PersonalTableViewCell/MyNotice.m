@@ -8,6 +8,7 @@
 
 #import "MyNotice.h"
 #import "constant.h"
+#import "LongCell.h"
 @interface MyNotice ()
 
 @end
@@ -27,7 +28,8 @@
     [super viewDidLoad];
     self.tableView.delegate = self;
     self.tableView.dataSource = self;
-    if(IS_IOS7)
+    [self.tableView registerClass:[LongCell class] forCellReuseIdentifier:@"setcell"
+     ];    if(IS_IOS7)
         self.tableView.separatorInset = UIEdgeInsetsZero;
     [self setExtraCellLineHidden];
     // Uncomment the following line to preserve selection between presentations.
@@ -60,20 +62,12 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     static NSString *CellIdentifier = @"setcell";
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+    LongCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
     if (cell == nil) {
-        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
+        cell = [[LongCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
     }
-    UIImageView *imageView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, 25, 25)];
-    imageView.center = CGPointMake(20, cell.center.y);
-    imageView.image = [UIImage imageNamed:@"mn.png"];
-    UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(40, 0, 270, cell.frame.size.height)];
-    label.text = @"天气通知";
-    
-    [cell.contentView addSubview:imageView];
-    [cell.contentView addSubview:label];
-    
-    // Configure the cell...
+    cell.leftImage.image = [UIImage imageNamed:@"mn.png"];
+    cell.label.text = @"天气通知";
     
     return cell;
 }
