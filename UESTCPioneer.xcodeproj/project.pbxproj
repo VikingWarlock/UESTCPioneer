@@ -80,6 +80,12 @@
 		D243370318D2CA1500845121 /* sign_mark.png in Resources */ = {isa = PBXBuildFile; fileRef = D24336EF18D2CA1400845121 /* sign_mark.png */; };
 		D243370418D2CA1500845121 /* sign.png in Resources */ = {isa = PBXBuildFile; fileRef = D24336F018D2CA1400845121 /* sign.png */; };
 		D243370518D2CA1500845121 /* write.png in Resources */ = {isa = PBXBuildFile; fileRef = D24336F118D2CA1400845121 /* write.png */; };
+		DC1B4F5618E0321500862219 /* MJRefresh.bundle in Resources */ = {isa = PBXBuildFile; fileRef = DC1B4F4C18E0321500862219 /* MJRefresh.bundle */; };
+		DC1B4F5718E0321500862219 /* MJRefreshBaseView.m in Sources */ = {isa = PBXBuildFile; fileRef = DC1B4F4F18E0321500862219 /* MJRefreshBaseView.m */; };
+		DC1B4F5818E0321500862219 /* MJRefreshConst.m in Sources */ = {isa = PBXBuildFile; fileRef = DC1B4F5118E0321500862219 /* MJRefreshConst.m */; };
+		DC1B4F5918E0321500862219 /* MJRefreshFooterView.m in Sources */ = {isa = PBXBuildFile; fileRef = DC1B4F5318E0321500862219 /* MJRefreshFooterView.m */; };
+		DC1B4F5A18E0321500862219 /* MJRefreshHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = DC1B4F5518E0321500862219 /* MJRefreshHeaderView.m */; };
+		DC1B4F5D18E0323B00862219 /* PullRefreshTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = DC1B4F5C18E0323B00862219 /* PullRefreshTableView.m */; };
 		DC28762818DD888C00FD0892 /* PioneerNewsEntity.m in Sources */ = {isa = PBXBuildFile; fileRef = DC28762718DD888C00FD0892 /* PioneerNewsEntity.m */; };
 		DCA5962618C81A0F00F001D9 /* UPSwitch.m in Sources */ = {isa = PBXBuildFile; fileRef = DCA5962518C81A0F00F001D9 /* UPSwitch.m */; };
 		DCA5962918C81AED00F001D9 /* UPComplexSwitch.m in Sources */ = {isa = PBXBuildFile; fileRef = DCA5962818C81AED00F001D9 /* UPComplexSwitch.m */; };
@@ -233,6 +239,18 @@
 		D24336EF18D2CA1400845121 /* sign_mark.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = sign_mark.png; sourceTree = "<group>"; };
 		D24336F018D2CA1400845121 /* sign.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = sign.png; sourceTree = "<group>"; };
 		D24336F118D2CA1400845121 /* write.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = write.png; sourceTree = "<group>"; };
+		DC1B4F4C18E0321500862219 /* MJRefresh.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = MJRefresh.bundle; sourceTree = "<group>"; };
+		DC1B4F4D18E0321500862219 /* MJRefresh.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MJRefresh.h; sourceTree = "<group>"; };
+		DC1B4F4E18E0321500862219 /* MJRefreshBaseView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MJRefreshBaseView.h; sourceTree = "<group>"; };
+		DC1B4F4F18E0321500862219 /* MJRefreshBaseView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MJRefreshBaseView.m; sourceTree = "<group>"; };
+		DC1B4F5018E0321500862219 /* MJRefreshConst.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MJRefreshConst.h; sourceTree = "<group>"; };
+		DC1B4F5118E0321500862219 /* MJRefreshConst.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MJRefreshConst.m; sourceTree = "<group>"; };
+		DC1B4F5218E0321500862219 /* MJRefreshFooterView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MJRefreshFooterView.h; sourceTree = "<group>"; };
+		DC1B4F5318E0321500862219 /* MJRefreshFooterView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MJRefreshFooterView.m; sourceTree = "<group>"; };
+		DC1B4F5418E0321500862219 /* MJRefreshHeaderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MJRefreshHeaderView.h; sourceTree = "<group>"; };
+		DC1B4F5518E0321500862219 /* MJRefreshHeaderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MJRefreshHeaderView.m; sourceTree = "<group>"; };
+		DC1B4F5B18E0323B00862219 /* PullRefreshTableView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PullRefreshTableView.h; sourceTree = "<group>"; };
+		DC1B4F5C18E0323B00862219 /* PullRefreshTableView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PullRefreshTableView.m; sourceTree = "<group>"; };
 		DC28762618DD888C00FD0892 /* PioneerNewsEntity.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PioneerNewsEntity.h; path = CoreData_Model/PioneerNewsEntity.h; sourceTree = "<group>"; };
 		DC28762718DD888C00FD0892 /* PioneerNewsEntity.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PioneerNewsEntity.m; path = CoreData_Model/PioneerNewsEntity.m; sourceTree = "<group>"; };
 		DCA5962418C81A0F00F001D9 /* UPSwitch.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UPSwitch.h; sourceTree = "<group>"; };
@@ -494,6 +512,23 @@
 			path = center;
 			sourceTree = "<group>";
 		};
+		DC1B4F4B18E0321500862219 /* MJRefresh */ = {
+			isa = PBXGroup;
+			children = (
+				DC1B4F4C18E0321500862219 /* MJRefresh.bundle */,
+				DC1B4F4D18E0321500862219 /* MJRefresh.h */,
+				DC1B4F4E18E0321500862219 /* MJRefreshBaseView.h */,
+				DC1B4F4F18E0321500862219 /* MJRefreshBaseView.m */,
+				DC1B4F5018E0321500862219 /* MJRefreshConst.h */,
+				DC1B4F5118E0321500862219 /* MJRefreshConst.m */,
+				DC1B4F5218E0321500862219 /* MJRefreshFooterView.h */,
+				DC1B4F5318E0321500862219 /* MJRefreshFooterView.m */,
+				DC1B4F5418E0321500862219 /* MJRefreshHeaderView.h */,
+				DC1B4F5518E0321500862219 /* MJRefreshHeaderView.m */,
+			);
+			path = MJRefresh;
+			sourceTree = "<group>";
+		};
 		DCA5962318C819D300F001D9 /* Button */ = {
 			isa = PBXGroup;
 			children = (
@@ -713,10 +748,13 @@
 		DCB5145118C6DD5400B7EE95 /* TableView */ = {
 			isa = PBXGroup;
 			children = (
+				DC1B4F4B18E0321500862219 /* MJRefresh */,
 				DCA5962318C819D300F001D9 /* Button */,
 				DCB5145D18C6DEFC00B7EE95 /* TableViewCell */,
 				DCB5145618C6DDFD00B7EE95 /* UPTableView.h */,
 				DCB5145718C6DDFD00B7EE95 /* UPTableView.m */,
+				DC1B4F5B18E0323B00862219 /* PullRefreshTableView.h */,
+				DC1B4F5C18E0323B00862219 /* PullRefreshTableView.m */,
 			);
 			name = TableView;
 			sourceTree = "<group>";
@@ -880,6 +918,7 @@
 				D24336FF18D2CA1500845121 /* read_bg.png in Resources */,
 				8839C32618D96557008D01B9 /* Default~iphone.png in Resources */,
 				DCB5137418C6C43700B7EE95 /* Images.xcassets in Resources */,
+				DC1B4F5618E0321500862219 /* MJRefresh.bundle in Resources */,
 				DCB5136618C6C43700B7EE95 /* InfoPlist.strings in Resources */,
 				8834BA0218D6EDBC0023BA87 /* logout.png in Resources */,
 				8834BA1618D6EF980023BA87 /* knowledge.png in Resources */,
@@ -1012,6 +1051,7 @@
 				DCB5146F18C6E2DB00B7EE95 /* MoodShareViewController.m in Sources */,
 				DCB5146318C6DF3800B7EE95 /* UPMainInfoCell.m in Sources */,
 				DCB22CFA18CC9F37004F36D0 /* helper.m in Sources */,
+				DC1B4F5718E0321500862219 /* MJRefreshBaseView.m in Sources */,
 				DCB5137218C6C43700B7EE95 /* PionnerViewController.m in Sources */,
 				DCB972A618DDBA6200A36DEC /* commentViewController.m in Sources */,
 				DCB5145018C6D6B500B7EE95 /* UPMainViewController.m in Sources */,
@@ -1029,14 +1069,18 @@
 				DCB5146618C6DF4500B7EE95 /* UPFooterCell.m in Sources */,
 				DCB5146018C6DF1C00B7EE95 /* UPTitleCell.m in Sources */,
 				DCB22CFD18CCBCD0004F36D0 /* constant.m in Sources */,
+				DC1B4F5818E0321500862219 /* MJRefreshConst.m in Sources */,
 				DCB5144018C6D27000B7EE95 /* LeftMenuTableViewController.m in Sources */,
 				DCA5962918C81AED00F001D9 /* UPComplexSwitch.m in Sources */,
+				DC1B4F5D18E0323B00862219 /* PullRefreshTableView.m in Sources */,
 				DCB5136818C6C43700B7EE95 /* main.m in Sources */,
 				88E1AFD718CACC3C008D92B7 /* PublicMethod.m in Sources */,
 				DCB7D6FE18DD4CFA002C1D5D /* NewsEntity.m in Sources */,
+				DC1B4F5A18E0321500862219 /* MJRefreshHeaderView.m in Sources */,
 				88E1AFD418CAC91E008D92B7 /* Pioneer_DataModel.xcdatamodeld in Sources */,
 				DCB5144918C6D3ED00B7EE95 /* PartyDataViewController.m in Sources */,
 				DCB5145818C6DDFD00B7EE95 /* UPTableView.m in Sources */,
+				DC1B4F5918E0321500862219 /* MJRefreshFooterView.m in Sources */,
 				DCB5144C18C6D3F900B7EE95 /* PersonalViewController.m in Sources */,
 				DCB972B018DDC49600A36DEC /* UIViewController+Network.m in Sources */,
 				8834BA2318D6F12F0023BA87 /* MessageEntity.m in Sources */,
