@@ -149,6 +149,11 @@
     _header = header;
 }
 
+-(void)freeHeaderFooter{
+    [_header free];
+    [_footer free];
+}
+
 
 
 - (void)dealloc

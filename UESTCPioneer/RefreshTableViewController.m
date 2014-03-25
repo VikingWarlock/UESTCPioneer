@@ -49,6 +49,8 @@
 	// Do any additional setup after loading the view.
 }
 
+
+
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
@@ -66,6 +68,10 @@
     [background setBackgroundColor:self.tableView.backgroundColor];
     [self.view addSubview:background];
     [self.view addSubview:self.tableView];
+}
+
+-(void)dealloc{
+    [self.tableView freeHeaderFooter];
 }
 
 #pragma mark - 下拉刷新和上拉加载

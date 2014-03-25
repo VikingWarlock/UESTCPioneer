@@ -132,6 +132,7 @@
                 // 1.增加65的滚动区域
                 UIEdgeInsets inset = _scrollView.contentInset;
                 inset.top = _scrollViewInitInset.top + MJRefreshViewHeight;
+                NSLog(@"scrollView:%@",_scrollView);
                 _scrollView.contentInset = inset;
                 // 2.设置滚动位置
                 _scrollView.contentOffset = CGPointMake(0, - _scrollViewInitInset.top - MJRefreshViewHeight);

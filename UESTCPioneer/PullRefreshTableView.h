@@ -20,4 +20,6 @@
 
 -(void)setPullDownBeginRefreshAction:(SEL)action;
 -(void)setPullUpBeginRefreshAction:(SEL)action;
+
+-(void)freeHeaderFooter;
 @end
