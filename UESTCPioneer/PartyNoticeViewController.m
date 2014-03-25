@@ -141,4 +141,15 @@
     // Dispose of any resources that can be recreated.
 }
 
+#pragma mark pull refresh
+-(void)pullDownRefresh:(MJRefreshBaseView *)refreshView{
+    [helper performBlock:^{
+        [refreshView endRefreshing];
+    } afterDelay:0.25];
+}
+-(void)pullUpRefresh:(MJRefreshBaseView *)refreshView{
+    [helper performBlock:^{
+        [refreshView endRefreshing];
+    } afterDelay:0.25];
+}
 @end

@@ -72,7 +72,7 @@
 
 #pragma mark - commentTableView
 
-@interface commentTableView : UITableView
+@interface commentTableView : UPTableView
 
 
 @end
@@ -87,7 +87,7 @@
 
 @interface commentViewController ()<UITableViewDataSource,UITableViewDelegate>
 {
-    commentTableView *TableView;
+//    commentTableView *TableView;
     NSArray *tableViewDataArray;
 }
 
@@ -112,12 +112,13 @@ static NSString *cellIdentifier=@"cell";
 {
     [super viewDidLoad];
     [self.view setBackgroundColor:backgroundColor];
-    [TableView setBackgroundColor:backgroundColor];
-    TableView=[[commentTableView alloc]initWithFrame:self.view.bounds];
-    [TableView registerClass:[commentTableViewCell class] forCellReuseIdentifier:cellIdentifier];
-    [self.view addSubview:TableView];
-    TableView.delegate=self;
-    TableView.dataSource=self;
+    
+    [self.tableView setBackgroundColor:backgroundColor];
+//    TableView=[[commentTableView alloc]initWithFrame:self.view.bounds];
+    [self.tableView registerClass:[commentTableViewCell class] forCellReuseIdentifier:cellIdentifier];
+//    [self.view addSubview:TableView];
+    self.tableView.delegate=self;
+    self.tableView.dataSource=self;
     
 
     
@@ -141,10 +142,9 @@ static NSString *cellIdentifier=@"cell";
     [self.navigationItem setRightBarButtonItem:rightCommentBarButton];
 
     
-    //求情评论列表
-    [self _requestList];
+ 
     
-    
+    [self.tableView beginRefreshing];
     
 	// Do any additional setup after loading the view.
 }
@@ -157,27 +157,7 @@ static NSString *cellIdentifier=@"cell";
 
 -(void)_requestList{
     
-    [NetworkCenter AFRequestWithData:self.commentListRequestData SuccessBlock:^(AFHTTPRequestOperation *operation, id resultObject) {
-        
-        NSError *error;
-        NSArray *arr=[NSJSONSerialization JSONObjectWithData:resultObject options:NSJSONReadingMutableLeaves error:&error];
-        
-        
-        NSMutableArray *targetArray = [[NSMutableArray alloc]init];
-        for (NSDictionary *sourceDic in arr){
-            
-            NSMutableDictionary *targetDic = [[NSMutableDictionary alloc]init];
-            [targetDic setObject:@"" forKey:@"headImageUrl"];
-            [targetDic setObject:sourceDic[@"userName"] forKey:@"userName"];
-            [targetDic setObject:sourceDic[@"comment"] forKey:@"commentBody"];
-            [targetArray addObject:targetDic];
-        }
-        tableViewDataArray=targetArray;
-        [TableView reloadData];
-        
-    } FailureBlock:^(AFHTTPRequestOperation *operation, NSError *error) {
-        NSLog(@"commentViewController init request error:%@",error);
-    }];
+
 
 }
 
@@ -230,6 +210,73 @@ static NSString *cellIdentifier=@"cell";
         }];
     }];
 
+}
+
+-(void)pullUpRefresh:(MJRefreshBaseView *)refreshView{
+    NSMutableDictionary *tempDic = [[NSMutableDictionary alloc]initWithDictionary:self.commentListRequestData];
+    [tempDic setObject:[NSString stringWithFormat:@"%d",PullUpRefreshTimes+2] forKey:@"page"];
+    
+//    self.commentListRequestData = [[NSDictionary alloc]initWithDictionary:tempDic];
+    
+    
+    [NetworkCenter AFRequestWithData:tempDic SuccessBlock:^(AFHTTPRequestOperation *operation, id resultObject) {
+        
+        
+        
+        NSError *error;
+        NSArray *arr=[NSJSONSerialization JSONObjectWithData:resultObject options:NSJSONReadingMutableLeaves error:&error];
+        //如果空
+        if ([arr count]==0){
+            [refreshView endRefreshing];
+            return ;
+        }
+        
+        
+        
+        NSMutableArray *targetArray = [[NSMutableArray alloc]init];
+        for (NSDictionary *sourceDic in arr){
+            
+            NSMutableDictionary *targetDic = [[NSMutableDictionary alloc]init];
+            [targetDic setObject:@"" forKey:@"headImageUrl"];
+            [targetDic setObject:sourceDic[@"userName"] forKey:@"userName"];
+            [targetDic setObject:sourceDic[@"comment"] forKey:@"commentBody"];
+            [targetArray addObject:targetDic];
+        }
+        
+        NSMutableArray *muArr = [[NSMutableArray alloc]initWithArray:tableViewDataArray];
+        [muArr addObjectsFromArray:targetArray];
+        tableViewDataArray = [[NSArray alloc]initWithArray:muArr];
+//        tableViewDataArray=targetArray;
+        [refreshView endRefreshing];
+        [self.tableView reloadData];
+        PullUpRefreshTimes++;
+    } FailureBlock:^(AFHTTPRequestOperation *operation, NSError *error) {
+        NSLog(@"commentViewController init request error:%@",error);
+    }];
+}
+-(void)pullDownRefresh:(MJRefreshBaseView *)refreshView{
+    [NetworkCenter AFRequestWithData:self.commentListRequestData SuccessBlock:^(AFHTTPRequestOperation *operation, id resultObject) {
+        
+        NSError *error;
+        NSArray *arr=[NSJSONSerialization JSONObjectWithData:resultObject options:NSJSONReadingMutableLeaves error:&error];
+        
+        
+        NSMutableArray *targetArray = [[NSMutableArray alloc]init];
+        for (NSDictionary *sourceDic in arr){
+            
+            NSMutableDictionary *targetDic = [[NSMutableDictionary alloc]init];
+            [targetDic setObject:@"" forKey:@"headImageUrl"];
+            [targetDic setObject:sourceDic[@"userName"] forKey:@"userName"];
+            [targetDic setObject:sourceDic[@"comment"] forKey:@"commentBody"];
+            [targetArray addObject:targetDic];
+        }
+        tableViewDataArray=targetArray;
+        [refreshView endRefreshing];
+        [self.tableView reloadData];
+        
+    } FailureBlock:^(AFHTTPRequestOperation *operation, NSError *error) {
+        NSLog(@"commentViewController init request error:%@",error);
+    }];
 }
 
 @end

@@ -30,22 +30,13 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    self.tableView=[[UPTableView alloc]initWithFrame:CGRectMake(10, 0, 300, 455) style:UITableViewStyleGrouped];
-    if(IS_IOS7)
-        [self.tableView setSeparatorInset:UIEdgeInsetsZero];
-    [self.tableView setAllowsSelection:NO]; 
-    UIImageView *background = [[UIImageView alloc]initWithFrame:CGRectMake(0, 0, 320, 455)];
-    [background setBackgroundColor:self.tableView.backgroundColor];
-    [self.view addSubview:background];
-    [self.view addSubview:self.tableView];
-    [refreshControl beginRefreshing];
-    [self refreshRequest];
     
-#pragma refreshControl
-    refreshControl = [[UIRefreshControl alloc]init];
-    [refreshControl addTarget:self action:@selector(pullDownRefresh:) forControlEvents:UIControlEventValueChanged];
-    [self.tableView addSubview:refreshControl];
+
     
+    
+    
+    
+
 
 //    [refreshControl setAttributedTitle:[[NSAttributedString alloc]initWithString:@"下拉刷新"]];
 }
@@ -128,16 +119,7 @@
     [self.leveyTabBarController setTabBarItemWithImageDicationary:dic ForIndex:0];
 }
 
-#pragma  mark RefreshFuntion 
--(void)pullDownRefresh:(UIRefreshControl*)control{
-    [self refreshRequest];
-}
 
-
-
--(void)refreshRequest{
-    
-}
 
 
 

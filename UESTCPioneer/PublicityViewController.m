@@ -135,9 +135,16 @@
 
 //#define testData @{@"getNotice"}
 
--(void)refreshRequest{
-//    [NetworkCenter RKRequestWithData:<#(NSDictionary *)#> EntityName:<#(NSString *)#> Mapping:<#(NSDictionary *)#> SuccessBlock:<#^(NSArray *resultArray)successBlock#> failure:<#^(NSError *error)failureBlock#>]
-    [refreshControl endRefreshing];
-}
 
+#pragma mark pull refresh
+-(void)pullDownRefresh:(MJRefreshBaseView *)refreshView{
+    [helper performBlock:^{
+        [refreshView endRefreshing];
+    } afterDelay:0.25];
+}
+-(void)pullUpRefresh:(MJRefreshBaseView *)refreshView{
+    [helper performBlock:^{
+        [refreshView endRefreshing];
+    } afterDelay:0.25];
+}
 @end

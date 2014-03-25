@@ -89,6 +89,7 @@
 		DC28762818DD888C00FD0892 /* PioneerNewsEntity.m in Sources */ = {isa = PBXBuildFile; fileRef = DC28762718DD888C00FD0892 /* PioneerNewsEntity.m */; };
 		DCA5962618C81A0F00F001D9 /* UPSwitch.m in Sources */ = {isa = PBXBuildFile; fileRef = DCA5962518C81A0F00F001D9 /* UPSwitch.m */; };
 		DCA5962918C81AED00F001D9 /* UPComplexSwitch.m in Sources */ = {isa = PBXBuildFile; fileRef = DCA5962818C81AED00F001D9 /* UPComplexSwitch.m */; };
+		DCABAFB618E1419800D5FE9C /* RefreshTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DCABAFB518E1419800D5FE9C /* RefreshTableViewController.m */; };
 		DCB22CFA18CC9F37004F36D0 /* helper.m in Sources */ = {isa = PBXBuildFile; fileRef = DCB22CF918CC9F37004F36D0 /* helper.m */; };
 		DCB22CFD18CCBCD0004F36D0 /* constant.m in Sources */ = {isa = PBXBuildFile; fileRef = DCB22CFC18CCBCD0004F36D0 /* constant.m */; };
 		DCB5135C18C6C43700B7EE95 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DCB5135B18C6C43700B7EE95 /* Foundation.framework */; };
@@ -257,6 +258,8 @@
 		DCA5962518C81A0F00F001D9 /* UPSwitch.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UPSwitch.m; sourceTree = "<group>"; };
 		DCA5962718C81AED00F001D9 /* UPComplexSwitch.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UPComplexSwitch.h; sourceTree = "<group>"; };
 		DCA5962818C81AED00F001D9 /* UPComplexSwitch.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UPComplexSwitch.m; sourceTree = "<group>"; };
+		DCABAFB418E1419800D5FE9C /* RefreshTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RefreshTableViewController.h; sourceTree = "<group>"; };
+		DCABAFB518E1419800D5FE9C /* RefreshTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RefreshTableViewController.m; sourceTree = "<group>"; };
 		DCB22CF818CC9F37004F36D0 /* helper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = helper.h; sourceTree = "<group>"; };
 		DCB22CF918CC9F37004F36D0 /* helper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = helper.m; sourceTree = "<group>"; };
 		DCB22CFB18CCBCD0004F36D0 /* constant.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = constant.h; sourceTree = "<group>"; };
@@ -741,6 +744,8 @@
 			children = (
 				DCB5144E18C6D6B500B7EE95 /* UPMainViewController.h */,
 				DCB5144F18C6D6B500B7EE95 /* UPMainViewController.m */,
+				DCABAFB418E1419800D5FE9C /* RefreshTableViewController.h */,
+				DCABAFB518E1419800D5FE9C /* RefreshTableViewController.m */,
 			);
 			name = SuperClass;
 			sourceTree = "<group>";
@@ -1077,6 +1082,7 @@
 				88E1AFD718CACC3C008D92B7 /* PublicMethod.m in Sources */,
 				DCB7D6FE18DD4CFA002C1D5D /* NewsEntity.m in Sources */,
 				DC1B4F5A18E0321500862219 /* MJRefreshHeaderView.m in Sources */,
+				DCABAFB618E1419800D5FE9C /* RefreshTableViewController.m in Sources */,
 				88E1AFD418CAC91E008D92B7 /* Pioneer_DataModel.xcdatamodeld in Sources */,
 				DCB5144918C6D3ED00B7EE95 /* PartyDataViewController.m in Sources */,
 				DCB5145818C6DDFD00B7EE95 /* UPTableView.m in Sources */,

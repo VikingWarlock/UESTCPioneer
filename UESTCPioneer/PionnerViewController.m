@@ -169,8 +169,7 @@
 
 
 
--(void)refreshRequest{
-    [refreshControl endRefreshing];
+
 //    [NetworkCenter AFRequestWithData:testData SuccessBlock:^(AFHTTPRequestOperation *operation, id resultObject) {
 //        NSLog(@"%@",resultObject);
 //        
@@ -195,6 +194,17 @@
 //            NSLog(@"pioneer mapping request error:%@",error);
 //            [refreshControl endRefreshing];
 //        }];
+
+#pragma mark pull refresh
+-(void)pullDownRefresh:(MJRefreshBaseView *)refreshView{
+    [helper performBlock:^{
+        [refreshView endRefreshing];
+    } afterDelay:0.25];
+}
+-(void)pullUpRefresh:(MJRefreshBaseView *)refreshView{
+    [helper performBlock:^{
+        [refreshView endRefreshing];
+    } afterDelay:0.25];
 }
 
 @end

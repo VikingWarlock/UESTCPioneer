@@ -7,8 +7,9 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "RefreshTableViewController.h"
 
-@interface commentViewController : UIViewController
+@interface commentViewController : RefreshTableViewController
 @property NSInteger numberOfComment;
 @property NSDictionary *commentListRequestData;
 //用于将编写的评论提交到服务器的参数Dictionary

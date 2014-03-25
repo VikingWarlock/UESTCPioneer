@@ -13,4 +13,11 @@
 @interface PullRefreshTableView : UITableView
 @property (nonatomic,copy)void (^pullDownBeginRefreshBlock)(MJRefreshBaseView *refreshView);
 @property (nonatomic,copy)void (^pullUpBeginRefreshBlock)(MJRefreshBaseView *refreshView);
+
+-(void)setPullDownBeginRefreshBlock:(void (^)(MJRefreshBaseView *refreshView))pullDownBeginRefreshBlock;
+-(void)setPullUpBeginRefreshBlock:(void (^)(MJRefreshBaseView *refreshView))pullUpBeginRefreshBlock;
+-(void)beginRefreshing;
+
+-(void)setPullDownBeginRefreshAction:(SEL)action;
+-(void)setPullUpBeginRefreshAction:(SEL)action;
 @end

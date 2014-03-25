@@ -61,6 +61,15 @@
     self.tableView.dataSource = self;
 
     
+
+
+//    [self.tableView setPullDownBeginRefreshAction:@selector(refreshRequest:) ];
+
+    
+    
+
+    
+    
 }
 
 -(void)viewDidAppear:(BOOL)animated{
@@ -168,11 +177,11 @@
     // Dispose of any resources that can be recreated.
 }
 
-#pragma mark -  pullDown Refresh
+#pragma mark -  pull Refresh
 
 
 
--(void)refreshRequest{
+-(void)pullDownRefresh:(MJRefreshBaseView *)refreshView{
     [NetworkCenter RKRequestWithData:requestTestData EntityName:MoodShareEntityName Mapping:MoodShareMapping SuccessBlock:^(NSArray *resultArray) {
 //        for (MoodShareNewsEntity *entity in resultArray){
 //            NSLog(@"%d",[entity.theId integerValue]);
@@ -180,12 +189,37 @@
         tableViewEntitiesArray=resultArray;
         [self.tableView reloadData];
         [PublicMethod ClearAllCoreData];
-        [refreshControl endRefreshing];
+        [refreshView endRefreshing];
 
         
     } failure:^(NSError *error) {
         NSLog(@"error:%@",error);
-        [refreshControl endRefreshing];
+        [refreshView endRefreshing];
+    }];
+}
+
+-(void)pullUpRefresh:(MJRefreshBaseView *)refreshView{
+    
+    NSMutableDictionary *tempDic= [[NSMutableDictionary alloc]initWithDictionary:requestTestData];
+    [tempDic setObject:@(PullUpRefreshTimes+2) forKey:@"page"];
+    
+    [NetworkCenter RKRequestWithData:tempDic EntityName:MoodShareEntityName Mapping:MoodShareMapping SuccessBlock:^(NSArray *resultArray) {
+        
+        
+        NSMutableArray *newArray = [[NSMutableArray alloc]initWithArray:tableViewEntitiesArray];
+        [newArray addObjectsFromArray:resultArray];
+        NSArray *result = [[NSArray alloc]initWithArray:newArray];
+        
+        
+        tableViewEntitiesArray=result;
+        [self.tableView reloadData];
+        [PublicMethod ClearAllCoreData];
+        [refreshView endRefreshing];
+        PullUpRefreshTimes++;
+        
+    } failure:^(NSError *error) {
+        NSLog(@"error:%@",error);
+        [refreshView endRefreshing];
     }];
 }
 
