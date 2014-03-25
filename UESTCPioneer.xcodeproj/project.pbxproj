@@ -99,7 +99,7 @@
 		DCB5136818C6C43700B7EE95 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = DCB5136718C6C43700B7EE95 /* main.m */; };
 		DCB5136C18C6C43700B7EE95 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = DCB5136B18C6C43700B7EE95 /* AppDelegate.m */; };
 		DCB5136F18C6C43700B7EE95 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DCB5136D18C6C43700B7EE95 /* Main.storyboard */; };
-		DCB5137218C6C43700B7EE95 /* PionnerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DCB5137118C6C43700B7EE95 /* PionnerViewController.m */; };
+		DCB5137218C6C43700B7EE95 /* PioneerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DCB5137118C6C43700B7EE95 /* PioneerViewController.m */; };
 		DCB5137418C6C43700B7EE95 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DCB5137318C6C43700B7EE95 /* Images.xcassets */; };
 		DCB5137B18C6C43700B7EE95 /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DCB5137A18C6C43700B7EE95 /* XCTest.framework */; };
 		DCB5137C18C6C43700B7EE95 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DCB5135B18C6C43700B7EE95 /* Foundation.framework */; };
@@ -276,7 +276,7 @@
 		DCB5136B18C6C43700B7EE95 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
 		DCB5136E18C6C43700B7EE95 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		DCB5137018C6C43700B7EE95 /* PioneerViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PioneerViewController.h; sourceTree = "<group>"; };
-		DCB5137118C6C43700B7EE95 /* PionnerViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PionnerViewController.m; sourceTree = "<group>"; };
+		DCB5137118C6C43700B7EE95 /* PioneerViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PioneerViewController.m; sourceTree = "<group>"; };
 		DCB5137318C6C43700B7EE95 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		DCB5137918C6C43700B7EE95 /* UESTCPioneerTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = UESTCPioneerTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		DCB5137A18C6C43700B7EE95 /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
@@ -713,7 +713,7 @@
 				DCB5145118C6DD5400B7EE95 /* TableView */,
 				DCB5144D18C6D63B00B7EE95 /* SuperClass */,
 				DCB5137018C6C43700B7EE95 /* PioneerViewController.h */,
-				DCB5137118C6C43700B7EE95 /* PionnerViewController.m */,
+				DCB5137118C6C43700B7EE95 /* PioneerViewController.m */,
 				DCB5143818C6D14F00B7EE95 /* PartyNoticeViewController.h */,
 				DCB5143918C6D14F00B7EE95 /* PartyNoticeViewController.m */,
 				DCB5146718C6E29700B7EE95 /* PublicityViewController.h */,
@@ -1057,7 +1057,7 @@
 				DCB5146318C6DF3800B7EE95 /* UPMainInfoCell.m in Sources */,
 				DCB22CFA18CC9F37004F36D0 /* helper.m in Sources */,
 				DC1B4F5718E0321500862219 /* MJRefreshBaseView.m in Sources */,
-				DCB5137218C6C43700B7EE95 /* PionnerViewController.m in Sources */,
+				DCB5137218C6C43700B7EE95 /* PioneerViewController.m in Sources */,
 				DCB972A618DDBA6200A36DEC /* commentViewController.m in Sources */,
 				DCB5145018C6D6B500B7EE95 /* UPMainViewController.m in Sources */,
 				8834BA2018D6F0C20023BA87 /* NetworkCenter.m in Sources */,
