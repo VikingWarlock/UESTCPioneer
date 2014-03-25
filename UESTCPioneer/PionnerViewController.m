@@ -23,7 +23,6 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    UnreadKey=kUnreadPioneerKey;
 //    [self.view setBackgroundColor:[UIColor blackColor]];
         [self.leveyTabBarController.navigationItem setTitle:@"成电视角"];
 
@@ -41,25 +40,35 @@
     */
      
     
+    
     NSLog(@"self.view=%f",self.view.bounds.size.height);
 	// Do any additional setup after loading the view, typically from a nib.
 }
 
 -(void)viewWillAppear:(BOOL)animated{
-    [super viewWillAppear:animated];
         [self.leveyTabBarController.navigationItem setTitle:@"成电先锋"];
-    [helper performBlock:^{
-        [self.revealSideViewController pushOldViewControllerOnDirection:PPRevealSideDirectionLeft animated:YES];
-    } afterDelay:3];
 }
 
 -(void)viewDidAppear:(BOOL)animated{
-    [super viewDidAppear:animated];
 //    NSLog(@"%@",self.leveyTabBarController.navigationController);
 //    [self.leveyTabBarController.navigationController setTitle:@"aa"];
 //    [self.leveyTabBarController.navigationController.navigationItem setTitle:@"bb"];
 
     
+}
+
+- (void)dropClicked:(id)sender {
+    NSArray * arr = [[NSArray alloc] init];
+    arr = [NSArray arrayWithObjects:@"全部", @"通信", @"计算机", @"微固", @"数学", @"外国语",nil];
+    if(dropDown == nil) {
+        CGFloat f = 180;
+        dropDown = [[NIDropDown alloc]initDropDown:sender :&f :arr];
+        dropDown.delegate = self;
+    }
+    else {
+        [dropDown hideDropDown:sender];
+        [self rel];
+    }
 }
 
 //每个分区的行数
@@ -120,9 +129,6 @@
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section{
-    if (section == 0) {
-        return 10;
-    }
     return 5;
 }
 - (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section{

@@ -31,7 +31,6 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    UnreadKey=kUnreadPublicity;
 	// Do any additional setup after loading the view.
 //    UILabel *label=[[UILabel alloc]initWithFrame:CGRectMake(0, 0, 100, 100)];
 //    label.text=@"公示公告";
@@ -40,13 +39,13 @@
 
 //    [self.view addSubview:label];
 
+    [self hideTopView];
     self.tableView.delegate = self;
     self.tableView.dataSource = self;
 }
 
 
 -(void)viewWillAppear:(BOOL)animated{
-    [super viewWillAppear:animated];
             [self.leveyTabBarController.navigationItem setTitle:@"公示公告"];
 }
 
@@ -108,9 +107,6 @@
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section{
-    if (section == 0) {
-        return 10;
-    }
     return 5;
 }
 - (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section{

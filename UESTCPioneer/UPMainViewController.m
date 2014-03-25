@@ -7,11 +7,11 @@
 //
 
 #import "UPMainViewController.h"
-#import "PPRevealSideViewController.h"
 
 @interface UPMainViewController (){
     UIButton *barButton;
 
+    UIView *dropdownview;
 }
 
 @end
@@ -39,26 +39,46 @@
 
 
 //    [refreshControl setAttributedTitle:[[NSAttributedString alloc]initWithString:@"下拉刷新"]];
+
+    self.tableView=[[UPTableView alloc]initWithFrame:CGRectMake(10, 35, 300, 420) style:UITableViewStyleGrouped];
+    if(IS_IOS7)
+        [self.tableView setSeparatorInset:UIEdgeInsetsZero];
+    [self.tableView setAllowsSelection:NO];
+    UIImageView *background = [[UIImageView alloc]initWithFrame:CGRectMake(0, 0, 320, 455)];
+    [background setBackgroundColor:self.tableView.backgroundColor];
+    dropdownview =[[UIView alloc] initWithFrame:CGRectMake(0, 0, 320, 30)];
+    dropdownview.backgroundColor = [UIColor whiteColor];
+    dropbtn = [[UIButton alloc]initWithFrame:CGRectMake(213, 8, 100, 20)];
+    [dropbtn setTitle:@"全部" forState:UIControlStateNormal];
+    //dropbtn.titleLabel.font = [UIFont systemFontOfSize:18];
+    [dropbtn setTitleColor:[UIColor grayColor] forState:UIControlStateNormal];
+    //[dropbtn setBackgroundColor:[UIColor redColor]];
+    [dropbtn setTitleEdgeInsets:UIEdgeInsetsMake(0, 30, 0, 15)];
+    //[dropbtn.titleLabel setTextAlignment:NSTextAlignmentRight];
+    [dropbtn addTarget:self action:@selector(dropClicked:) forControlEvents:UIControlEventTouchUpInside];
+    UIImageView *xiala = [[UIImageView alloc]initWithImage:[UIImage imageNamed:@"xiala.png"]];
+    xiala.frame = CGRectMake(85, 4, 12, 12);
+    xiala.tag = 22;
+    //[xiala.layer setAffineTransform:CGAffineTransformMakeRotation(0.5f * 3.14159*2)];
+    [dropbtn addSubview:xiala];
+    [dropdownview addSubview:dropbtn];
+    [self.view addSubview:background];
+    [self.view addSubview:self.tableView];
+    [self.view addSubview:dropdownview];
+	// Do any additional setup after loading the view.
+}
+-(void)hideTopView{
+    dropdownview.hidden = YES;
+    self.tableView.frame = CGRectMake(10, 5, 300,450);
+}
+- (void) niDropDownDelegateMethod: (NIDropDown *) sender {
+    [self rel];
 }
 
--(void)viewWillAppear:(BOOL)animated{
-    [self _initBarButton];
-    
-    
-    //界面显示，监听通知
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(notificationUnreadrefresh:) name:kNotificationUnreadTotalRefreshed object:nil];
-    
-
-
+-(void)rel{
+    //[dropDown release];
+    dropDown = nil;
 }
-
-
--(void)viewWillDisappear:(BOOL)animated{
-        //界面消失，取消接受通知
-    [[NSNotificationCenter defaultCenter] removeObserver:self name:kNotificationUnreadTotalRefreshed object:nil];
-    [self.leveyTabBarController.navigationItem setLeftBarButtonItem:Nil];
-}
-
 
 - (void)didReceiveMemoryWarning
 {
@@ -118,6 +138,7 @@
     }
     [self.leveyTabBarController setTabBarItemWithImageDicationary:dic ForIndex:0];
 }
+
 
 
 

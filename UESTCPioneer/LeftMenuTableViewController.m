@@ -20,8 +20,6 @@
 #import "helper.h"
 #import "constant.h"
 @interface LeftMenuTableViewController (){
-    NSDictionary *classTypeToUnreadKeyDictionary;
-    NSArray *unreadKeyArray;
     NSArray *nameArray ;
     NSArray *classArray;
     NSArray *cellIcon;
@@ -52,7 +50,7 @@
         cellsIndex = [[NSMutableArray alloc] initWithCapacity:5];
         self.tableView.rowHeight = 53;
         if(IS_IOS7)
-            self.tableView.separatorInset = UIEdgeInsetsZero;//ios7分割线不同于ios6
+            self.tableView.separatorInset = UIEdgeInsetsZero;
         self.tableView.backgroundColor = backGroundColor;
         self.tableView.separatorColor = separatorColor;
         // Custom initialization
@@ -71,14 +69,6 @@
     indexForSelected = [NSIndexPath indexPathForRow:0 inSection:0];
     nameArray=@[@"成电视角",@"党委通知",@"公示公告",@"组织活动",@"心情分享"];
     classArray=@[[PioneerViewController class],[PartyNoticeViewController class],[PublicityViewController class],[PartyActivityViewController class],[MoodShareViewController class]];
-    
-    
-    //通过类的类型找到其UnreadKey的字典
-    unreadKeyArray=@[kUnreadPioneerKey,kUnreadPartyNoticeKey,kUnreadPublicity,kUnreadPartyActivity,kUnreadMoodShare];
-    classTypeToUnreadKeyDictionary=[NSDictionary dictionaryWithObjects:unreadKeyArray forKeys:classArray];
-    
-    
-    
     cellIcon = @[@"news1.png",@"notice1.png",@"note1.png",@"act1.png",@"share1.png"];
     selectedCellIcon = @[@"news2.png",@"notice2.png",@"note2.png",@"act2.png",@"share2.png"];
 
@@ -148,10 +138,6 @@
     }
     cell.titleLabel.text=nameArray[indexPath.row];
     cell.leftImageView.image = [UIImage imageNamed:[NSString stringWithFormat:@"%@",cellIcon[indexPath.row]]];
-    //未读消息的显示
-    NSInteger unreadCount = [Unread getUnreadNumWithKey:unreadKeyArray[indexPath.row]];
-    [cell showNewsCountLabel:unreadCount];
-    
     
     if(indexForSelected.row == indexPath.row){
         cell.leftImageView.image = [UIImage imageNamed:[NSString stringWithFormat:@"%@",selectedCellIcon[indexPath.row]]];
@@ -165,32 +151,21 @@
 }
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
-
-    
-    
-    
-    
-    //点击消除未读消息
-    [Unread setUnreadNum:0 ForKey:unreadKeyArray[indexPath.row]];
-    
-    //界面切换
     Class theClass=classArray[indexPath.row];
     UIViewController *controller = [[theClass alloc] init];
     [self.leveyTabBarController removeViewControllerAtIndex:0];
     [self.leveyTabBarController setSelectedIndex:1];
-//    NSMutableDictionary *imgDic = [NSMutableDictionary dictionaryWithCapacity:3];
-//	[imgDic setObject:[UIImage imageNamed:@"chat.png"] forKey:@"Default"];
-//	[imgDic setObject:[UIImage imageNamed:@"chat_highlighted.png"] forKey:@"Highlighted"];
-//	[imgDic setObject:[UIImage imageNamed:@"chat_highlighted.png"] forKey:@"Seleted"];
+    
+    NSMutableDictionary *imgDic = [NSMutableDictionary dictionaryWithCapacity:3];
+	[imgDic setObject:[UIImage imageNamed:@"chat.png"] forKey:@"Default"];
+	[imgDic setObject:[UIImage imageNamed:@"chat_highlighted.png"] forKey:@"Highlighted"];
+	[imgDic setObject:[UIImage imageNamed:@"chat_highlighted.png"] forKey:@"Seleted"];
     [controller willMoveToParentViewController:self.leveyTabBarController];
     [self.leveyTabBarController insertViewController:controller  atIndex:0];
     [self.revealSideViewController popViewControllerWithNewCenterController:[constant getCenterController] animated:YES];
     [self.leveyTabBarController setSelectedIndex:0];
     [controller didMoveToParentViewController:[constant getCenterController]];
-    ////////////////////////////////////////////
-    
-    
-    
+
     UPMenuTableViewCell *cell = (UPMenuTableViewCell *)[self.tableView cellForRowAtIndexPath:indexPath];
     cell.titleLabel.textColor = [UIColor whiteColor];
     cell.leftImageView.image = [UIImage imageNamed:[NSString stringWithFormat:@"%@",selectedCellIcon[indexPath.row]]];
@@ -222,7 +197,6 @@
         cell.leftImageView.image = [UIImage imageNamed:[NSString stringWithFormat:@"%@",cellIcon[indexForHighlight.row]]];
         cell.titleLabel.textColor = textColor;
     }//这里没有直接使用indexPath是因为在ios6下有bug，indexPath没有正确的指向相应的cell而是返回NSNotFound,不太明白这是怎么回事，所以通过indexForHighlight和indexForSelected绕过了参数indexPath
-    NSLog(@"%@",indexPath);
 }
 
 /*

@@ -49,14 +49,24 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+
     UnreadKey=kUnreadMoodShare;
 //    tableViewEntitiesArray=[PublicMethod EntityArrayWithEntityName:MoodShareEntityName];
 
-    
+
+	// Do any additional setup after loading the view.
+//    UILabel *label=[[UILabel alloc]initWithFrame:CGRectMake(0, 0, 100, 100)];
+//    label.text=@"心情分享";
+//    label.center=self.view.center;
 
     
 
     
+
+    
+
+//    [self.view addSubview:label];
+    [self hideTopView];
     self.tableView.delegate = self;
     self.tableView.dataSource = self;
 
@@ -161,9 +171,6 @@
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section{
-    if (section == 0) {
-        return 10;
-    }
     return 5;
 }
 - (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section{
