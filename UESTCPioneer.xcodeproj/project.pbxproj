@@ -107,6 +107,8 @@
 		D243370318D2CA1500845121 /* sign_mark.png in Resources */ = {isa = PBXBuildFile; fileRef = D24336EF18D2CA1400845121 /* sign_mark.png */; };
 		D243370418D2CA1500845121 /* sign.png in Resources */ = {isa = PBXBuildFile; fileRef = D24336F018D2CA1400845121 /* sign.png */; };
 		D243370518D2CA1500845121 /* write.png in Resources */ = {isa = PBXBuildFile; fileRef = D24336F118D2CA1400845121 /* write.png */; };
+		D2DA747318E19A4F008A2294 /* NIDropDown.m in Sources */ = {isa = PBXBuildFile; fileRef = D2DA747218E19A4F008A2294 /* NIDropDown.m */; };
+		D2DA747518E19E3E008A2294 /* xiala.png in Resources */ = {isa = PBXBuildFile; fileRef = D2DA747418E19E3E008A2294 /* xiala.png */; };
 		DCA5962618C81A0F00F001D9 /* UPSwitch.m in Sources */ = {isa = PBXBuildFile; fileRef = DCA5962518C81A0F00F001D9 /* UPSwitch.m */; };
 		DCA5962918C81AED00F001D9 /* UPComplexSwitch.m in Sources */ = {isa = PBXBuildFile; fileRef = DCA5962818C81AED00F001D9 /* UPComplexSwitch.m */; };
 		DCB22CFA18CC9F37004F36D0 /* helper.m in Sources */ = {isa = PBXBuildFile; fileRef = DCB22CF918CC9F37004F36D0 /* helper.m */; };
@@ -285,6 +287,9 @@
 		D24336EF18D2CA1400845121 /* sign_mark.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = sign_mark.png; sourceTree = "<group>"; };
 		D24336F018D2CA1400845121 /* sign.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = sign.png; sourceTree = "<group>"; };
 		D24336F118D2CA1400845121 /* write.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = write.png; sourceTree = "<group>"; };
+		D2DA747118E19A4F008A2294 /* NIDropDown.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NIDropDown.h; sourceTree = "<group>"; };
+		D2DA747218E19A4F008A2294 /* NIDropDown.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NIDropDown.m; sourceTree = "<group>"; };
+		D2DA747418E19E3E008A2294 /* xiala.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = xiala.png; sourceTree = "<group>"; };
 		DCA5962418C81A0F00F001D9 /* UPSwitch.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UPSwitch.h; sourceTree = "<group>"; };
 		DCA5962518C81A0F00F001D9 /* UPSwitch.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UPSwitch.m; sourceTree = "<group>"; };
 		DCA5962718C81AED00F001D9 /* UPComplexSwitch.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UPComplexSwitch.h; sourceTree = "<group>"; };
@@ -559,8 +564,18 @@
 				D24336EF18D2CA1400845121 /* sign_mark.png */,
 				D24336F018D2CA1400845121 /* sign.png */,
 				D24336F118D2CA1400845121 /* write.png */,
+				D2DA747418E19E3E008A2294 /* xiala.png */,
 			);
 			path = center;
+			sourceTree = "<group>";
+		};
+		D2DA747018E19A35008A2294 /* DropDown */ = {
+			isa = PBXGroup;
+			children = (
+				D2DA747118E19A4F008A2294 /* NIDropDown.h */,
+				D2DA747218E19A4F008A2294 /* NIDropDown.m */,
+			);
+			name = DropDown;
 			sourceTree = "<group>";
 		};
 		DCA5962318C819D300F001D9 /* Button */ = {
@@ -779,6 +794,7 @@
 				DCB5145D18C6DEFC00B7EE95 /* TableViewCell */,
 				DCB5145618C6DDFD00B7EE95 /* UPTableView.h */,
 				DCB5145718C6DDFD00B7EE95 /* UPTableView.m */,
+				D2DA747018E19A35008A2294 /* DropDown */,
 			);
 			name = TableView;
 			sourceTree = "<group>";
@@ -900,6 +916,7 @@
 				8834BA1C18D6EF980023BA87 /* theory.png in Resources */,
 				8839C31B18D963E8008D01B9 /* icon.png in Resources */,
 				D24336F718D2CA1400845121 /* dot.png in Resources */,
+				D2DA747518E19E3E008A2294 /* xiala.png in Resources */,
 				517485C718CA056F00413228 /* share2.png in Resources */,
 				8839C32918D96557008D01B9 /* icon29.png in Resources */,
 				8834BA1A18D6EF980023BA87 /* QA.png in Resources */,
@@ -1039,6 +1056,7 @@
 				5153823A18DAE0EA007C4675 /* PersonalInformation.m in Sources */,
 				DCB5145C18C6DE7D00B7EE95 /* UPMenuTableViewCell.m in Sources */,
 				DCB5136C18C6C43700B7EE95 /* AppDelegate.m in Sources */,
+				D2DA747318E19A4F008A2294 /* NIDropDown.m in Sources */,
 				DCB5141F18C6CC0C00B7EE95 /* LeveyTabBarController.m in Sources */,
 				51071D8218DDBAB600695D41 /* ShortMainInfocell.m in Sources */,
 				510C56C018E02CF3007F6359 /* LongCell.m in Sources */,

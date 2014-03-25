@@ -57,6 +57,20 @@
     
 }
 
+- (void)dropClicked:(id)sender {
+    NSArray * arr = [[NSArray alloc] init];
+    arr = [NSArray arrayWithObjects:@"全部", @"通信", @"计算机", @"微固", @"数学", @"外国语",nil];
+    if(dropDown == nil) {
+        CGFloat f = 180;
+        dropDown = [[NIDropDown alloc]initDropDown:sender :&f :arr];
+        dropDown.delegate = self;
+    }
+    else {
+        [dropDown hideDropDown:sender];
+        [self rel];
+    }
+}
+
 //每个分区的行数
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
     return 3;
@@ -115,9 +129,6 @@
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section{
-    if (section == 0) {
-        return 10;
-    }
     return 5;
 }
 - (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section{

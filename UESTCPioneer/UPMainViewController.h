@@ -9,8 +9,13 @@
 #import <UIKit/UIKit.h>
 #import "constant.h"
 #import "UPTableView.h"
+#import "NIDropDown.h"
 
-
-@interface UPMainViewController : UIViewController
+@interface UPMainViewController : UIViewController<NIDropDownDelegate>{
+    NIDropDown *dropDown;
+    UIButton *dropbtn;
+}
 @property (nonatomic,strong)UPTableView *tableView;
+-(void)rel;
+-(void)hideTopView;
 @end

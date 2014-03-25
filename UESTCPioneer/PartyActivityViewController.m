@@ -41,10 +41,25 @@
 //    [self.view addSubview:label];
     self.tableView.delegate = self;
     self.tableView.dataSource = self;
+    [dropbtn setTitle:@"最新" forState:UIControlStateNormal];
 }
 
 -(void)viewWillAppear:(BOOL)animated{
             [self.leveyTabBarController.navigationItem setTitle:@"组织活动"];
+}
+
+- (void)dropClicked:(id)sender {
+    NSArray * arr = [[NSArray alloc] init];
+    arr = [NSArray arrayWithObjects:@"最新", @"热门",nil];
+    if(dropDown == nil) {
+        CGFloat f = 60;
+        dropDown = [[NIDropDown alloc]initDropDown:sender :&f :arr];
+        dropDown.delegate = self;
+    }
+    else {
+        [dropDown hideDropDown:sender];
+        [self rel];
+    }
 }
 
 //每个分区的行数
@@ -113,9 +128,6 @@
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section{
-    if (section == 0) {
-        return 10;
-    }
     return 5;
 }
 - (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section{

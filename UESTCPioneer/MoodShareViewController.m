@@ -39,6 +39,7 @@
     
     
 //    [self.view addSubview:label];
+    [self hideTopView];
     self.tableView.delegate = self;
     self.tableView.dataSource = self;
 }
@@ -110,9 +111,6 @@
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section{
-    if (section == 0) {
-        return 10;
-    }
     return 5;
 }
 - (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section{
