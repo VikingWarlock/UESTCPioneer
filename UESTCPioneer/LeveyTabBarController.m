@@ -41,20 +41,20 @@ static LeveyTabBarController *leveyTabBarController;
 	{
 		_viewControllers = [[NSMutableArray arrayWithArray:vcs] retain];
 		
-//		_containerView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 320, [UIScreen mainScreen].bounds.size.height-kTabBarHeight)];
-//        _containerView=[[UIView alloc]init];
-
+        //		_containerView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 320, [UIScreen mainScreen].bounds.size.height-kTabBarHeight)];
+        //        _containerView=[[UIView alloc]init];
+        
         
 		
 		_transitionView = [[UIView alloc] init];
-		_transitionView.backgroundColor =  [UIColor clearColor];
+		_transitionView.backgroundColor =  [UIColor whiteColor];
 		
 		_tabBar = [[LeveyTabBar alloc] initWithFrame:CGRectMake(0, _containerView.frame.size.height - kTabBarHeight, 320.0f, kTabBarHeight) buttonImages:arr titles:titleArray];
 		_tabBar.delegate = self;
         
         
         
-
+        
         
 		
         leveyTabBarController = self;
@@ -62,19 +62,19 @@ static LeveyTabBarController *leveyTabBarController;
 	return self;
 }
 
-//- (void)loadView 
+//- (void)loadView
 //{
 //	[super loadView];
-//	
+//
 //	[_containerView addSubview:_transitionView];
 //	[_containerView addSubview:_tabBar];
-//    
-//    
+//
+//
 
-////    
-////    
+////
+////
 
-//    
+//
 //	self.view = _containerView;
 //}
 - (void)viewDidLoad
@@ -85,7 +85,7 @@ static LeveyTabBarController *leveyTabBarController;
     
     [_transitionView setTranslatesAutoresizingMaskIntoConstraints:NO];
     [self.view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|[_transitionView]|" options:0 metrics:nil views:NSDictionaryOfVariableBindings(_transitionView)]];
-//    [self.view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|[_transitionView]|" options:0 metrics:@{@"kTabBarHeight":@(kTabBarHeight)} views:NSDictionaryOfVariableBindings(_transitionView)]];
+    //    [self.view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|[_transitionView]|" options:0 metrics:@{@"kTabBarHeight":@(kTabBarHeight)} views:NSDictionaryOfVariableBindings(_transitionView)]];
     
     
     [self.view addSubview:_tabBar];
@@ -105,7 +105,7 @@ static LeveyTabBarController *leveyTabBarController;
 }
 
 
-- (void)dealloc 
+- (void)dealloc
 {
     _tabBar.delegate = nil;
 	[_tabBar release];
@@ -135,7 +135,7 @@ static LeveyTabBarController *leveyTabBarController;
 	{
 		_transitionView.frame = CGRectMake(0, 0, 320.0f, _containerView.frame.size.height - kTabBarHeight);
 	}
-
+    
 }
 - (void)hidesTabBar:(BOOL)yesOrNO animated:(BOOL)animated;
 {
@@ -146,7 +146,7 @@ static LeveyTabBarController *leveyTabBarController;
 			return;
 		}
 	}
-	else 
+	else
 	{
 		if (self.tabBar.frame.origin.y == self.view.frame.size.height - kTabBarHeight)
 		{
@@ -162,19 +162,19 @@ static LeveyTabBarController *leveyTabBarController;
 		{
 			self.tabBar.frame = CGRectMake(self.tabBar.frame.origin.x, self.tabBar.frame.origin.y + kTabBarHeight, self.tabBar.frame.size.width, self.tabBar.frame.size.height);
 		}
-		else 
+		else
 		{
 			self.tabBar.frame = CGRectMake(self.tabBar.frame.origin.x, self.tabBar.frame.origin.y - kTabBarHeight, self.tabBar.frame.size.width, self.tabBar.frame.size.height);
 		}
 		[UIView commitAnimations];
 	}
-	else 
+	else
 	{
 		if (yesOrNO == YES)
 		{
 			self.tabBar.frame = CGRectMake(self.tabBar.frame.origin.x, self.tabBar.frame.origin.y + kTabBarHeight, self.tabBar.frame.size.width, self.tabBar.frame.size.height);
 		}
-		else 
+		else
 		{
 			self.tabBar.frame = CGRectMake(self.tabBar.frame.origin.x, self.tabBar.frame.origin.y - kTabBarHeight, self.tabBar.frame.size.width, self.tabBar.frame.size.height);
 		}
@@ -212,13 +212,13 @@ static LeveyTabBarController *leveyTabBarController;
     // Remove viewcontroller in array.
     [_viewControllers removeObjectAtIndex:index];
     // Remove tab from tabbar.
-//    [_tabBar removeTabAtIndex:index];
+    //    [_tabBar removeTabAtIndex:index];
 }
 
 - (void)insertViewController:(UIViewController *)vc  atIndex:(NSUInteger)index
 {
     [_viewControllers insertObject:vc atIndex:index];
-//    [_tabBar insertTabWithImageDic:dict atIndex:index];
+    //    [_tabBar insertTabWithImageDic:dict atIndex:index];
 }
 
 
@@ -226,7 +226,7 @@ static LeveyTabBarController *leveyTabBarController;
 - (void)displayViewAtIndex:(NSUInteger)index
 {
     // Before changing index, ask the delegate should change the index.
-    if ([_delegate respondsToSelector:@selector(tabBarController:shouldSelectViewController:)]) 
+    if ([_delegate respondsToSelector:@selector(tabBarController:shouldSelectViewController:)])
     {
         if (![_delegate tabBarController:self shouldSelectViewController:[self.viewControllers objectAtIndex:index]])
         {
@@ -235,20 +235,20 @@ static LeveyTabBarController *leveyTabBarController;
     }
     
     UIViewController *targetViewController = [self.viewControllers objectAtIndex:index];
-
+    
     // If target index is equal to current index.
-
-    if (_selectedIndex == index && [[_transitionView subviews] count] != 0) 
+    
+    if (_selectedIndex == index && [[_transitionView subviews] count] != 0)
     {
         if ([targetViewController isKindOfClass:[UINavigationController class]]) {
             [(UINavigationController*)targetViewController popToRootViewControllerAnimated:YES];
         }
         return;
     }
-//    NSLog(@"Display View.");
+    //    NSLog(@"Display View.");
     _selectedIndex = index;
     
-//	[_transitionView.subviews makeObjectsPerformSelector:@selector(setHidden:) withObject:(id)YES];
+    //	[_transitionView.subviews makeObjectsPerformSelector:@selector(setHidden:) withObject:(id)YES];
     for(UIView *view in _transitionView.subviews){
         [view willMoveToSuperview:nil];
         [view removeFromSuperview];
@@ -256,37 +256,41 @@ static LeveyTabBarController *leveyTabBarController;
     }
     
     
-//    targetViewController.view.hidden = NO;
+    //    targetViewController.view.hidden = NO;
     CGRect bo =_transitionView.bounds;
     bo.size.height-=kTabBarHeight;
 	targetViewController.view.frame = bo;
-	if ([targetViewController.view isDescendantOfView:_transitionView]) 
+	if ([targetViewController.view isDescendantOfView:_transitionView])
 	{
-//		[_transitionView bringSubviewToFront:targetViewController.view];
+        //		[_transitionView bringSubviewToFront:targetViewController.view];
         [targetViewController.view willMoveToSuperview:_transitionView];
         [_transitionView addSubview:targetViewController.view];
         [targetViewController.view didMoveToSuperview];
-//        [targetViewController.view willMoveToSuperview:_transitionView];
+        //        [targetViewController.view willMoveToSuperview:_transitionView];
 	}
 	else
 	{
-//        [targetViewController.view setFrame:CGRectMake(0, 0, 320, 200)];
-//                NSLog(@"%@",targetViewController.view.subviews);
+        //        [targetViewController.view setFrame:CGRectMake(0, 0, 320, 200)];
+        //                NSLog(@"%@",targetViewController.view.subviews);
 		[_transitionView addSubview:targetViewController.view];
-
+        
         UIView *targetView=targetViewController.view;
         [targetView setClipsToBounds:YES];
         [targetView setTranslatesAutoresizingMaskIntoConstraints:NO];
         [_transitionView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|[targetView]|" options:0 metrics:nil views:NSDictionaryOfVariableBindings(targetView)]];
-                [_transitionView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|[targetView]|" options:0 metrics:nil views:NSDictionaryOfVariableBindings(targetView)]];
-//        NSLog(@"%@",_transitionView.constraints);
+        [_transitionView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|[targetView]|" options:0 metrics:nil views:NSDictionaryOfVariableBindings(targetView)]];
+        //        NSLog(@"%@",_transitionView.constraints);
 	}
     
     // Notify the delegate, the viewcontroller has been changed.
-    if ([_delegate respondsToSelector:@selector(tabBarController:didSelectViewController:)]) 
+    if ([_delegate respondsToSelector:@selector(tabBarController:didSelectViewController:)])
     {
         [_delegate tabBarController:self didSelectViewController:targetViewController];
     }
+}
+
+-(void)setTabBarItemWithImageDicationary:(NSDictionary*)imageArray ForIndex:(NSInteger)index{
+    [_tabBar setTabBarItemWithImageDicationary:imageArray ForIndex:index];
 }
 
 #pragma mark -

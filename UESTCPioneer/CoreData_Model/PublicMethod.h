@@ -11,6 +11,13 @@
 #import "NewsEntity.h"
 
 @interface PublicMethod : NSObject
+
+///某实体数量
++(NSInteger)NumberOfEntity:(NSString*)entityName;
+
+//某实体数组
++(NSArray*)EntityArrayWithEntityName:(NSString*)entityName;
+
 //CoreData 中储存的用户的数量
 +(NSInteger)NumberOfUsers;
 

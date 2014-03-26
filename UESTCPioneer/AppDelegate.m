@@ -147,6 +147,19 @@
     [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent];
     
     
+    
+    
+    
+    //调试模式
+#if debugMode
+    [Unread setUnreadNum:10 ForKey:kUnreadMoodShare];
+    [Unread setUnreadNum:10 ForKey:kUnreadPioneerKey];
+    
+    [constant setUserId:@"001002200011"];
+    [constant setUserName:@"IOS端测试：黄卓越"];
+#endif
+    
+    
     return YES;
 }
 

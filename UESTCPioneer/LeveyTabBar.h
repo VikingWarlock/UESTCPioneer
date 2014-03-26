@@ -24,10 +24,11 @@
 - (void)selectTabAtIndex:(NSInteger)index;
 - (void)removeTabAtIndex:(NSInteger)index;
 - (void)insertTabWithImageDic:(NSDictionary *)dict atIndex:(NSUInteger)index;
+-(void)setTabBarItemWithImageDicationary:(NSDictionary*)imageArray ForIndex:(NSInteger)index;
 //- (void)setBackgroundImage:(UIImage *)img;
 
 @end
 @protocol LeveyTabBarDelegate<NSObject>
 @optional
-- (void)tabBar:(LeveyTabBar *)tabBar didSelectIndex:(NSInteger)index; 
+- (void)tabBar:(LeveyTabBar *)tabBar didSelectIndex:(NSInteger)index;
 @end

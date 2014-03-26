@@ -8,6 +8,10 @@
 
 #import "constant.h"
 static id centerController=nil;
+
+
+static NSString *userId =@"";
+static NSString *userName=@"";
 @implementation constant
 +(id)getCenterController{
     return centerController;
@@ -15,5 +19,22 @@ static id centerController=nil;
 
 +(void)setCenterController:(id)con{
     centerController=con;
+    }
+
++(NSString*)getUserId{
+    return userId;
 }
+
++(void)setUserId:(NSString*)user{
+    userId=user;
+}
+
++(NSString*)getUserName{
+    return userName;
+}
+
++(void)setUserName:(NSString*)name{
+    userName=name;
+}
+
 @end

@@ -47,6 +47,8 @@
 // Insert an viewcontroller at index of viewControllers.
 - (void)insertViewController:(UIViewController *)vc  atIndex:(NSUInteger)index;
 
+
+-(void)setTabBarItemWithImageDicationary:(NSDictionary*)imageArray ForIndex:(NSInteger)index;
 @end
 
 

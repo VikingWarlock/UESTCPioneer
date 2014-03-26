@@ -22,4 +22,52 @@
     UIGraphicsEndImageContext();
     return targetImage;
 }
+
+
+///制作navigationbar上的按钮
++(UIBarButtonItem*)BarButtonItemWithUIButton:(UIButton*)button{
+    UIView *customView = [[UIView alloc]initWithFrame:CGRectMake(0, 0, 44, 44)];
+//    UIButton *button = [UIButton buttonWithType:UIButtonTypeCustom];
+    [button setFrame:customView.bounds];
+    [customView addSubview:button];
+//    [button setImage:[UIImage imageNamed:@"logout.png"] forState:UIControlStateNormal];
+//    [button setImageEdgeInsets:UIEdgeInsetsMake(12, 12, 12, 12)];
+//    [button addTarget:self action:@selector(logout:) forControlEvents:UIControlEventTouchUpInside];
+    UIBarButtonItem *right=[[UIBarButtonItem alloc]initWithCustomView:customView];
+    return right;
+}
+
++(UIBarButtonItem*)BarButtonItemWithUIButton:(UIButton*)button ButtonOrigin:(CGPoint)point{
+    UIView *customView = [[UIView alloc]initWithFrame:CGRectMake(0, 0, 44, 44)];
+    //    UIButton *button = [UIButton buttonWithType:UIButtonTypeCustom];
+    CGRect bo=customView.bounds;
+    bo.origin=point;
+    [button setFrame:bo];
+    [customView addSubview:button];
+    //    [button setImage:[UIImage imageNamed:@"logout.png"] forState:UIControlStateNormal];
+    //    [button setImageEdgeInsets:UIEdgeInsetsMake(12, 12, 12, 12)];
+    //    [button addTarget:self action:@selector(logout:) forControlEvents:UIControlEventTouchUpInside];
+    UIBarButtonItem *right=[[UIBarButtonItem alloc]initWithCustomView:customView];
+    return right;
+}
+
++(UIBarButtonItem*)BarButtonItemWithUIButton:(UIButton*)button ButtonOrigin:(CGPoint)point CustomViewSize:(CGSize)size{
+    UIView *customView = [[UIView alloc]initWithFrame:CGRectMake(0, 0,size.width,size.height)];
+    //    UIButton *button = [UIButton buttonWithType:UIButtonTypeCustom];
+    CGRect bo=customView.bounds;
+    bo.origin=point;
+    [button setFrame:bo];
+    [customView addSubview:button];
+    //    [button setImage:[UIImage imageNamed:@"logout.png"] forState:UIControlStateNormal];
+    //    [button setImageEdgeInsets:UIEdgeInsetsMake(12, 12, 12, 12)];
+    //    [button addTarget:self action:@selector(logout:) forControlEvents:UIControlEventTouchUpInside];
+    UIBarButtonItem *right=[[UIBarButtonItem alloc]initWithCustomView:customView];
+    return right;
+
+}
+
+
+
+
+
 @end

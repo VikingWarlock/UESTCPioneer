@@ -35,16 +35,31 @@
 //    UILabel *label=[[UILabel alloc]initWithFrame:CGRectMake(0, 0, 100, 100)];
 //    label.text=@"组织活动";
 //    label.center=self.view.center;
-    
+    UnreadKey=kUnreadPartyNoticeKey;
 
     
 //    [self.view addSubview:label];
     self.tableView.delegate = self;
     self.tableView.dataSource = self;
+    [dropbtn setTitle:@"最新" forState:UIControlStateNormal];
 }
 
 -(void)viewWillAppear:(BOOL)animated{
             [self.leveyTabBarController.navigationItem setTitle:@"组织活动"];
+}
+
+- (void)dropClicked:(id)sender {
+    NSArray * arr = [[NSArray alloc] init];
+    arr = [NSArray arrayWithObjects:@"最新", @"热门",nil];
+    if(dropDown == nil) {
+        CGFloat f = 60;
+        dropDown = [[NIDropDown alloc]initDropDown:sender :&f :arr];
+        dropDown.delegate = self;
+    }
+    else {
+        [dropDown hideDropDown:sender];
+        [self rel];
+    }
 }
 
 //每个分区的行数
@@ -113,9 +128,6 @@
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section{
-    if (section == 0) {
-        return 10;
-    }
     return 5;
 }
 - (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section{
@@ -128,5 +140,27 @@
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
+
+#pragma mark - refresh request
+
+
+-(void)pullDownRefresh:(MJRefreshBaseView *)refreshView{
+    [helper performBlock:^{
+        [refreshView endRefreshing];
+    } afterDelay:0.25];
+}
+-(void)pullUpRefresh:(MJRefreshBaseView *)refreshView{
+    [helper performBlock:^{
+        [refreshView endRefreshing];
+    } afterDelay:0.25];
+}
+
+//）type：getEvent  （2）userId：查看着的用户账号
+//（3）page：页码
+//
+//#define testData @{@"type":@"getEvent",@"userId":@"0010013110361",@"page",@"1"}
+//#define
+
+
 
 @end

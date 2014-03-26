@@ -7,6 +7,7 @@
 //
 
 #import "UPFooterCell.h"
+#import "commentButton.h"
 
 @implementation UPFooterCell
 
@@ -39,7 +40,7 @@
         [self.contentView addSubview:btn2];
         
         CGRect btn3Rect = CGRectMake(230, 5, 60, 30);
-        UIButton *btn3 = [[UIButton alloc]initWithFrame:btn3Rect];
+        commentButton *btn3 = [[commentButton alloc]initWithFrame:btn3Rect];
         btn3.tag = btn3Tag;
         UIImageView *comment = [[UIImageView alloc]initWithImage:[UIImage imageNamed:@"comment.png"]];
         comment.frame = CGRectMake(0, 5, 20, 20);
@@ -53,6 +54,10 @@
 
     }
     return self;
+}
+
+-(void)setNumberOfComment:(NSInteger)number{
+
 }
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated

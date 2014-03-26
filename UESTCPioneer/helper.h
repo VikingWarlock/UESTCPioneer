@@ -11,4 +11,12 @@
 @interface helper : NSObject
 +(void)performBlock:(void(^)())block afterDelay:(NSTimeInterval)delay;
 +(UIImage*)getCustomImage:(UIImage*)image insets:(UIEdgeInsets)insets;
+
+//制作navigationBar上的按钮
++(UIBarButtonItem*)BarButtonItemWithUIButton:(UIButton*)button ButtonOrigin:(CGPoint)point;
+
++(UIBarButtonItem*)BarButtonItemWithUIButton:(UIButton*)button ButtonOrigin:(CGPoint)point CustomViewSize:(CGSize)size;
+
+
+
 @end

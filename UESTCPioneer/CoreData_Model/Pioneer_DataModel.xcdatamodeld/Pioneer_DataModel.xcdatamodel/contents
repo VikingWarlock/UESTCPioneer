@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<model userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="3401" systemVersion="13C64" minimumToolsVersion="Xcode 4.3" macOSVersion="Automatic" iOSVersion="Automatic">
+<model userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="3396" systemVersion="12F37" minimumToolsVersion="Xcode 4.3" macOSVersion="Automatic" iOSVersion="Automatic">
     <entity name="MessageEntity" representedClassName="MessageEntity" syncable="YES">
         <attribute name="from" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="fromID" optional="YES" attributeType="String" syncable="YES"/>
@@ -7,18 +7,24 @@
         <attribute name="message" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="msgType" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
     </entity>
-    <entity name="NewsEntity" representedClassName="NewsEntity" syncable="YES">
-        <attribute name="authorID" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
-        <attribute name="authorName" optional="YES" attributeType="String" syncable="YES"/>
-        <attribute name="canJoin" optional="YES" attributeType="Boolean" syncable="YES"/>
-        <attribute name="catagory" optional="YES" attributeType="String" syncable="YES"/>
-        <attribute name="isMarked" optional="YES" attributeType="Boolean" syncable="YES"/>
-        <attribute name="isShared" optional="YES" attributeType="Boolean" syncable="YES"/>
+    <entity name="MoodShareNewsEntity" representedClassName="MoodShareNewsEntity" parentEntity="NewsEntity" syncable="YES">
+        <attribute name="picUrl" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="userId" optional="YES" attributeType="String" syncable="YES"/>
+    </entity>
+    <entity name="NewsEntity" representedClassName="NewsEntity" isAbstract="YES" syncable="YES">
         <attribute name="newsBody" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="numberOfComment" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
-        <attribute name="numberOfShare" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
+        <attribute name="theId" optional="YES" attributeType="Integer 32" defaultValueString="0" indexed="YES" syncable="YES"/>
         <attribute name="timeAndDate" optional="YES" attributeType="Date" syncable="YES"/>
         <attribute name="titleBody" optional="YES" attributeType="String" syncable="YES"/>
+    </entity>
+    <entity name="PioneerNewsEntity" representedClassName="PioneerNewsEntity" parentEntity="NewsEntity" syncable="YES">
+        <attribute name="content" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="count" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="desc" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="picName" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="picUrl" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="type" optional="YES" attributeType="String" syncable="YES"/>
     </entity>
     <entity name="UserEntity" representedClassName="UserEntity" syncable="YES">
         <attribute name="avatarID" optional="YES" attributeType="String" syncable="YES"/>
@@ -26,8 +32,10 @@
         <attribute name="userName" optional="YES" attributeType="String" syncable="YES"/>
     </entity>
     <elements>
-        <element name="NewsEntity" positionX="0" positionY="0" width="128" height="210"/>
-        <element name="UserEntity" positionX="0" positionY="0" width="128" height="90"/>
-        <element name="MessageEntity" positionX="0" positionY="81" width="128" height="118"/>
+        <element name="MessageEntity" positionX="0" positionY="0" width="0" height="0"/>
+        <element name="MoodShareNewsEntity" positionX="0" positionY="0" width="0" height="0"/>
+        <element name="NewsEntity" positionX="0" positionY="0" width="0" height="0"/>
+        <element name="UserEntity" positionX="0" positionY="0" width="0" height="0"/>
+        <element name="PioneerNewsEntity" positionX="0" positionY="0" width="0" height="0"/>
     </elements>
 </model>

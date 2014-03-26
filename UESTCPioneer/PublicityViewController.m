@@ -35,10 +35,11 @@
 //    UILabel *label=[[UILabel alloc]initWithFrame:CGRectMake(0, 0, 100, 100)];
 //    label.text=@"公示公告";
 //    label.center=self.view.center;
-    
+    UnreadKey=kUnreadPublicity;
 
 //    [self.view addSubview:label];
 
+    [self hideTopView];
     self.tableView.delegate = self;
     self.tableView.dataSource = self;
 }
@@ -106,9 +107,6 @@
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section{
-    if (section == 0) {
-        return 10;
-    }
     return 5;
 }
 - (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section{
@@ -122,4 +120,27 @@
     // Dispose of any resources that can be recreated.
 }
 
+
+/*
+ 
+ &type=getNoticeOrAnnounce&typepid=1&page=1&userid=0100001110011
+ typepid用于表示请求的是通知还是公示。1为通知0为公示
+ 
+ 
+ */
+
+//#define testData @{@"getNotice"}
+
+
+#pragma mark pull refresh
+-(void)pullDownRefresh:(MJRefreshBaseView *)refreshView{
+    [helper performBlock:^{
+        [refreshView endRefreshing];
+    } afterDelay:0.25];
+}
+-(void)pullUpRefresh:(MJRefreshBaseView *)refreshView{
+    [helper performBlock:^{
+        [refreshView endRefreshing];
+    } afterDelay:0.25];
+}
 @end

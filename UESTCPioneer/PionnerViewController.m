@@ -25,6 +25,7 @@
     [super viewDidLoad];
 //    [self.view setBackgroundColor:[UIColor blackColor]];
         [self.leveyTabBarController.navigationItem setTitle:@"成电视角"];
+    UnreadKey=kUnreadPioneerKey;
 
 
     
@@ -55,6 +56,20 @@
 //    [self.leveyTabBarController.navigationController.navigationItem setTitle:@"bb"];
 
     
+}
+
+- (void)dropClicked:(id)sender {
+    NSArray * arr = [[NSArray alloc] init];
+    arr = [NSArray arrayWithObjects:@"全部", @"通信", @"计算机", @"微固", @"数学", @"外国语",nil];
+    if(dropDown == nil) {
+        CGFloat f = 180;
+        dropDown = [[NIDropDown alloc]initDropDown:sender :&f :arr];
+        dropDown.delegate = self;
+    }
+    else {
+        [dropDown hideDropDown:sender];
+        [self rel];
+    }
 }
 
 //每个分区的行数
@@ -115,9 +130,6 @@
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section{
-    if (section == 0) {
-        return 10;
-    }
     return 5;
 }
 - (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section{
@@ -129,6 +141,20 @@
 {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+
+#pragma mark - refresh request
+
+
+-(void)pullDownRefresh:(MJRefreshBaseView *)refreshView{
+    [helper performBlock:^{
+        [refreshView endRefreshing];
+    } afterDelay:0.55];
+}
+-(void)pullUpRefresh:(MJRefreshBaseView *)refreshView{
+    [helper performBlock:^{
+        [refreshView endRefreshing];
+    } afterDelay:0.55];
 }
 
 @end

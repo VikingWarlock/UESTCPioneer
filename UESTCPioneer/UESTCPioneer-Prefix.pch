@@ -17,5 +17,13 @@
     #import"PublicMethod.h"
 #import<RestKit.h>
 #import<AFNetworking.h>
+#import"PPRevealSideViewController.h"
+#import "LeveyTabBarController.h"
+#import"constant.h"
+#import"helper.h"
+#import"Unread.h"
+#import"NetworkCenter.h"
+#import<QuartzCore/QuartzCore.h>
+
 
 #endif

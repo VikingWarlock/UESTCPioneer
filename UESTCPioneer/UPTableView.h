@@ -7,7 +7,8 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "PullRefreshTableView.h"
 
-@interface UPTableView : UITableView
+@interface UPTableView :PullRefreshTableView
 
 @end

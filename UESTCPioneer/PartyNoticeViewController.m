@@ -32,13 +32,13 @@
 {
     [super viewDidLoad];
 	// Do any additional setup after loading the view.
-    UILabel *label=[[UILabel alloc]initWithFrame:CGRectMake(0, 0, 100, 100)];
-    label.text=@"党委通知";
-    label.center=self.view.center;
+//    UILabel *label=[[UILabel alloc]initWithFrame:CGRectMake(0, 0, 100, 100)];
+//    label.text=@"党委通知";
+//    label.center=self.view.center;
     
-
+    UnreadKey=kUnreadPartyNoticeKey;
     
-    [self.view addSubview:label];
+//    [self.view addSubview:label];
     self.tableView.delegate = self;
     self.tableView.dataSource = self;
     
@@ -46,6 +46,20 @@
 
 -(void)viewWillAppear:(BOOL)animated{
         [self.leveyTabBarController.navigationItem setTitle:@"党委通知"];
+}
+
+- (void)dropClicked:(id)sender {
+    NSArray * arr = [[NSArray alloc] init];
+    arr = [NSArray arrayWithObjects:@"全部", @"通信", @"计算机", @"微固", @"数学", @"外国语",nil];
+    if(dropDown == nil) {
+        CGFloat f = 180;
+        dropDown = [[NIDropDown alloc]initDropDown:sender :&f :arr];
+        dropDown.delegate = self;
+    }
+    else {
+        [dropDown hideDropDown:sender];
+        [self rel];
+    }
 }
 
 //每个分区的行数
@@ -122,9 +136,6 @@
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section{
-    if (section == 0) {
-        return 10;
-    }
     return 5;
 }
 - (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section{
@@ -139,4 +150,15 @@
     // Dispose of any resources that can be recreated.
 }
 
+#pragma mark pull refresh
+-(void)pullDownRefresh:(MJRefreshBaseView *)refreshView{
+    [helper performBlock:^{
+        [refreshView endRefreshing];
+    } afterDelay:0.25];
+}
+-(void)pullUpRefresh:(MJRefreshBaseView *)refreshView{
+    [helper performBlock:^{
+        [refreshView endRefreshing];
+    } afterDelay:0.25];
+}
 @end
