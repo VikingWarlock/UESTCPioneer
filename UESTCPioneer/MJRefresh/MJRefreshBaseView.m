@@ -216,7 +216,7 @@
             _arrowImage.hidden = NO;
             // 停止转圈圈
 			[_activityView stopAnimating];
-
+            
             // 说明是刚刷新完毕 回到 普通状态的
             if (MJRefreshStateRefreshing == _state) {
                 // 通知代理
@@ -283,8 +283,6 @@
     dispatch_after(popTime, dispatch_get_main_queue(), ^(void){
         [self setState:MJRefreshStateNormal];
     });
-    
-    
 }
 
 #pragma mark - 随便实现
@@ -292,7 +290,7 @@
 - (MJRefreshViewType)viewType {return MJRefreshViewTypeHeader;}
 - (void)free
 {
-    [_scrollView removeObserver:self forKeyPath:MJRefreshContentOffset context:NULL];
+    [_scrollView removeObserver:self forKeyPath:MJRefreshContentOffset];
 }
 - (void)removeFromSuperview
 {

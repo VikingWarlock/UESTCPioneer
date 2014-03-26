@@ -59,14 +59,14 @@
 
 -(void)setPullDownBeginRefreshBlock:(void (^)(MJRefreshBaseView *refreshView))pullDownBeginRefreshBlock{
     _header.beginRefreshingBlock=pullDownBeginRefreshBlock;
-    _pullDownBeginRefreshBlock=pullDownBeginRefreshBlock;
+//    _pullDownBeginRefreshBlock=pullDownBeginRefreshBlock;
 }
 
 
 
 -(void)setPullUpBeginRefreshBlock:(void (^)(MJRefreshBaseView *refreshView))pullUpBeginRefreshBlock{
     _footer.beginRefreshingBlock=pullUpBeginRefreshBlock;
-    _pullUpBeginRefreshBlock=pullUpBeginRefreshBlock;
+//    _pullUpBeginRefreshBlock=pullUpBeginRefreshBlock;
 }
 
 -(void)beginRefreshing{
@@ -158,9 +158,9 @@
 
 - (void)dealloc
 {
-    NSLog(@"MJTableViewController--dealloc---");
-    [_header free];
-    [_footer free];
+//    NSLog(@"MJTableViewController--dealloc---");
+//    [_header free];
+//    [_footer free];
     
 }
 

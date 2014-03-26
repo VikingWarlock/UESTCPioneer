@@ -198,6 +198,6 @@
 - (void)free
 {
     [super free];
-    [_scrollView removeObserver:self forKeyPath:MJRefreshContentSize context:NULL];
+    [_scrollView removeObserver:self forKeyPath:MJRefreshContentSize];
 }
 @end

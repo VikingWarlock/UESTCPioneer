@@ -147,13 +147,17 @@
 
 -(void)pullDownRefresh:(MJRefreshBaseView *)refreshView{
     [helper performBlock:^{
+        
+        
+        
+        NSLog(@"aa");
         [refreshView endRefreshing];
-    } afterDelay:0.25];
+    } afterDelay:0.55];
 }
 -(void)pullUpRefresh:(MJRefreshBaseView *)refreshView{
     [helper performBlock:^{
         [refreshView endRefreshing];
-    } afterDelay:0.25];
+    } afterDelay:0.55];
 }
 
 @end

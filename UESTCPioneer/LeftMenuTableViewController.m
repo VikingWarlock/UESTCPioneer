@@ -20,6 +20,7 @@
 #import "helper.h"
 #import "constant.h"
 @interface LeftMenuTableViewController (){
+    NSArray *unreadKeyArray;
     NSArray *nameArray ;
     NSArray *classArray;
     NSArray *cellIcon;
@@ -71,6 +72,10 @@
     classArray=@[[PioneerViewController class],[PartyNoticeViewController class],[PublicityViewController class],[PartyActivityViewController class],[MoodShareViewController class]];
     cellIcon = @[@"news1.png",@"notice1.png",@"note1.png",@"act1.png",@"share1.png"];
     selectedCellIcon = @[@"news2.png",@"notice2.png",@"note2.png",@"act2.png",@"share2.png"];
+    
+    
+    //通过类的类型找到其UnreadKey的字典
+    unreadKeyArray=@[kUnreadPioneerKey,kUnreadPartyNoticeKey,kUnreadPublicity,kUnreadPartyActivity,kUnreadMoodShare];
 
     // Uncomment the following line to preserve selection between presentations.
     // self.clearsSelectionOnViewWillAppear = NO;
@@ -139,6 +144,10 @@
     cell.titleLabel.text=nameArray[indexPath.row];
     cell.leftImageView.image = [UIImage imageNamed:[NSString stringWithFormat:@"%@",cellIcon[indexPath.row]]];
     
+    //未读消息的显示(@黄卓越)
+    NSInteger unreadCount = [Unread getUnreadNumWithKey:unreadKeyArray[indexPath.row]];
+    [cell showNewsCountLabel:unreadCount];
+    
     if(indexForSelected.row == indexPath.row){
         cell.leftImageView.image = [UIImage imageNamed:[NSString stringWithFormat:@"%@",selectedCellIcon[indexPath.row]]];
         cell.titleLabel.textColor = [UIColor whiteColor];
@@ -151,20 +160,24 @@
 }
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+    //点击消除未读消息
+    [Unread setUnreadNum:0 ForKey:unreadKeyArray[indexPath.row]];
+    
+    //界面切换
     Class theClass=classArray[indexPath.row];
     UIViewController *controller = [[theClass alloc] init];
     [self.leveyTabBarController removeViewControllerAtIndex:0];
     [self.leveyTabBarController setSelectedIndex:1];
-    
-    NSMutableDictionary *imgDic = [NSMutableDictionary dictionaryWithCapacity:3];
-	[imgDic setObject:[UIImage imageNamed:@"chat.png"] forKey:@"Default"];
-	[imgDic setObject:[UIImage imageNamed:@"chat_highlighted.png"] forKey:@"Highlighted"];
-	[imgDic setObject:[UIImage imageNamed:@"chat_highlighted.png"] forKey:@"Seleted"];
+    //    NSMutableDictionary *imgDic = [NSMutableDictionary dictionaryWithCapacity:3];
+    //	[imgDic setObject:[UIImage imageNamed:@"chat.png"] forKey:@"Default"];
+    //	[imgDic setObject:[UIImage imageNamed:@"chat_highlighted.png"] forKey:@"Highlighted"];
+    //	[imgDic setObject:[UIImage imageNamed:@"chat_highlighted.png"] forKey:@"Seleted"];
     [controller willMoveToParentViewController:self.leveyTabBarController];
     [self.leveyTabBarController insertViewController:controller  atIndex:0];
     [self.revealSideViewController popViewControllerWithNewCenterController:[constant getCenterController] animated:YES];
     [self.leveyTabBarController setSelectedIndex:0];
     [controller didMoveToParentViewController:[constant getCenterController]];
+    ////////////////////////////////////////////
 
     UPMenuTableViewCell *cell = (UPMenuTableViewCell *)[self.tableView cellForRowAtIndexPath:indexPath];
     cell.titleLabel.textColor = [UIColor whiteColor];

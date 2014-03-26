@@ -66,6 +66,10 @@
     [self.view addSubview:self.tableView];
     [self.view addSubview:dropdownview];
 	// Do any additional setup after loading the view.
+    
+    
+    
+    [self _initBarButton];
 }
 -(void)hideTopView{
     dropdownview.hidden = YES;
@@ -140,7 +144,9 @@
 }
 
 
-
+-(void)dealloc{
+    [self.tableView freeHeaderFooter];
+}
 
 
 
