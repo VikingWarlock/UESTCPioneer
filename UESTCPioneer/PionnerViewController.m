@@ -25,6 +25,7 @@
     [super viewDidLoad];
 //    [self.view setBackgroundColor:[UIColor blackColor]];
         [self.leveyTabBarController.navigationItem setTitle:@"成电视角"];
+    UnreadKey=kUnreadPioneerKey;
 
 
     
@@ -147,10 +148,6 @@
 
 -(void)pullDownRefresh:(MJRefreshBaseView *)refreshView{
     [helper performBlock:^{
-        
-        
-        
-        NSLog(@"aa");
         [refreshView endRefreshing];
     } afterDelay:0.55];
 }

@@ -35,7 +35,7 @@
 //    UILabel *label=[[UILabel alloc]initWithFrame:CGRectMake(0, 0, 100, 100)];
 //    label.text=@"公示公告";
 //    label.center=self.view.center;
-    
+    UnreadKey=kUnreadPublicity;
 
 //    [self.view addSubview:label];
 

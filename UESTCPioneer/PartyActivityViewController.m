@@ -35,7 +35,7 @@
 //    UILabel *label=[[UILabel alloc]initWithFrame:CGRectMake(0, 0, 100, 100)];
 //    label.text=@"组织活动";
 //    label.center=self.view.center;
-    
+    UnreadKey=kUnreadPartyNoticeKey;
 
     
 //    [self.view addSubview:label];

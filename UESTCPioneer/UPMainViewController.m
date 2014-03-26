@@ -72,6 +72,10 @@
     
     
     [self _initBarButton];
+    
+    
+    //界面显示，监听通知
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(notificationUnreadrefresh:) name:kNotificationUnreadTotalRefreshed object:nil];
 }
 -(void)hideTopView{
     dropdownview.hidden = YES;

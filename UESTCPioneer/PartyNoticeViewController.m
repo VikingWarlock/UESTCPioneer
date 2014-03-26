@@ -36,7 +36,7 @@
 //    label.text=@"党委通知";
 //    label.center=self.view.center;
     
-
+    UnreadKey=kUnreadPartyNoticeKey;
     
 //    [self.view addSubview:label];
     self.tableView.delegate = self;
