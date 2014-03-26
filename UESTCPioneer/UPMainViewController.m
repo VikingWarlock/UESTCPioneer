@@ -40,7 +40,9 @@
 
 //    [refreshControl setAttributedTitle:[[NSAttributedString alloc]initWithString:@"下拉刷新"]];
 
-    self.tableView=[[UPTableView alloc]initWithFrame:CGRectMake(10, 35, 300, 420) style:UITableViewStyleGrouped];
+    
+    //@self.tableView已经在祖先元素里初始化了@黄卓越 2014-3-26 9:16
+//    self.tableView=[[UPTableView alloc]initWithFrame:CGRectMake(10, 35, 300, 420) style:UITableViewStyleGrouped];
     if(IS_IOS7)
         [self.tableView setSeparatorInset:UIEdgeInsetsZero];
     [self.tableView setAllowsSelection:NO];

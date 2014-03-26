@@ -58,15 +58,17 @@
 }
 
 -(void)setPullDownBeginRefreshBlock:(void (^)(MJRefreshBaseView *refreshView))pullDownBeginRefreshBlock{
-    _header.beginRefreshingBlock=pullDownBeginRefreshBlock;
-//    _pullDownBeginRefreshBlock=pullDownBeginRefreshBlock;
+        _pullDownBeginRefreshBlock=pullDownBeginRefreshBlock;
+    _header.beginRefreshingBlock=_pullDownBeginRefreshBlock;
+
 }
 
 
 
 -(void)setPullUpBeginRefreshBlock:(void (^)(MJRefreshBaseView *refreshView))pullUpBeginRefreshBlock{
-    _footer.beginRefreshingBlock=pullUpBeginRefreshBlock;
-//    _pullUpBeginRefreshBlock=pullUpBeginRefreshBlock;
+        _pullUpBeginRefreshBlock=pullUpBeginRefreshBlock;
+    _footer.beginRefreshingBlock=_pullUpBeginRefreshBlock;
+
 }
 
 -(void)beginRefreshing{

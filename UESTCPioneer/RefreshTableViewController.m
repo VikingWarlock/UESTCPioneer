@@ -10,7 +10,7 @@
 
 
 
-@interface RefreshTableViewController ()
+@interface RefreshTableViewController ()<MJRefreshBaseViewDelegate>
 
 @end
 
@@ -33,6 +33,7 @@
     [self _loadUPTableView];
     
     __weak RefreshTableViewController *weakSelf = self;
+
     [self.tableView setPullDownBeginRefreshBlock:^(MJRefreshBaseView *refreshView) {
         [weakSelf pullDownRefresh:refreshView];
     }];
@@ -56,7 +57,8 @@
 
 -(void)_loadUPTableView{
     //@加UPTableView
-    self.tableView=[[UPTableView alloc]initWithFrame:CGRectMake(10, 0, 300, 455) style:UITableViewStyleGrouped];
+//    //    self.tableView=[[UPTableView alloc]initWithFrame:CGRectMake(10, 35, 300, 420) style:UITableViewStyleGrouped];
+    self.tableView=[[UPTableView alloc]initWithFrame:CGRectMake(10, 35, 300, 425) style:UITableViewStyleGrouped];
     if(IS_IOS7)
         [self.tableView setSeparatorInset:UIEdgeInsetsZero];
     [self.tableView setAllowsSelection:NO];
