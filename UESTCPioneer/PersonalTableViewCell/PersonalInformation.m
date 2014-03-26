@@ -40,10 +40,21 @@
     [self.tableView registerClass:[ShortCell class] forCellReuseIdentifier:@"setcell"];
     self.tableView.allowsSelection = NO;
     self.tableView.separatorInset = UIEdgeInsetsZero;
-    
     array = @[@"",@"姓       名",@"性       别",@"民       族",@"籍       贯",@"入党时间",@"转正时间",@"政治面貌",@"所属支部"];
-    NSLog(@"%@",self.tableView.backgroundColor);
-    NSLog(@"xxxxx%@",self.leveyTabBarController.navigationController.parentViewController);
+    
+    
+    
+    UIImageView *customView = [[UIImageView alloc] initWithFrame:CGRectMake(250, 10, 30, 30)];
+    UIButton *button = [UIButton buttonWithType:UIButtonTypeCustom];
+    [button setFrame:customView.bounds];
+    [customView addSubview:button];
+    [button setImage:[UIImage imageNamed:@"write.png"] forState:UIControlStateNormal];
+    //[button setImageEdgeInsets:UIEdgeInsetsMake(12, 12, 12, 12)];
+    //[button addTarget:self action:@selector(logout:) forControlEvents:UIControlEventTouchUpInside];
+    UIBarButtonItem *right=[[UIBarButtonItem alloc]initWithCustomView:customView];
+    
+    
+    self.navigationItem.rightBarButtonItem = right;
     // Uncomment the following line to preserve selection between presentations.
     // self.clearsSelectionOnViewWillAppear = NO;
     

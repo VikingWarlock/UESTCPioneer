@@ -9,8 +9,15 @@
 #import "MyMessage.h"
 #import "constant.h"
 #import "LongCell.h"
+#import "PopCell.h"
 @interface MyMessage ()
-
+{
+    int i;
+    BOOL isSelected;
+    BOOL choseMessageCell;
+    NSIndexPath *popIndex;
+    NSIndexPath *clickIndex;
+}
 @end
 
 @implementation MyMessage
@@ -30,9 +37,11 @@
     self.tableView.delegate = self;
     self.tableView.dataSource = self;
     [self.tableView registerClass:[LongCell class] forCellReuseIdentifier:@"setcell"];
+    [self.tableView registerClass:[PopCell class] forCellReuseIdentifier:@"setpopcell"];
     if(IS_IOS7)
         self.tableView.separatorInset = UIEdgeInsetsZero;
     [self setExtraCellLineHidden];
+    popIndex = [NSIndexPath indexPathForRow:-1 inSection:0];
     // Uncomment the following line to preserve selection between presentations.
     // self.clearsSelectionOnViewWillAppear = NO;
     
@@ -57,27 +66,71 @@
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
     // Return the number of rows in the section.
-    return 4;
+    return 3 + i;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    static NSString *CellIdentifier = @"setcell";
-    LongCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
-    if (cell == nil) {
-        cell = [[LongCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
+    if (!choseMessageCell)
+    {
+        static NSString *CellIdentifier = @"setcell";
+        LongCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+        if (cell == nil) {
+            cell = [[LongCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
+        }
+        cell.leftImage.image = [UIImage imageNamed:@"mm.png"];
+        cell.label.text = @"天气通知";
+        return cell;
     }
-    cell.leftImage.image = [UIImage imageNamed:@"mm.png"];
-    cell.label.text = @"天气通知";
-    
-    // Configure the cell...
-    
-    return cell;
+    else
+    {
+        static NSString *PopCellIdentifier = @"setpopcell";
+        PopCell *popcell = [tableView dequeueReusableCellWithIdentifier:PopCellIdentifier];
+        if (popcell == nil) {
+            popcell = [[PopCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:PopCellIdentifier];
+        }
+        popcell.label.text = @"xxx祝您生日快乐!";
+        choseMessageCell = NO;
+        return popcell;
+    }
+    return nil;
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
 {
     return 0.1;
+}
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    NSIndexPath *indexOfInsert = [NSIndexPath indexPathForRow:indexPath.row + 1 inSection:indexPath.section];
+    [self.tableView beginUpdates];
+    if (isSelected == NO)
+    {
+        [((LongCell *)[self.tableView cellForRowAtIndexPath:indexPath]).leftImage removeFromSuperview];
+        i++;
+        [self.tableView insertRowsAtIndexPaths:[NSArray arrayWithObject:indexOfInsert] withRowAnimation:UITableViewRowAnimationTop];
+        isSelected = YES;
+        choseMessageCell = YES;
+#warning magic number following!!!
+        UIButton *mask = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, 320, 568)];
+        [self.view insertSubview:mask aboveSubview:self.view];
+        [mask addTarget:self action:@selector(popBack:) forControlEvents:UIControlEventTouchUpInside];
+        self.tableView.scrollEnabled = NO;
+    }
+    popIndex = indexOfInsert;
+    clickIndex = indexPath;
+    [self.tableView endUpdates];
+}
+
+- (void)popBack:(id)sender
+{
+    i--;
+    [self.tableView deleteRowsAtIndexPaths:[NSArray arrayWithObject:popIndex] withRowAnimation:UITableViewRowAnimationTop];
+    [self.tableView deselectRowAtIndexPath:clickIndex animated:NO];
+    isSelected = NO;
+    [sender removeFromSuperview];
+    self.tableView.scrollEnabled = YES;
 }
 
 -(void)setExtraCellLineHidden

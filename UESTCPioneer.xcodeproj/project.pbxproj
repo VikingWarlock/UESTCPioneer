@@ -37,6 +37,7 @@
 		510C56BC18E021B4007F6359 /* view.png in Resources */ = {isa = PBXBuildFile; fileRef = 510C56A218E021B4007F6359 /* view.png */; };
 		510C56BD18E021B4007F6359 /* vw.png in Resources */ = {isa = PBXBuildFile; fileRef = 510C56A318E021B4007F6359 /* vw.png */; };
 		510C56C018E02CF3007F6359 /* LongCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 510C56BF18E02CF3007F6359 /* LongCell.m */; };
+		51355CCF18E05F800047ED5F /* PopCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 51355CCE18E05F800047ED5F /* PopCell.m */; };
 		5153823A18DAE0EA007C4675 /* PersonalInformation.m in Sources */ = {isa = PBXBuildFile; fileRef = 5153823918DAE0EA007C4675 /* PersonalInformation.m */; };
 		5153823D18DAE132007C4675 /* MyCollection.m in Sources */ = {isa = PBXBuildFile; fileRef = 5153823C18DAE132007C4675 /* MyCollection.m */; };
 		5153824018DAE1CE007C4675 /* CheckForSuggestion.m in Sources */ = {isa = PBXBuildFile; fileRef = 5153823F18DAE1CE007C4675 /* CheckForSuggestion.m */; };
@@ -196,6 +197,8 @@
 		510C56A318E021B4007F6359 /* vw.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = vw.png; sourceTree = "<group>"; };
 		510C56BE18E02CF3007F6359 /* LongCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = LongCell.h; path = PersonalTableViewCell/LongCell.h; sourceTree = "<group>"; };
 		510C56BF18E02CF3007F6359 /* LongCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = LongCell.m; path = PersonalTableViewCell/LongCell.m; sourceTree = "<group>"; };
+		51355CCD18E05F800047ED5F /* PopCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PopCell.h; path = PersonalTableViewCell/PopCell.h; sourceTree = "<group>"; };
+		51355CCE18E05F800047ED5F /* PopCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PopCell.m; path = PersonalTableViewCell/PopCell.m; sourceTree = "<group>"; };
 		5153823818DAE0EA007C4675 /* PersonalInformation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PersonalInformation.h; path = PersonalTableViewCell/PersonalInformation.h; sourceTree = "<group>"; };
 		5153823918DAE0EA007C4675 /* PersonalInformation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PersonalInformation.m; path = PersonalTableViewCell/PersonalInformation.m; sourceTree = "<group>"; };
 		5153823B18DAE132007C4675 /* MyCollection.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MyCollection.h; path = PersonalTableViewCell/MyCollection.h; sourceTree = "<group>"; };
@@ -387,6 +390,8 @@
 		5153823718DAE02E007C4675 /* PersonalTableViewCell */ = {
 			isa = PBXGroup;
 			children = (
+				51355CCD18E05F800047ED5F /* PopCell.h */,
+				51355CCE18E05F800047ED5F /* PopCell.m */,
 				510C56BE18E02CF3007F6359 /* LongCell.h */,
 				510C56BF18E02CF3007F6359 /* LongCell.m */,
 				5153825918DB289B007C4675 /* ShortCell.h */,
@@ -1043,6 +1048,7 @@
 				51071D8218DDBAB600695D41 /* ShortMainInfocell.m in Sources */,
 				510C56C018E02CF3007F6359 /* LongCell.m in Sources */,
 				DCB5141818C6C81000B7EE95 /* PPRevealSideViewController.m in Sources */,
+				51355CCF18E05F800047ED5F /* PopCell.m in Sources */,
 				DCB5146618C6DF4500B7EE95 /* UPFooterCell.m in Sources */,
 				DCB5146018C6DF1C00B7EE95 /* UPTitleCell.m in Sources */,
 				5153825818DB03F9007C4675 /* PublishNotice.m in Sources */,
