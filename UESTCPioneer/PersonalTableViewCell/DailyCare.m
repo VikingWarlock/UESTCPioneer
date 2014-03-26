@@ -32,9 +32,13 @@
     [self.tableView setAllowsSelection:NO];
     [self.tableView registerClass:[ShortTitleCell class] forCellReuseIdentifier:@"CustomTitleCellIndentifier"];
     [self.tableView registerClass:[ShortMainInfocell class] forCellReuseIdentifier:@"CustomMainCellIndentifier"];
-
 }
 
+- (void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+    self.navigationItem.title = @"日常关怀";
+}
 
 //每个分区的行数
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{

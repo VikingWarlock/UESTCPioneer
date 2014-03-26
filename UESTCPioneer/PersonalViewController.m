@@ -62,12 +62,11 @@
     [self.leveyTabBarController.navigationItem setTitle:@"个人"];
     
     
-    UIView *customView = [[UIView alloc]initWithFrame:CGRectMake(0, 0, 44, 44)];
+    UIView *customView = [[UIView alloc]initWithFrame:CGRectMake(0, 0, 20, 20)];
     UIButton *button = [UIButton buttonWithType:UIButtonTypeCustom];
     [button setFrame:customView.bounds];
     [customView addSubview:button];
     [button setImage:[UIImage imageNamed:@"logout.png"] forState:UIControlStateNormal];
-    [button setImageEdgeInsets:UIEdgeInsetsMake(12, 12, 12, 12)];
     [button addTarget:self action:@selector(logout:) forControlEvents:UIControlEventTouchUpInside];
     UIBarButtonItem *right=[[UIBarButtonItem alloc]initWithCustomView:customView];
     [self.leveyTabBarController.navigationItem setRightBarButtonItem:right];
@@ -195,7 +194,7 @@
                     aCell = [[StartActivity alloc] init];
                     break;
                 case 1:
-                    aCell = [[PublishNotice alloc] init];
+                    aCell = [[PublishNotice alloc] initWithStyle:UITableViewStyleGrouped];
                     break;
                 case 2:
                     aCell = [[MyNotice alloc] initWithStyle:UITableViewStyleGrouped];

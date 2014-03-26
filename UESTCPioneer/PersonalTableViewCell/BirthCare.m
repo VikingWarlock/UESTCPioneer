@@ -8,6 +8,7 @@
 
 #import "BirthCare.h"
 #import "constant.h"
+#import "BirthCareCell.h"
 @interface BirthCare ()
 
 @end
@@ -32,11 +33,18 @@
         self.tableView.separatorInset = UIEdgeInsetsZero;
     [self setExtraCellLineHidden];
     [self.tableView setAllowsSelection:NO];
+    [self.tableView registerClass:[BirthCareCell class] forCellReuseIdentifier:@"setcell"];
     // Uncomment the following line to preserve selection between presentations.
     // self.clearsSelectionOnViewWillAppear = NO;
     
     // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
     // self.navigationItem.rightBarButtonItem = self.editButtonItem;
+}
+
+- (void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+    self.navigationItem.title = @"生日关怀";
 }
 
 - (void)didReceiveMemoryWarning
@@ -66,34 +74,18 @@
     if (cell == nil) {
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:CellIdentifier];
     }
-    
-    UIImageView *imageView = [[UIImageView alloc] init];
-    [imageView setFrame:CGRectMake(10,4,55,55)];
-    imageView.image = [UIImage imageNamed:@"touxiang.png"];
-    
-    UILabel *name = [[UILabel alloc] initWithFrame:CGRectMake(75, 5, 100, 30)];
-    UILabel *date = [[UILabel alloc] initWithFrame:CGRectMake(75, 30, 100, 30)];
-    name.font = [UIFont boldSystemFontOfSize:18];
-    date.font = [UIFont systemFontOfSize:15];
-    date.textColor = [UIColor colorWithRed:119.0/255.0 green:123.0/255.0 blue:134.0/255.0 alpha:1];
-    name.text = @"徐涛";
-    date.text = @"4天后过生日";
-    
-    UIButton *button = [[UIButton alloc] initWithFrame:CGRectMake(250, 21, 55,22)];
-    [button setBackgroundImage:[UIImage imageNamed:@"birremind.png" ] forState:UIControlStateNormal];
-    button.titleLabel.font = [UIFont systemFontOfSize:10];
-    [button setTitle:@"送祝福" forState:UIControlStateNormal];
-    [button setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
-    [button setTitleEdgeInsets:UIEdgeInsetsMake(1, 18, 1, 1)];
-    
-    [cell.contentView addSubview:button];
-    [cell.contentView addSubview:name];
-    [cell.contentView addSubview:date];
-    [cell.contentView addSubview:imageView];
-    
-    // Configure the cell...
-    
     return cell;
+}
+
+- (void)sendWish:(id)sender
+{
+    UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(250,17, 60, 30)];
+    label.text = @"已送祝福";
+    label.font = [UIFont systemFontOfSize:14];
+    label.textColor = [UIColor colorWithRed:119.0/255.0 green:123.0/255.0 blue:134.0/255.0 alpha:1];
+    [((UIButton *)sender).superview.superview addSubview:label];
+    [((UIButton *)sender) setFrame:CGRectMake(230, 25, 15, 15)];
+    [((UIButton *)sender) setBackgroundImage:[UIImage imageNamed:@"already.png"] forState:UIControlStateNormal];
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section

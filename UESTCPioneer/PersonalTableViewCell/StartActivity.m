@@ -10,7 +10,9 @@
 #import <QuartzCore/QuartzCore.h>
 
 @interface StartActivity ()
-
+{
+    BOOL isFirstEdit;
+}
 @end
 
 @implementation StartActivity
@@ -20,6 +22,7 @@
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
         self.view.backgroundColor = [UIColor colorWithRed:0.937255 green:0.937255 blue:0.956863 alpha:1];
+        isFirstEdit = YES;
         // Custom initialization
     }
     return self;
@@ -33,9 +36,27 @@
     textView.layer.borderWidth =1.0;
     textView.layer.cornerRadius =4.0;
     textView.delegate = self;
-
+    textView.font = [UIFont systemFontOfSize:14];
+    textView.textColor = [UIColor colorWithRed:187.0/255.0 green:187.0/255.0 blue:187.0/255.0 alpha:1];
+    textView.text = @"请再此输入通知内容...";
     [self.view addSubview:textView];
     // Do any additional setup after loading the view.
+}
+
+- (void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+    self.navigationItem.title = @"发起活动";
+}
+
+- (void)textViewDidBeginEditing:(UITextView *)textView
+{
+    if (isFirstEdit)
+    {
+        textView.text = @"";
+        textView.textColor = [UIColor blackColor];
+        isFirstEdit = NO;
+    }
 }
 
 - (void)didReceiveMemoryWarning
