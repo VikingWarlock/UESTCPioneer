@@ -60,7 +60,8 @@
 }
 -(void)viewWillAppear:(BOOL)animated{
     [self.leveyTabBarController.navigationItem setTitle:@"个人"];
-    
+    [self.view setUserInteractionEnabled:YES];
+    [self.PersonalTableView setScrollEnabled:YES];
     
     UIView *customView = [[UIView alloc]initWithFrame:CGRectMake(0, 0, 20, 20)];
     UIButton *button = [UIButton buttonWithType:UIButtonTypeCustom];
