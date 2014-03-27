@@ -77,15 +77,16 @@
     //界面显示，监听通知
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(notificationUnreadrefresh:) name:kNotificationUnreadTotalRefreshed object:nil];
 }
--(void)hideTopView{
+- (void)dropClicked:(id)sender{}
+- (void)hideTopView{
     dropdownview.hidden = YES;
-    self.tableView.frame = CGRectMake(10, 5, 300,450);
+    self.tableView.frame = CGRectMake(10, 5, 300,445);
 }
 - (void) niDropDownDelegateMethod: (NIDropDown *) sender {
     [self rel];
 }
 
--(void)rel{
+- (void)rel{
     //[dropDown release];
     dropDown = nil;
 }

@@ -27,9 +27,9 @@
         
         CGRect btnRect = CGRectMake(5, 85, 40, 20);
         UILabel *btnLabel = [[UILabel alloc]initWithFrame:btnRect];
-        btnLabel.font = [UIFont boldSystemFontOfSize:16];
+        btnLabel.font = [UIFont systemFontOfSize:16];
         btnLabel.tag = 1;
-        btnLabel.textColor = [UIColor grayColor];
+        btnLabel.textColor = [UIColor colorWithRed:0 green:0 blue:0.4 alpha:1];
         btnLabel.text = @"全文";
         [btnLabel setTextAlignment:NSTextAlignmentLeft];
         [self.contentView addSubview:btnLabel];

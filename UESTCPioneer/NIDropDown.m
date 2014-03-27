@@ -94,8 +94,10 @@
     cell.textLabel.text =[list objectAtIndex:indexPath.row];
     cell.textLabel.textColor = [UIColor whiteColor];
     
-    cell.backgroundColor = [UIColor colorWithRed:0.239 green:0.239 blue:0.239 alpha:1];
-    
+    cell.backgroundColor = [UIColor colorWithRed:0.240 green:0.240 blue:0.240 alpha:1];
+    if ([cell.textLabel.text isEqualToString:btnSender.titleLabel.text]) {
+        cell.backgroundColor = [UIColor colorWithRed:0.180 green:0.180 blue:0.180 alpha:1];
+    }
     return cell;
 }
 
