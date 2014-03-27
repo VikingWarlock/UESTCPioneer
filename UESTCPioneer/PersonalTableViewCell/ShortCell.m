@@ -14,8 +14,9 @@
 {
     self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
     if (self) {
-        [self addSubview:self.staticLabel];
+        [self.contentView addSubview:self.staticLabel];
         // Initialization code
+        
     }
     return self;
 }

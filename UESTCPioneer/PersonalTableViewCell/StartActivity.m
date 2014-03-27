@@ -38,7 +38,7 @@
     textView.delegate = self;
     textView.font = [UIFont systemFontOfSize:14];
     textView.textColor = [UIColor colorWithRed:187.0/255.0 green:187.0/255.0 blue:187.0/255.0 alpha:1];
-    textView.text = @"请再此输入通知内容...";
+    textView.text = @"请在此输入通知内容...";
     [self.view addSubview:textView];
     // Do any additional setup after loading the view.
 }

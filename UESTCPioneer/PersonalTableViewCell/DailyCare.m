@@ -38,6 +38,20 @@
 {
     [super viewWillAppear:animated];
     self.navigationItem.title = @"日常关怀";
+    
+    UIImageView *customView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, 30, 30)];
+    UIButton *button = [UIButton buttonWithType:UIButtonTypeCustom];
+    [button setFrame:customView.bounds];
+    [customView addSubview:button];
+    [button setImage:[UIImage imageNamed:@"write.png"] forState:UIControlStateNormal];
+    [button addTarget:self action:@selector(sendCare:) forControlEvents:UIControlEventTouchUpInside];
+    UIBarButtonItem *right=[[UIBarButtonItem alloc] initWithCustomView:customView];
+    self.navigationItem.rightBarButtonItem = right;
+}
+
+- (void)sendCare:(id)sender
+{
+    
 }
 
 //每个分区的行数

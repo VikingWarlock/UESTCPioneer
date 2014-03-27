@@ -10,5 +10,4 @@
 
 @interface ShortCell : UITableViewCell
 @property (nonatomic,strong) UILabel *staticLabel;
-
 @end

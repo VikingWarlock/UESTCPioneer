@@ -10,7 +10,7 @@
 #import "constant.h"
 #import "ShortCell.h"
 #import "LeveyTabBarController.h"
-
+#import "EditPersonalInformation.h"
 @interface PersonalInformation ()
 {
     NSArray *array;
@@ -23,11 +23,6 @@
 {
     self = [super initWithStyle:style];
     if (self) {
-        // Custom initialization
-        
-       // UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, 320, 40)];
-        //label.text = @"personalInformation";
-        //[self.view addSubview:label];
     }
     return self;
 }
@@ -58,6 +53,13 @@
     self.navigationItem.rightBarButtonItem = right;
     
     self.navigationItem.title = @"个人信息";
+}
+
+- (void)editInformation:(id)sender
+{
+    EditPersonalInformation *edit = [[EditPersonalInformation alloc] initWithStyle:UITableViewStyleGrouped];
+    [self.navigationController presentViewController:edit animated:YES completion:NULL];
+    
 }
 
 -(void)viewDidDisappear:(BOOL)animated{
@@ -158,10 +160,6 @@
     else return 44;
 }
 
-- (void)editInformation:(id)sender
-{
-    
-}
 /*
 #pragma mark - Navigation
 
