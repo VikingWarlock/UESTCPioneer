@@ -930,8 +930,8 @@
 		DCB5144D18C6D63B00B7EE95 /* SuperClass */ = {
 			isa = PBXGroup;
 			children = (
-				DC0BFFAE18E24C4C002E3D38 /* RefreshTableViewController.m */,
 				DC0BFFAF18E24C4C002E3D38 /* RefreshTableViewController.h */,
+				DC0BFFAE18E24C4C002E3D38 /* RefreshTableViewController.m */,
 				DCB5144E18C6D6B500B7EE95 /* UPMainViewController.h */,
 				DCB5144F18C6D6B500B7EE95 /* UPMainViewController.m */,
 			);

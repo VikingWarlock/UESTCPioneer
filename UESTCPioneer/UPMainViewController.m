@@ -46,8 +46,8 @@
     if(IS_IOS7)
         [self.tableView setSeparatorInset:UIEdgeInsetsZero];
     [self.tableView setAllowsSelection:NO];
-    UIImageView *background = [[UIImageView alloc]initWithFrame:CGRectMake(0, 0, 320, 455)];
-    [background setBackgroundColor:self.tableView.backgroundColor];
+//    UIImageView *background = [[UIImageView alloc]initWithFrame:CGRectMake(0, 0, 320, 455)];
+//    [background setBackgroundColor:self.tableView.backgroundColor];
     dropdownview =[[UIView alloc] initWithFrame:CGRectMake(0, 0, 320, 30)];
     dropdownview.backgroundColor = [UIColor whiteColor];
     dropbtn = [[UIButton alloc]initWithFrame:CGRectMake(213, 8, 100, 20)];
@@ -64,7 +64,7 @@
     //[xiala.layer setAffineTransform:CGAffineTransformMakeRotation(0.5f * 3.14159*2)];
     [dropbtn addSubview:xiala];
     [dropdownview addSubview:dropbtn];
-    [self.view addSubview:background];
+    //[self.view addSubview:background];
     [self.view addSubview:self.tableView];
     [self.view addSubview:dropdownview];
 	// Do any additional setup after loading the view.
