@@ -175,6 +175,15 @@
 		DCB5146C18C6E2AF00B7EE95 /* PartyActivityViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DCB5146B18C6E2AF00B7EE95 /* PartyActivityViewController.m */; };
 		DCB5146F18C6E2DB00B7EE95 /* MoodShareViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DCB5146E18C6E2DB00B7EE95 /* MoodShareViewController.m */; };
 		DCB6DE5318E2947D00001701 /* commentViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DCB6DE5118E2947D00001701 /* commentViewController.m */; };
+		F23FA4F918E3E8AA00E174A2 /* Cells.m in Sources */ = {isa = PBXBuildFile; fileRef = F23FA4F818E3E8AA00E174A2 /* Cells.m */; };
+		F23FA4FC18E3E97300E174A2 /* GuideDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F23FA4FB18E3E97300E174A2 /* GuideDetailViewController.m */; };
+		F23FA4FF18E3E9CA00E174A2 /* GuideTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F23FA4FE18E3E9CA00E174A2 /* GuideTableViewController.m */; };
+		F23FA50218E3EA4A00E174A2 /* LearnDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F23FA50118E3EA4A00E174A2 /* LearnDetailViewController.m */; };
+		F23FA50518E3EAED00E174A2 /* LearnTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F23FA50418E3EAED00E174A2 /* LearnTableViewController.m */; };
+		F23FA50818E3EB2B00E174A2 /* OrganDetailTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F23FA50718E3EB2B00E174A2 /* OrganDetailTableViewController.m */; };
+		F23FA50B18E3EB6500E174A2 /* OrganTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F23FA50A18E3EB6500E174A2 /* OrganTableViewController.m */; };
+		F23FA50E18E3EBA300E174A2 /* TheoryDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F23FA50D18E3EBA300E174A2 /* TheoryDetailViewController.m */; };
+		F23FA51118E3EBFE00E174A2 /* TheoryViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F23FA51018E3EBFE00E174A2 /* TheoryViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -422,6 +431,24 @@
 		DCB5146E18C6E2DB00B7EE95 /* MoodShareViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MoodShareViewController.m; sourceTree = "<group>"; };
 		DCB6DE5118E2947D00001701 /* commentViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = commentViewController.m; sourceTree = "<group>"; };
 		DCB6DE5218E2947D00001701 /* commentViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = commentViewController.h; sourceTree = "<group>"; };
+		F23FA4F718E3E8AA00E174A2 /* Cells.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Cells.h; path = partyDataDetails/Cells.h; sourceTree = "<group>"; };
+		F23FA4F818E3E8AA00E174A2 /* Cells.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Cells.m; path = partyDataDetails/Cells.m; sourceTree = "<group>"; };
+		F23FA4FA18E3E97300E174A2 /* GuideDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GuideDetailViewController.h; path = partyDataDetails/GuideDetailViewController.h; sourceTree = "<group>"; };
+		F23FA4FB18E3E97300E174A2 /* GuideDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = GuideDetailViewController.m; path = partyDataDetails/GuideDetailViewController.m; sourceTree = "<group>"; };
+		F23FA4FD18E3E9CA00E174A2 /* GuideTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GuideTableViewController.h; path = partyDataDetails/GuideTableViewController.h; sourceTree = "<group>"; };
+		F23FA4FE18E3E9CA00E174A2 /* GuideTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = GuideTableViewController.m; path = partyDataDetails/GuideTableViewController.m; sourceTree = "<group>"; };
+		F23FA50018E3EA4A00E174A2 /* LearnDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = LearnDetailViewController.h; path = partyDataDetails/LearnDetailViewController.h; sourceTree = "<group>"; };
+		F23FA50118E3EA4A00E174A2 /* LearnDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = LearnDetailViewController.m; path = partyDataDetails/LearnDetailViewController.m; sourceTree = "<group>"; };
+		F23FA50318E3EAED00E174A2 /* LearnTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = LearnTableViewController.h; path = partyDataDetails/LearnTableViewController.h; sourceTree = "<group>"; };
+		F23FA50418E3EAED00E174A2 /* LearnTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = LearnTableViewController.m; path = partyDataDetails/LearnTableViewController.m; sourceTree = "<group>"; };
+		F23FA50618E3EB2B00E174A2 /* OrganDetailTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = OrganDetailTableViewController.h; path = partyDataDetails/OrganDetailTableViewController.h; sourceTree = "<group>"; };
+		F23FA50718E3EB2B00E174A2 /* OrganDetailTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = OrganDetailTableViewController.m; path = partyDataDetails/OrganDetailTableViewController.m; sourceTree = "<group>"; };
+		F23FA50918E3EB6500E174A2 /* OrganTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = OrganTableViewController.h; path = partyDataDetails/OrganTableViewController.h; sourceTree = "<group>"; };
+		F23FA50A18E3EB6500E174A2 /* OrganTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = OrganTableViewController.m; path = partyDataDetails/OrganTableViewController.m; sourceTree = "<group>"; };
+		F23FA50C18E3EBA300E174A2 /* TheoryDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TheoryDetailViewController.h; path = partyDataDetails/TheoryDetailViewController.h; sourceTree = "<group>"; };
+		F23FA50D18E3EBA300E174A2 /* TheoryDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TheoryDetailViewController.m; path = partyDataDetails/TheoryDetailViewController.m; sourceTree = "<group>"; };
+		F23FA50F18E3EBFE00E174A2 /* TheoryViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TheoryViewController.h; path = partyDataDetails/TheoryViewController.h; sourceTree = "<group>"; };
+		F23FA51018E3EBFE00E174A2 /* TheoryViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TheoryViewController.m; path = partyDataDetails/TheoryViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -892,6 +919,7 @@
 				DCB5144518C6D3CE00B7EE95 /* CommunicationViewController.m */,
 				DCB5144718C6D3ED00B7EE95 /* PartyDataViewController.h */,
 				DCB5144818C6D3ED00B7EE95 /* PartyDataViewController.m */,
+				F23FA4F618E3E89C00E174A2 /* partyDataDetail */,
 				DCB5144A18C6D3F900B7EE95 /* PersonalViewController.h */,
 				DCB5144B18C6D3F900B7EE95 /* PersonalViewController.m */,
 				5153823718DAE02E007C4675 /* PersonalTableViewCell */,
@@ -945,6 +973,31 @@
 				DCB5146518C6DF4500B7EE95 /* UPFooterCell.m */,
 			);
 			name = TableViewCell;
+			sourceTree = "<group>";
+		};
+		F23FA4F618E3E89C00E174A2 /* partyDataDetail */ = {
+			isa = PBXGroup;
+			children = (
+				F23FA4F718E3E8AA00E174A2 /* Cells.h */,
+				F23FA4F818E3E8AA00E174A2 /* Cells.m */,
+				F23FA4FA18E3E97300E174A2 /* GuideDetailViewController.h */,
+				F23FA4FB18E3E97300E174A2 /* GuideDetailViewController.m */,
+				F23FA4FD18E3E9CA00E174A2 /* GuideTableViewController.h */,
+				F23FA4FE18E3E9CA00E174A2 /* GuideTableViewController.m */,
+				F23FA50018E3EA4A00E174A2 /* LearnDetailViewController.h */,
+				F23FA50118E3EA4A00E174A2 /* LearnDetailViewController.m */,
+				F23FA50318E3EAED00E174A2 /* LearnTableViewController.h */,
+				F23FA50418E3EAED00E174A2 /* LearnTableViewController.m */,
+				F23FA50618E3EB2B00E174A2 /* OrganDetailTableViewController.h */,
+				F23FA50718E3EB2B00E174A2 /* OrganDetailTableViewController.m */,
+				F23FA50918E3EB6500E174A2 /* OrganTableViewController.h */,
+				F23FA50A18E3EB6500E174A2 /* OrganTableViewController.m */,
+				F23FA50C18E3EBA300E174A2 /* TheoryDetailViewController.h */,
+				F23FA50D18E3EBA300E174A2 /* TheoryDetailViewController.m */,
+				F23FA50F18E3EBFE00E174A2 /* TheoryViewController.h */,
+				F23FA51018E3EBFE00E174A2 /* TheoryViewController.m */,
+			);
+			name = partyDataDetail;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -1186,6 +1239,7 @@
 				DCB22CFA18CC9F37004F36D0 /* helper.m in Sources */,
 				5153824018DAE1CE007C4675 /* CheckForSuggestion.m in Sources */,
 				DCB5137218C6C43700B7EE95 /* PionnerViewController.m in Sources */,
+				F23FA50518E3EAED00E174A2 /* LearnTableViewController.m in Sources */,
 				DCB5145018C6D6B500B7EE95 /* UPMainViewController.m in Sources */,
 				8834BA2018D6F0C20023BA87 /* NetworkCenter.m in Sources */,
 				DCB5146918C6E29700B7EE95 /* PublicityViewController.m in Sources */,
@@ -1206,11 +1260,14 @@
 				DCB5141818C6C81000B7EE95 /* PPRevealSideViewController.m in Sources */,
 				51355CCF18E05F800047ED5F /* PopCell.m in Sources */,
 				DCB5146618C6DF4500B7EE95 /* UPFooterCell.m in Sources */,
+				F23FA50818E3EB2B00E174A2 /* OrganDetailTableViewController.m in Sources */,
 				DCB5146018C6DF1C00B7EE95 /* UPTitleCell.m in Sources */,
+				F23FA50218E3EA4A00E174A2 /* LearnDetailViewController.m in Sources */,
 				DC0BFF9718E24A40002E3D38 /* Unread.m in Sources */,
 				DC0BFFAD18E24C1D002E3D38 /* PullRefreshTableView.m in Sources */,
 				DCB22CFD18CCBCD0004F36D0 /* constant.m in Sources */,
 				5153824318DAE1F1007C4675 /* MyMessage.m in Sources */,
+				F23FA4FC18E3E97300E174A2 /* GuideDetailViewController.m in Sources */,
 				513CED1318E2F89900C1E424 /* PublishNotice.m in Sources */,
 				DC0BFFC118E24CD7002E3D38 /* commentButton.m in Sources */,
 				51A0C51618E31CB600404885 /* EditPersonalInformation.m in Sources */,
@@ -1223,7 +1280,9 @@
 				DCB5136818C6C43700B7EE95 /* main.m in Sources */,
 				88E1AFD718CACC3C008D92B7 /* PublicMethod.m in Sources */,
 				DCB5144918C6D3ED00B7EE95 /* PartyDataViewController.m in Sources */,
+				F23FA50B18E3EB6500E174A2 /* OrganTableViewController.m in Sources */,
 				DCB5145818C6DDFD00B7EE95 /* UPTableView.m in Sources */,
+				F23FA51118E3EBFE00E174A2 /* TheoryViewController.m in Sources */,
 				DCB5144C18C6D3F900B7EE95 /* PersonalViewController.m in Sources */,
 				DC0BFFDD18E255F7002E3D38 /* MJRefreshFooterView.m in Sources */,
 				5153823D18DAE132007C4675 /* MyCollection.m in Sources */,
@@ -1231,6 +1290,9 @@
 				8889F91918D02E13001416C0 /* UserEntity.m in Sources */,
 				DCB5146C18C6E2AF00B7EE95 /* PartyActivityViewController.m in Sources */,
 				51071D8318DDBAB600695D41 /* ShortTitleCell.m in Sources */,
+				F23FA50E18E3EBA300E174A2 /* TheoryDetailViewController.m in Sources */,
+				F23FA4FF18E3E9CA00E174A2 /* GuideTableViewController.m in Sources */,
+				F23FA4F918E3E8AA00E174A2 /* Cells.m in Sources */,
 				DCA5962618C81A0F00F001D9 /* UPSwitch.m in Sources */,
 				5153824618DAE216007C4675 /* BirthCare.m in Sources */,
 			);
