@@ -7,8 +7,9 @@
 //
 
 #import "UPMainViewController.h"
+#import "EntityHeader.h"
 
-@interface RefreshRequestViewController : UPMainViewController{
+@interface RefreshRequestViewController : UPMainViewController<UITableViewDelegate,UITableViewDataSource>{
     NSDictionary *requestData;
     NSString *entityName;
     NSDictionary *entityMapping;

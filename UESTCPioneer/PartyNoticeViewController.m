@@ -42,6 +42,23 @@
     self.tableView.delegate = self;
     self.tableView.dataSource = self;
     
+    
+    //链接请求参数
+    
+    /*
+     
+     type=getNoticeOrAnnounce&userId=0004003990022&userName=xiao002&page=1&typepid=1&level=2
+     */
+    requestData=@{@"type":@"getNoticeOrAnnounce"
+                  ,@"userId":[constant getUserId]
+                  ,@"userName":[constant getUserName]
+                  ,@"page":@"1"
+                  ,@"typepid":@"1"
+                  ,@"level":@"1"};
+    entityName=kPartyNoticeNewsEntityName;
+    entityMapping=[Mapping PartyNoticeMapping];
+    
+    
 }
 
 -(void)viewWillAppear:(BOOL)animated{
@@ -69,7 +86,7 @@
 
 //表的分区数
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView{
-    return 10;
+    return [tableViewEntitiesArray count];
 }
 
 - (void)collectTaped:(UIButton *)collect{
@@ -80,44 +97,53 @@
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
+    UITableViewCell *cell=[super tableView:tableView cellForRowAtIndexPath:indexPath];
     if (indexPath.row == 0) {
-        static NSString *customTitleCellIndentifier = @"CustomTitleCellIndentifier";
-        UPTitleCell *cell = [tableView dequeueReusableCellWithIdentifier:customTitleCellIndentifier];
-        if(cell == nil){
-            cell = [[UPTitleCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:customTitleCellIndentifier];
-        }
-        UILabel *title = (UILabel *)[cell.contentView viewWithTag:titleTag];
-        title.text = @"title";
-        UILabel *time = (UILabel *)[cell.contentView viewWithTag:timeTag];
-        time.text = @"time";
-        UIButton *collect = (UIButton *)[cell.contentView viewWithTag:collectTag];
+//        UPTitleCell*cell=(UPTitleCell*)[super tableView:tableView cellForRowAtIndexPath:indexPath];
+//        static NSString *customTitleCellIndentifier = @"CustomTitleCellIndentifier";
+//        UPTitleCell *cell = [tableView dequeueReusableCellWithIdentifier:customTitleCellIndentifier forIndexPath:indexPath];
+////        if(cell == nil){
+////            cell = [[UPTitleCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:customTitleCellIndentifier];
+////        }
+//        UILabel *title = (UILabel *)[cell.contentView viewWithTag:titleTag];
+//        title.text = @"title";
+//        UILabel *time = (UILabel *)[cell.contentView viewWithTag:timeTag];
+////        time.text = @"time";
+//        UIButton *collect = (UIButton *)[cell.contentView viewWithTag:collectTag];
+//        collect.hidden = NO;
+//        [collect addTarget:self action:@selector(collectTaped:) forControlEvents:UIControlEventTouchUpInside];
+        UPTitleCell *titleCell = (UPTitleCell*)cell;
+        
+        UIButton *collect = (UIButton *)[titleCell.contentView viewWithTag:collectTag];
         collect.hidden = NO;
         [collect addTarget:self action:@selector(collectTaped:) forControlEvents:UIControlEventTouchUpInside];
         return cell;
     }
     else if (indexPath.row == 1) {
-        static NSString *customMainCellIndentifier = @"CustomMainCellIndentifier";
-        UPMainInfoCell *cell2 = [tableView dequeueReusableCellWithIdentifier:customMainCellIndentifier];;
-        if(cell2 == nil){
-            cell2 = [[UPMainInfoCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:customMainCellIndentifier];
-        }
-        UILabel *words = (UILabel *)[cell2.contentView viewWithTag:wordsTag];
-        words.text = @"在讨论这部纪录片之前，为了避免现在中文网络江湖盛行的动机论，我先要说明：我和崔永元老师没有个人恩怨，相反，对他的主持功力和以前取得的成绩都非常钦佩。我们也至少有一名共同的好朋友，《读库》的出版人张立宪。";
+        UPMainInfoCell*cell2=(UPMainInfoCell*)cell;
+//        static NSString *customMainCellIndentifier = @"CustomMainCellIndentifier";
+//        UPMainInfoCell *cell2 = [tableView dequeueReusableCellWithIdentifier:customMainCellIndentifier];;
+//        if(cell2 == nil){
+//            cell2 = [[UPMainInfoCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:customMainCellIndentifier];
+//        }
+//        UILabel *words = (UILabel *)[cell2.contentView viewWithTag:wordsTag];
+//        words.text = @"在讨论这部纪录片之前，为了避免现在中文网络江湖盛行的动机论，我先要说明：我和崔永元老师没有个人恩怨，相反，对他的主持功力和以前取得的成绩都非常钦佩。我们也至少有一名共同的好朋友，《读库》的出版人张立宪。";
         return cell2;
     }
     else {
-        static NSString *customFooterCellIndentifier = @"CustomFooterCellIndentifier";
-        UPFooterCell *cell3 = [tableView dequeueReusableCellWithIdentifier:customFooterCellIndentifier];;
-        if(cell3 == nil){
-            cell3 = [[UPFooterCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:customFooterCellIndentifier];
-        }
-        UIButton *btn1 = (UIButton *)[cell3.contentView viewWithTag:btn1Tag];
-        UIButton *btn2 = (UIButton *)[cell3.contentView viewWithTag:btn2Tag];
-        UIButton *btn3 = (UIButton *)[cell3.contentView viewWithTag:btn3Tag];
-        btn1.hidden = NO;
-        btn2.hidden = NO;
-        
-        [btn1 setImage:[UIImage imageNamed:@"read.png"] forState:UIControlStateNormal];
+        UPMainInfoCell*cell3=(UPMainInfoCell*)cell;
+//        static NSString *customFooterCellIndentifier = @"CustomFooterCellIndentifier";
+//        UPFooterCell *cell3 = [tableView dequeueReusableCellWithIdentifier:customFooterCellIndentifier];;
+//        if(cell3 == nil){
+//            cell3 = [[UPFooterCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:customFooterCellIndentifier];
+//        }
+//        UIButton *btn1 = (UIButton *)[cell3.contentView viewWithTag:btn1Tag];
+//        UIButton *btn2 = (UIButton *)[cell3.contentView viewWithTag:btn2Tag];
+//        UIButton *btn3 = (UIButton *)[cell3.contentView viewWithTag:btn3Tag];
+//        btn1.hidden = NO;
+//        btn2.hidden = NO;
+//        
+//        [btn1 setImage:[UIImage imageNamed:@"read.png"] forState:UIControlStateNormal];
         return cell3;
     }
     
@@ -150,15 +176,5 @@
     // Dispose of any resources that can be recreated.
 }
 
-#pragma mark pull refresh
--(void)pullDownRefresh:(MJRefreshBaseView *)refreshView{
-    [helper performBlock:^{
-        [refreshView endRefreshing];
-    } afterDelay:0.25];
-}
--(void)pullUpRefresh:(MJRefreshBaseView *)refreshView{
-    [helper performBlock:^{
-        [refreshView endRefreshing];
-    } afterDelay:0.25];
-}
+
 @end

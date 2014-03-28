@@ -11,4 +11,8 @@
 @interface Mapping : NSObject
 +(NSDictionary*)PioneerMapping;
 +(NSDictionary *)MoodShareMapping;
+
++(NSDictionary*)PartyNoticeMapping;
++(NSDictionary*)PublicityMapping;
++(NSDictionary*)PartyActivityMapping;
 @end

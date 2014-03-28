@@ -31,5 +31,76 @@
 
 }
 
++(NSDictionary*)PartyNoticeMapping{
+    NSArray *keyArray=@[@"chakan"
+                        ,@"comform"
+                        ,@"commnum"
+                        ,@"content"
+                        ,@"id"
+                        ,@"shoucang"
+                        ,@"time"
+                        ,@"title"
+                        ,@"transnum"
+                        ,@"userId"
+                        ,@"userName"
+                        ];
+    NSArray *valueArray=@[
+                          @"chakan"
+                          ,@"comform"
+                          ,@"numberOfComment"
+                          ,@"newsBody"
+                          ,@"theId"
+                          ,@"shoucang"
+                          ,@"timeAndDate"
+                          ,@"titleBody"
+                          ,@"transnum"
+                          ,@"userId"
+                          ,@"userName"
+                          ];
+    return [[NSDictionary alloc]initWithObjects:valueArray forKeys:keyArray];
+}
+
++(NSDictionary*)PublicityMapping{
+    return [self PartyNoticeMapping];
+}
+
++(NSDictionary*)PartyActivityMapping{
+    NSArray *keyArray=@[
+                        @"branch"
+                        ,@"commentCount"
+                        ,@"content"
+                        ,@"count"
+                        ,@"id"
+                        ,@"institute"
+                        ,@"love"
+                        ,@"picUrl"
+                        ,@"signUp"
+                        ,@"time"
+                        ,@"title"
+                        ,@"top"
+                        ,@"userId"
+                        ,@"userName"
+                        ,@"zipPicUrl"
+                        ];
+    NSArray *valueArray=@[
+                          @"branch"
+                          ,@"numberOfComment"
+                          ,@"newsBody"
+                          ,@"count"
+                          ,@"theId"
+                          ,@"institute"
+                          ,@"love"
+                          ,@"picUrl"
+                          ,@"signUp"
+                          ,@"timeAndDate"
+                          ,@"titleBody"
+                          ,@"top"
+                          ,@"userId"
+                          ,@"userName"
+                          ,@"zipPicUrl"
+                          ];
+    return [[NSDictionary alloc]initWithObjects:valueArray forKeys:keyArray];
+}
+
 
 @end
