@@ -159,7 +159,11 @@
 //        btn3.theId=[DataEntity.theId integerValue];
 //        
 //        [btn3 addTarget:self action:@selector(commentButtonPress:) forControlEvents:UIControlEventTouchUpInside];
+        
+        
+        
         UPFooterCell *cell3 = (UPFooterCell*)cell;
+        [cell3 addCommentButtonTaget:self Action:@selector(commentButtonPress:)];
         return cell3;
     }
     
@@ -246,7 +250,6 @@
 //    （3）username：用户姓名      （4）shareId：活动分享的id
 //    （5）comment：评论的内容
 
-    
     
     //请求评论列表用的参数
     comment.commentListRequestData=@{@"type":@"getShareComment",@"page":@"1",@"shareId":[NSString stringWithFormat:@"%d",button.theId]};

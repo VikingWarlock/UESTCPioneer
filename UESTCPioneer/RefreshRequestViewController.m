@@ -11,6 +11,10 @@
 #import "UPTitleCell.h"
 #import "UPMainInfoCell.h"
 #import "UPFooterCell.h"
+
+static NSString *customTitleCellIndentifier = @"CustomTitleCellIndentifier";
+static NSString *customMainCellIndentifier = @"CustomMainCellIndentifier";
+static NSString *customFooterCellIndentifier = @"CustomFooterCellIndentifier";
 @interface RefreshRequestViewController (){
 
     
@@ -35,7 +39,9 @@
 {
     [super viewDidLoad];
 	// Do any additional setup after loading the view.
-    [self.tableView registerClass:[UPTitleCell class] forCellReuseIdentifier:@"CustomTitleCellIndentifier"];
+    [self.tableView registerClass:[UPTitleCell class] forCellReuseIdentifier:customTitleCellIndentifier];
+    [self.tableView registerClass:[UPMainInfoCell class] forCellReuseIdentifier:customMainCellIndentifier];
+    [self.tableView registerClass:[UPFooterCell class] forCellReuseIdentifier:customFooterCellIndentifier];
 }
 
 - (void)didReceiveMemoryWarning
@@ -49,34 +55,28 @@
 
     NewsEntity *entity= tableViewEntitiesArray[indexPath.section];
     if (indexPath.row == 0) {
-        static NSString *customTitleCellIndentifier = @"CustomTitleCellIndentifier";
+        //6.0后用这种方式更直接，可以省掉if（cell2＝＝nil）的判断   @黄卓越 2014-3-28
         UPTitleCell *cell = [tableView dequeueReusableCellWithIdentifier:customTitleCellIndentifier forIndexPath:indexPath];
-        //        if(cell == nil){
-        //            cell = [[UPTitleCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:customTitleCellIndentifier];
-        //        }
-        UILabel *title = (UILabel *)[cell.contentView viewWithTag:titleTag];
-        title.text = entity.titleBody;
-        UILabel *time = (UILabel *)[cell.contentView viewWithTag:timeTag];
-        time.text = [entity.timeAndDate description];
+
+        [cell setTitle:entity.titleBody];
+        [cell setTime:entity.timeAndDate];
+
 
         return cell;
     }
     else if (indexPath.row == 1) {
-        static NSString *customMainCellIndentifier = @"CustomMainCellIndentifier";
-        UPMainInfoCell *cell2 = [tableView dequeueReusableCellWithIdentifier:customMainCellIndentifier];;
-        if(cell2 == nil){
-            cell2 = [[UPMainInfoCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:customMainCellIndentifier];
-        }
-        UILabel *words = (UILabel *)[cell2.contentView viewWithTag:wordsTag];
-        words.text = entity.newsBody;
+
+        
+        //6.0后用这种方式更直接，可以省掉if（cell2＝＝nil）的判断   @黄卓越 2014-3-28
+        UPMainInfoCell *cell2 = [tableView dequeueReusableCellWithIdentifier:customMainCellIndentifier forIndexPath:indexPath];;
+
+        [cell2 setNewsBody:entity.newsBody];
         return cell2;
     }
     else {
-        static NSString *customFooterCellIndentifier = @"CustomFooterCellIndentifier";
-        UPFooterCell *cell3 = [tableView dequeueReusableCellWithIdentifier:customFooterCellIndentifier];;
-        if(cell3 == nil){
-            cell3 = [[UPFooterCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:customFooterCellIndentifier];
-        }
+        //6.0后用这种方式更直接，可以省掉if（cell2＝＝nil）的判断   @黄卓越 2014-3-28
+        UPFooterCell *cell3 = [tableView dequeueReusableCellWithIdentifier:customFooterCellIndentifier forIndexPath:indexPath];;
+
         UIButton *btn1 = (UIButton *)[cell3.contentView viewWithTag:btn1Tag];
         UIButton *btn2 = (UIButton *)[cell3.contentView viewWithTag:btn2Tag];
         commentButton *btn3 = (commentButton *)[cell3.contentView viewWithTag:btn3Tag];
@@ -85,7 +85,11 @@
         
         
 //        commentButton *btn3 = (commentButton *)[cell3.contentView viewWithTag:btn3Tag];
-        [btn3 setTitle:[entity.numberOfComment stringValue] forState:UIControlStateNormal];
+//        [btn3 setTitle:[entity.numberOfComment stringValue] forState:UIControlStateNormal];
+        [cell3 setCommentId:[entity.theId integerValue]];
+        [cell3 setCommentNum:[entity.numberOfComment integerValue]];
+        
+        
         
         [btn1 setImage:[UIImage imageNamed:@"read.png"] forState:UIControlStateNormal];
         return cell3;
@@ -95,8 +99,7 @@
 }
 
 #pragma mark - refresh request
-//{"comeCode":"school","comeFrom":"电子科技大学校党委","content":" 3月20日，电子
-//    "count":0,"desc":"","id":35,"picName":"","picUrl":{},"time":"2014年03月26日 11:22","title":"新闻测试——百余家用人单位来校揽才","type":"","zipPicUrl":{}},
+
 
 -(void)pullDownRefresh:(MJRefreshBaseView *)refreshView{
     [PublicMethod ClearEntity:entityName];

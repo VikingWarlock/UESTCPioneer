@@ -16,5 +16,7 @@
 #define timeFontSize    12
 
 @interface UPTitleCell : UITableViewCell
+-(void)setTitle:(NSString*)title;
 
+-(void)setTime:(NSString*)time;
 @end

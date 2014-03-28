@@ -15,7 +15,7 @@
         <attribute name="numberOfComment" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
         <attribute name="picUrl" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="theId" optional="YES" attributeType="Integer 32" defaultValueString="0" indexed="YES" syncable="YES"/>
-        <attribute name="timeAndDate" optional="YES" attributeType="Date" syncable="YES"/>
+        <attribute name="timeAndDate" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="titleBody" optional="YES" attributeType="String" syncable="YES"/>
     </entity>
     <entity name="PartyActivityNewsEntity" representedClassName="PartyActivityNewsEntity" parentEntity="NewsEntity" syncable="YES">

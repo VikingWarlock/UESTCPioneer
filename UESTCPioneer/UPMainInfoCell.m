@@ -43,4 +43,10 @@
     // Configure the view for the selected state
 }
 
+
+-(void)setNewsBody:(NSString*)newsBody{
+    UILabel *words = (UILabel *)[self.contentView viewWithTag:wordsTag];
+    words.text = newsBody;
+}
+
 @end

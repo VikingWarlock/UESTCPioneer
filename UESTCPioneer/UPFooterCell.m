@@ -9,6 +9,12 @@
 #import "UPFooterCell.h"
 #import "commentButton.h"
 
+@interface UPFooterCell(){
+    commentButton *commentBtn;
+}
+
+@end
+
 @implementation UPFooterCell
 
 - (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier
@@ -41,6 +47,10 @@
         
         CGRect btn3Rect = CGRectMake(230, 5, 60, 30);
         commentButton *btn3 = [[commentButton alloc]initWithFrame:btn3Rect];
+        
+        commentBtn=btn3;
+        
+        
         btn3.tag = btn3Tag;
         UIImageView *comment = [[UIImageView alloc]initWithImage:[UIImage imageNamed:@"comment.png"]];
         comment.frame = CGRectMake(0, 5, 20, 20);
@@ -66,5 +76,20 @@
 
     // Configure the view for the selected state
 }
+
+-(void)addCommentButtonTaget:(id)target Action:(SEL)action{
+    commentButton *btn = (commentButton*)[self viewWithTag:btn3Tag];
+    [btn addTarget:target action:action forControlEvents:UIControlEventTouchUpInside];
+}
+
+-(void)setCommentId:(NSInteger)theId{
+    commentButton *btn = (commentButton*)[self viewWithTag:btn3Tag];
+    btn.theId=theId;
+}
+-(void)setCommentNum:(NSInteger)num{
+        [commentBtn setTitle:[NSString stringWithFormat:@"%d",num] forState:UIControlStateNormal];
+}
+
+
 
 @end

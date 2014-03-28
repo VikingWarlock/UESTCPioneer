@@ -16,7 +16,7 @@
 @property (nonatomic, retain) NSNumber * numberOfComment;
 @property (nonatomic, retain) NSString * picUrl;
 @property (nonatomic, retain) NSNumber * theId;
-@property (nonatomic, retain) NSDate * timeAndDate;
+@property (nonatomic, retain) NSString * timeAndDate;
 @property (nonatomic, retain) NSString * titleBody;
 
 @end
