@@ -6,8 +6,8 @@
 //  Copyright (c) 2014年 Sway. All rights reserved.
 //
 
-#import "UPMainViewController.h"
+#import "RefreshRequestViewController.h"
 
-@interface PublicityViewController : UPMainViewController <UITableViewDelegate,UITableViewDataSource>
+@interface PublicityViewController : RefreshRequestViewController <UITableViewDelegate,UITableViewDataSource>
 
 @end

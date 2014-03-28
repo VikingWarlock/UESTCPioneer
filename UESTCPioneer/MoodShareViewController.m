@@ -16,14 +16,14 @@
 
 
 
-#define MoodShareMapping @{@"commentNum":@"numberOfComment"\
-                            ,@"content":@"newsBody"\
-                            ,@"id":@"theId"\
-                            ,@"picUrl":@"picUrl"\
-                            ,@"time":@"timeAndDate"\
-                            ,@"userId":@"userId"\
-                            ,@"userName":@"titleBody"\
-}
+//#define MoodShareMapping @{@"commentNum":@"numberOfComment"\
+//                            ,@"content":@"newsBody"\
+//                            ,@"id":@"theId"\
+//                            ,@"picUrl":@"picUrl"\
+//                            ,@"time":@"timeAndDate"\
+//                            ,@"userId":@"userId"\
+//                            ,@"userName":@"titleBody"\
+//}
 
 #define requestTestData @{@"type":@"getEventShare",@"userId":@"0010013110361",@"page":@"1"}
 
@@ -69,13 +69,16 @@
     [self hideTopView];
     self.tableView.delegate = self;
     self.tableView.dataSource = self;
-
     
 
 
 //    [self.tableView setPullDownBeginRefreshAction:@selector(refreshRequest:) ];
-
     
+    
+    
+    entityName=kMoodShareNewsEntityName;
+    entityMapping=[Mapping MoodShareMapping];
+    requestData=@{@"type":@"getEventShare",@"userId":[constant getUserId],@"page":@"1"};
     
 
     
@@ -185,50 +188,49 @@
 }
 
 #pragma mark -  pull Refresh
+//在父类实现
 
 
+//-(void)pullDownRefresh:(MJRefreshBaseView *)refreshView{
+//    [NetworkCenter RKRequestWithData:requestTestData EntityName:MoodShareEntityName Mapping:MoodShareMapping SuccessBlock:^(NSArray *resultArray) {
+//        tableViewEntitiesArray=resultArray;
+//        [self.tableView reloadData];
+//        [PublicMethod ClearAllCoreData];
+//        [refreshView endRefreshing];
+//
+//        
+//    } failure:^(NSError *error) {
+//        NSLog(@"error:%@",error);
+//        [refreshView endRefreshing];
+//    }];
+//}
+//
+//-(void)pullUpRefresh:(MJRefreshBaseView *)refreshView{
+//    
+//    NSMutableDictionary *tempDic= [[NSMutableDictionary alloc]initWithDictionary:requestTestData];
+//    [tempDic setObject:@(PullUpRefreshTimes+2) forKey:@"page"];
+//    
+//    [NetworkCenter RKRequestWithData:tempDic EntityName:MoodShareEntityName Mapping:MoodShareMapping SuccessBlock:^(NSArray *resultArray) {
+//        
+//        
+//        NSMutableArray *newArray = [[NSMutableArray alloc]initWithArray:tableViewEntitiesArray];
+//        [newArray addObjectsFromArray:resultArray];
+//        NSArray *result = [[NSArray alloc]initWithArray:newArray];
+//        
+//        
+//        tableViewEntitiesArray=result;
+//        [self.tableView reloadData];
+//        [PublicMethod ClearAllCoreData];
+//        [refreshView endRefreshing];
+//        PullUpRefreshTimes++;
+//        
+//    } failure:^(NSError *error) {
+//        NSLog(@"error:%@",error);
+//        [refreshView endRefreshing];
+//    }];
+//}
 
--(void)pullDownRefresh:(MJRefreshBaseView *)refreshView{
-    [NetworkCenter RKRequestWithData:requestTestData EntityName:MoodShareEntityName Mapping:MoodShareMapping SuccessBlock:^(NSArray *resultArray) {
-//        for (MoodShareNewsEntity *entity in resultArray){
-//            NSLog(@"%d",[entity.theId integerValue]);
-//        }
-        tableViewEntitiesArray=resultArray;
-        [self.tableView reloadData];
-        [PublicMethod ClearAllCoreData];
-        [refreshView endRefreshing];
 
-        
-    } failure:^(NSError *error) {
-        NSLog(@"error:%@",error);
-        [refreshView endRefreshing];
-    }];
-}
-
--(void)pullUpRefresh:(MJRefreshBaseView *)refreshView{
-    
-    NSMutableDictionary *tempDic= [[NSMutableDictionary alloc]initWithDictionary:requestTestData];
-    [tempDic setObject:@(PullUpRefreshTimes+2) forKey:@"page"];
-    
-    [NetworkCenter RKRequestWithData:tempDic EntityName:MoodShareEntityName Mapping:MoodShareMapping SuccessBlock:^(NSArray *resultArray) {
-        
-        
-        NSMutableArray *newArray = [[NSMutableArray alloc]initWithArray:tableViewEntitiesArray];
-        [newArray addObjectsFromArray:resultArray];
-        NSArray *result = [[NSArray alloc]initWithArray:newArray];
-        
-        
-        tableViewEntitiesArray=result;
-        [self.tableView reloadData];
-        [PublicMethod ClearAllCoreData];
-        [refreshView endRefreshing];
-        PullUpRefreshTimes++;
-        
-    } failure:^(NSError *error) {
-        NSLog(@"error:%@",error);
-        [refreshView endRefreshing];
-    }];
-}
 
 #pragma mark - commentButton press
 

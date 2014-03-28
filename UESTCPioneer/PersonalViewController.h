@@ -10,7 +10,7 @@
 #import "UPMainViewController.h"
 #import "constant.h"
 
-@interface PersonalViewController : UPMainViewController <UITableViewDelegate,UITableViewDataSource>
+@interface PersonalViewController : UIViewController <UITableViewDelegate,UITableViewDataSource>
 @property (nonatomic,strong) UIImageView *topBackground;
 @property (nonatomic,strong) UIImageView *headPicture;
 @property (nonatomic,strong) UIImage *topBackgroundImage;

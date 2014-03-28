@@ -102,6 +102,8 @@
         [self.view addSubview:btn];
     }
     
+    [self.view setBackgroundColor:ViewControllerBackgroundColor];
+    
     /*    for (UIView * view in self.views) {
      [self.view addSubview:view];
      }

@@ -65,10 +65,14 @@
     [self.view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|[tableView]|" options:0 metrics:nil views:NSDictionaryOfVariableBindings(tableView)]];
         [self.view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|[tableView]|" options:0 metrics:nil views:NSDictionaryOfVariableBindings(tableView)]];
     */
-     
     
     
-    NSLog(@"self.view=%f",self.view.bounds.size.height);
+    //请求初始化
+    entityName=kPioneerEntityName;
+    entityMapping=[Mapping PioneerMapping];
+    requestData=@{@"type":@"getNews",@"page":@"1"};
+    
+//    NSLog(@"self.view=%f",self.view.bounds.size.height);
 	// Do any additional setup after loading the view, typically from a nib.
 }
 
@@ -105,7 +109,7 @@
 
 //表的分区数
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView{
-    return 10;
+    return [tableViewEntitiesArray count];
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
@@ -118,6 +122,7 @@
         cell = [[UPTitleCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:customTitleCellIndentifier];
     }
     UILabel *title = (UILabel *)[cell.contentView viewWithTag:titleTag];
+//        NSString *t=entity.titleBody;
         title.text = entity.titleBody;
     UILabel *time = (UILabel *)[cell.contentView viewWithTag:timeTag];
         time.text = [entity.timeAndDate description];
@@ -176,26 +181,6 @@
     // Dispose of any resources that can be recreated.
 }
 
-#pragma mark - refresh request
-//{"comeCode":"school","comeFrom":"电子科技大学校党委","content":" 3月20日，电子
-//    "count":0,"desc":"","id":35,"picName":"","picUrl":{},"time":"2014年03月26日 11:22","title":"新闻测试——百余家用人单位来校揽才","type":"","zipPicUrl":{}},
 
--(void)pullDownRefresh:(MJRefreshBaseView *)refreshView{
-    
-    [NetworkCenter RKRequestWithData:@{@"page":@"1",@"type":@"getNews"} EntityName:@"PioneerNewsEntity" Mapping:[Mapping PioneerMapping] SuccessBlock:^(NSArray *resultArray) {
-        NSLog(@"%@",resultArray);
-        tableViewEntitiesArray=resultArray;
-        [PublicMethod ClearEntity:@"PioneerNewsEntity"];
-        [self.tableView reloadData];
-        [refreshView endRefreshing];
-    } failure:^(NSError *error) {
-        [refreshView endRefreshing];
-    }];
-}
--(void)pullUpRefresh:(MJRefreshBaseView *)refreshView{
-    [helper performBlock:^{
-        [refreshView endRefreshing];
-    } afterDelay:0.55];
-}
 
 @end

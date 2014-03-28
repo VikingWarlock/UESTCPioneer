@@ -10,4 +10,5 @@
 
 @interface Mapping : NSObject
 +(NSDictionary*)PioneerMapping;
++(NSDictionary *)MoodShareMapping;
 @end

@@ -130,6 +130,7 @@
 		DC376ECE18E522C5005F7DC8 /* PioneerNewsEntity.m in Sources */ = {isa = PBXBuildFile; fileRef = DC376ECD18E522C5005F7DC8 /* PioneerNewsEntity.m */; };
 		DC376ED118E522C6005F7DC8 /* MoodShareNewsEntity.m in Sources */ = {isa = PBXBuildFile; fileRef = DC376ED018E522C6005F7DC8 /* MoodShareNewsEntity.m */; };
 		DC376ED418E522C6005F7DC8 /* NewsEntity.m in Sources */ = {isa = PBXBuildFile; fileRef = DC376ED318E522C6005F7DC8 /* NewsEntity.m */; };
+		DC376ED818E53124005F7DC8 /* RefreshRequestViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DC376ED718E53124005F7DC8 /* RefreshRequestViewController.m */; };
 		DCA5962618C81A0F00F001D9 /* UPSwitch.m in Sources */ = {isa = PBXBuildFile; fileRef = DCA5962518C81A0F00F001D9 /* UPSwitch.m */; };
 		DCA5962918C81AED00F001D9 /* UPComplexSwitch.m in Sources */ = {isa = PBXBuildFile; fileRef = DCA5962818C81AED00F001D9 /* UPComplexSwitch.m */; };
 		DCAFE85D18E51EAE00702864 /* Mapping.m in Sources */ = {isa = PBXBuildFile; fileRef = DCAFE85C18E51EAE00702864 /* Mapping.m */; };
@@ -360,6 +361,8 @@
 		DC376ED018E522C6005F7DC8 /* MoodShareNewsEntity.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MoodShareNewsEntity.m; path = CoreData_Model/MoodShareNewsEntity.m; sourceTree = "<group>"; };
 		DC376ED218E522C6005F7DC8 /* NewsEntity.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NewsEntity.h; path = CoreData_Model/NewsEntity.h; sourceTree = "<group>"; };
 		DC376ED318E522C6005F7DC8 /* NewsEntity.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NewsEntity.m; path = CoreData_Model/NewsEntity.m; sourceTree = "<group>"; };
+		DC376ED618E53124005F7DC8 /* RefreshRequestViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RefreshRequestViewController.h; sourceTree = "<group>"; };
+		DC376ED718E53124005F7DC8 /* RefreshRequestViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RefreshRequestViewController.m; sourceTree = "<group>"; };
 		DCA5962418C81A0F00F001D9 /* UPSwitch.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UPSwitch.h; sourceTree = "<group>"; };
 		DCA5962518C81A0F00F001D9 /* UPSwitch.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UPSwitch.m; sourceTree = "<group>"; };
 		DCA5962718C81AED00F001D9 /* UPComplexSwitch.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UPComplexSwitch.h; sourceTree = "<group>"; };
@@ -641,9 +644,9 @@
 			isa = PBXGroup;
 			children = (
 				DC376ED518E52311005F7DC8 /* Mapping */,
-				DC0BFFB518E24C89002E3D38 /* Pioneer_DataModel.xcdatamodeld */,
 				88E1AFD518CACC3C008D92B7 /* PublicMethod.h */,
 				88E1AFD618CACC3C008D92B7 /* PublicMethod.m */,
+				DC0BFFB518E24C89002E3D38 /* Pioneer_DataModel.xcdatamodeld */,
 				8889F91718D02E13001416C0 /* UserEntity.h */,
 				8889F91818D02E13001416C0 /* UserEntity.m */,
 				8834BA2118D6F12F0023BA87 /* MessageEntity.h */,
@@ -947,6 +950,8 @@
 				DC0BFFAE18E24C4C002E3D38 /* RefreshTableViewController.m */,
 				DCB5144E18C6D6B500B7EE95 /* UPMainViewController.h */,
 				DCB5144F18C6D6B500B7EE95 /* UPMainViewController.m */,
+				DC376ED618E53124005F7DC8 /* RefreshRequestViewController.h */,
+				DC376ED718E53124005F7DC8 /* RefreshRequestViewController.m */,
 			);
 			name = SuperClass;
 			sourceTree = "<group>";
@@ -1302,6 +1307,7 @@
 				5153823D18DAE132007C4675 /* MyCollection.m in Sources */,
 				8834BA2318D6F12F0023BA87 /* MessageEntity.m in Sources */,
 				8889F91918D02E13001416C0 /* UserEntity.m in Sources */,
+				DC376ED818E53124005F7DC8 /* RefreshRequestViewController.m in Sources */,
 				DCB5146C18C6E2AF00B7EE95 /* PartyActivityViewController.m in Sources */,
 				51071D8318DDBAB600695D41 /* ShortTitleCell.m in Sources */,
 				F23FA50E18E3EBA300E174A2 /* TheoryDetailViewController.m in Sources */,

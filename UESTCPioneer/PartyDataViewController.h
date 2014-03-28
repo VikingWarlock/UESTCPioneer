@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 #import "UPMainViewController.h"
-@interface PartyDataViewController : UPMainViewController
+@interface PartyDataViewController : UIViewController
 @property (nonatomic,strong) NSMutableArray * buttons;
 
 @end

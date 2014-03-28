@@ -19,5 +19,17 @@
     return [NSDictionary dictionaryWithObjects:valueArray forKeys:keyArray];
 }
 
++(NSDictionary *)MoodShareMapping{
+  return @{@"commentNum":@"numberOfComment"
+    ,@"content":@"newsBody"
+    ,@"id":@"theId"
+    ,@"picUrl":@"picUrl"
+    ,@"time":@"timeAndDate"
+    ,@"userId":@"userId"
+    ,@"userName":@"titleBody"
+           };
+
+}
+
 
 @end
