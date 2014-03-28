@@ -120,6 +120,10 @@ static id UserQueue;
     
 }
 
++(void)ClearEntity:(NSString *)entityName{
+    [NSClassFromString(entityName) MR_truncateAll];
+}
+
 +(void)ClearAllCoreData
 {
     

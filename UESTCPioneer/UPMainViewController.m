@@ -151,9 +151,6 @@
 }
 
 
--(void)dealloc{
-    [self.tableView freeHeaderFooter];
-}
 
 
 

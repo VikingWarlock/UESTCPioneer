@@ -1,16 +1,13 @@
 //
-//  MoodShareNewsEntity.m
+//  Mapping.h
 //  UESTCPioneer
 //
 //  Created by Sway on 14-3-28.
 //  Copyright (c) 2014年 Sway. All rights reserved.
 //
 
-#import "MoodShareNewsEntity.h"
+#import <Foundation/Foundation.h>
 
-
-@implementation MoodShareNewsEntity
-
-@dynamic userId;
-
+@interface Mapping : NSObject
++(NSDictionary*)PioneerMapping;
 @end

@@ -69,7 +69,7 @@
 }
 
 -(void)dealloc{
-//    [self.tableView freeHeaderFooter];
+    [self.tableView freeHeaderFooter];
 }
 
 #pragma mark - 下拉刷新和上拉加载

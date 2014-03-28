@@ -24,6 +24,7 @@
 #import"Unread.h"
 #import"NetworkCenter.h"
 #import<QuartzCore/QuartzCore.h>
+#import"Mapping.h"
 
 
 #endif

@@ -2,7 +2,7 @@
 //  MoodShareNewsEntity.h
 //  UESTCPioneer
 //
-//  Created by Sway on 14-3-22.
+//  Created by Sway on 14-3-28.
 //  Copyright (c) 2014年 Sway. All rights reserved.
 //
 
@@ -13,7 +13,6 @@
 
 @interface MoodShareNewsEntity : NewsEntity
 
-@property (nonatomic, retain) NSString * picUrl;
 @property (nonatomic, retain) NSString * userId;
 
 @end

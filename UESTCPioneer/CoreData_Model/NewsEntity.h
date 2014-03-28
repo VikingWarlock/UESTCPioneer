@@ -2,7 +2,7 @@
 //  NewsEntity.h
 //  UESTCPioneer
 //
-//  Created by Sway on 14-3-22.
+//  Created by Sway on 14-3-28.
 //  Copyright (c) 2014年 Sway. All rights reserved.
 //
 
@@ -14,8 +14,9 @@
 
 @property (nonatomic, retain) NSString * newsBody;
 @property (nonatomic, retain) NSNumber * numberOfComment;
+@property (nonatomic, retain) NSString * picUrl;
+@property (nonatomic, retain) NSNumber * theId;
 @property (nonatomic, retain) NSDate * timeAndDate;
 @property (nonatomic, retain) NSString * titleBody;
-@property (nonatomic, retain) NSNumber * theId;
 
 @end

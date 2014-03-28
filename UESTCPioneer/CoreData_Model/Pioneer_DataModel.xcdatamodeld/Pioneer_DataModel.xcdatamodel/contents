@@ -8,23 +8,23 @@
         <attribute name="msgType" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
     </entity>
     <entity name="MoodShareNewsEntity" representedClassName="MoodShareNewsEntity" parentEntity="NewsEntity" syncable="YES">
-        <attribute name="picUrl" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="userId" optional="YES" attributeType="String" syncable="YES"/>
     </entity>
     <entity name="NewsEntity" representedClassName="NewsEntity" isAbstract="YES" syncable="YES">
         <attribute name="newsBody" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="numberOfComment" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
+        <attribute name="picUrl" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="theId" optional="YES" attributeType="Integer 32" defaultValueString="0" indexed="YES" syncable="YES"/>
         <attribute name="timeAndDate" optional="YES" attributeType="Date" syncable="YES"/>
         <attribute name="titleBody" optional="YES" attributeType="String" syncable="YES"/>
     </entity>
     <entity name="PioneerNewsEntity" representedClassName="PioneerNewsEntity" parentEntity="NewsEntity" syncable="YES">
-        <attribute name="content" optional="YES" attributeType="String" syncable="YES"/>
-        <attribute name="count" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="comeCode" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="comeFrom" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="desc" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="picName" optional="YES" attributeType="String" syncable="YES"/>
-        <attribute name="picUrl" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="type" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="zipPicUrl" optional="YES" attributeType="String" syncable="YES"/>
     </entity>
     <entity name="UserEntity" representedClassName="UserEntity" syncable="YES">
         <attribute name="avatarID" optional="YES" attributeType="String" syncable="YES"/>
@@ -35,7 +35,7 @@
         <element name="MessageEntity" positionX="0" positionY="0" width="0" height="0"/>
         <element name="MoodShareNewsEntity" positionX="0" positionY="0" width="0" height="0"/>
         <element name="NewsEntity" positionX="0" positionY="0" width="0" height="0"/>
-        <element name="UserEntity" positionX="0" positionY="0" width="0" height="0"/>
         <element name="PioneerNewsEntity" positionX="0" positionY="0" width="0" height="0"/>
+        <element name="UserEntity" positionX="0" positionY="0" width="0" height="0"/>
     </elements>
 </model>

@@ -13,8 +13,34 @@
 #import "UPFooterCell.h"
 #import "constant.h"
 #import "LeveyTabBarController.h"
+#import "PioneerNewsEntity.h"
 
-@interface PioneerViewController ()
+
+
+/*
+ comeCode:
+ comeFrom:
+ content:
+ count:
+ desc:
+ id:
+ picName:
+ picUrl
+ time:
+ title:
+ type
+ zipPicUrl
+ 
+ */
+
+
+
+
+
+
+@interface PioneerViewController (){
+
+}
 
 @end
 
@@ -83,6 +109,8 @@
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
+    PioneerNewsEntity *entity = tableViewEntitiesArray[indexPath.section];
+    
     if (indexPath.row == 0) {
     static NSString *customTitleCellIndentifier = @"CustomTitleCellIndentifier";
     UPTitleCell *cell = [tableView dequeueReusableCellWithIdentifier:customTitleCellIndentifier];
@@ -90,9 +118,9 @@
         cell = [[UPTitleCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:customTitleCellIndentifier];
     }
     UILabel *title = (UILabel *)[cell.contentView viewWithTag:titleTag];
-    title.text = @"title";
+        title.text = entity.titleBody;
     UILabel *time = (UILabel *)[cell.contentView viewWithTag:timeTag];
-    time.text = @"time";
+        time.text = [entity.timeAndDate description];
     return cell;
     }
     else if (indexPath.row == 1) {
@@ -102,7 +130,8 @@
             cell2 = [[UPMainInfoCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:customMainCellIndentifier];
         }
         UILabel *words = (UILabel *)[cell2.contentView viewWithTag:wordsTag];
-        words.text = @"在讨论这部纪录片之前，为了避免现在中文网络江湖盛行的动机论，我先要说明：我和崔永元老师没有个人恩怨，相反，对他的主持功力和以前取得的成绩都非常钦佩。我们也至少有一名共同的好朋友，《读库》的出版人张立宪。";
+//        words.text = @"在讨论这部纪录片之前，为了避免现在中文网络江湖盛行的动机论，我先要说明：我和崔永元老师没有个人恩怨，相反，对他的主持功力和以前取得的成绩都非常钦佩。我们也至少有一名共同的好朋友，《读库》的出版人张立宪。";
+        words.text=entity.newsBody;
         return cell2;
     }
     else {
@@ -111,7 +140,11 @@
         if(cell3 == nil){
             cell3 = [[UPFooterCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:customFooterCellIndentifier];
         }
-        UIButton *btn3 = (UIButton *)[cell3.contentView viewWithTag:btn3Tag];
+        
+        
+        commentButton *btn3 = (commentButton *)[cell3.contentView viewWithTag:btn3Tag];
+        [btn3 setTitle:[entity.numberOfComment stringValue] forState:UIControlStateNormal];
+        
         return cell3;
     }
     
@@ -144,12 +177,20 @@
 }
 
 #pragma mark - refresh request
-
+//{"comeCode":"school","comeFrom":"电子科技大学校党委","content":" 3月20日，电子
+//    "count":0,"desc":"","id":35,"picName":"","picUrl":{},"time":"2014年03月26日 11:22","title":"新闻测试——百余家用人单位来校揽才","type":"","zipPicUrl":{}},
 
 -(void)pullDownRefresh:(MJRefreshBaseView *)refreshView{
-    [helper performBlock:^{
+    
+    [NetworkCenter RKRequestWithData:@{@"page":@"1",@"type":@"getNews"} EntityName:@"PioneerNewsEntity" Mapping:[Mapping PioneerMapping] SuccessBlock:^(NSArray *resultArray) {
+        NSLog(@"%@",resultArray);
+        tableViewEntitiesArray=resultArray;
+        [PublicMethod ClearEntity:@"PioneerNewsEntity"];
+        [self.tableView reloadData];
         [refreshView endRefreshing];
-    } afterDelay:0.55];
+    } failure:^(NSError *error) {
+        [refreshView endRefreshing];
+    }];
 }
 -(void)pullUpRefresh:(MJRefreshBaseView *)refreshView{
     [helper performBlock:^{
