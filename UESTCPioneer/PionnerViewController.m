@@ -142,6 +142,7 @@
         requestData=[RequestData CollegeRequestDataWithCode:@"013"];
         [self.tableView beginRefreshing];
     }
+    [self rel];
 }
 
 //每个分区的行数
