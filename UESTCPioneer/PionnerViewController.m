@@ -71,6 +71,19 @@
     entityName=kPioneerEntityName;
     entityMapping=[Mapping PioneerMapping];
     requestData=@{@"type":@"getNews",@"page":@"1"};
+    //请求评论列表用的参数
+    commentListRequestData=@{@"type":@"getNewsComments",@"page":@"1",@"id":@"0"};
+    //写评论请求用的参数
+    commentWriteIdKey=@"id";
+    commentWriteRequestData=@{@"type":@"setNewsComment",@"userName":[constant getUserName],@"id":@"0",@"comments":@""};
+    commentIdKey=@"id";
+    commentContentKey=@"comments";
+    
+    
+    commentListKeyMapping=@{@"commentAuthor":@"userName",@"commentContent":@"commentBody"};
+    
+    
+    
     
 //    NSLog(@"self.view=%f",self.view.bounds.size.height);
 	// Do any additional setup after loading the view, typically from a nib.
@@ -99,6 +112,35 @@
     else {
         [dropDown hideDropDown:sender];
         [self rel];
+    }
+}
+
+
+
+-(void)niDropDownDelegateMethod:(NIDropDown *)sender ForTitle:(NSString *)title ForIndex:(NSInteger)index{
+    if ([title isEqualToString:@"全部"]){
+        requestData=[RequestData AllNewsReqeustData];
+        [self.tableView beginRefreshing];
+    }
+    else if ([title isEqualToString:@"通信"]){
+        requestData=[RequestData CollegeRequestDataWithCode:@"001"];
+        [self.tableView beginRefreshing];
+    }
+    else if ([title isEqualToString:@"计算机"]){
+        requestData=[RequestData CollegeRequestDataWithCode:@"006"];
+        [self.tableView beginRefreshing];
+    }
+    else if ([title isEqualToString:@"微固"]){
+        requestData=[RequestData CollegeRequestDataWithCode:@"003"];
+        [self.tableView beginRefreshing];
+    }
+    else if ([title isEqualToString:@"数学"]){
+        requestData=[RequestData CollegeRequestDataWithCode:@"010"];
+        [self.tableView beginRefreshing];
+    }
+    else if ([title isEqualToString:@"外国语"]){
+        requestData=[RequestData CollegeRequestDataWithCode:@"013"];
+        [self.tableView beginRefreshing];
     }
 }
 
@@ -154,7 +196,7 @@
 //        
 //        commentButton *btn3 = (commentButton *)[cell3.contentView viewWithTag:btn3Tag];
 //        [btn3 setTitle:[entity.numberOfComment stringValue] forState:UIControlStateNormal];
-        UPMainInfoCell*cell3=(UPMainInfoCell*)cell;
+        UPFooterCell*cell3=(UPFooterCell*)cell;
         return cell3;
     }
     
@@ -185,7 +227,6 @@
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
-
 
 
 @end

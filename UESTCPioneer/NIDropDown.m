@@ -46,7 +46,7 @@
         [table setSeparatorInset:UIEdgeInsetsZero];
         
         [UIView beginAnimations:nil context:nil];
-        [UIView setAnimationDuration:0.5];
+        [UIView setAnimationDuration:0.18];
         self.frame = CGRectMake(btn.origin.x, btn.origin.y+btn.size.height, btn.size.width, *height);
         table.frame = CGRectMake(0, 0, btn.size.width, *height);
         [xiala.layer setAffineTransform:CGAffineTransformMakeRotation(0.5f * 3.14159*2)];
@@ -62,7 +62,7 @@
     CGRect btn = b.frame;
     UIImageView *xiala = (UIImageView *)[b viewWithTag:22];
     [UIView beginAnimations:nil context:nil];
-    [UIView setAnimationDuration:0.5];
+    [UIView setAnimationDuration:0.18];
     self.frame = CGRectMake(btn.origin.x, btn.origin.y+btn.size.height, btn.size.width, 0);
     table.frame = CGRectMake(0, 0, btn.size.width, 0);
     [xiala.layer setAffineTransform:CGAffineTransformMakeRotation(0)];
@@ -102,15 +102,25 @@
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    
     [self hideDropDown:btnSender];
     UITableViewCell *c = [tableView cellForRowAtIndexPath:indexPath];
     [btnSender setTitle:c.textLabel.text forState:UIControlStateNormal];
-    [self myDelegate];
+    
+    
+    //代理的运行时安全判断
+    if ([self.delegate respondsToSelector:@selector(niDropDownDelegateMethod:ForTitle:ForIndex:)]){
+        [self.delegate niDropDownDelegateMethod:self ForTitle:list[indexPath.row] ForIndex:indexPath.row];
+    }
+    
+//    [self.delegate niDropDownDelegateMethod:<#(NIDropDown *)#> ForTitle:<#(NSString *)#> ForIndex:<#(NSInteger)#>];
+//        [self.delegate niDropDownDelegateMethod:self ForTitle:<#(NSString *)#> ForIndex:<#(NSInteger)#>]
+//    [self myDelegate];
 }
 
-- (void) myDelegate {
-    [self.delegate niDropDownDelegateMethod:self];   
-}
+//- (void) myDelegate {
+//    [self.delegate niDropDownDelegateMethod:self ForTitle:<#(NSString *)#> ForIndex:<#(NSInteger)#>]
+//}
 
 //-(void)dealloc {
 //    [super dealloc];

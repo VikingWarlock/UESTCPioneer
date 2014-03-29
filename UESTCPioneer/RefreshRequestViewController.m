@@ -22,6 +22,7 @@ static NSString *customFooterCellIndentifier = @"CustomFooterCellIndentifier";
 }
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath;
 
+
 @end
 
 @implementation RefreshRequestViewController
@@ -33,6 +34,20 @@ static NSString *customFooterCellIndentifier = @"CustomFooterCellIndentifier";
         // Custom initialization
     }
     return self;
+}
+
+-(void)_initRequestRequireEntityName:(NSString*)EntityName EntityMapping:(NSDictionary*)EntityMapping RequestData:(NSDictionary*)RequestData CommentListRequestData:(NSDictionary*)CommentListRequestData CommentWriteRequestData:(NSDictionary*)CommentWriteRequestData CommentIdKey:(NSString*)CommentIdKey CommentContentKey:(NSString*)CommentContentKey CommentListKeyMapping:(NSDictionary*)CommentListKeyMapping{
+
+    entityName=EntityName;
+    entityMapping=EntityMapping;
+    requestData=RequestData;
+    //请求评论列表用的参数
+    commentListRequestData=CommentListRequestData;
+    //写评论请求用的参数
+    commentWriteRequestData=CommentWriteRequestData;
+    commentIdKey=CommentIdKey;
+    commentContentKey=CommentContentKey;
+    commentListKeyMapping=CommentListKeyMapping;
 }
 
 - (void)viewDidLoad
@@ -51,7 +66,7 @@ static NSString *customFooterCellIndentifier = @"CustomFooterCellIndentifier";
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
-    NSLog(@"super tableview delegate");
+//    NSLog(@"super tableview delegate");
 
     NewsEntity *entity= tableViewEntitiesArray[indexPath.section];
     if (indexPath.row == 0) {
@@ -78,17 +93,18 @@ static NSString *customFooterCellIndentifier = @"CustomFooterCellIndentifier";
         UPFooterCell *cell3 = [tableView dequeueReusableCellWithIdentifier:customFooterCellIndentifier forIndexPath:indexPath];;
 
         UIButton *btn1 = (UIButton *)[cell3.contentView viewWithTag:btn1Tag];
-        UIButton *btn2 = (UIButton *)[cell3.contentView viewWithTag:btn2Tag];
-        commentButton *btn3 = (commentButton *)[cell3.contentView viewWithTag:btn3Tag];
-        btn1.hidden = NO;
-        btn2.hidden = NO;
+//        UIButton *btn2 = (UIButton *)[cell3.contentView viewWithTag:btn2Tag];
+//        commentButton *btn3 = (commentButton *)[cell3.contentView viewWithTag:btn3Tag];
+//        btn1.hidden = NO;
+//        btn2.hidden = NO;
         
         
 //        commentButton *btn3 = (commentButton *)[cell3.contentView viewWithTag:btn3Tag];
 //        [btn3 setTitle:[entity.numberOfComment stringValue] forState:UIControlStateNormal];
+        NSLog(@"number of comment %@",entity.numberOfComment);
         [cell3 setCommentId:[entity.theId integerValue]];
         [cell3 setCommentNum:[entity.numberOfComment integerValue]];
-        
+        [cell3 addCommentButtonTaget:self Action:@selector(commentButtonPress:)];
         
         
         [btn1 setImage:[UIImage imageNamed:@"read.png"] forState:UIControlStateNormal];
@@ -110,9 +126,9 @@ static NSString *customFooterCellIndentifier = @"CustomFooterCellIndentifier";
         
         tableViewEntitiesArray=[[NSArray alloc]initWithArray:dic];
         
-        for (PioneerNewsEntity* entity in tableViewEntitiesArray){
-            NSLog(@"%@",entity.titleBody);
-        }
+//        for (PioneerNewsEntity* entity in tableViewEntitiesArray){
+//            NSLog(@"%@",entity.titleBody);
+//        }
         
 //        [PublicMethod ClearEntity:entityName];
         [self.tableView reloadData];
@@ -160,6 +176,36 @@ static NSString *customFooterCellIndentifier = @"CustomFooterCellIndentifier";
         NSLog(@"%@ 上拉error:%@",entityName,error);
         [refreshView endRefreshing];
     }];
+}
+
+-(void)commentButtonPress:(commentButton*)button{
+    commentViewController *comment = [[commentViewController alloc]init];
+    
+    
+    //    1）type：writeShareComment  （2）user_id：用户的账号
+    //    （3）username：用户姓名      （4）shareId：活动分享的id
+    //    （5）comment：评论的内容
+    
+    
+    //请求评论列表用的参数
+    NSMutableDictionary *dic = [[NSMutableDictionary alloc]initWithDictionary:commentListRequestData];
+    [dic setObject:[NSString stringWithFormat:@"%d",button.theId] forKey:commentIdKey];
+    commentListRequestData=[[NSDictionary alloc]initWithDictionary:dic];
+    
+    NSMutableDictionary *temp = [[NSMutableDictionary alloc]initWithDictionary:commentWriteRequestData];
+    [temp setObject:[NSString stringWithFormat:@"%d",button.theId] forKey:commentWriteIdKey];
+    commentWriteRequestData=[[NSDictionary alloc]initWithDictionary:temp];
+    
+    
+    comment.commentListRequestData=commentListRequestData;
+    //写评论请求用的参数
+    comment.commentRequestData=commentWriteRequestData;
+    comment.commentContentKey=commentContentKey;
+    comment.commentListKeyMapping=commentListKeyMapping;
+    comment.numberOfComment=[button.titleLabel.text integerValue];
+    
+    
+    [self.leveyTabBarController.navigationController pushViewController:comment animated:YES];
 }
 
 @end

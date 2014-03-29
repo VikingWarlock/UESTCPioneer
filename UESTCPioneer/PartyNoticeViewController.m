@@ -59,6 +59,34 @@
     entityMapping=[Mapping PartyNoticeMapping];
     
     
+    /*
+     type=getNAcomment&noticeid=13&userId=0012005130022&typepid=1&page=1
+     
+     */
+    commentIdKey=@"noticeid";
+    commentListRequestData=@{@"type":@"getNAcomment"
+                             ,@"noticeid":@"0"
+                             ,@"userId":[constant getUserId]
+                             ,@"typepid":@"1"
+                             ,@"page":@"1"};
+    
+    
+    /*
+     type=writeNAcomment&fromusername=xiao002&fromuserid=0004003990022&gonggaoid=1&content=通知的评论&typepid=1
+     
+     */
+    commentWriteIdKey=@"gonggaoid";
+    commentWriteRequestData=@{@"type":@"writeNAcomment"
+                              ,@"fromusername":[constant getUserName]
+                              ,@"fromuserid":[constant getUserId]
+                              ,@"gonggaoid":@"0"
+                              ,@"content":@""
+                              ,@"typepid":@"1"};
+    commentContentKey=@"content";
+    commentListKeyMapping=@{@"content":@"commentBody",@"userName":@"userName"};
+    
+    
+
 }
 
 -(void)viewWillAppear:(BOOL)animated{
@@ -67,7 +95,7 @@
 
 - (void)dropClicked:(id)sender {
     NSArray * arr = [[NSArray alloc] init];
-    arr = [NSArray arrayWithObjects:@"全部", @"通信", @"计算机", @"微固", @"数学", @"外国语",nil];
+    arr = [NSArray arrayWithObjects:@"校级",@"院级",@"支部",@"全部",nil];
     if(dropDown == nil) {
         CGFloat f = 180;
         dropDown = [[NIDropDown alloc]initDropDown:sender :&f :arr];
@@ -76,6 +104,25 @@
     else {
         [dropDown hideDropDown:sender];
         [self rel];
+    }
+}
+
+-(void)niDropDownDelegateMethod:(NIDropDown *)sender ForTitle:(NSString *)title ForIndex:(NSInteger)index{
+    if ([title isEqualToString:@"校级"]){
+        requestData=[RequestData NoticeDataWithLevel:0];
+        [self.tableView beginRefreshing];
+    }
+    else if ([title isEqualToString:@"院级"]){
+        requestData=[RequestData NoticeDataWithLevel:1];
+        [self.tableView beginRefreshing];
+    }
+    else if ([title isEqualToString:@"支部"]){
+        requestData=[RequestData NoticeDataWithLevel:2];
+        [self.tableView beginRefreshing];
+    }
+    else if ([title isEqualToString:@"全部部"]){
+        requestData=[RequestData NoticeDataWithLevel:3];
+        [self.tableView beginRefreshing];
     }
 }
 
@@ -144,6 +191,11 @@
 //        btn2.hidden = NO;
 //        
 //        [btn1 setImage:[UIImage imageNamed:@"read.png"] forState:UIControlStateNormal];
+        UIButton *btn1 = (UIButton *)[cell3.contentView viewWithTag:btn1Tag];
+        UIButton *btn2 = (UIButton *)[cell3.contentView viewWithTag:btn2Tag];
+
+        btn1.hidden = NO;
+        btn2.hidden = NO;
         return cell3;
     }
     

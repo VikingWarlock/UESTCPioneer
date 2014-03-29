@@ -13,6 +13,9 @@
 @interface PublicMethod : NSObject
 
 
+///以id获取某实体
++(id)entity:(NSString*)entityName WithId:(NSInteger)theId;
+
 ///清空某实体
 +(void)ClearEntity:(NSString *)entityName;
 

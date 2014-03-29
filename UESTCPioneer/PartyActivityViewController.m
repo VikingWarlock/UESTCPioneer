@@ -52,6 +52,30 @@
      */
     requestData=@{@"type":@"getEvent",@"userId":[constant getUserId],@"page":@"1"};
     
+    
+    /*
+     type=getEventComment&
+     eventid:活动id序号；page：页码
+     */
+    commentListRequestData=@{@"type":@"getEventComment",@"eventid":@"0"
+                             ,@"page":@"1"};
+    commentIdKey=@"eventid";
+    
+    
+    /*
+     
+ype：请求类型；userId：请求者权限Id；userName：请求者用户名；eventid：活动id（数据库中的序号）；comment：评论的内容（utf-8编码）
+     */
+    commentWriteRequestData=@{@"type":@"eventComment"
+                              ,@"userId":[constant getUserId]
+                              ,@"userName":[constant getUserName]
+                              ,@"eventid":@"0"
+                              ,@"comment":@""};
+    commentWriteIdKey=@"eventid";
+    commentContentKey=@"comment";
+    
+    commentListKeyMapping=@{@"userName":@"userName",@"comment":@"commentBody"};
+    
 }
 
 -(void)viewWillAppear:(BOOL)animated{
@@ -72,6 +96,14 @@
     }
 }
 
+#pragma mark - dropDelegate
+
+-(void)niDropDownDelegateMethod:(NIDropDown *)sender ForTitle:(NSString *)title ForIndex:(NSInteger)index{
+        requestData=[RequestData ActivityDataWithTypeName:title];
+        [self.tableView beginRefreshing];
+}
+
+#pragma mark - TableView Delegate
 //每个分区的行数
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
     return 3;
