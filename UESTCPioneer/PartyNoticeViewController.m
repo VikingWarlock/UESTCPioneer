@@ -172,6 +172,11 @@
 //        btn2.hidden = NO;
 //        
 //        [btn1 setImage:[UIImage imageNamed:@"read.png"] forState:UIControlStateNormal];
+        UIButton *btn1 = (UIButton *)[cell3.contentView viewWithTag:btn1Tag];
+        UIButton *btn2 = (UIButton *)[cell3.contentView viewWithTag:btn2Tag];
+
+        btn1.hidden = NO;
+        btn2.hidden = NO;
         return cell3;
     }
     

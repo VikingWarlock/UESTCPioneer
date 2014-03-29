@@ -165,10 +165,14 @@
 //        btn3.theId=[DataEntity.theId integerValue];
 //        
 //        [btn3 addTarget:self action:@selector(commentButtonPress:) forControlEvents:UIControlEventTouchUpInside];
-        
-        
-        
         UPFooterCell *cell3 = (UPFooterCell*)cell;
+        UIButton *btn1 = (UIButton *)[cell3.contentView viewWithTag:btn1Tag];
+        UIButton *btn2 = (UIButton *)[cell3.contentView viewWithTag:btn2Tag];
+        
+        btn1.hidden = NO;
+        btn2.hidden = NO;
+        
+
         [cell3 addCommentButtonTaget:self Action:@selector(commentButtonPress:)];
         return cell3;
     }

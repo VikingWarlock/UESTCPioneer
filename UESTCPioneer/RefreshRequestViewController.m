@@ -93,10 +93,10 @@ static NSString *customFooterCellIndentifier = @"CustomFooterCellIndentifier";
         UPFooterCell *cell3 = [tableView dequeueReusableCellWithIdentifier:customFooterCellIndentifier forIndexPath:indexPath];;
 
         UIButton *btn1 = (UIButton *)[cell3.contentView viewWithTag:btn1Tag];
-        UIButton *btn2 = (UIButton *)[cell3.contentView viewWithTag:btn2Tag];
-        commentButton *btn3 = (commentButton *)[cell3.contentView viewWithTag:btn3Tag];
-        btn1.hidden = NO;
-        btn2.hidden = NO;
+//        UIButton *btn2 = (UIButton *)[cell3.contentView viewWithTag:btn2Tag];
+//        commentButton *btn3 = (commentButton *)[cell3.contentView viewWithTag:btn3Tag];
+//        btn1.hidden = NO;
+//        btn2.hidden = NO;
         
         
 //        commentButton *btn3 = (commentButton *)[cell3.contentView viewWithTag:btn3Tag];
