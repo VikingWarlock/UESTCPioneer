@@ -8,6 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-@interface EditPersonalInformation : UITableViewController <UITextFieldDelegate>
-
+@interface EditPersonalInformation : UITableViewController <UITextFieldDelegate,UIImagePickerControllerDelegate,UINavigationControllerDelegate,UIActionSheetDelegate>
+@property (nonatomic,strong) UIActionSheet *choseImageSheet;
+@property (nonatomic,strong) UIImagePickerController *pickImage;
 @end

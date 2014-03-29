@@ -44,7 +44,7 @@
 - (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
-    self.navigationItem.title = @"生日关怀";
+    self.navigationItem.title = @"生日提醒";
 }
 
 - (void)didReceiveMemoryWarning
