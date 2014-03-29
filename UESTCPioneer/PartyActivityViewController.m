@@ -96,6 +96,14 @@ ype：请求类型；userId：请求者权限Id；userName：请求者用户名�
     }
 }
 
+#pragma mark - dropDelegate
+
+-(void)niDropDownDelegateMethod:(NIDropDown *)sender ForTitle:(NSString *)title ForIndex:(NSInteger)index{
+        requestData=[RequestData ActivityDataWithTypeName:title];
+        [self.tableView beginRefreshing];
+}
+
+#pragma mark - TableView Delegate
 //每个分区的行数
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
     return 3;

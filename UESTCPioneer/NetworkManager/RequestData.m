@@ -75,4 +75,12 @@
                   ,@"typepid":@"1"
                   ,@"level":[NSString stringWithFormat:@"%d",level]};
 }
+
++(NSDictionary*)ActivityDataWithTypeName:(NSString*)type{
+    if ([type isEqualToString:@"最新"])
+    return @{@"type":@"getEvent",@"userId":[constant getUserId],@"page":@"1"};
+    else if ([type isEqualToString:@"热门"])
+        return @{@"type":@"sortEvent",@"userId":[constant getUserId],@"page":@"1"};
+    return  nil;
+}
 @end

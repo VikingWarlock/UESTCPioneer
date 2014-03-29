@@ -49,6 +49,10 @@
  东莞电子信息工程研究院
  */
 +(NSDictionary*)CollegeRequestDataWithCode:(NSString*)collegeCodeString;
+
 +(NSDictionary*)AllNewsReqeustData;
+
 +(NSDictionary*)NoticeDataWithLevel:(NSInteger)level;
+
++(NSDictionary*)ActivityDataWithTypeName:(NSString*)type;
 @end
