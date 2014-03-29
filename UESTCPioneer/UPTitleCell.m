@@ -50,4 +50,14 @@
     // Configure the view for the selected state
 }
 
+-(void)setTitle:(NSString*)title{
+    UILabel *titleLabel = (UILabel *)[self.contentView viewWithTag:titleTag];
+    titleLabel.text=title;
+}
+
+-(void)setTime:(NSString*)time{
+            UILabel *timeLabel = (UILabel *)[self.contentView viewWithTag:timeTag];
+    timeLabel.text=time;
+}
+
 @end

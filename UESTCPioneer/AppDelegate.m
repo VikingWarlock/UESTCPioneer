@@ -156,7 +156,7 @@
     [Unread setUnreadNum:10 ForKey:kUnreadPioneerKey];
     
     [constant setUserId:@"001002200011"];
-    [constant setUserName:@"IOS端测试：黄卓越"];
+    [constant setUserName:@"IOS test"];
 #endif
     
     

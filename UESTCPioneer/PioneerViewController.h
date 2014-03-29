@@ -7,7 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "UPMainViewController.h"
-@interface PioneerViewController :UPMainViewController <UITableViewDelegate,UITableViewDataSource>
+#import "RefreshRequestViewController.h"
+@interface PioneerViewController :RefreshRequestViewController <UITableViewDelegate,UITableViewDataSource>
 
 @end

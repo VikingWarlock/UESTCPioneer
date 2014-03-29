@@ -58,7 +58,7 @@
 -(void)_loadUPTableView{
     //@加UPTableView
 //    //    self.tableView=[[UPTableView alloc]initWithFrame:CGRectMake(10, 35, 300, 420) style:UITableViewStyleGrouped];
-    self.tableView=[[UPTableView alloc]initWithFrame:CGRectMake(10, 35, 300, 425) style:UITableViewStyleGrouped];
+    self.tableView=[[UPTableView alloc]initWithFrame:CGRectMake(10, 35, 300, 415) style:UITableViewStyleGrouped];
     if(IS_IOS7)
         [self.tableView setSeparatorInset:UIEdgeInsetsZero];
     [self.tableView setAllowsSelection:NO];
@@ -69,7 +69,7 @@
 }
 
 -(void)dealloc{
-//    [self.tableView freeHeaderFooter];
+    [self.tableView freeHeaderFooter];
 }
 
 #pragma mark - 下拉刷新和上拉加载

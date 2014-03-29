@@ -13,8 +13,34 @@
 #import "UPFooterCell.h"
 #import "constant.h"
 #import "LeveyTabBarController.h"
+#import "PioneerNewsEntity.h"
 
-@interface PioneerViewController ()
+
+
+/*
+ comeCode:
+ comeFrom:
+ content:
+ count:
+ desc:
+ id:
+ picName:
+ picUrl
+ time:
+ title:
+ type
+ zipPicUrl
+ 
+ */
+
+
+
+
+
+
+@interface PioneerViewController (){
+
+}
 
 @end
 
@@ -39,10 +65,14 @@
     [self.view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|[tableView]|" options:0 metrics:nil views:NSDictionaryOfVariableBindings(tableView)]];
         [self.view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|[tableView]|" options:0 metrics:nil views:NSDictionaryOfVariableBindings(tableView)]];
     */
-     
     
     
-    NSLog(@"self.view=%f",self.view.bounds.size.height);
+    //请求初始化
+    entityName=kPioneerEntityName;
+    entityMapping=[Mapping PioneerMapping];
+    requestData=@{@"type":@"getNews",@"page":@"1"};
+    
+//    NSLog(@"self.view=%f",self.view.bounds.size.height);
 	// Do any additional setup after loading the view, typically from a nib.
 }
 
@@ -79,39 +109,52 @@
 
 //表的分区数
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView{
-    return 10;
+    return [tableViewEntitiesArray count];
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
+    UITableViewCell*cell=[super tableView:tableView cellForRowAtIndexPath:indexPath];
+    
+//    PioneerNewsEntity *entity = tableViewEntitiesArray[indexPath.section];
+
+    
     if (indexPath.row == 0) {
-    static NSString *customTitleCellIndentifier = @"CustomTitleCellIndentifier";
-    UPTitleCell *cell = [tableView dequeueReusableCellWithIdentifier:customTitleCellIndentifier];
-    if(cell == nil){
-        cell = [[UPTitleCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:customTitleCellIndentifier];
-    }
-    UILabel *title = (UILabel *)[cell.contentView viewWithTag:titleTag];
-    title.text = @"title";
-    UILabel *time = (UILabel *)[cell.contentView viewWithTag:timeTag];
-    time.text = @"time";
-    return cell;
+//    static NSString *customTitleCellIndentifier = @"CustomTitleCellIndentifier";
+//    UPTitleCell *cell = [tableView dequeueReusableCellWithIdentifier:customTitleCellIndentifier];
+//    if(cell == nil){
+//        cell = [[UPTitleCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:customTitleCellIndentifier];
+//    }
+//    UILabel *title = (UILabel *)[cell.contentView viewWithTag:titleTag];
+////        NSString *t=entity.titleBody;
+//        title.text = entity.titleBody;
+//    UILabel *time = (UILabel *)[cell.contentView viewWithTag:timeTag];
+//        time.text = [entity.timeAndDate description];
+                UPTitleCell *cell1 = (UPTitleCell*)cell;
+    return cell1;
     }
     else if (indexPath.row == 1) {
-        static NSString *customMainCellIndentifier = @"CustomMainCellIndentifier";
-        UPMainInfoCell *cell2 = [tableView dequeueReusableCellWithIdentifier:customMainCellIndentifier];;
-        if(cell2 == nil){
-            cell2 = [[UPMainInfoCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:customMainCellIndentifier];
-        }
-        UILabel *words = (UILabel *)[cell2.contentView viewWithTag:wordsTag];
-        words.text = @"在讨论这部纪录片之前，为了避免现在中文网络江湖盛行的动机论，我先要说明：我和崔永元老师没有个人恩怨，相反，对他的主持功力和以前取得的成绩都非常钦佩。我们也至少有一名共同的好朋友，《读库》的出版人张立宪。";
+//        static NSString *customMainCellIndentifier = @"CustomMainCellIndentifier";
+//        UPMainInfoCell *cell2 = [tableView dequeueReusableCellWithIdentifier:customMainCellIndentifier];;
+//        if(cell2 == nil){
+//            cell2 = [[UPMainInfoCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:customMainCellIndentifier];
+//        }
+//        UILabel *words = (UILabel *)[cell2.contentView viewWithTag:wordsTag];
+////        words.text = @"在讨论这部纪录片之前，为了避免现在中文网络江湖盛行的动机论，我先要说明：我和崔永元老师没有个人恩怨，相反，对他的主持功力和以前取得的成绩都非常钦佩。我们也至少有一名共同的好朋友，《读库》的出版人张立宪。";
+//        words.text=entity.newsBody;
+                UPMainInfoCell*cell2=(UPMainInfoCell*)cell;
         return cell2;
     }
     else {
-        static NSString *customFooterCellIndentifier = @"CustomFooterCellIndentifier";
-        UPFooterCell *cell3 = [tableView dequeueReusableCellWithIdentifier:customFooterCellIndentifier];;
-        if(cell3 == nil){
-            cell3 = [[UPFooterCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:customFooterCellIndentifier];
-        }
-        UIButton *btn3 = (UIButton *)[cell3.contentView viewWithTag:btn3Tag];
+//        static NSString *customFooterCellIndentifier = @"CustomFooterCellIndentifier";
+//        UPFooterCell *cell3 = [tableView dequeueReusableCellWithIdentifier:customFooterCellIndentifier];;
+//        if(cell3 == nil){
+//            cell3 = [[UPFooterCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:customFooterCellIndentifier];
+//        }
+//        
+//        
+//        commentButton *btn3 = (commentButton *)[cell3.contentView viewWithTag:btn3Tag];
+//        [btn3 setTitle:[entity.numberOfComment stringValue] forState:UIControlStateNormal];
+        UPMainInfoCell*cell3=(UPMainInfoCell*)cell;
         return cell3;
     }
     
@@ -143,18 +186,6 @@
     // Dispose of any resources that can be recreated.
 }
 
-#pragma mark - refresh request
 
-
--(void)pullDownRefresh:(MJRefreshBaseView *)refreshView{
-    [helper performBlock:^{
-        [refreshView endRefreshing];
-    } afterDelay:0.55];
-}
--(void)pullUpRefresh:(MJRefreshBaseView *)refreshView{
-    [helper performBlock:^{
-        [refreshView endRefreshing];
-    } afterDelay:0.55];
-}
 
 @end

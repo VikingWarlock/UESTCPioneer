@@ -7,8 +7,8 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "UPMainViewController.h"
+#import "RefreshRequestViewController.h"
 
-@interface PartyNoticeViewController : UPMainViewController <UITableViewDelegate,UITableViewDataSource>
+@interface PartyNoticeViewController : RefreshRequestViewController <UITableViewDelegate,UITableViewDataSource>
 
 @end

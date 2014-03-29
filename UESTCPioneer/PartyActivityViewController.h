@@ -6,8 +6,8 @@
 //  Copyright (c) 2014年 Sway. All rights reserved.
 //
 
-#import "UPMainViewController.h"
+#import "RefreshRequestViewController.h"
 
-@interface PartyActivityViewController : UPMainViewController <UITableViewDelegate,UITableViewDataSource>
+@interface PartyActivityViewController : RefreshRequestViewController <UITableViewDelegate,UITableViewDataSource>
 
 @end

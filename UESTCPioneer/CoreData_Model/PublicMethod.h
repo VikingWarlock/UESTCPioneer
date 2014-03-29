@@ -12,6 +12,10 @@
 
 @interface PublicMethod : NSObject
 
+
+///清空某实体
++(void)ClearEntity:(NSString *)entityName;
+
 ///某实体数量
 +(NSInteger)NumberOfEntity:(NSString*)entityName;
 

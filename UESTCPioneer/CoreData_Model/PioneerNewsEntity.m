@@ -2,7 +2,7 @@
 //  PioneerNewsEntity.m
 //  UESTCPioneer
 //
-//  Created by Sway on 14-3-22.
+//  Created by Sway on 14-3-28.
 //  Copyright (c) 2014年 Sway. All rights reserved.
 //
 
@@ -11,11 +11,11 @@
 
 @implementation PioneerNewsEntity
 
-@dynamic content;
-@dynamic count;
+@dynamic comeCode;
+@dynamic comeFrom;
 @dynamic desc;
 @dynamic picName;
-@dynamic picUrl;
 @dynamic type;
+@dynamic zipPicUrl;
 
 @end

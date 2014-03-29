@@ -42,6 +42,16 @@
     [self hideTopView];
     self.tableView.delegate = self;
     self.tableView.dataSource = self;
+    
+#pragma mark 请求数据
+    entityName=kPublicityNewsEntityName;
+    entityMapping=[Mapping PublicityMapping];
+    /*
+     type=getNoticeOrAnnounce&userId=0004003990022&userName=xiao002&page=1&typepid=0
+     
+     */
+    requestData=@{@"type":@"getNoticeOrAnnounce",@"userId":[constant getUserId],@"userName":[constant getUserName],@"page":@"1",@"typepid":@"0"};
+    
 }
 
 
@@ -56,39 +66,47 @@
 
 //表的分区数
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView{
-    return 10;
+    return [tableViewEntitiesArray count];
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
+    UITableViewCell *cell=[super tableView:tableView cellForRowAtIndexPath:indexPath];
     if (indexPath.row == 0) {
-        static NSString *customTitleCellIndentifier = @"CustomTitleCellIndentifier";
-        UPTitleCell *cell = [tableView dequeueReusableCellWithIdentifier:customTitleCellIndentifier];
-        if(cell == nil){
-            cell = [[UPTitleCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:customTitleCellIndentifier];
-        }
-        UILabel *title = (UILabel *)[cell.contentView viewWithTag:titleTag];
-        title.text = @"title";
-        UILabel *time = (UILabel *)[cell.contentView viewWithTag:timeTag];
-        time.text = @"time";
-        return cell;
+        
+//        static NSString *customTitleCellIndentifier = @"CustomTitleCellIndentifier";
+//        UPTitleCell *cell = [tableView dequeueReusableCellWithIdentifier:customTitleCellIndentifier];
+//        if(cell == nil){
+//            cell = [[UPTitleCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:customTitleCellIndentifier];
+//        }
+//        UILabel *title = (UILabel *)[cell.contentView viewWithTag:titleTag];
+//        title.text = @"title";
+//        UILabel *time = (UILabel *)[cell.contentView viewWithTag:timeTag];
+//        time.text = @"time";
+        UPTitleCell* cell1=(UPTitleCell *)cell;
+        
+        return cell1;
     }
     else if (indexPath.row == 1) {
-        static NSString *customMainCellIndentifier = @"CustomMainCellIndentifier";
-        UPMainInfoCell *cell2 = [tableView dequeueReusableCellWithIdentifier:customMainCellIndentifier];;
-        if(cell2 == nil){
-            cell2 = [[UPMainInfoCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:customMainCellIndentifier];
-        }
-        UILabel *words = (UILabel *)[cell2.contentView viewWithTag:wordsTag];
-        words.text = @"在讨论这部纪录片之前，为了避免现在中文网络江湖盛行的动机论，我先要说明：我和崔永元老师没有个人恩怨，相反，对他的主持功力和以前取得的成绩都非常钦佩。我们也至少有一名共同的好朋友，《读库》的出版人张立宪。";
+//        static NSString *customMainCellIndentifier = @"CustomMainCellIndentifier";
+//        UPMainInfoCell *cell2 = [tableView dequeueReusableCellWithIdentifier:customMainCellIndentifier];;
+//        if(cell2 == nil){
+//            cell2 = [[UPMainInfoCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:customMainCellIndentifier];
+//        }
+//        UILabel *words = (UILabel *)[cell2.contentView viewWithTag:wordsTag];
+//        words.text = @"在讨论这部纪录片之前，为了避免现在中文网络江湖盛行的动机论，我先要说明：我和崔永元老师没有个人恩怨，相反，对他的主持功力和以前取得的成绩都非常钦佩。我们也至少有一名共同的好朋友，《读库》的出版人张立宪。";
+        UPMainInfoCell *cell2= (UPMainInfoCell*)cell;
+        
         return cell2;
     }
     else {
-        static NSString *customFooterCellIndentifier = @"CustomFooterCellIndentifier";
-        UPFooterCell *cell3 = [tableView dequeueReusableCellWithIdentifier:customFooterCellIndentifier];;
-        if(cell3 == nil){
-            cell3 = [[UPFooterCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:customFooterCellIndentifier];
-        }
-        UIButton *btn3 = (UIButton *)[cell3.contentView viewWithTag:btn3Tag];
+//        static NSString *customFooterCellIndentifier = @"CustomFooterCellIndentifier";
+//        UPFooterCell *cell3 = [tableView dequeueReusableCellWithIdentifier:customFooterCellIndentifier];;
+//        if(cell3 == nil){
+//            cell3 = [[UPFooterCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:customFooterCellIndentifier];
+//        }
+//        UIButton *btn3 = (UIButton *)[cell3.contentView viewWithTag:btn3Tag];
+        
+        UPFooterCell *cell3 = (UPFooterCell*)cell;
         return cell3;
     }
     
@@ -132,15 +150,5 @@
 //#define testData @{@"getNotice"}
 
 
-#pragma mark pull refresh
--(void)pullDownRefresh:(MJRefreshBaseView *)refreshView{
-    [helper performBlock:^{
-        [refreshView endRefreshing];
-    } afterDelay:0.25];
-}
--(void)pullUpRefresh:(MJRefreshBaseView *)refreshView{
-    [helper performBlock:^{
-        [refreshView endRefreshing];
-    } afterDelay:0.25];
-}
+
 @end

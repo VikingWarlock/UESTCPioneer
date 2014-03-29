@@ -13,5 +13,9 @@
 #define btn3Tag          3
 
 @interface UPFooterCell : UITableViewCell
+-(void)addCommentButtonTaget:(id)target Action:(SEL)action;
 
+-(void)setCommentId:(NSInteger)theId;
+
+-(void)setCommentNum:(NSInteger)num;
 @end

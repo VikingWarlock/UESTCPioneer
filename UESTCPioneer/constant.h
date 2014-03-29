@@ -9,11 +9,22 @@
 #import <Foundation/Foundation.h>
 
 #define kNavigationBarColor [UIColor colorWithRed:192.0/255.0 green:57.0/255.0 blue:43.0/255.0 alpha:1]
+#define ViewControllerBackgroundColor [UIColor colorWithRed:237.0/255.0 green:237.0/255.0 blue:237.0/255.0 alpha:1]
+
+
 #define IS_IOS7 ([[[UIDevice currentDevice]systemVersion]floatValue] >= 7.0)
 
 #define IS_4INCH (fabs((double)[[UIScreen mainScreen] bounds].size.height - (double)568)<DBL_EPSILON)
 
 #define kNotificationUnreadTotalRefreshed @"NotificationUnreadTotalRefreshed"
+
+
+
+#define kPioneerEntityName @"PioneerNewsEntity"
+#define kPartyNoticeNewsEntityName @"PartyNoticeNewsEntity"
+#define kPublicityNewsEntityName @"PublicityNewsEntity"
+#define kPartyActivityNewsEntityName @"PartyActivityNewsEntity"
+#define kMoodShareNewsEntityName @"MoodShareNewsEntity"
 
 
 #define debugMode 1

@@ -8,6 +8,6 @@
 
 #import <UIKit/UIKit.h>
 #import "UPMainViewController.h"
-@interface CommunicationViewController : UPMainViewController
+@interface CommunicationViewController : UIViewController
 
 @end

@@ -12,5 +12,5 @@
 #define wordsFontSize    16
 
 @interface UPMainInfoCell : UITableViewCell
-
+-(void)setNewsBody:(NSString*)newsBody;
 @end

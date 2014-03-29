@@ -16,14 +16,14 @@
 
 
 
-#define MoodShareMapping @{@"commentNum":@"numberOfComment"\
-                            ,@"content":@"newsBody"\
-                            ,@"id":@"theId"\
-                            ,@"picUrl":@"picUrl"\
-                            ,@"time":@"timeAndDate"\
-                            ,@"userId":@"userId"\
-                            ,@"userName":@"titleBody"\
-}
+//#define MoodShareMapping @{@"commentNum":@"numberOfComment"\
+//                            ,@"content":@"newsBody"\
+//                            ,@"id":@"theId"\
+//                            ,@"picUrl":@"picUrl"\
+//                            ,@"time":@"timeAndDate"\
+//                            ,@"userId":@"userId"\
+//                            ,@"userName":@"titleBody"\
+//}
 
 #define requestTestData @{@"type":@"getEventShare",@"userId":@"0010013110361",@"page":@"1"}
 
@@ -69,13 +69,16 @@
     [self hideTopView];
     self.tableView.delegate = self;
     self.tableView.dataSource = self;
-
     
 
 
 //    [self.tableView setPullDownBeginRefreshAction:@selector(refreshRequest:) ];
-
     
+    
+    
+    entityName=kMoodShareNewsEntityName;
+    entityMapping=[Mapping MoodShareMapping];
+    requestData=@{@"type":@"getEventShare",@"userId":[constant getUserId],@"page":@"1"};
     
 
     
@@ -107,52 +110,60 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     
+        UITableViewCell *cell=[super tableView:tableView cellForRowAtIndexPath:indexPath];
     
-    
-    MoodShareNewsEntity *DataEntity=tableViewEntitiesArray[indexPath.section];
     
     if (indexPath.row == 0) {
-        static NSString *customTitleCellIndentifier = @"CustomTitleCellIndentifier";
-        UPTitleCell *cell = [tableView dequeueReusableCellWithIdentifier:customTitleCellIndentifier];
-        if(cell == nil){
-            cell = [[UPTitleCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:customTitleCellIndentifier];
-        }
-        UIImageView *img = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"default_head_image.png"]];
-        img.frame = CGRectMake(5, 5, 45, 45);
-        [cell.contentView addSubview:img];
-        UILabel *title = (UILabel *)[cell.contentView viewWithTag:titleTag];
-        title.frame = CGRectMake(60, 10, 250, 20);
-        title.text = DataEntity.titleBody;
-        UILabel *time = (UILabel *)[cell.contentView viewWithTag:timeTag];
-        time.frame = CGRectMake(60, 30, 250, 20);
-        time.text = [DataEntity.timeAndDate description];
-        return cell;
+//        static NSString *customTitleCellIndentifier = @"CustomTitleCellIndentifier";
+//        UPTitleCell *cell = [tableView dequeueReusableCellWithIdentifier:customTitleCellIndentifier];
+//        if(cell == nil){
+//            cell = [[UPTitleCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:customTitleCellIndentifier];
+//        }
+//        UIImageView *img = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"default_head_image.png"]];
+//        img.frame = CGRectMake(5, 5, 45, 45);
+//        [cell.contentView addSubview:img];
+//        UILabel *title = (UILabel *)[cell.contentView viewWithTag:titleTag];
+//        title.frame = CGRectMake(60, 10, 250, 20);
+//        title.text = DataEntity.titleBody;
+//        UILabel *time = (UILabel *)[cell.contentView viewWithTag:timeTag];
+//        time.frame = CGRectMake(60, 30, 250, 20);
+//        time.text = [DataEntity.timeAndDate description];
+        UPTitleCell *cell1 = (UPTitleCell*)cell;
+        return cell1;
     }
     else if (indexPath.row == 1) {
-        static NSString *customMainCellIndentifier = @"CustomMainCellIndentifier";
-        UPMainInfoCell *cell2 = [tableView dequeueReusableCellWithIdentifier:customMainCellIndentifier];;
-        if(cell2 == nil){
-            cell2 = [[UPMainInfoCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:customMainCellIndentifier];
-        }
-        UILabel *words = (UILabel *)[cell2.contentView viewWithTag:wordsTag];
-//        words.text = @"在讨论这部纪录片之前，为了避免现在中文网络江湖盛行的动机论，我先要说明：我和崔永元老师没有个人恩怨，相反，对他的主持功力和以前取得的成绩都非常钦佩。我们也至少有一名共同的好朋友，《读库》的出版人张立宪。";
-        words.text=DataEntity.newsBody;
+//        static NSString *customMainCellIndentifier = @"CustomMainCellIndentifier";
+//        UPMainInfoCell *cell2 = [tableView dequeueReusableCellWithIdentifier:customMainCellIndentifier];;
+//        if(cell2 == nil){
+//            cell2 = [[UPMainInfoCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:customMainCellIndentifier];
+//        }
+//        UILabel *words = (UILabel *)[cell2.contentView viewWithTag:wordsTag];
+////        words.text = @"在讨论这部纪录片之前，为了避免现在中文网络江湖盛行的动机论，我先要说明：我和崔永元老师没有个人恩怨，相反，对他的主持功力和以前取得的成绩都非常钦佩。我们也至少有一名共同的好朋友，《读库》的出版人张立宪。";
+//        words.text=DataEntity.newsBody;
+//        return cell2;
+        UPMainInfoCell *cell2= (UPMainInfoCell*)cell;
+        
         return cell2;
     }
     else {
-        static NSString *customFooterCellIndentifier = @"CustomFooterCellIndentifier";
-        UPFooterCell *cell3 = [tableView dequeueReusableCellWithIdentifier:customFooterCellIndentifier];;
-        if(cell3 == nil){
-            cell3 = [[UPFooterCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:customFooterCellIndentifier];
-        }
+//        static NSString *customFooterCellIndentifier = @"CustomFooterCellIndentifier";
+//        UPFooterCell *cell3 = [tableView dequeueReusableCellWithIdentifier:customFooterCellIndentifier];;
+//        if(cell3 == nil){
+//            cell3 = [[UPFooterCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:customFooterCellIndentifier];
+//        }
+//        
+//        
+//        
+//        commentButton *btn3 = (commentButton *)[cell3.contentView viewWithTag:btn3Tag];
+//        [btn3 setTitle:[NSString stringWithFormat:@"%d",[DataEntity.numberOfComment integerValue]] forState:UIControlStateNormal];
+//        btn3.theId=[DataEntity.theId integerValue];
+//        
+//        [btn3 addTarget:self action:@selector(commentButtonPress:) forControlEvents:UIControlEventTouchUpInside];
         
         
         
-        commentButton *btn3 = (commentButton *)[cell3.contentView viewWithTag:btn3Tag];
-        [btn3 setTitle:[NSString stringWithFormat:@"%d",[DataEntity.numberOfComment integerValue]] forState:UIControlStateNormal];
-        btn3.theId=[DataEntity.theId integerValue];
-        
-        [btn3 addTarget:self action:@selector(commentButtonPress:) forControlEvents:UIControlEventTouchUpInside];
+        UPFooterCell *cell3 = (UPFooterCell*)cell;
+        [cell3 addCommentButtonTaget:self Action:@selector(commentButtonPress:)];
         return cell3;
     }
     
@@ -185,50 +196,49 @@
 }
 
 #pragma mark -  pull Refresh
+//在父类实现
 
 
+//-(void)pullDownRefresh:(MJRefreshBaseView *)refreshView{
+//    [NetworkCenter RKRequestWithData:requestTestData EntityName:MoodShareEntityName Mapping:MoodShareMapping SuccessBlock:^(NSArray *resultArray) {
+//        tableViewEntitiesArray=resultArray;
+//        [self.tableView reloadData];
+//        [PublicMethod ClearAllCoreData];
+//        [refreshView endRefreshing];
+//
+//        
+//    } failure:^(NSError *error) {
+//        NSLog(@"error:%@",error);
+//        [refreshView endRefreshing];
+//    }];
+//}
+//
+//-(void)pullUpRefresh:(MJRefreshBaseView *)refreshView{
+//    
+//    NSMutableDictionary *tempDic= [[NSMutableDictionary alloc]initWithDictionary:requestTestData];
+//    [tempDic setObject:@(PullUpRefreshTimes+2) forKey:@"page"];
+//    
+//    [NetworkCenter RKRequestWithData:tempDic EntityName:MoodShareEntityName Mapping:MoodShareMapping SuccessBlock:^(NSArray *resultArray) {
+//        
+//        
+//        NSMutableArray *newArray = [[NSMutableArray alloc]initWithArray:tableViewEntitiesArray];
+//        [newArray addObjectsFromArray:resultArray];
+//        NSArray *result = [[NSArray alloc]initWithArray:newArray];
+//        
+//        
+//        tableViewEntitiesArray=result;
+//        [self.tableView reloadData];
+//        [PublicMethod ClearAllCoreData];
+//        [refreshView endRefreshing];
+//        PullUpRefreshTimes++;
+//        
+//    } failure:^(NSError *error) {
+//        NSLog(@"error:%@",error);
+//        [refreshView endRefreshing];
+//    }];
+//}
 
--(void)pullDownRefresh:(MJRefreshBaseView *)refreshView{
-    [NetworkCenter RKRequestWithData:requestTestData EntityName:MoodShareEntityName Mapping:MoodShareMapping SuccessBlock:^(NSArray *resultArray) {
-//        for (MoodShareNewsEntity *entity in resultArray){
-//            NSLog(@"%d",[entity.theId integerValue]);
-//        }
-        tableViewEntitiesArray=resultArray;
-        [self.tableView reloadData];
-        [PublicMethod ClearAllCoreData];
-        [refreshView endRefreshing];
 
-        
-    } failure:^(NSError *error) {
-        NSLog(@"error:%@",error);
-        [refreshView endRefreshing];
-    }];
-}
-
--(void)pullUpRefresh:(MJRefreshBaseView *)refreshView{
-    
-    NSMutableDictionary *tempDic= [[NSMutableDictionary alloc]initWithDictionary:requestTestData];
-    [tempDic setObject:@(PullUpRefreshTimes+2) forKey:@"page"];
-    
-    [NetworkCenter RKRequestWithData:tempDic EntityName:MoodShareEntityName Mapping:MoodShareMapping SuccessBlock:^(NSArray *resultArray) {
-        
-        
-        NSMutableArray *newArray = [[NSMutableArray alloc]initWithArray:tableViewEntitiesArray];
-        [newArray addObjectsFromArray:resultArray];
-        NSArray *result = [[NSArray alloc]initWithArray:newArray];
-        
-        
-        tableViewEntitiesArray=result;
-        [self.tableView reloadData];
-        [PublicMethod ClearAllCoreData];
-        [refreshView endRefreshing];
-        PullUpRefreshTimes++;
-        
-    } failure:^(NSError *error) {
-        NSLog(@"error:%@",error);
-        [refreshView endRefreshing];
-    }];
-}
 
 #pragma mark - commentButton press
 
@@ -240,7 +250,6 @@
 //    （3）username：用户姓名      （4）shareId：活动分享的id
 //    （5）comment：评论的内容
 
-    
     
     //请求评论列表用的参数
     comment.commentListRequestData=@{@"type":@"getShareComment",@"page":@"1",@"shareId":[NSString stringWithFormat:@"%d",button.theId]};
