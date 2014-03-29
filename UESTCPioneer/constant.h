@@ -19,7 +19,7 @@
 #define kNotificationUnreadTotalRefreshed @"NotificationUnreadTotalRefreshed"
 
 
-
+#define kNewsEntityName @"NewsEntity"
 #define kPioneerEntityName @"PioneerNewsEntity"
 #define kPartyNoticeNewsEntityName @"PartyNoticeNewsEntity"
 #define kPublicityNewsEntityName @"PublicityNewsEntity"

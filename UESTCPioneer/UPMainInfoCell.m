@@ -26,12 +26,15 @@
         [self.contentView addSubview:wordsLabel];
         
         CGRect btnRect = CGRectMake(5, 85, 40, 20);
-        UILabel *btnLabel = [[UILabel alloc]initWithFrame:btnRect];
-        btnLabel.font = [UIFont systemFontOfSize:16];
+        UIButton *btnLabel = [[UIButton alloc]initWithFrame:btnRect];
+        btnLabel.titleLabel.font = [UIFont systemFontOfSize:16];
         btnLabel.tag = 1;
-        btnLabel.textColor = [UIColor colorWithRed:0 green:0 blue:0.4 alpha:1];
-        btnLabel.text = @"全文";
-        [btnLabel setTextAlignment:NSTextAlignmentLeft];
+
+        [btnLabel setTitleColor:[UIColor colorWithRed:0 green:0 blue:0.4 alpha:1] forState:UIControlStateNormal];
+        [btnLabel setTitleColor:[UIColor colorWithRed:0.4 green:0.4 blue:0.4 alpha:1] forState:UIControlStateHighlighted];
+        [btnLabel setTitle:@"全文" forState:UIControlStateNormal];
+        [btnLabel addTarget:self action:@selector(WholeNewsContentButtonPress:) forControlEvents:UIControlEventTouchUpInside];
+        [btnLabel.titleLabel setTextAlignment:NSTextAlignmentCenter];
         [self.contentView addSubview:btnLabel];
     }
     return self;
@@ -48,5 +51,13 @@
     UILabel *words = (UILabel *)[self.contentView viewWithTag:wordsTag];
     words.text = newsBody;
 }
+
+-(void)WholeNewsContentButtonPress:(UIButton*)button{
+    if ([self.delegate respondsToSelector:@selector(WholeNewsButtonClick:)]){
+        [self.delegate WholeNewsButtonClick:_theId];
+    }
+}
+
+
 
 @end
