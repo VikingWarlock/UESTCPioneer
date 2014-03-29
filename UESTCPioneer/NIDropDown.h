@@ -9,9 +9,13 @@
 #import <UIKit/UIKit.h>
 
 @class NIDropDown;
-@protocol NIDropDownDelegate
-- (void) niDropDownDelegateMethod: (NIDropDown *) sender;
-@end 
+//代理要继承NSObject
+@protocol NIDropDownDelegate<NSObject>
+
+@optional
+///学院筛选代理
+-(void)niDropDownDelegateMethod:(NIDropDown *)sender ForTitle:(NSString*)title ForIndex:(NSInteger)index;
+@end
 
 @interface NIDropDown : UIView <UITableViewDelegate, UITableViewDataSource>
 

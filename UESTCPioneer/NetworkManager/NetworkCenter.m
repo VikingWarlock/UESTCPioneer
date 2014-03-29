@@ -29,37 +29,11 @@
 #pragma mark - mapping function
 
 
-#pragma mark - simple request function
-
-//成电视角
+#pragma mark - 详细的请求
 
 
-//请求一页
-//#pragma mark 请求成电先锋新闻
-//+(void)requestPioneerNewsWithPage:(NSInteger)page SuccessBlock:(void (^)(NSArray* resultArray))successBlock failure:(void (^) (NSError *error))failureBlock{
-//    
-//    NSDictionary *data= @{@"page":[NSString stringWithFormat:@"%d",page],@"type":@"getNews"};
-//    NSString *entity = @"NewsEntity";
-//    
-//    
-//    [self requestWithData:data EntityName:entity Mapping:mappingPioneer SuccessBlock:^(NSArray *entityArray){
-//        successBlock(entityArray);
-//    } failure:^(NSError *error){
-//        failureBlock(error);
-//    }];
-//}
-//
-//+(void)requestPioneerNewsWithId:(NSInteger)Id SuccessBlock:(void (^)(NSArray* resultArray))successBlock failure:(void (^) (NSError *error))failureBlock{
-//    NSDictionary *data= @{@"id":[NSString stringWithFormat:@"%d",Id],@"type":@"getNews"};
-//    NSString *entity = @"NewsEntity";
-//    
-//    
-//    [self requestWithData:data EntityName:entity Mapping:mappingPioneer SuccessBlock:^(NSArray *entityArray){
-//        successBlock(entityArray);
-//    } failure:^(NSError *error){
-//        failureBlock(error);
-//    }];
-//}
+
+
 
 #pragma mark - NFNetworking 
 
