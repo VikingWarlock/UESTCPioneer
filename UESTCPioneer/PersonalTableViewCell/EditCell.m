@@ -16,7 +16,6 @@ static int i;
     self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
     if (self) {
         [self.contentView addSubview:self.textfield];
-        [self.contentView addSubview:self.touXiang];
         [self.contentView addSubview:self.staticLabel];
         self.textfield.tag = i++;
     }
@@ -64,11 +63,5 @@ static int i;
     return _textfield;
 }
 
-- (UIImageView *)touXiang
-{
-    if (!_touXiang) {
-        _touXiang = [[UIImageView alloc] initWithFrame:CGRectMake(100,4,55,55)];
-    }
-    return _touXiang;
-}
+
 @end

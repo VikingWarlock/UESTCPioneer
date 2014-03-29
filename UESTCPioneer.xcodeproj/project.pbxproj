@@ -38,6 +38,7 @@
 		510C56BD18E021B4007F6359 /* vw.png in Resources */ = {isa = PBXBuildFile; fileRef = 510C56A318E021B4007F6359 /* vw.png */; };
 		510C56C018E02CF3007F6359 /* LongCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 510C56BF18E02CF3007F6359 /* LongCell.m */; };
 		51355CCF18E05F800047ED5F /* PopCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 51355CCE18E05F800047ED5F /* PopCell.m */; };
+		5135CCA718E699EB00BFD748 /* FirstEditCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 5135CCA618E699EB00BFD748 /* FirstEditCell.m */; };
 		513CED1318E2F89900C1E424 /* PublishNotice.m in Sources */ = {isa = PBXBuildFile; fileRef = 513CED1218E2F89900C1E424 /* PublishNotice.m */; };
 		5153823A18DAE0EA007C4675 /* PersonalInformation.m in Sources */ = {isa = PBXBuildFile; fileRef = 5153823918DAE0EA007C4675 /* PersonalInformation.m */; };
 		5153823D18DAE132007C4675 /* MyCollection.m in Sources */ = {isa = PBXBuildFile; fileRef = 5153823C18DAE132007C4675 /* MyCollection.m */; };
@@ -62,6 +63,7 @@
 		517485C718CA056F00413228 /* share2.png in Resources */ = {isa = PBXBuildFile; fileRef = 517485BC18CA056F00413228 /* share2.png */; };
 		51A0C51618E31CB600404885 /* EditPersonalInformation.m in Sources */ = {isa = PBXBuildFile; fileRef = 51A0C51518E31CB600404885 /* EditPersonalInformation.m */; };
 		51A0C51918E32D7300404885 /* EditCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 51A0C51818E32D7300404885 /* EditCell.m */; };
+		51DBF66118E3F58300F5A1AE /* ShortHeadCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 51DBF66018E3F58300F5A1AE /* ShortHeadCell.m */; };
 		8834BA1418D6EF980023BA87 /* censpi.png in Resources */ = {isa = PBXBuildFile; fileRef = 8834BA0B18D6EF980023BA87 /* censpi.png */; };
 		8834BA1518D6EF980023BA87 /* guide.png in Resources */ = {isa = PBXBuildFile; fileRef = 8834BA0C18D6EF980023BA87 /* guide.png */; };
 		8834BA1618D6EF980023BA87 /* knowledge.png in Resources */ = {isa = PBXBuildFile; fileRef = 8834BA0D18D6EF980023BA87 /* knowledge.png */; };
@@ -238,6 +240,8 @@
 		510C56BF18E02CF3007F6359 /* LongCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = LongCell.m; path = PersonalTableViewCell/LongCell.m; sourceTree = "<group>"; };
 		51355CCD18E05F800047ED5F /* PopCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PopCell.h; path = PersonalTableViewCell/PopCell.h; sourceTree = "<group>"; };
 		51355CCE18E05F800047ED5F /* PopCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PopCell.m; path = PersonalTableViewCell/PopCell.m; sourceTree = "<group>"; };
+		5135CCA518E699EB00BFD748 /* FirstEditCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FirstEditCell.h; path = PersonalTableViewCell/FirstEditCell.h; sourceTree = "<group>"; };
+		5135CCA618E699EB00BFD748 /* FirstEditCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = FirstEditCell.m; path = PersonalTableViewCell/FirstEditCell.m; sourceTree = "<group>"; };
 		513CED1118E2F89900C1E424 /* PublishNotice.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PublishNotice.h; path = PersonalTableViewCell/PublishNotice.h; sourceTree = "<group>"; };
 		513CED1218E2F89900C1E424 /* PublishNotice.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PublishNotice.m; path = PersonalTableViewCell/PublishNotice.m; sourceTree = "<group>"; };
 		5153823818DAE0EA007C4675 /* PersonalInformation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PersonalInformation.h; path = PersonalTableViewCell/PersonalInformation.h; sourceTree = "<group>"; };
@@ -275,6 +279,8 @@
 		51A0C51518E31CB600404885 /* EditPersonalInformation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = EditPersonalInformation.m; path = PersonalTableViewCell/EditPersonalInformation.m; sourceTree = "<group>"; };
 		51A0C51718E32D7300404885 /* EditCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = EditCell.h; path = PersonalTableViewCell/EditCell.h; sourceTree = "<group>"; };
 		51A0C51818E32D7300404885 /* EditCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = EditCell.m; path = PersonalTableViewCell/EditCell.m; sourceTree = "<group>"; };
+		51DBF65F18E3F58300F5A1AE /* ShortHeadCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ShortHeadCell.h; path = PersonalTableViewCell/ShortHeadCell.h; sourceTree = "<group>"; };
+		51DBF66018E3F58300F5A1AE /* ShortHeadCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ShortHeadCell.m; path = PersonalTableViewCell/ShortHeadCell.m; sourceTree = "<group>"; };
 		75368970CB1E4D818A55D2DE /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		8834BA0B18D6EF980023BA87 /* censpi.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = censpi.png; sourceTree = "<group>"; };
 		8834BA0C18D6EF980023BA87 /* guide.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = guide.png; sourceTree = "<group>"; };
@@ -511,6 +517,10 @@
 				510C56BF18E02CF3007F6359 /* LongCell.m */,
 				5153825918DB289B007C4675 /* ShortCell.h */,
 				5153825A18DB289B007C4675 /* ShortCell.m */,
+				51DBF65F18E3F58300F5A1AE /* ShortHeadCell.h */,
+				51DBF66018E3F58300F5A1AE /* ShortHeadCell.m */,
+				5135CCA518E699EB00BFD748 /* FirstEditCell.h */,
+				5135CCA618E699EB00BFD748 /* FirstEditCell.m */,
 				51A0C51718E32D7300404885 /* EditCell.h */,
 				51A0C51818E32D7300404885 /* EditCell.m */,
 				51071D7E18DDBAB600695D41 /* ShortMainInfocell.h */,
@@ -1332,6 +1342,7 @@
 				5153825518DB03A4007C4675 /* StartActivity.m in Sources */,
 				DC376EDB18E55B60005F7DC8 /* PublicityNewsEntity.m in Sources */,
 				DCA5962918C81AED00F001D9 /* UPComplexSwitch.m in Sources */,
+				5135CCA718E699EB00BFD748 /* FirstEditCell.m in Sources */,
 				5153825218DAE40E007C4675 /* MyNotice.m in Sources */,
 				DC376ECE18E522C5005F7DC8 /* PioneerNewsEntity.m in Sources */,
 				DCB5136818C6C43700B7EE95 /* main.m in Sources */,
@@ -1346,6 +1357,7 @@
 				DC0BFFDD18E255F7002E3D38 /* MJRefreshFooterView.m in Sources */,
 				5153823D18DAE132007C4675 /* MyCollection.m in Sources */,
 				8834BA2318D6F12F0023BA87 /* MessageEntity.m in Sources */,
+				51DBF66118E3F58300F5A1AE /* ShortHeadCell.m in Sources */,
 				8889F91918D02E13001416C0 /* UserEntity.m in Sources */,
 				DC376ED818E53124005F7DC8 /* RefreshRequestViewController.m in Sources */,
 				DCB5146C18C6E2AF00B7EE95 /* PartyActivityViewController.m in Sources */,

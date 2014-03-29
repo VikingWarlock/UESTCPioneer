@@ -12,6 +12,9 @@
 {
     BOOL isFirstEdit1;
     BOOL isFirstEdit2;
+    UIImage *pickedImage;
+    int i;
+    id temp;
 }
 @end
 
@@ -50,6 +53,58 @@
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
+
+#pragma mark actionSheet delegate and imagePicker
+
+- (void)popActionSheet:(id)sender
+{
+    [self.choseImageSheet showInView:self.tableView];
+    temp = sender;
+}
+
+-(void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex
+{
+    if (![UIImagePickerController isSourceTypeAvailable: UIImagePickerControllerSourceTypeCamera]) {
+        switch (buttonIndex) {
+            case 0:
+                self.pickImage.allowsEditing = YES;
+                self.pickImage.sourceType = UIImagePickerControllerSourceTypeCamera;
+                [self presentViewController:self.pickImage animated:YES completion:NULL];
+                break;
+            default:
+                break;
+        }
+    }
+    else
+    {
+        switch (buttonIndex) {
+            case 0:
+                self.pickImage.allowsEditing = YES;
+                self.pickImage.sourceType = UIImagePickerControllerSourceTypeCamera;
+                [self presentViewController:self.pickImage animated:YES completion:NULL];
+                break;
+            case 1:
+                self.pickImage.allowsEditing = NO;
+                self.pickImage.sourceType = UIImagePickerControllerSourceTypePhotoLibrary;
+                [self presentViewController:self.pickImage animated:YES completion:NULL];
+            default:
+                break;
+        }
+    }
+}
+
+- (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info
+{
+    if (picker.sourceType == UIImagePickerControllerSourceTypePhotoLibrary)
+        pickedImage = [info objectForKey:@"UIImagePickerControllerOriginalImage"];
+    else
+        pickedImage = [info objectForKey:@"UIImagePickerControllerEditedImage"];
+    [temp setBackgroundImage:pickedImage forState:UIControlStateNormal];
+    [self.layoutImage addSubview:self.thumbnail];
+    [self dismissViewControllerAnimated:YES completion:NULL];
+}
+
+#pragma mark - textview delegate
 
 - (void)textViewDidBeginEditing:(UITextView *)textView
 {
@@ -150,10 +205,55 @@
         _layoutImage.layer.borderWidth =1.0;
         _layoutImage.layer.cornerRadius =4.0;
         _layoutImage.backgroundColor = [UIColor whiteColor];
-        UIButton *thumbnail = [[UIButton alloc] initWithFrame:CGRectMake(10, 10, 60, 60)];
-        [thumbnail setBackgroundImage:[UIImage imageNamed:@"addpic.png"] forState:UIControlStateNormal];
-        [_layoutImage addSubview:thumbnail];
+        [_layoutImage addSubview:self.thumbnail];
     }
     return _layoutImage;
+}
+
+- (UIButton *)thumbnail
+{
+    if(i < 4)
+    {
+        _thumbnail = [[UIButton alloc] initWithFrame:CGRectMake(12 + (i++)*72, 10, 60, 60)];
+        [_thumbnail setBackgroundImage:[UIImage imageNamed:@"addpic.png"] forState:UIControlStateNormal];
+        [_thumbnail addTarget:self action:@selector(popActionSheet:) forControlEvents:UIControlEventTouchUpInside];
+        return _thumbnail;
+    }
+    else
+        return nil;
+}
+
+- (UIActionSheet *)choseImageSheet
+{
+    if (!_choseImageSheet)
+    {
+        if ([UIImagePickerController isSourceTypeAvailable: UIImagePickerControllerSourceTypeCamera]) {
+            _choseImageSheet = [[UIActionSheet alloc]
+                           initWithTitle:nil
+                           delegate:self
+                           cancelButtonTitle:@"取消"
+                           destructiveButtonTitle:@"拍照"
+                           otherButtonTitles:@"从手机相册选择",nil];
+        }
+        else
+        {
+            _choseImageSheet = [[UIActionSheet alloc]
+                           initWithTitle:nil
+                           delegate:self
+                           cancelButtonTitle:@"取消"
+                           destructiveButtonTitle:@"从手机相册选择"
+                           otherButtonTitles:nil];
+        }
+    }
+    return _choseImageSheet;
+}
+
+- (UIImagePickerController *)pickImage
+{
+    if (!_pickImage) {
+        _pickImage = [[UIImagePickerController alloc] init];
+        _pickImage.delegate = self;
+    }
+    return _pickImage;
 }
 @end

@@ -101,6 +101,8 @@ ype：请求类型；userId：请求者权限Id；userName：请求者用户名�
 -(void)niDropDownDelegateMethod:(NIDropDown *)sender ForTitle:(NSString *)title ForIndex:(NSInteger)index{
         requestData=[RequestData ActivityDataWithTypeName:title];
         [self.tableView beginRefreshing];
+    
+    [self rel];
 }
 
 #pragma mark - TableView Delegate

@@ -97,7 +97,7 @@
     NSArray * arr = [[NSArray alloc] init];
     arr = [NSArray arrayWithObjects:@"校级",@"院级",@"支部",@"全部",nil];
     if(dropDown == nil) {
-        CGFloat f = 180;
+        CGFloat f = 120;
         dropDown = [[NIDropDown alloc]initDropDown:sender :&f :arr];
         dropDown.delegate = self;
     }
@@ -124,6 +124,7 @@
         requestData=[RequestData NoticeDataWithLevel:3];
         [self.tableView beginRefreshing];
     }
+    [self rel];
 }
 
 //每个分区的行数

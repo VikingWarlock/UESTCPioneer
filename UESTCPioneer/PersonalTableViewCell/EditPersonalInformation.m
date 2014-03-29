@@ -9,10 +9,12 @@
 #import "EditPersonalInformation.h"
 #import "constant.h"
 #import "EditCell.h"
+#import "FirstEditCell.h"
 @interface EditPersonalInformation ()
 {
     NSArray *array;
     int tag;
+    UIImage *pickedImage;
 }
 @end
 
@@ -33,16 +35,69 @@
     self.tableView.delegate = self;
     self.tableView.dataSource = self;
     [self.tableView registerClass:[EditCell class] forCellReuseIdentifier:@"setcell"];
+    [self.tableView registerClass:[FirstEditCell class] forCellReuseIdentifier:@"Firstcell"];
     self.tableView.allowsSelection = NO;
     self.tableView.separatorInset = UIEdgeInsetsZero;
     array = @[@"头像",@"昵称",@"姓名",@"性别",@"民族",@"籍贯",@"原始密码",@"新的密码",@"确认密码"];
-
 }
 
-- (void)didReceiveMemoryWarning
+- (void)viewWillAppear:(BOOL)animated
 {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
+    [super viewWillAppear:animated];
+    [self.navigationItem setTitle:@""];
+    
+    
+    self.navigationItem.title = @"修改信息";
+    
+}
+
+- (void)complete:(id)sender
+{
+    
+}
+
+#pragma mark actionSheet delegate and imagePicker
+
+-(void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex
+{
+    if (![UIImagePickerController isSourceTypeAvailable: UIImagePickerControllerSourceTypeCamera]) {
+        switch (buttonIndex) {
+            case 0:
+                self.pickImage.allowsEditing = YES;
+                self.pickImage.sourceType = UIImagePickerControllerSourceTypeCamera;
+                [self presentViewController:self.pickImage animated:YES completion:NULL];
+                break;
+            default:
+                break;
+        }
+    }
+    else
+    {
+        switch (buttonIndex) {
+            case 0:
+                self.pickImage.allowsEditing = YES;
+                self.pickImage.sourceType = UIImagePickerControllerSourceTypeCamera;
+                [self presentViewController:self.pickImage animated:YES completion:NULL];
+                break;
+            case 1:
+                self.pickImage.allowsEditing = NO;
+                self.pickImage.sourceType = UIImagePickerControllerSourceTypePhotoLibrary;
+                [self presentViewController:self.pickImage animated:YES completion:NULL];
+            default:
+                break;
+        }
+    }
+}
+
+- (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info
+{
+    if (picker.sourceType == UIImagePickerControllerSourceTypePhotoLibrary)
+        pickedImage = [info objectForKey:@"UIImagePickerControllerOriginalImage"];
+    else
+        pickedImage = [info objectForKey:@"UIImagePickerControllerEditedImage"];
+    [((FirstEditCell *)[self.tableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:0]]).touXiang setBackgroundImage:pickedImage forState:UIControlStateNormal];
+    //[self.thumbnail setBackgroundImage:pickedImage forState:UIControlStateNormal];
+    [self dismissViewControllerAnimated:YES completion:NULL];
 }
 
 #pragma mark - Table view data source
@@ -65,25 +120,29 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    static NSString *CellIdentifier = @"setcell";
-    EditCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
-    if (cell == nil) {
-        cell = [[EditCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
-    }
     if (indexPath.section == 0 &&indexPath.row ==0)
     {
+        static NSString *CellIdentifier = @"Firstcell";
+        FirstEditCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+        if (cell == nil) {
+            cell = [[FirstEditCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
+        }
         cell.staticLabel.text = array[indexPath.row];
-        [cell.staticLabel setFrame:CGRectMake(10, 10, 70, cell.frame.size.height)];
-        cell.touXiang.image = [UIImage imageNamed:@"touxiang.png"];
-        [cell.textfield removeFromSuperview];
+        [cell.touXiang addTarget:self.choseImageSheet action:@selector(showInView:) forControlEvents:UIControlEventTouchUpInside];
+        return cell;
     }
     else
     {
+        static NSString *CellIdentifier = @"setcell";
+        EditCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+        if (cell == nil) {
+            cell = [[EditCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
+        }
         cell.staticLabel.text = array[indexPath.row + 1];
         cell.textfield.placeholder = [NSString stringWithFormat:@"请输入您的%@",array[indexPath.row + 1]];
+        cell.textfield.delegate = self;
+        return cell;
     }
-    cell.textfield.delegate = self;
-    return cell;
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -107,7 +166,7 @@
 
 - (void)scrollViewWillBeginDragging:(UIScrollView *)scrollView
 {
-    [((EditCell *)[self.tableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:(tag <= 1 ? tag : tag -2) inSection:(tag <= 1 ? 0 : 1)]]).textfield resignFirstResponder];
+    [((EditCell *)[self.tableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:(tag < 1 ? tag + 1 : tag -1) inSection:(tag < 1 ? 0 : 1)]]).textfield resignFirstResponder];
 }
 
 - (void)textFieldDidBeginEditing:(UITextField *)textField
@@ -121,6 +180,45 @@
     return YES;
 }
 
+#pragma mark - Lazy initialization
+- (UIActionSheet *)choseImageSheet
+{
+    if (!_choseImageSheet)
+    {
+        if ([UIImagePickerController isSourceTypeAvailable: UIImagePickerControllerSourceTypeCamera]) {
+            _choseImageSheet = [[UIActionSheet alloc]
+                                initWithTitle:nil
+                                delegate:self
+                                cancelButtonTitle:@"取消"
+                                destructiveButtonTitle:@"拍照"
+                                otherButtonTitles:@"从手机相册选择",nil];
+        }
+        else
+        {
+            _choseImageSheet = [[UIActionSheet alloc]
+                                initWithTitle:nil
+                                delegate:self
+                                cancelButtonTitle:@"取消"
+                                destructiveButtonTitle:@"从手机相册选择"
+                                otherButtonTitles:nil];
+        }
+    }
+    return _choseImageSheet;
+}
+
+- (UIImagePickerController *)pickImage
+{
+    if (!_pickImage) {
+        _pickImage = [[UIImagePickerController alloc] init];
+        _pickImage.delegate = self;
+    }
+    return _pickImage;
+}
 
 
+- (void)didReceiveMemoryWarning
+{
+    [super didReceiveMemoryWarning];
+    // Dispose of any resources that can be recreated.
+}
 @end

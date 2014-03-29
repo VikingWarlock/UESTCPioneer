@@ -8,9 +8,11 @@
 
 #import <UIKit/UIKit.h>
 
-@interface PublishNotice : UITableViewController <UITableViewDelegate,UITableViewDataSource,UITextViewDelegate>
+@interface PublishNotice : UITableViewController <UITableViewDelegate,UITableViewDataSource,UITextViewDelegate,UIActionSheetDelegate,UIImagePickerControllerDelegate,UINavigationControllerDelegate>
 @property (nonatomic,strong) UITextView *editTitle;
 @property (nonatomic,strong) UITextView *editBody;
 @property (nonatomic,strong) UIView *layoutImage;
 @property (nonatomic,strong) UIButton *thumbnail;
+@property (nonatomic,strong) UIActionSheet *choseImageSheet;
+@property (nonatomic,strong) UIImagePickerController *pickImage;
 @end
