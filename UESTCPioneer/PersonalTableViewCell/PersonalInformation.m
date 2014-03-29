@@ -58,7 +58,7 @@
 - (void)editInformation:(id)sender
 {
     EditPersonalInformation *edit = [[EditPersonalInformation alloc] initWithStyle:UITableViewStyleGrouped];
-    [self.navigationController presentViewController:edit animated:YES completion:NULL];
+    [self.navigationController pushViewController:edit animated:YES];
     
 }
 
