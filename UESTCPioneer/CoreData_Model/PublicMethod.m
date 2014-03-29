@@ -56,6 +56,10 @@ static id UserQueue;
     
 }
 
++(id)entity:(NSString*)entityName WithId:(NSInteger)theId{
+    return [NSClassFromString(entityName) MR_findFirstByAttribute:@"theId" withValue:@(theId)];
+}
+
 +(NSArray*)EntityArrayWithEntityName:(NSString*)entityName{
     
     return [NSClassFromString(entityName) MR_findAllSortedBy:@"theId" ascending:NO];

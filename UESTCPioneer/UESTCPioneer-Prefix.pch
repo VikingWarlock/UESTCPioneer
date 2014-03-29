@@ -25,6 +25,6 @@
 #import"NetworkCenter.h"
 #import<QuartzCore/QuartzCore.h>
 #import"Mapping.h"
-
+#import"Alert.h"
 
 #endif

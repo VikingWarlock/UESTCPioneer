@@ -35,7 +35,15 @@
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
     
-
+    //调试模式
+#if debugMode
+    [Unread setUnreadNum:10 ForKey:kUnreadMoodShare];
+    [Unread setUnreadNum:10 ForKey:kUnreadPioneerKey];
+    
+    [constant setUserId:@"001002200011"];
+    [constant setUserName:@"IOS test"];
+#endif
+    
     
     
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
@@ -150,15 +158,7 @@
     
     
     
-    //调试模式
-#if debugMode
-    [Unread setUnreadNum:10 ForKey:kUnreadMoodShare];
-    [Unread setUnreadNum:10 ForKey:kUnreadPioneerKey];
-    
-    [constant setUserId:@"001002200011"];
-    [constant setUserName:@"IOS test"];
-#endif
-    
+
     
     return YES;
 }

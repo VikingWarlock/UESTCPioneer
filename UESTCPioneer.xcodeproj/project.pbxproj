@@ -179,6 +179,7 @@
 		DCB5146918C6E29700B7EE95 /* PublicityViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DCB5146818C6E29700B7EE95 /* PublicityViewController.m */; };
 		DCB5146C18C6E2AF00B7EE95 /* PartyActivityViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DCB5146B18C6E2AF00B7EE95 /* PartyActivityViewController.m */; };
 		DCB5146F18C6E2DB00B7EE95 /* MoodShareViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DCB5146E18C6E2DB00B7EE95 /* MoodShareViewController.m */; };
+		DCB63E0B18E6565100AA0B58 /* Alert.m in Sources */ = {isa = PBXBuildFile; fileRef = DCB63E0A18E6565100AA0B58 /* Alert.m */; };
 		DCB6DE5318E2947D00001701 /* commentViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DCB6DE5118E2947D00001701 /* commentViewController.m */; };
 		F23FA4F918E3E8AA00E174A2 /* Cells.m in Sources */ = {isa = PBXBuildFile; fileRef = F23FA4F818E3E8AA00E174A2 /* Cells.m */; };
 		F23FA4FC18E3E97300E174A2 /* GuideDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F23FA4FB18E3E97300E174A2 /* GuideDetailViewController.m */; };
@@ -445,6 +446,8 @@
 		DCB5146B18C6E2AF00B7EE95 /* PartyActivityViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PartyActivityViewController.m; sourceTree = "<group>"; };
 		DCB5146D18C6E2DB00B7EE95 /* MoodShareViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MoodShareViewController.h; sourceTree = "<group>"; };
 		DCB5146E18C6E2DB00B7EE95 /* MoodShareViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MoodShareViewController.m; sourceTree = "<group>"; };
+		DCB63E0918E6565100AA0B58 /* Alert.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Alert.h; sourceTree = "<group>"; };
+		DCB63E0A18E6565100AA0B58 /* Alert.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Alert.m; sourceTree = "<group>"; };
 		DCB6DE5118E2947D00001701 /* commentViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = commentViewController.m; sourceTree = "<group>"; };
 		DCB6DE5218E2947D00001701 /* commentViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = commentViewController.h; sourceTree = "<group>"; };
 		F23FA4F718E3E8AA00E174A2 /* Cells.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Cells.h; path = partyDataDetails/Cells.h; sourceTree = "<group>"; };
@@ -718,8 +721,8 @@
 		DC0BFFBA18E24CC9002E3D38 /* Comment */ = {
 			isa = PBXGroup;
 			children = (
-				DCB6DE5118E2947D00001701 /* commentViewController.m */,
 				DCB6DE5218E2947D00001701 /* commentViewController.h */,
+				DCB6DE5118E2947D00001701 /* commentViewController.m */,
 				DC0BFFBC18E24CD7002E3D38 /* commentView.m */,
 				DC0BFFBD18E24CD7002E3D38 /* commentView.h */,
 				DC0BFFBE18E24CD7002E3D38 /* commentButton.h */,
@@ -803,6 +806,7 @@
 		DCB5136118C6C43700B7EE95 /* UESTCPioneer */ = {
 			isa = PBXGroup;
 			children = (
+				DCB63E0C18E6565400AA0B58 /* Alert */,
 				8834BA1D18D6F0C20023BA87 /* NetworkManager */,
 				887FD56718D1A716003F0E4D /* Constant */,
 				88E1AFD118CAC8B3008D92B7 /* CoreData */,
@@ -1008,6 +1012,15 @@
 				DCB5146518C6DF4500B7EE95 /* UPFooterCell.m */,
 			);
 			name = TableViewCell;
+			sourceTree = "<group>";
+		};
+		DCB63E0C18E6565400AA0B58 /* Alert */ = {
+			isa = PBXGroup;
+			children = (
+				DCB63E0918E6565100AA0B58 /* Alert.h */,
+				DCB63E0A18E6565100AA0B58 /* Alert.m */,
+			);
+			name = Alert;
 			sourceTree = "<group>";
 		};
 		F23FA4F618E3E89C00E174A2 /* partyDataDetail */ = {
@@ -1294,6 +1307,7 @@
 				51A0C51918E32D7300404885 /* EditCell.m in Sources */,
 				DCB5141818C6C81000B7EE95 /* PPRevealSideViewController.m in Sources */,
 				51355CCF18E05F800047ED5F /* PopCell.m in Sources */,
+				DCB63E0B18E6565100AA0B58 /* Alert.m in Sources */,
 				DCB5146618C6DF4500B7EE95 /* UPFooterCell.m in Sources */,
 				F23FA50818E3EB2B00E174A2 /* OrganDetailTableViewController.m in Sources */,
 				DCB5146018C6DF1C00B7EE95 /* UPTitleCell.m in Sources */,

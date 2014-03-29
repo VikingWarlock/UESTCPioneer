@@ -12,7 +12,7 @@
 #import "UPMainInfoCell.h"
 #import "UPFooterCell.h"
 #import "LeveyTabBarController.h"
-
+#import "commentView.h"
 @interface PublicityViewController ()
 
 @end
@@ -51,6 +51,36 @@
      
      */
     requestData=@{@"type":@"getNoticeOrAnnounce",@"userId":[constant getUserId],@"userName":[constant getUserName],@"page":@"1",@"typepid":@"0"};
+    
+    
+    
+    /*
+type=getNoticeOrAnnounce&userId=0004003990022&userName=xiao002&page=1&typepid=0
+     
+     */
+    
+    //公告公示没有评论列表，而是直接评论
+//    commentListRequestData=@{@"type":@"getNoticeOrAnnouce"
+//                             ,@"userId":[constant getUserId]
+//                             ,@"userName":[constant getUserName]
+//                             ,@"page":@"1"
+//                             ,@"typeid":@"0"};
+//    
+//    commentListKeyMapping=
+    
+    
+    
+    /*
+     type:writeNAcomment意见反馈；fromusername与fromuserid为评论发布者的用户名与用户userid；theme、content使用utf-8编码；typepid:为1表示为通知评论，0表示为公示意见；注意：typepid为0时theme为所需字段，为1时可以不传送theme
+     
+     */
+    commentWriteRequestData=@{@"type": @"writeNAcomment"
+                              ,@"fromusername":[constant getUserName]
+                              ,@"fromuserid":[constant getUserId]
+                              ,@"typepid":@"0"
+                              ,@"gonggaoid":@"0"
+                              ,@"theme":@""
+                              ,@"content":@""};
     
 }
 
@@ -107,6 +137,7 @@
 //        UIButton *btn3 = (UIButton *)[cell3.contentView viewWithTag:btn3Tag];
         
         UPFooterCell *cell3 = (UPFooterCell*)cell;
+        
         return cell3;
     }
     
@@ -148,7 +179,45 @@
  */
 
 //#define testData @{@"getNotice"}
+#pragma mark 公告公示的评论方式不同，在这里重载父类方法
+-(void)commentButtonPress:(commentButton *)button{
+    commentView *co=[[commentView alloc]init];
+    
+    [co popUpCommentViewWithCommitBlock:^(NSString *commentBody) {
+        
+        
+        
+        //设置评论所需的数据并提交评论
+        NSMutableDictionary *dic = [[NSMutableDictionary alloc]initWithDictionary:commentWriteRequestData];
+        [dic setObject:[NSString stringWithFormat:@"%d",button.theId] forKey:@"gonggaoid"];
+        PublicityNewsEntity *entity= [PublicMethod entity:kPublicityNewsEntityName WithId:button.theId];
+        [dic setObject:[entity titleBody] forKey:@"theme"];
+        [dic setObject:commentBody forKey:@"content"];
+        commentWriteRequestData=[[NSDictionary alloc]initWithDictionary:dic];
+        
+        
+        
+        [NetworkCenter AFRequestWithData:commentWriteRequestData SuccessBlock:^(AFHTTPRequestOperation *operation, id resultObject) {
+            
+            NSDictionary *dic = [NSJSONSerialization JSONObjectWithData:resultObject options:NSJSONReadingMutableLeaves error:nil];
+            if ([dic[@"result"] isEqualToString:@"success"]){
+                [Alert showAlert:@"评论成功"];
+            }
+            else {
+                [Alert showAlert:@"评论失败"];
+            }
+            
+            //弹出提示：评论成功
+            //            NSLog(@"评论成功");
+            [co closeCommentView];
+            
+        } FailureBlock:^(AFHTTPRequestOperation *operation, NSError *error) {
 
+        }];
+        
+        
+    }];
+}
 
 
 @end

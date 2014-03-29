@@ -14,4 +14,10 @@
 @property NSDictionary *commentListRequestData;
 //用于将编写的评论提交到服务器的参数Dictionary
 @property NSDictionary *commentRequestData;
+
+///评论内容请求的key
+@property NSString *commentContentKey;
+
+///评论列表返回内容的键和本地键不一样
+@property NSDictionary *commentListKeyMapping;
 @end

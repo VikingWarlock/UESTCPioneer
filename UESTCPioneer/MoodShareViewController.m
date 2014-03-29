@@ -76,12 +76,18 @@
     
     
     
+#pragma mark request Data load
     entityName=kMoodShareNewsEntityName;
     entityMapping=[Mapping MoodShareMapping];
     requestData=@{@"type":@"getEventShare",@"userId":[constant getUserId],@"page":@"1"};
-    
-
-    
+    //请求评论列表用的参数
+    commentListRequestData=@{@"type":@"getShareComment",@"page":@"1",@"shareId":@"0"};
+    //写评论请求用的参数
+    commentWriteRequestData=@{@"type":@"writeShareComment",@"userId":[constant getUserId],@"userName":[constant getUserName],@"shareId":@"0",@"comment":@""};
+    commentIdKey=@"shareId";
+    commentContentKey=@"comment";
+    commentWriteIdKey=commentIdKey;
+    commentListKeyMapping=@{@"userName":@"userName",@"comment":@"commentBody"};
     
 }
 
@@ -242,25 +248,25 @@
 
 #pragma mark - commentButton press
 
--(void)commentButtonPress:(commentButton*)button{
-    commentViewController *comment = [[commentViewController alloc]init];
-    
-    
-//    1）type：writeShareComment  （2）user_id：用户的账号
-//    （3）username：用户姓名      （4）shareId：活动分享的id
-//    （5）comment：评论的内容
-
-    
-    //请求评论列表用的参数
-    comment.commentListRequestData=@{@"type":@"getShareComment",@"page":@"1",@"shareId":[NSString stringWithFormat:@"%d",button.theId]};
-    
-    
-    //写评论请求用的参数
-    comment.commentRequestData=@{@"type":@"writeShareComment",@"user_id":[constant getUserId],@"username":[constant getUserName],@"shareId":[NSString stringWithFormat:@"%d",button.theId],@"comment":@""};
-    
-//    comment.theId=button.theId;
-    comment.numberOfComment=[button.titleLabel.text integerValue];
-    [self.leveyTabBarController.navigationController pushViewController:comment animated:YES];
-}
+//-(void)commentButtonPress:(commentButton*)button{
+//    commentViewController *comment = [[commentViewController alloc]init];
+//    
+//    
+////    1）type：writeShareComment  （2）user_id：用户的账号
+////    （3）username：用户姓名      （4）shareId：活动分享的id
+////    （5）comment：评论的内容
+//
+//    
+//    //请求评论列表用的参数
+//    comment.commentListRequestData=@{@"type":@"getShareComment",@"page":@"1",@"shareId":[NSString stringWithFormat:@"%d",button.theId]};
+//    
+//    
+//    //写评论请求用的参数
+//    comment.commentRequestData=@{@"type":@"writeShareComment",@"user_id":[constant getUserId],@"username":[constant getUserName],@"shareId":[NSString stringWithFormat:@"%d",button.theId],@"comment":@""};
+//    
+////    comment.theId=button.theId;
+//    comment.numberOfComment=[button.titleLabel.text integerValue];
+//    [self.leveyTabBarController.navigationController pushViewController:comment animated:YES];
+//}
 
 @end

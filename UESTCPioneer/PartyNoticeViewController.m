@@ -59,6 +59,34 @@
     entityMapping=[Mapping PartyNoticeMapping];
     
     
+    /*
+     type=getNAcomment&noticeid=13&userId=0012005130022&typepid=1&page=1
+     
+     */
+    commentIdKey=@"noticeid";
+    commentListRequestData=@{@"type":@"getNAcomment"
+                             ,@"noticeid":@"0"
+                             ,@"userId":[constant getUserId]
+                             ,@"typepid":@"1"
+                             ,@"page":@"1"};
+    
+    
+    /*
+     type=writeNAcomment&fromusername=xiao002&fromuserid=0004003990022&gonggaoid=1&content=通知的评论&typepid=1
+     
+     */
+    commentWriteIdKey=@"gonggaoid";
+    commentWriteRequestData=@{@"type":@"writeNAcomment"
+                              ,@"fromusername":[constant getUserName]
+                              ,@"fromuserid":[constant getUserId]
+                              ,@"gonggaoid":@"0"
+                              ,@"content":@""
+                              ,@"typepid":@"1"};
+    commentContentKey=@"content";
+    commentListKeyMapping=@{@"content":@"commentBody",@"userName":@"userName"};
+    
+    
+
 }
 
 -(void)viewWillAppear:(BOOL)animated{

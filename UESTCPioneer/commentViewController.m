@@ -99,6 +99,8 @@
 static NSString *cellIdentifier=@"cell";
 
 @implementation commentViewController
+
+
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
@@ -195,12 +197,21 @@ static NSString *cellIdentifier=@"cell";
     [co popUpCommentViewWithCommitBlock:^(NSString *commentBody) {
         NSMutableDictionary *dic= [[NSMutableDictionary alloc]initWithDictionary:weakSelf.commentRequestData];
 //        [weakSelf.commentRequestData setObject:@"comment" forKey:commentBody];
-        dic[@"comment"]=commentBody;
+        dic[_commentContentKey]=commentBody;
         self.commentRequestData=[[NSDictionary alloc]initWithDictionary:dic];
         [NetworkCenter AFRequestWithData:self.commentRequestData SuccessBlock:^(AFHTTPRequestOperation *operation, id resultObject) {
-
+            
+            
+            NSDictionary *dic = [NSJSONSerialization JSONObjectWithData:resultObject options:NSJSONReadingMutableLeaves error:nil];
+            if ([dic[@"result"] isEqualToString:@"success"]){
+                [Alert showAlert:@"评论成功"];
+            }
+            else {
+                [Alert showAlert:@"评论失败"];
+            }
+            
             //弹出提示：评论成功
-            NSLog(@"评论成功");
+//            NSLog(@"评论成功");
             [co closeCommentView];
             [self _requestList];
             
@@ -231,15 +242,35 @@ static NSString *cellIdentifier=@"cell";
             return ;
         }
         
+
+        
+        
+
+        
+        
         
         
         NSMutableArray *targetArray = [[NSMutableArray alloc]init];
         for (NSDictionary *sourceDic in arr){
             
             NSMutableDictionary *targetDic = [[NSMutableDictionary alloc]init];
+            
+            
+            
             [targetDic setObject:@"" forKey:@"headImageUrl"];
-            [targetDic setObject:sourceDic[@"userName"] forKey:@"userName"];
-            [targetDic setObject:sourceDic[@"comment"] forKey:@"commentBody"];
+            
+            //@根据映射字典把服务器返回json的字段映射到本地字段如commentAuthor->userName,commentContent->commentBody
+            NSEnumerator *keyEnumerator=[_commentListKeyMapping keyEnumerator];
+            NSString *key;
+            while((key=[[keyEnumerator nextObject] stringValue])!=nil){
+                    [targetDic setObject:sourceDic[key]  forKey:_commentListKeyMapping[key]];
+            }
+            
+            
+            
+            
+//            [targetDic setObject:sourceDic[@"userName"]  forKey:@"userName"];
+//            [targetDic setObject:sourceDic[@"comment"] forKey:@"commentBody"];
             [targetArray addObject:targetDic];
         }
         
@@ -266,8 +297,13 @@ static NSString *cellIdentifier=@"cell";
             
             NSMutableDictionary *targetDic = [[NSMutableDictionary alloc]init];
             [targetDic setObject:@"" forKey:@"headImageUrl"];
-            [targetDic setObject:sourceDic[@"userName"] forKey:@"userName"];
-            [targetDic setObject:sourceDic[@"comment"] forKey:@"commentBody"];
+            
+            //@根据映射字典把服务器返回json的字段映射到本地字段如commentAuthor->userName,commentContent->commentBody
+            NSEnumerator *keyEnumerator=[_commentListKeyMapping keyEnumerator];
+            NSString *key;
+            while((key=[keyEnumerator nextObject])!=nil){
+                [targetDic setObject:sourceDic[key]  forKey:_commentListKeyMapping[key]];
+            }
             [targetArray addObject:targetDic];
         }
         tableViewDataArray=targetArray;
