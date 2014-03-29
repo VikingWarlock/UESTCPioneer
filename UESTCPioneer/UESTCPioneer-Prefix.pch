@@ -26,5 +26,6 @@
 #import<QuartzCore/QuartzCore.h>
 #import"Mapping.h"
 #import"Alert.h"
+#import"RequestData.h"
 
 #endif

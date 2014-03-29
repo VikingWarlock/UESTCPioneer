@@ -127,6 +127,7 @@
 		DC0BFFDC18E255F7002E3D38 /* MJRefreshConst.m in Sources */ = {isa = PBXBuildFile; fileRef = DC0BFFD518E255F7002E3D38 /* MJRefreshConst.m */; };
 		DC0BFFDD18E255F7002E3D38 /* MJRefreshFooterView.m in Sources */ = {isa = PBXBuildFile; fileRef = DC0BFFD718E255F7002E3D38 /* MJRefreshFooterView.m */; };
 		DC0BFFDE18E255F7002E3D38 /* MJRefreshHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = DC0BFFD918E255F7002E3D38 /* MJRefreshHeaderView.m */; };
+		DC14F9F018E6B109003D6B2C /* RequestData.m in Sources */ = {isa = PBXBuildFile; fileRef = DC14F9EF18E6B109003D6B2C /* RequestData.m */; };
 		DC376ECE18E522C5005F7DC8 /* PioneerNewsEntity.m in Sources */ = {isa = PBXBuildFile; fileRef = DC376ECD18E522C5005F7DC8 /* PioneerNewsEntity.m */; };
 		DC376ED118E522C6005F7DC8 /* MoodShareNewsEntity.m in Sources */ = {isa = PBXBuildFile; fileRef = DC376ED018E522C6005F7DC8 /* MoodShareNewsEntity.m */; };
 		DC376ED418E522C6005F7DC8 /* NewsEntity.m in Sources */ = {isa = PBXBuildFile; fileRef = DC376ED318E522C6005F7DC8 /* NewsEntity.m */; };
@@ -359,6 +360,8 @@
 		DC0BFFD718E255F7002E3D38 /* MJRefreshFooterView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MJRefreshFooterView.m; sourceTree = "<group>"; };
 		DC0BFFD818E255F7002E3D38 /* MJRefreshHeaderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MJRefreshHeaderView.h; sourceTree = "<group>"; };
 		DC0BFFD918E255F7002E3D38 /* MJRefreshHeaderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MJRefreshHeaderView.m; sourceTree = "<group>"; };
+		DC14F9EE18E6B109003D6B2C /* RequestData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RequestData.h; sourceTree = "<group>"; };
+		DC14F9EF18E6B109003D6B2C /* RequestData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RequestData.m; sourceTree = "<group>"; };
 		DC376ECC18E522C5005F7DC8 /* PioneerNewsEntity.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PioneerNewsEntity.h; path = CoreData_Model/PioneerNewsEntity.h; sourceTree = "<group>"; };
 		DC376ECD18E522C5005F7DC8 /* PioneerNewsEntity.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PioneerNewsEntity.m; path = CoreData_Model/PioneerNewsEntity.m; sourceTree = "<group>"; };
 		DC376ECF18E522C6005F7DC8 /* MoodShareNewsEntity.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MoodShareNewsEntity.h; path = CoreData_Model/MoodShareNewsEntity.h; sourceTree = "<group>"; };
@@ -618,6 +621,8 @@
 			children = (
 				8834BA1E18D6F0C20023BA87 /* NetworkCenter.h */,
 				8834BA1F18D6F0C20023BA87 /* NetworkCenter.m */,
+				DC14F9EE18E6B109003D6B2C /* RequestData.h */,
+				DC14F9EF18E6B109003D6B2C /* RequestData.m */,
 			);
 			path = NetworkManager;
 			sourceTree = "<group>";
@@ -1332,6 +1337,7 @@
 				DCB5136818C6C43700B7EE95 /* main.m in Sources */,
 				88E1AFD718CACC3C008D92B7 /* PublicMethod.m in Sources */,
 				DCB5144918C6D3ED00B7EE95 /* PartyDataViewController.m in Sources */,
+				DC14F9F018E6B109003D6B2C /* RequestData.m in Sources */,
 				DC376ED118E522C6005F7DC8 /* MoodShareNewsEntity.m in Sources */,
 				F23FA50B18E3EB6500E174A2 /* OrganTableViewController.m in Sources */,
 				DCB5145818C6DDFD00B7EE95 /* UPTableView.m in Sources */,

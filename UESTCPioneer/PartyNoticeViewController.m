@@ -95,7 +95,7 @@
 
 - (void)dropClicked:(id)sender {
     NSArray * arr = [[NSArray alloc] init];
-    arr = [NSArray arrayWithObjects:@"全部", @"通信", @"计算机", @"微固", @"数学", @"外国语",nil];
+    arr = [NSArray arrayWithObjects:@"校级",@"院级",@"支部",@"全部",nil];
     if(dropDown == nil) {
         CGFloat f = 180;
         dropDown = [[NIDropDown alloc]initDropDown:sender :&f :arr];
@@ -104,6 +104,25 @@
     else {
         [dropDown hideDropDown:sender];
         [self rel];
+    }
+}
+
+-(void)niDropDownDelegateMethod:(NIDropDown *)sender ForTitle:(NSString *)title ForIndex:(NSInteger)index{
+    if ([title isEqualToString:@"校级"]){
+        requestData=[RequestData NoticeDataWithLevel:0];
+        [self.tableView beginRefreshing];
+    }
+    else if ([title isEqualToString:@"院级"]){
+        requestData=[RequestData NoticeDataWithLevel:1];
+        [self.tableView beginRefreshing];
+    }
+    else if ([title isEqualToString:@"支部"]){
+        requestData=[RequestData NoticeDataWithLevel:2];
+        [self.tableView beginRefreshing];
+    }
+    else if ([title isEqualToString:@"全部部"]){
+        requestData=[RequestData NoticeDataWithLevel:3];
+        [self.tableView beginRefreshing];
     }
 }
 

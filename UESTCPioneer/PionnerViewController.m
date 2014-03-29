@@ -118,7 +118,30 @@
 
 
 -(void)niDropDownDelegateMethod:(NIDropDown *)sender ForTitle:(NSString *)title ForIndex:(NSInteger)index{
-    
+    if ([title isEqualToString:@"全部"]){
+        requestData=[RequestData AllNewsReqeustData];
+        [self.tableView beginRefreshing];
+    }
+    else if ([title isEqualToString:@"通信"]){
+        requestData=[RequestData CollegeRequestDataWithCode:@"001"];
+        [self.tableView beginRefreshing];
+    }
+    else if ([title isEqualToString:@"计算机"]){
+        requestData=[RequestData CollegeRequestDataWithCode:@"006"];
+        [self.tableView beginRefreshing];
+    }
+    else if ([title isEqualToString:@"微固"]){
+        requestData=[RequestData CollegeRequestDataWithCode:@"003"];
+        [self.tableView beginRefreshing];
+    }
+    else if ([title isEqualToString:@"数学"]){
+        requestData=[RequestData CollegeRequestDataWithCode:@"010"];
+        [self.tableView beginRefreshing];
+    }
+    else if ([title isEqualToString:@"外国语"]){
+        requestData=[RequestData CollegeRequestDataWithCode:@"013"];
+        [self.tableView beginRefreshing];
+    }
 }
 
 //每个分区的行数
