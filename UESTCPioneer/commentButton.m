@@ -29,7 +29,7 @@
         
         
         
-        [self setBackgroundImage:[helper makeImageWithColor:[UIColor grayColor]] forState:UIControlStateHighlighted];
+        [self setBackgroundImage:[helper makeImageWithColor:[UIColor colorWithWhite:0.5 alpha:0.2]] forState:UIControlStateHighlighted];
         [self setTitleEdgeInsets:UIEdgeInsetsMake(0, 20, 0, 0)];
         [self.titleLabel setFont:[UIFont systemFontOfSize:18]];
         [self.titleLabel setTextAlignment:NSTextAlignmentLeft];
