@@ -236,7 +236,7 @@
 -(void)shareButtonClick:(NSInteger)theId{
     shareEditView *shareView = [[shareEditView alloc]init];
     
-    NewsEntity *entity=[PublicMethod entity:kNewsEntityName WithId:theId];
+    PartyNoticeNewsEntity *entity=[PublicMethod entity:kPartyNoticeNewsEntityName WithId:theId];
     
     [shareView popUpCommentViewWithShareSourceInfo:entity.newsBody CommitBlock:^(NSString *commentBody) {
         /*
@@ -246,6 +246,9 @@
          */
         
         
+
+        //@评论内容要加上@对方用户的信息
+        commentBody=[commentBody stringByAppendingString:[NSString stringWithFormat:@"@%@//",entity.userName]];
         
         //@判断是否为管理员
         NSString *userId=[constant getUserId];
