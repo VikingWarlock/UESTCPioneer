@@ -74,7 +74,7 @@ ype：请求类型；userId：请求者权限Id；userName：请求者用户名�
     commentWriteIdKey=@"eventid";
     commentContentKey=@"comment";
     
-    commentListKeyMapping=@{@"userName":@"userName",@"comment":@"commentBody"};
+    commentListKeyMapping=@{@"commentAuthor":@"userName",@"commentContent":@"commentBody"};
     
 }
 
@@ -256,10 +256,50 @@ ype：请求类型；userId：请求者权限Id；userName：请求者用户名�
 
 #pragma mark - 报名
 
-#warning 报名按钮功能还没实现呢
+
+/*
+    type=getEvent&userId=00120051300
+    
+ type：请求类型；userId：用户权限Id；userName：用户名；eventid：要报名的活动序号；signUp：报名请求标志，1为报名，0为取消报名；name：用户的姓名（utf-8编码）
+ */
+
 -(void)UPFooterCell:(UPFooterCell *)cell markButtonClick:(UIButton *)button{
     
+    
+//    PartyActivityNewsEntity *entity = [PublicMethod entity:kPartyActivityNewsEntityName WithId:cell.theId];
+    
+    NSInteger signUp = button.selected;
+    
+    NSDictionary *signUpRequestData = @{
+                                        @"type":@"getEvent"
+                                        ,@"userId":[constant getUserId]
+                                        ,@"userName":[constant getUserName]
+                                        ,@"eventid":[NSString stringWithFormat:@"%d",cell.theId]
+                                        ,@"signUp":[NSString stringWithFormat:@"%d",signUp]
+                                        ,@"name":[constant getName]
+                                        };
+    
+    
+    [NetworkCenter AFRequestWithData:signUpRequestData SuccessBlock:^(AFHTTPRequestOperation *operation, id resultObject) {
+        NSDictionary *dic = [NSJSONSerialization JSONObjectWithData:resultObject options:NSJSONReadingMutableLeaves error:nil];
+        NSString *resultString=dic[@"result"];
+        resultString=[resultString substringToIndex:7];
+        if ([resultString isEqualToString:@"success"]){
+            [Alert showAlert:@"操作成功"];
+        }
+        else {
+        [Alert showAlert:@"操作失败"];
+        }
+
+        
+    } FailureBlock:^(AFHTTPRequestOperation *operation, NSError *error) {
+        [Alert showAlert:@"发生错误"];
+    }];
+    
 }
+
+
+
 
 //）type：getEvent  （2）userId：查看着的用户账号
 //（3）page：页码

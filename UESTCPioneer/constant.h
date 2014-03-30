@@ -36,4 +36,10 @@
 +(void)setUserId:(NSString*)user;
 +(NSString*)getUserName;
 +(void)setUserName:(NSString*)name;
+
+
++(NSString*)getName;
+
++(void)setName:(NSString*)name;
+
 @end
