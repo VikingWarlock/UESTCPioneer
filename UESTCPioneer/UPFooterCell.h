@@ -11,11 +11,12 @@
 #define btn1Tag          1
 #define btn2Tag          2
 #define btn3Tag          3
-
+@class  UPFooterCell;
 @protocol UPFooterCellDelegate <NSObject>
 
 @optional
 -(void)shareButtonClick:(NSInteger)theId;
+-(void)UPFooterCell:(UPFooterCell*)cell shareButtonPress:(UIButton*)button;
 
 @end
 
@@ -33,5 +34,7 @@
 @property (nonatomic)NSInteger theId;
 @property (nonatomic,weak)id<UPFooterCellDelegate>delegate;
 @property(nonatomic) BOOL shareButtonEnable;
+//用于异步请求的一些判断用途
+@property (nonatomic)BOOL shareButtonRequesting;
 
 @end

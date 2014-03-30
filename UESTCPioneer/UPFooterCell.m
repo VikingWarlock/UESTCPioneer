@@ -26,7 +26,11 @@
     self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
     if (self) {
         // Initialization code
+#pragma makr 变量初始化
         _shareButtonEnable=NO;
+        _shareButtonRequesting=NO;
+        
+        
         CGRect btn1Rect = CGRectMake(10, 10, 75, 20);
         UIButton *btn1 = [[UIButton alloc]initWithFrame:btn1Rect];
         btn1.tag = btn1Tag;
@@ -103,7 +107,10 @@
         
         //增加响应事件
         shareButton=btn2;
+        
+        ///历史原因保留这个函数
         [shareButton addTarget:self action:@selector(shareButtonPress:) forControlEvents:UIControlEventTouchUpInside];
+        [shareButton addTarget:self action:@selector(UPFooterCell:shareButtonPress:) forControlEvents:UIControlEventTouchUpInside];
         
         btn2.tag = btn2Tag;
 //        btn2.hidden = YES;
@@ -126,9 +133,15 @@
 }
 
 #pragma  delegate 
+///历史原因保留这个函数
 -(void)shareButtonPress:(UIButton*)button{
     if ([self.delegate respondsToSelector:@selector(shareButtonClick:)]){
         [self.delegate shareButtonClick:self.theId];
+    }
+}
+-(void)UPFooterCell:(UPFooterCell*)cell shareButtonPress:(UIButton*)button{
+    if ([self.delegate respondsToSelector:@selector(UPFooterCell:shareButtonPress:)]){
+        [self.delegate UPFooterCell:self shareButtonPress:button];
     }
 }
 

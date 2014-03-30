@@ -13,7 +13,7 @@
 #import "UPFooterCell.h"
 #import "LeveyTabBarController.h"
 
-@interface PartyActivityViewController ()
+@interface PartyActivityViewController ()<UPFooterCellDelegate>
 
 @end
 
@@ -155,6 +155,7 @@ ype：请求类型；userId：请求者权限Id；userName：请求者用户名�
 //        UIButton *btn2 = (UIButton *)[cell3.contentView viewWithTag:btn2Tag];
 //        UIButton *btn3 = (UIButton *)[cell3.contentView viewWithTag:btn3Tag];
         btn1.hidden = NO;
+        cell3.delegate=self;
         cell3.shareButtonEnable=YES;
         [cell3 setShareButtonImage:[UIImage imageNamed:@"dig.png"]];
         [cell3 setShareNum:[entity.count integerValue]];
@@ -196,6 +197,52 @@ ype：请求类型；userId：请求者权限Id；userName：请求者用户名�
     // Dispose of any resources that can be recreated.
 }
 
+#pragma mark - 点赞
+
+/*
+ type=clickLove&userId=00100131103&userName=1111&eventid=2
+ */
+
+
+-(void)UPFooterCell:(UPFooterCell *)cell shareButtonPress:(UIButton *)button{
+    if (cell.shareButtonRequesting){
+        [Alert showAlert:@"您点太快了"];
+        return;
+    }
+    
+    //@标识赞正在进行异步请求,防止用户快速点击
+    cell.shareButtonRequesting=YES;
+    
+    PartyActivityNewsEntity *entity  =[PublicMethod entity:kPartyActivityNewsEntityName WithId:cell.theId];
+    NSDictionary *DiggRequestData = @{
+                                      @"type":@"clickLove"
+                                      ,@"userId":[constant getUserId]
+                                      ,@"userName":[constant getUserName]
+                                      ,@"eventId":[NSString stringWithFormat:@"%d",cell.theId]
+                                      };
+    
+    [NetworkCenter AFRequestWithData:DiggRequestData SuccessBlock:^(AFHTTPRequestOperation *operation, id resultObject) {
+        NSDictionary *dic = [NSJSONSerialization JSONObjectWithData:resultObject options:NSJSONReadingMutableLeaves error:nil];
+        NSString *result =dic[@"result"];
+        if ([result isEqualToString:@"successFavor"]){
+            NSInteger count =  [entity.count integerValue];
+            entity.count=[NSNumber numberWithInteger:++count];
+            [cell setShareNum:count];
+            [Alert showAlert:@"点赞成功"];
+        }
+        else if ([result isEqualToString:@"successCancel"]){
+            NSInteger count =  [entity.count integerValue];
+            entity.count=[NSNumber numberWithInteger:--count];
+            [cell setShareNum:count];
+            [Alert showAlert:@"取消赞"];
+        }
+        else [Alert showAlert:@"点赞错误"];
+        cell.shareButtonRequesting=NO;
+    } FailureBlock:^(AFHTTPRequestOperation *operation, NSError *error) {
+        [Alert showAlert:@"点赞错误"];
+                cell.shareButtonRequesting=NO;
+    }];
+}
 
 
 //）type：getEvent  （2）userId：查看着的用户账号
