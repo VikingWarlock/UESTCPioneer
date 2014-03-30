@@ -151,14 +151,24 @@ ype：请求类型；userId：请求者权限Id；userName：请求者用户名�
 //        if(cell3 == nil){
 //            cell3 = [[UPFooterCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:customFooterCellIndentifier];
 //        }
-        UIButton *btn1 = (UIButton *)[cell3.contentView viewWithTag:btn1Tag];
+//        UIButton *btn1 = (UIButton *)[cell3.contentView viewWithTag:btn1Tag];
 //        UIButton *btn2 = (UIButton *)[cell3.contentView viewWithTag:btn2Tag];
 //        UIButton *btn3 = (UIButton *)[cell3.contentView viewWithTag:btn3Tag];
-        btn1.hidden = NO;
+//        btn1.hidden = NO;
         cell3.delegate=self;
         cell3.shareButtonEnable=YES;
+        cell3.markButtonEnable=YES;
+        
+        [cell3.markButton setImage:[UIImage imageNamed:@"sign"] forState:UIControlStateNormal];
+        [cell3.markButton setImage:[UIImage imageNamed:@"sign_mark"] forState:UIControlStateSelected];
+        
+        
         [cell3 setShareButtonImage:[UIImage imageNamed:@"dig.png"]];
         [cell3 setShareNum:[entity.count integerValue]];
+        
+        
+        BOOL signUp= [entity.signUp boolValue];
+        [cell3 setMarkButtonStatus:signUp];
 //        btn2.hidden = NO;
 //        [btn1 setImage:[UIImage imageNamed:@"sign.png"] forState:UIControlStateNormal];
 //        UIImageView *dig = (UIImageView *)[btn2 viewWithTag:11];
@@ -244,6 +254,12 @@ ype：请求类型；userId：请求者权限Id；userName：请求者用户名�
     }];
 }
 
+#pragma mark - 报名
+
+#warning 报名按钮功能还没实现呢
+-(void)UPFooterCell:(UPFooterCell *)cell markButtonClick:(UIButton *)button{
+    
+}
 
 //）type：getEvent  （2）userId：查看着的用户账号
 //（3）page：页码

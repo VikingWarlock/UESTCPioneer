@@ -17,7 +17,7 @@
 @optional
 -(void)shareButtonClick:(NSInteger)theId;
 -(void)UPFooterCell:(UPFooterCell*)cell shareButtonPress:(UIButton*)button;
-
+-(void)UPFooterCell:(UPFooterCell*)cell markButtonClick:(UIButton*)button;
 @end
 
 
@@ -31,9 +31,13 @@
 
 -(void)setShareButtonImage:(UIImage*)image;
 
+-(void)setMarkButtonStatus:(BOOL)status;
+
 @property (nonatomic)NSInteger theId;
 @property (nonatomic,weak)id<UPFooterCellDelegate>delegate;
 @property(nonatomic) BOOL shareButtonEnable;
+@property(nonatomic)BOOL markButtonEnable;
+@property(nonatomic)UIButton *markButton;
 //用于异步请求的一些判断用途
 @property (nonatomic)BOOL shareButtonRequesting;
 

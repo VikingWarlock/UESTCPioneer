@@ -13,14 +13,14 @@
 
 @interface UPFooterCell(){
     commentButton *commentBtn,*shareButton;
-    
+    UIButton*markButton;
 }
 
 
 @end
 
 @implementation UPFooterCell
-
+@synthesize markButton;
 - (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier
 {
     self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
@@ -31,19 +31,10 @@
         _shareButtonRequesting=NO;
         
         
-        CGRect btn1Rect = CGRectMake(10, 10, 75, 20);
-        UIButton *btn1 = [[UIButton alloc]initWithFrame:btn1Rect];
-        btn1.tag = btn1Tag;
-        btn1.hidden = YES;
-        //[btn1 setTitle:@"已读" forState:UIControlStateNormal];
-        //[btn1 setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
-        [self.contentView addSubview:btn1];
         
         CGRect btn3Rect = CGRectMake(230, 5, 60, 30);
         commentButton *btn3 = [[commentButton alloc]initWithFrame:btn3Rect];
         commentBtn=btn3;
-        
-        
         btn3.tag = btn3Tag;
         UIImageView *comment = [[UIImageView alloc]initWithImage:[UIImage imageNamed:@"comment.png"]];
         comment.frame = CGRectMake(0, 5, 20, 20);
@@ -132,6 +123,44 @@
     }
 }
 
+#pragma mark markButton
+-(void)setMarkButtonEnable:(BOOL)markButtonEnable{
+    if (markButtonEnable){
+        if (markButton!=nil)return;
+        CGRect btn1Rect = CGRectMake(10, 10, 75, 20);
+        UIButton *btn1 = [[UIButton alloc]initWithFrame:btn1Rect];
+        markButton=btn1;
+        btn1.tag = btn1Tag;
+        [btn1 addTarget:self action:@selector(markButtonClick:) forControlEvents:UIControlEventTouchUpInside];
+        //        btn1.hidden = YES;
+        //[btn1 setTitle:@"已读" forState:UIControlStateNormal];
+        //[btn1 setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
+        [self.contentView addSubview:btn1];
+    }
+    else {
+        [markButton removeFromSuperview];
+        markButton=nil;
+    }
+}
+
+-(void)markButtonClick:(UIButton*)button{
+    button.selected=!button.selected;
+    if ([self.delegate respondsToSelector:@selector(UPFooterCell:markButtonClick:)]){
+        [self.delegate UPFooterCell:self markButtonClick:button];
+    }
+    
+}
+
+-(void)setMarkButtonStatus:(BOOL)status{
+    if (status){
+        markButton.selected=YES;
+    }
+    else {
+        markButton.selected=NO;
+    }
+}
+
+
 #pragma  delegate 
 ///历史原因保留这个函数
 -(void)shareButtonPress:(UIButton*)button{
@@ -144,6 +173,9 @@
         [self.delegate UPFooterCell:self shareButtonPress:button];
     }
 }
+
+
+
 
 
 
