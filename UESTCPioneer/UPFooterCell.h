@@ -22,6 +22,10 @@
 
 
 @interface UPFooterCell : UITableViewCell
+
+
+
+
 -(void)addCommentButtonTaget:(id)target Action:(SEL)action;
 
 -(void)setCommentId:(NSInteger)theId;

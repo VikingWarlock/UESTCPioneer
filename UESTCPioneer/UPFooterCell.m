@@ -11,6 +11,8 @@
 
 #define shareButtonImageViewTag 11
 
+
+
 @interface UPFooterCell(){
     commentButton *commentBtn,*shareButton;
     UIButton*markButton;
@@ -30,20 +32,26 @@
         _shareButtonEnable=NO;
         _shareButtonRequesting=NO;
         
-        
+
         
         CGRect btn3Rect = CGRectMake(230, 5, 60, 30);
-        commentButton *btn3 = [[commentButton alloc]initWithFrame:btn3Rect];
+        commentButton *btn3 = [[commentButton alloc]initWithFrame:btn3Rect WithImage:[UIImage imageNamed:@"comment.png"]];
         commentBtn=btn3;
         btn3.tag = btn3Tag;
-        UIImageView *comment = [[UIImageView alloc]initWithImage:[UIImage imageNamed:@"comment.png"]];
-        comment.frame = CGRectMake(0, 5, 20, 20);
-        [btn3 addSubview:comment];
-        [btn3 setTitle:@"评论" forState:UIControlStateNormal];
-        [btn3 setTitleColor:[UIColor grayColor] forState:UIControlStateNormal];
-        [btn3 setTitleEdgeInsets:UIEdgeInsetsMake(0, 20, 0, 0)];
-        [btn3.titleLabel setFont:[UIFont systemFontOfSize:15]];
-        [btn3.titleLabel setTextAlignment:NSTextAlignmentLeft];
+//        UIImageView *comment = [[UIImageView alloc]initWithImage:[UIImage imageNamed:@"comment.png"]];
+//        comment.frame = CGRectMake(5, 2, 24, 24);
+//        [btn3 addSubview:comment];
+//        [btn3 setTitle:@"评论" forState:UIControlStateNormal];
+//        [btn3 setTitleColor:commentButtonTitleColor forState:UIControlStateNormal];
+//        [btn3 setTitleColor:[UIColor grayColor] forState:UIControlStateHighlighted];
+
+        
+        
+        
+//        [btn3 setBackgroundImage:[helper makeImageWithColor:[UIColor grayColor]] forState:UIControlStateHighlighted];
+//        [btn3 setTitleEdgeInsets:UIEdgeInsetsMake(0, 20, 0, 0)];
+//        [btn3.titleLabel setFont:[UIFont systemFontOfSize:18]];
+//        [btn3.titleLabel setTextAlignment:NSTextAlignmentLeft];
         [self.contentView addSubview:btn3];
 
     }
@@ -85,8 +93,7 @@
 }
 
 -(void)setShareButtonImage:(UIImage*)image{
-    UIImageView *imageView = (UIImageView*)[self viewWithTag:shareButtonImageViewTag];
-    [imageView setImage:image];
+    [shareButton setButtonImage:image];
 }
 
 -(void)setShareButtonEnable:(BOOL)shareButtonEnable{
@@ -94,7 +101,7 @@
     if (shareButtonEnable){
         if (shareButton!=Nil)return;
         CGRect btn2Rect = CGRectMake(160, 5, 60, 30);
-        commentButton *btn2 = [[commentButton alloc]initWithFrame:btn2Rect];
+        commentButton *btn2 = [[commentButton alloc]initWithFrame:btn2Rect WithImage:[UIImage imageNamed:@"share.png"]];
         
         //增加响应事件
         shareButton=btn2;
@@ -105,15 +112,15 @@
         
         btn2.tag = btn2Tag;
 //        btn2.hidden = YES;
-        UIImageView *share = [[UIImageView alloc]initWithImage:[UIImage imageNamed:@"share.png"]];
-        share.frame = CGRectMake(0, 5, 20, 20);
-        share.tag = shareButtonImageViewTag;
-        [btn2 addSubview:share];
-        [btn2 setTitle:@"转发" forState:UIControlStateNormal];
-        [btn2 setTitleColor:[UIColor grayColor] forState:UIControlStateNormal];
-        [btn2 setTitleEdgeInsets:UIEdgeInsetsMake(0, 20, 0, 0)];
-        [btn2.titleLabel setFont:[UIFont systemFontOfSize:15]];
-        [btn2.titleLabel setTextAlignment:NSTextAlignmentLeft];
+//        UIImageView *share = [[UIImageView alloc]initWithImage:[UIImage imageNamed:@"share.png"]];
+//        share.frame = CGRectMake(5, 2, 24, 24);
+//        share.tag = shareButtonImageViewTag;
+//        [btn2 addSubview:share];
+//        [btn2 setTitle:@"转发" forState:UIControlStateNormal];
+//        [btn2 setTitleColor:[UIColor grayColor] forState:UIControlStateNormal];
+//        [btn2 setTitleEdgeInsets:UIEdgeInsetsMake(0, 20, 0, 0)];
+//        [btn2.titleLabel setFont:[UIFont systemFontOfSize:18]];
+//        [btn2.titleLabel setTextAlignment:NSTextAlignmentLeft];
         [self.contentView addSubview:btn2];
 
     }
