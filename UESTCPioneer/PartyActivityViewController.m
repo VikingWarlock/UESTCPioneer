@@ -118,6 +118,7 @@ ype：请求类型；userId：请求者权限Id；userName：请求者用户名�
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     UITableViewCell *cell=[super tableView:tableView cellForRowAtIndexPath:indexPath];
+    PartyActivityNewsEntity *entity = tableViewEntitiesArray[indexPath.section];
     if (indexPath.row == 0) {
 //        static NSString *customTitleCellIndentifier = @"CustomTitleCellIndentifier";
 //        UPTitleCell *cell = [tableView dequeueReusableCellWithIdentifier:customTitleCellIndentifier];
@@ -144,21 +145,26 @@ ype：请求类型；userId：请求者权限Id；userName：请求者用户名�
         return cell2;
     }
     else {
+                UPFooterCell *cell3 = (UPFooterCell*)cell;
 //        static NSString *customFooterCellIndentifier = @"CustomFooterCellIndentifier";
 //        UPFooterCell *cell3 = [tableView dequeueReusableCellWithIdentifier:customFooterCellIndentifier];;
 //        if(cell3 == nil){
 //            cell3 = [[UPFooterCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:customFooterCellIndentifier];
 //        }
-//        UIButton *btn1 = (UIButton *)[cell3.contentView viewWithTag:btn1Tag];
+        UIButton *btn1 = (UIButton *)[cell3.contentView viewWithTag:btn1Tag];
 //        UIButton *btn2 = (UIButton *)[cell3.contentView viewWithTag:btn2Tag];
 //        UIButton *btn3 = (UIButton *)[cell3.contentView viewWithTag:btn3Tag];
-//        btn1.hidden = NO;
+        btn1.hidden = NO;
+        cell3.shareButtonEnable=YES;
+        [cell3 setShareButtonImage:[UIImage imageNamed:@"dig.png"]];
+        [cell3 setShareNum:[entity.count integerValue]];
 //        btn2.hidden = NO;
 //        [btn1 setImage:[UIImage imageNamed:@"sign.png"] forState:UIControlStateNormal];
 //        UIImageView *dig = (UIImageView *)[btn2 viewWithTag:11];
 //        [dig setImage:[UIImage imageNamed:@"dig.png"]];
 //        [btn2 setTitle:@"21" forState:UIControlStateNormal];
-        UPFooterCell *cell3 = (UPFooterCell*)cell;
+
+
         return cell3;
     }
     

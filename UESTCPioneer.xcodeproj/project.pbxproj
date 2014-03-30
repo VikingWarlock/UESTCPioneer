@@ -743,10 +743,10 @@
 				DCB6DE5118E2947D00001701 /* commentViewController.m */,
 				DC0BFFBC18E24CD7002E3D38 /* commentView.m */,
 				DC0BFFBD18E24CD7002E3D38 /* commentView.h */,
-				DC0BFFBE18E24CD7002E3D38 /* commentButton.h */,
-				DC0BFFBF18E24CD7002E3D38 /* commentButton.m */,
 				DCB576CA18E7AC2E005DCA0D /* shareEditView.h */,
 				DCB576CB18E7AC2E005DCA0D /* shareEditView.m */,
+				DC0BFFBE18E24CD7002E3D38 /* commentButton.h */,
+				DC0BFFBF18E24CD7002E3D38 /* commentButton.m */,
 			);
 			name = Comment;
 			sourceTree = "<group>";

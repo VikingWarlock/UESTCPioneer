@@ -147,6 +147,10 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     UITableViewCell *cell=[super tableView:tableView cellForRowAtIndexPath:indexPath];
+    
+    PartyNoticeNewsEntity *entity = tableViewEntitiesArray[indexPath.section];
+    
+    
     if (indexPath.row == 0) {
 //        UPTitleCell*cell=(UPTitleCell*)[super tableView:tableView cellForRowAtIndexPath:indexPath];
 //        static NSString *customTitleCellIndentifier = @"CustomTitleCellIndentifier";
@@ -195,11 +199,16 @@
 //        btn2.hidden = NO;
 //        
 //        [btn1 setImage:[UIImage imageNamed:@"read.png"] forState:UIControlStateNormal];
+        
+
+        [cell3 setShareButtonEnable:YES];        
+        [cell3 setShareNum:[entity.transnum integerValue]];
         UIButton *btn1 = (UIButton *)[cell3.contentView viewWithTag:btn1Tag];
-        UIButton *btn2 = (UIButton *)[cell3.contentView viewWithTag:btn2Tag];
+//        UIButton *btn2 = (UIButton *)[cell3.contentView viewWithTag:btn2Tag];
 
         btn1.hidden = NO;
-        btn2.hidden = NO;
+//        btn2.hidden = NO;
+
         return cell3;
     }
     
@@ -257,7 +266,7 @@
         
         if (!([lastChar isEqualToString:@"1"] || [lastChar isEqualToString:@"2"])){
             //判断为非管理员
-            [Alert showAlert:@"对不起，你不是管理员"];
+            [Alert showAlert:@"对不起，你不是管理员!"];
             [shareView closeCommentView];
         }
         

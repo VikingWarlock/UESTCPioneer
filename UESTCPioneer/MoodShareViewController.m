@@ -117,7 +117,7 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     
         UITableViewCell *cell=[super tableView:tableView cellForRowAtIndexPath:indexPath];
-    
+
     
     if (indexPath.row == 0) {
 //        static NSString *customTitleCellIndentifier = @"CustomTitleCellIndentifier";
@@ -166,11 +166,11 @@
 //        
 //        [btn3 addTarget:self action:@selector(commentButtonPress:) forControlEvents:UIControlEventTouchUpInside];
         UPFooterCell *cell3 = (UPFooterCell*)cell;
-        UIButton *btn1 = (UIButton *)[cell3.contentView viewWithTag:btn1Tag];
-        UIButton *btn2 = (UIButton *)[cell3.contentView viewWithTag:btn2Tag];
+//        UIButton *btn1 = (UIButton *)[cell3.contentView viewWithTag:btn1Tag];
+//        UIButton *btn2 = (UIButton *)[cell3.contentView viewWithTag:btn2Tag];
         
-        btn1.hidden = NO;
-        btn2.hidden = NO;
+//        btn1.hidden = NO;
+//        btn2.hidden = NO;
         
 
         [cell3 addCommentButtonTaget:self Action:@selector(commentButtonPress:)];

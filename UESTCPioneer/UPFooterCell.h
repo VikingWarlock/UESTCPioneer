@@ -26,8 +26,12 @@
 -(void)setCommentId:(NSInteger)theId;
 
 -(void)setCommentNum:(NSInteger)num;
+-(void)setShareNum:(NSInteger)num;
+
+-(void)setShareButtonImage:(UIImage*)image;
 
 @property (nonatomic)NSInteger theId;
 @property (nonatomic,weak)id<UPFooterCellDelegate>delegate;
+@property(nonatomic) BOOL shareButtonEnable;
 
 @end
