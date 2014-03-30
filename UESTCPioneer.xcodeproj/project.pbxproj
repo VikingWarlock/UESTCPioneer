@@ -182,6 +182,7 @@
 		DCB5146918C6E29700B7EE95 /* PublicityViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DCB5146818C6E29700B7EE95 /* PublicityViewController.m */; };
 		DCB5146C18C6E2AF00B7EE95 /* PartyActivityViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DCB5146B18C6E2AF00B7EE95 /* PartyActivityViewController.m */; };
 		DCB5146F18C6E2DB00B7EE95 /* MoodShareViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DCB5146E18C6E2DB00B7EE95 /* MoodShareViewController.m */; };
+		DCB576CC18E7AC2E005DCA0D /* shareEditView.m in Sources */ = {isa = PBXBuildFile; fileRef = DCB576CB18E7AC2E005DCA0D /* shareEditView.m */; };
 		DCB63E0B18E6565100AA0B58 /* Alert.m in Sources */ = {isa = PBXBuildFile; fileRef = DCB63E0A18E6565100AA0B58 /* Alert.m */; };
 		DCB6DE5318E2947D00001701 /* commentViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DCB6DE5118E2947D00001701 /* commentViewController.m */; };
 		F23FA4F918E3E8AA00E174A2 /* Cells.m in Sources */ = {isa = PBXBuildFile; fileRef = F23FA4F818E3E8AA00E174A2 /* Cells.m */; };
@@ -455,6 +456,8 @@
 		DCB5146B18C6E2AF00B7EE95 /* PartyActivityViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PartyActivityViewController.m; sourceTree = "<group>"; };
 		DCB5146D18C6E2DB00B7EE95 /* MoodShareViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MoodShareViewController.h; sourceTree = "<group>"; };
 		DCB5146E18C6E2DB00B7EE95 /* MoodShareViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MoodShareViewController.m; sourceTree = "<group>"; };
+		DCB576CA18E7AC2E005DCA0D /* shareEditView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = shareEditView.h; sourceTree = "<group>"; };
+		DCB576CB18E7AC2E005DCA0D /* shareEditView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = shareEditView.m; sourceTree = "<group>"; };
 		DCB63E0918E6565100AA0B58 /* Alert.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Alert.h; sourceTree = "<group>"; };
 		DCB63E0A18E6565100AA0B58 /* Alert.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Alert.m; sourceTree = "<group>"; };
 		DCB6DE5118E2947D00001701 /* commentViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = commentViewController.m; sourceTree = "<group>"; };
@@ -742,6 +745,8 @@
 				DC0BFFBD18E24CD7002E3D38 /* commentView.h */,
 				DC0BFFBE18E24CD7002E3D38 /* commentButton.h */,
 				DC0BFFBF18E24CD7002E3D38 /* commentButton.m */,
+				DCB576CA18E7AC2E005DCA0D /* shareEditView.h */,
+				DCB576CB18E7AC2E005DCA0D /* shareEditView.m */,
 			);
 			name = Comment;
 			sourceTree = "<group>";
@@ -1302,6 +1307,7 @@
 				5153824018DAE1CE007C4675 /* CheckForSuggestion.m in Sources */,
 				DCB5137218C6C43700B7EE95 /* PionnerViewController.m in Sources */,
 				F23FA50518E3EAED00E174A2 /* LearnTableViewController.m in Sources */,
+				DCB576CC18E7AC2E005DCA0D /* shareEditView.m in Sources */,
 				DCB5145018C6D6B500B7EE95 /* UPMainViewController.m in Sources */,
 				8834BA2018D6F0C20023BA87 /* NetworkCenter.m in Sources */,
 				DC376ED418E522C6005F7DC8 /* NewsEntity.m in Sources */,

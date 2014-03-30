@@ -10,7 +10,7 @@
 #import "commentButton.h"
 
 @interface UPFooterCell(){
-    commentButton *commentBtn;
+    commentButton *commentBtn,*shareButton;
 }
 
 @end
@@ -31,7 +31,12 @@
         [self.contentView addSubview:btn1];
         
         CGRect btn2Rect = CGRectMake(160, 5, 60, 30);
-        UIButton *btn2 = [[UIButton alloc]initWithFrame:btn2Rect];
+        commentButton *btn2 = [[commentButton alloc]initWithFrame:btn2Rect];
+        
+        //增加响应事件
+        shareButton=btn2;
+        [shareButton addTarget:self action:@selector(shareButtonPress:) forControlEvents:UIControlEventTouchUpInside];
+        
         btn2.tag = btn2Tag;
         btn2.hidden = YES;
         UIImageView *share = [[UIImageView alloc]initWithImage:[UIImage imageNamed:@"share.png"]];
@@ -77,6 +82,8 @@
     // Configure the view for the selected state
 }
 
+#warning 评论用了事件响应函数，而转发按钮用了代理，两者不一样
+
 -(void)addCommentButtonTaget:(id)target Action:(SEL)action{
     commentButton *btn = (commentButton*)[self viewWithTag:btn3Tag];
     [btn addTarget:target action:action forControlEvents:UIControlEventTouchUpInside];
@@ -86,8 +93,23 @@
     commentButton *btn = (commentButton*)[self viewWithTag:btn3Tag];
     btn.theId=theId;
 }
+
+
 -(void)setCommentNum:(NSInteger)num{
         [commentBtn setTitle:[NSString stringWithFormat:@"%d",num] forState:UIControlStateNormal];
+}
+
+#pragma mark shareButton
+
+-(void)setShareNum:(NSInteger)num{
+    [shareButton setTitle:[NSString stringWithFormat:@"%d",num] forState:UIControlStateNormal];
+}
+
+
+-(void)shareButtonPress:(UIButton*)button{
+    if ([self.delegate respondsToSelector:@selector(shareButtonClick:)]){
+        [self.delegate shareButtonClick:self.theId];
+    }
 }
 
 

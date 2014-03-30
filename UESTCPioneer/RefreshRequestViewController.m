@@ -12,6 +12,7 @@
 #import "UPMainInfoCell.h"
 #import "UPFooterCell.h"
 
+
 static NSString *customTitleCellIndentifier = @"CustomTitleCellIndentifier";
 static NSString *customMainCellIndentifier = @"CustomMainCellIndentifier";
 static NSString *customFooterCellIndentifier = @"CustomFooterCellIndentifier";
@@ -65,52 +66,7 @@ static NSString *customFooterCellIndentifier = @"CustomFooterCellIndentifier";
     // Dispose of any resources that can be recreated.
 }
 
-- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
-//    NSLog(@"super tableview delegate");
 
-    NewsEntity *entity= tableViewEntitiesArray[indexPath.section];
-    if (indexPath.row == 0) {
-        //6.0后用这种方式更直接，可以省掉if（cell2＝＝nil）的判断   @黄卓越 2014-3-28
-        UPTitleCell *cell = [tableView dequeueReusableCellWithIdentifier:customTitleCellIndentifier forIndexPath:indexPath];
-
-        [cell setTitle:entity.titleBody];
-        [cell setTime:entity.timeAndDate];
-
-
-        return cell;
-    }
-    else if (indexPath.row == 1) {
-
-        
-        //6.0后用这种方式更直接，可以省掉if（cell2＝＝nil）的判断   @黄卓越 2014-3-28
-        UPMainInfoCell *cell2 = [tableView dequeueReusableCellWithIdentifier:customMainCellIndentifier forIndexPath:indexPath];;
-        [cell2 setNewsBody:entity.newsBody];
-        cell2.theId=[entity.theId integerValue];
-        cell2.delegate=self;
-        return cell2;
-    }
-    else {
-        //6.0后用这种方式更直接，可以省掉if（cell2＝＝nil）的判断   @黄卓越 2014-3-28
-        UPFooterCell *cell3 = [tableView dequeueReusableCellWithIdentifier:customFooterCellIndentifier forIndexPath:indexPath];;
-
-        UIButton *btn1 = (UIButton *)[cell3.contentView viewWithTag:btn1Tag];
-
-        
-        
-//        commentButton *btn3 = (commentButton *)[cell3.contentView viewWithTag:btn3Tag];
-//        [btn3 setTitle:[entity.numberOfComment stringValue] forState:UIControlStateNormal];
-        NSLog(@"number of comment %@",entity.numberOfComment);
-        [cell3 setCommentId:[entity.theId integerValue]];
-        [cell3 setCommentNum:[entity.numberOfComment integerValue]];
-        [cell3 addCommentButtonTaget:self Action:@selector(commentButtonPress:)];
-        
-        
-        [btn1 setImage:[UIImage imageNamed:@"read.png"] forState:UIControlStateNormal];
-        return cell3;
-    }
-    
-    
-}
 
 #pragma mark - refresh request
 
@@ -228,6 +184,57 @@ static NSString *customFooterCellIndentifier = @"CustomFooterCellIndentifier";
     
 
     [self.leveyTabBarController.navigationController pushViewController:viewController animated:YES];
+}
+
+
+
+#pragma mark - tableView Cell dequeue 
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
+    //    NSLog(@"super tableview delegate");
+    
+    NewsEntity *entity= tableViewEntitiesArray[indexPath.section];
+    if (indexPath.row == 0) {
+        //6.0后用这种方式更直接，可以省掉if（cell2＝＝nil）的判断   @黄卓越 2014-3-28
+        UPTitleCell *cell = [tableView dequeueReusableCellWithIdentifier:customTitleCellIndentifier forIndexPath:indexPath];
+        
+        [cell setTitle:entity.titleBody];
+        [cell setTime:entity.timeAndDate];
+        
+        
+        return cell;
+    }
+    else if (indexPath.row == 1) {
+        
+        
+        //6.0后用这种方式更直接，可以省掉if（cell2＝＝nil）的判断   @黄卓越 2014-3-28
+        UPMainInfoCell *cell2 = [tableView dequeueReusableCellWithIdentifier:customMainCellIndentifier forIndexPath:indexPath];;
+        [cell2 setNewsBody:entity.newsBody];
+        cell2.theId=[entity.theId integerValue];
+        cell2.delegate=self;
+        return cell2;
+    }
+    else {
+        //6.0后用这种方式更直接，可以省掉if（cell2＝＝nil）的判断   @黄卓越 2014-3-28
+        UPFooterCell *cell3 = [tableView dequeueReusableCellWithIdentifier:customFooterCellIndentifier forIndexPath:indexPath];;
+        cell3.theId=[entity.theId integerValue];
+        cell3.delegate=self;
+        UIButton *btn1 = (UIButton *)[cell3.contentView viewWithTag:btn1Tag];
+        
+        
+        
+        //        commentButton *btn3 = (commentButton *)[cell3.contentView viewWithTag:btn3Tag];
+        //        [btn3 setTitle:[entity.numberOfComment stringValue] forState:UIControlStateNormal];
+//        NSLog(@"number of comment %@",entity.numberOfComment);
+        [cell3 setCommentId:[entity.theId integerValue]];
+        [cell3 setCommentNum:[entity.numberOfComment integerValue]];
+        [cell3 addCommentButtonTaget:self Action:@selector(commentButtonPress:)];
+        
+        
+        [btn1 setImage:[UIImage imageNamed:@"read.png"] forState:UIControlStateNormal];
+        return cell3;
+    }
+    
+    
 }
 
 @end

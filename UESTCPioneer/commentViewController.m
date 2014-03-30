@@ -262,7 +262,7 @@ static NSString *cellIdentifier=@"cell";
             //@根据映射字典把服务器返回json的字段映射到本地字段如commentAuthor->userName,commentContent->commentBody
             NSEnumerator *keyEnumerator=[_commentListKeyMapping keyEnumerator];
             NSString *key;
-            while((key=[[keyEnumerator nextObject] stringValue])!=nil){
+            while((key=[keyEnumerator nextObject])!=nil){
                     [targetDic setObject:sourceDic[key]  forKey:_commentListKeyMapping[key]];
             }
             

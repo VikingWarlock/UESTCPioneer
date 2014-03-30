@@ -12,10 +12,22 @@
 #define btn2Tag          2
 #define btn3Tag          3
 
+@protocol UPFooterCellDelegate <NSObject>
+
+@optional
+-(void)shareButtonClick:(NSInteger)theId;
+
+@end
+
+
 @interface UPFooterCell : UITableViewCell
 -(void)addCommentButtonTaget:(id)target Action:(SEL)action;
 
 -(void)setCommentId:(NSInteger)theId;
 
 -(void)setCommentNum:(NSInteger)num;
+
+@property (nonatomic)NSInteger theId;
+@property (nonatomic,weak)id<UPFooterCellDelegate>delegate;
+
 @end

@@ -12,8 +12,9 @@
 #import "UPMainInfoCell.h"
 #import "UPFooterCell.h"
 #import "LeveyTabBarController.h"
+#import "shareEditView.h"
 
-@interface PartyNoticeViewController ()
+@interface PartyNoticeViewController ()<UPFooterCellDelegate>
 
 @end
 
@@ -41,7 +42,7 @@
 //    [self.view addSubview:label];
     self.tableView.delegate = self;
     self.tableView.dataSource = self;
-    
+        [dropbtn setTitle:@"支部" forState:UIControlStateNormal];
     
     //链接请求参数
     
@@ -54,7 +55,7 @@
                   ,@"userName":[constant getUserName]
                   ,@"page":@"1"
                   ,@"typepid":@"1"
-                  ,@"level":@"1"};
+                  ,@"level":@"2"};
     entityName=kPartyNoticeNewsEntityName;
     entityMapping=[Mapping PartyNoticeMapping];
     
@@ -83,7 +84,7 @@
                               ,@"content":@""
                               ,@"typepid":@"1"};
     commentContentKey=@"content";
-    commentListKeyMapping=@{@"content":@"commentBody",@"userName":@"userName"};
+    commentListKeyMapping=@{@"commentContent":@"commentBody",@"commentAuthor":@"userName"};
     
     
 
@@ -120,7 +121,7 @@
         requestData=[RequestData NoticeDataWithLevel:2];
         [self.tableView beginRefreshing];
     }
-    else if ([title isEqualToString:@"全部部"]){
+    else if ([title isEqualToString:@"全部"]){
         requestData=[RequestData NoticeDataWithLevel:3];
         [self.tableView beginRefreshing];
     }
@@ -169,6 +170,7 @@
     }
     else if (indexPath.row == 1) {
         UPMainInfoCell*cell2=(UPMainInfoCell*)cell;
+
 //        static NSString *customMainCellIndentifier = @"CustomMainCellIndentifier";
 //        UPMainInfoCell *cell2 = [tableView dequeueReusableCellWithIdentifier:customMainCellIndentifier];;
 //        if(cell2 == nil){
@@ -179,7 +181,8 @@
         return cell2;
     }
     else {
-        UPMainInfoCell*cell3=(UPMainInfoCell*)cell;
+        UPFooterCell*cell3=(UPFooterCell*)cell;
+                        cell3.delegate=self;
 //        static NSString *customFooterCellIndentifier = @"CustomFooterCellIndentifier";
 //        UPFooterCell *cell3 = [tableView dequeueReusableCellWithIdentifier:customFooterCellIndentifier];;
 //        if(cell3 == nil){
@@ -228,6 +231,61 @@
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
+#pragma mark - UPFooterCellDelegate
 
+-(void)shareButtonClick:(NSInteger)theId{
+    shareEditView *shareView = [[shareEditView alloc]init];
+    
+    NewsEntity *entity=[PublicMethod entity:kNewsEntityName WithId:theId];
+    
+    [shareView popUpCommentViewWithShareSourceInfo:entity.newsBody CommitBlock:^(NSString *commentBody) {
+        /*
+             type=transmitNotice&naid=13&userId=0012005130022&userName=xiaopangzi&content=13&type
+         
+            //注意，转发只有管理员可以，管理员id末位为1或者2
+         */
+        
+        
+        
+        //@判断是否为管理员
+        NSString *userId=[constant getUserId];
+        NSLog(@"%d",userId.length);
+        NSString *lastChar =[userId substringFromIndex:[userId length]-1];
+        
+        if (!([lastChar isEqualToString:@"1"] || [lastChar isEqualToString:@"2"])){
+            //判断为非管理员
+            [Alert showAlert:@"对不起，你不是管理员"];
+            [shareView closeCommentView];
+        }
+        
+        
+        NSDictionary *ShareRequestData = @{@"type":@"transmitNotice"
+                                      ,@"naid":[NSString stringWithFormat:@"%d",theId]
+                                      ,@"content":commentBody
+                                      ,@"userId":userId
+                                      ,@"userName":[constant getUserName]
+                                      ,@"typepid":@"1"
+                                      };
+        
+        
+        
+        [NetworkCenter AFRequestWithData:ShareRequestData SuccessBlock:^(AFHTTPRequestOperation *operation, id resultObject) {
+            NSDictionary *dic = [NSJSONSerialization JSONObjectWithData:resultObject options:NSJSONReadingMutableLeaves error:nil];
+            if ([dic[@"result"] isEqualToString:@"success"]){
+                [Alert showAlert:@"转发成功"];
+                [shareView closeCommentView];
+                [self.tableView beginRefreshing];
+            }
+            else {
+                [Alert showAlert:@"转发失败"];
+            }
+        } FailureBlock:^(AFHTTPRequestOperation *operation, NSError *error) {
+            [Alert showAlert:@"转发错误"];
+        }];
+        
+        
+    }];
+    
+}
 
 @end
