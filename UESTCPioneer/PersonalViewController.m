@@ -192,10 +192,10 @@
         case 2:
             switch (indexPath.row) {
                 case 0:
-                    aCell = [[StartActivity alloc] init];
+                    aCell = [[StartActivity alloc] initWithStyle:UITableViewStyleGrouped];
                     break;
                 case 1:
-                    aCell = [[PublishNotice alloc] initWithStyle:UITableViewStyleGrouped];
+                    aCell = [[PublishNotice alloc] init];
                     break;
                 case 2:
                     aCell = [[MyNotice alloc] initWithStyle:UITableViewStyleGrouped];
