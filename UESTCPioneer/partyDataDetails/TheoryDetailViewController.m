@@ -9,8 +9,8 @@
 #import "TheoryDetailViewController.h"
 
 @interface TheoryDetailViewController ()
-@property UILabel * titleLabel;
-@property UILabel * contentLabel;
+@property (nonatomic,strong) UILabel * titleLabel;
+@property (nonatomic,strong)UILabel * contentLabel;
 
 @end
 
@@ -25,6 +25,14 @@
     return self;
 }
 
+
+- (id) initWithDictionary:(NSDictionary *)data{
+    if (self) {
+        self.data = data;
+    }
+    return self;
+}
+
 - (NSDictionary *) data{
     if (!_data) {
         _data = @{@"title":@"饿饿饿饿饿饿饿饿饿饿饿饿饿饿饿饿",@"content":@"饿饿饿饿饿饿饿饿饿饿饿饿饿饿饿饿饿饿饿饿饿饿饿饿饿饿饿饿饿饿饿饿饿饿饿饿饿饿饿饿饿饿饿饿饿饿饿饿饿饿饿饿饿饿饿饿饿饿饿饿饿饿饿饿饿饿饿饿饿饿饿饿饿饿饿饿饿饿饿饿饿饿饿饿饿饿饿饿饿饿"};
@@ -32,25 +40,44 @@
     return _data;
 }
 
+
+-(UILabel *)titleLabel{
+    if (!_titleLabel) {
+        
+        
+        
+        _titleLabel = [[UILabel alloc] initWithFrame:CGRectMake(0 ,0 , 0, 0)];
+        _titleLabel.numberOfLines = 0;
+        NSString * newsTitle = self.data[@"title"];
+        UIFont * titleFont = [UIFont boldSystemFontOfSize:18.0];
+        CGSize titleSize = CGSizeMake(310, 2000);
+        CGSize tLabelSize = [newsTitle sizeWithFont:titleFont constrainedToSize:titleSize lineBreakMode:NSLineBreakByWordWrapping];
+        _titleLabel.frame = CGRectMake(5.0, 10.0, tLabelSize.width , tLabelSize.height);
+        if (_titleLabel.frame.size.height<22) {
+            _titleLabel.frame = CGRectMake(5.0, 10.0, 320, 22);
+        }
+        _titleLabel.text = newsTitle;
+        _titleLabel.textAlignment = NSTextAlignmentCenter;
+        _titleLabel.font = titleFont;
+        _titleLabel.textColor = [UIColor colorWithRed:100.0/255.0 green:100.0/255.0 blue:100.0/255.0 alpha:1];
+        
+        NSLog(@"aaaaaaaa:%f",_titleLabel.frame.size.height);
+        
+        
+    }
+    return _titleLabel;
+}
+
 - (void)viewDidLoad
 {
     [super viewDidLoad];
     self.view.backgroundColor = [UIColor whiteColor];
-    
-    _titleLabel = [[UILabel alloc] initWithFrame:CGRectMake(0 ,0 , 0, 0)];
-    _titleLabel.numberOfLines = 0;
-    NSString * newsTitle = self.data[@"title"];
-    UIFont * titleFont = [UIFont boldSystemFontOfSize:18.0];
-    CGSize titleSize = CGSizeMake(310, 2000);
-    CGSize tLabelSize = [newsTitle sizeWithFont:titleFont constrainedToSize:titleSize lineBreakMode:NSLineBreakByWordWrapping];
-    _titleLabel.frame = CGRectMake(5.0, 10.0, tLabelSize.width , tLabelSize.height);
-    _titleLabel.text = newsTitle;
-    _titleLabel.font = titleFont;
-    _titleLabel.textColor = [UIColor colorWithRed:100.0/255.0 green:100.0/255.0 blue:100.0/255.0 alpha:1];
-    _titleLabel.textAlignment = NSTextAlignmentCenter;
+    self.title = @"详情";
     
     
-    UIView * seplineView = [[UIView alloc] initWithFrame:CGRectMake(0, _titleLabel.frame.origin.y +_titleLabel.frame.size.height + 15.0, self.view.bounds.size.width, 1)];
+    
+    
+    UIView * seplineView = [[UIView alloc] initWithFrame:CGRectMake(0, self.titleLabel.frame.origin.y + self.titleLabel.frame.size.height + 15.0, self.view.bounds.size.width, 1)];
     seplineView.backgroundColor = [UIColor colorWithRed:130.0/255.0 green:130.0/255.0 blue:130.0/255.0 alpha:1];
     
     
@@ -68,7 +95,7 @@
     
     
     [self.view addSubview:seplineView];
-    [self.view addSubview:_titleLabel];
+    [self.view addSubview:self.titleLabel];
     [self.view addSubview:_contentLabel];
     
     

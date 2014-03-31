@@ -9,6 +9,8 @@
 #import <UIKit/UIKit.h>
 
 @interface TheoryDetailViewController : UIViewController
+
 @property(nonatomic,strong) NSDictionary * data;
+- (id) initWithDictionary:(NSDictionary *)data;
 
 @end

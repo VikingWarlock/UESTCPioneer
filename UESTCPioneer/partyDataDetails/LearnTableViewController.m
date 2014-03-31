@@ -31,7 +31,7 @@ static NSString * CellTableIdentifier = @"CellTableIdentifier";
 
 -(NSArray *)data{
     if (!_data) {
-        _data = @[@{@"title":@"aaa",@"leftImage":@"dxfile.png",@"rightImage":@"download.png"},@{@"title":@"bbbb",@"leftImage":@"dxfile.png",@"rightImage":@"download.png"}];
+        _data = @[@{@"title":@"aaa",@"leftImage":@"dxfile.png",@"rightImage":@"learnDownload.png"},@{@"title":@"bbbb",@"leftImage":@"dxfile.png",@"rightImage":@"learnDownload.png"}];
     }
     return _data;
 }

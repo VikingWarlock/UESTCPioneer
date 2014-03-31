@@ -14,9 +14,11 @@
 #import "OrganTableViewController.h"
 #import "GuideTableViewController.h"
 #import "LearnTableViewController.h"
+#import "QAViewController.h"
 @interface PartyDataViewController ()
 @property (nonatomic,strong) NSDictionary * dic;
 //@property (nonatomic,strong) NSMutableArray * views;
+@property (nonatomic,strong) NSArray *titleArray;
 @property (nonatomic,strong) NSArray * controllers;
 @end
 
@@ -29,21 +31,28 @@
     return _dic;
 }
 
+- (NSArray *)titleArray{
+    if (!_titleArray) {
+        _titleArray = @[@"中央精神",@"党的知识",@"党的理论",@"党校学习",@"入党流程",@"组织架构",@"办事指南",@"Q&A",@"专业学习"];
+    }
+    return _titleArray;
+}
+
 - (NSMutableArray *)buttons{
     if (!_buttons) {
         _buttons = [[NSMutableArray alloc] init];
-        NSArray * arr = @[@"中央精神",@"党的知识",@"党的理论",@"党校学习",@"入党流程",@"组织架构",@"办事指南",@"Q&A",@"专业学习"];
+        
         for (int i = 0; i < 3; i ++) {
             for (int j = 0;  j < 3; j++) {
                 UIButton * btn = [[UIButton alloc] initWithFrame:CGRectMake(j*100+15, i*110+15, 90, 100)];
                 [btn.layer setBorderWidth:1.0f];
                 [btn.layer setBorderColor:[UIColor colorWithRed:0.8 green:0.8 blue:0.8 alpha:0.8].CGColor];
-                UIImage * image = [helper getCustomImage:[UIImage imageNamed:self.dic[arr[i*3+j]]] insets:UIEdgeInsetsMake(20, 30, 63, 60)];
+                UIImage * image = [helper getCustomImage:[UIImage imageNamed:self.dic[self.titleArray[i*3+j]]] insets:UIEdgeInsetsMake(20, 30, 63, 60)];
                 [btn setBackgroundImage:image forState:UIControlStateNormal];
                 [btn setBackgroundColor:[UIColor whiteColor]];
                 [btn setTitleEdgeInsets:UIEdgeInsetsMake(60, 20, 0, 20)];
                 btn.titleLabel.font = [UIFont systemFontOfSize:12.0];
-                [btn setTitle:arr[i*3+j] forState:UIControlStateNormal];
+                [btn setTitle:self.titleArray[i*3+j] forState:UIControlStateNormal];
                 [btn setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
                 [btn addTarget:self action:@selector(aButtonClicked:) forControlEvents:UIControlEventTouchUpInside];
                 [_buttons addObject:btn];
@@ -55,7 +64,13 @@
 
 - (NSArray *) controllers{
     if (!_controllers) {
-        _controllers = @[[[TheoryViewController alloc] init],[[TheoryViewController alloc] init],[[TheoryViewController alloc] init],[[LearnTableViewController alloc] initWithStyle:UITableViewStyleGrouped],[[OrganTableViewController alloc] init],[[OrganTableViewController alloc] initWithStyle:UITableViewStyleGrouped],[[GuideTableViewController alloc]initWithStyle:UITableViewStyleGrouped]];
+        NSArray * data1 = @[@{@"title":@"111111111111111111111111111111111111111111111111111111111111111111111111",@"content":@"111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111",@"time":@"2014-3-19"},@{@"title":@"2",@"content":@"222222222222222222222222222222222222222222222222222222222222",@"time":@"2014-3-19"}];
+        NSArray * data2 =@[@{@"title":@"阿",@"content":@"阿阿阿阿阿阿阿阿阿阿阿阿阿阿阿阿阿阿阿阿阿阿阿阿阿阿阿阿阿阿阿阿阿阿阿阿阿阿阿阿阿阿阿阿阿阿阿阿阿阿阿阿阿阿阿阿阿阿阿阿阿阿",@"time":@"2014-3-19"},@{@"title":@"阿阿",@"content":@"阿阿阿阿阿阿阿阿阿阿阿阿阿",@"time":@"2014-3-19"}];
+        NSArray * data3 =@[@{@"title":@"111阿",@"content":@"11111阿阿阿阿阿阿阿阿阿阿阿阿阿阿阿阿阿阿阿阿阿阿阿阿阿阿阿阿阿阿阿阿阿阿阿阿阿阿阿阿阿阿阿阿阿阿阿阿阿阿阿阿阿阿阿阿阿阿阿阿阿阿",@"time":@"2014-3-19"},@{@"title":@"111阿阿",@"content":@"1111阿阿阿阿阿阿阿阿阿阿阿阿阿",@"time":@"2014-3-19"}];
+        
+        
+        
+        _controllers = @[[[TheoryViewController alloc] initWithArray:data1 forTitle:_titleArray[0]],[[TheoryViewController alloc] initWithArray:data2 forTitle:_titleArray[1]],[[TheoryViewController alloc] initWithArray:data3 forTitle:_titleArray[2]],[[LearnTableViewController alloc] initWithStyle:UITableViewStyleGrouped],[[OrganTableViewController alloc] init],[[OrganTableViewController alloc] initWithStyle:UITableViewStyleGrouped],[[GuideTableViewController alloc]initWithStyle:UITableViewStyleGrouped],[[QAViewController alloc] init]];
     }
     return _controllers;
 }
