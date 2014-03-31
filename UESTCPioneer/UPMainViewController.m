@@ -127,7 +127,7 @@
     
     if (unreadTotal){
         [barButton setImage:[UIImage imageNamed:@"menu_msg.png"] forState:UIControlStateNormal];
-        [barButton setImageEdgeInsets:UIEdgeInsetsMake(12, 12, 9, 9)];
+        [barButton setImageEdgeInsets:UIEdgeInsetsMake(12, 12, 12, 10)];
     }
     else {
         [barButton setImage:[UIImage imageNamed:@"menu.png"] forState:UIControlStateNormal];
