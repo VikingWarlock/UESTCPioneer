@@ -7,7 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
-
+#import "UPCell.h"
 #define wordsTag          2
 #define wordsFontSize    16
 @protocol UPMainInfoCellDelegate<NSObject>
@@ -16,7 +16,7 @@
 
 @end
 
-@interface UPMainInfoCell : UITableViewCell
+@interface UPMainInfoCell : UPCell
 -(void)setNewsBody:(NSString*)newsBody;
 @property (nonatomic)NSInteger theId;
 @property (nonatomic,weak)id<UPMainInfoCellDelegate>delegate;

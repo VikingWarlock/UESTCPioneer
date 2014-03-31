@@ -67,6 +67,7 @@
 
 //    [self.view addSubview:label];
     [self hideTopView];
+        tableViewTopConstraint.constant=0;
     self.tableView.delegate = self;
     self.tableView.dataSource = self;
     

@@ -7,6 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "UPCell.h"
 
 #define btn1Tag          1
 #define btn2Tag          2
@@ -21,7 +22,7 @@
 @end
 
 
-@interface UPFooterCell : UITableViewCell
+@interface UPFooterCell : UPCell
 
 
 

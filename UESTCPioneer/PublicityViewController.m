@@ -42,6 +42,9 @@
     [self hideTopView];
     self.tableView.delegate = self;
     self.tableView.dataSource = self;
+//    [self.tableView setTranslatesAutoresizingMaskIntoConstraints:YES];
+    tableViewTopConstraint.constant=0;
+//        [self.tableView setTranslatesAutoresizingMaskIntoConstraints:NO];
     
 #pragma mark 请求数据
     entityName=kPublicityNewsEntityName;

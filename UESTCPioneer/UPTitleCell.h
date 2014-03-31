@@ -7,6 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "UPCell.h"
 
 #define titleTag          1
 #define timeTag          2
@@ -24,7 +25,7 @@
 
 @end
 
-@interface UPTitleCell : UITableViewCell
+@interface UPTitleCell :UPCell
 
 -(void)setTitle:(NSString*)title;
 -(void)setTime:(NSString*)time;

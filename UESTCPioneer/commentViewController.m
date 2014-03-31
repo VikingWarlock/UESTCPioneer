@@ -23,6 +23,12 @@
 @implementation commentTableViewCell
 
 
+//@ what the hell? 究竟怎么回事，为什么会多出35
+-(void)setFrame:(CGRect)frame{
+    frame.origin.y-=35;
+    [super setFrame:frame];
+}
+
 -(id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier{
 
     self=[super initWithStyle:style reuseIdentifier:reuseIdentifier];
@@ -45,16 +51,16 @@
 
         
         
-        [self addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-5-[_headImageView(==22)]-[_userName]-|" options:0 metrics:0 views:NSDictionaryOfVariableBindings(_headImageView,_userName)]];
+        [self.contentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-5-[_headImageView(==22)]-[_userName]-|" options:0 metrics:0 views:NSDictionaryOfVariableBindings(_headImageView,_userName)]];
 
-        [self addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|-8-[_headImageView(==22)]" options:0 metrics:0 views:NSDictionaryOfVariableBindings(_headImageView)]];
+        [self.contentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|-8-[_headImageView(==22)]" options:0 metrics:0 views:NSDictionaryOfVariableBindings(_headImageView)]];
         
-                [self addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|-8-[_userName(==22)]" options:0 metrics:0 views:NSDictionaryOfVariableBindings(_userName)]];
+                [self.contentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|-8-[_userName(==22)]" options:0 metrics:0 views:NSDictionaryOfVariableBindings(_userName)]];
         
         
-        [self addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-[_commentBody]-|" options:0 metrics:Nil views:NSDictionaryOfVariableBindings(_commentBody)]];
+        [self.contentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-[_commentBody]-|" options:0 metrics:Nil views:NSDictionaryOfVariableBindings(_commentBody)]];
         
-                [self addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:[_userName]-[_commentBody]-|" options:0 metrics:Nil views:NSDictionaryOfVariableBindings(_commentBody,_userName)]];
+                [self.contentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:[_userName]-[_commentBody]-|" options:0 metrics:Nil views:NSDictionaryOfVariableBindings(_commentBody,_userName)]];
         
         
         
@@ -115,20 +121,56 @@ static NSString *cellIdentifier=@"cell";
     [super viewDidLoad];
 //    [self.navigationController.navigationBar setTranslucent:YES];
     [self.view setBackgroundColor:backgroundColor];
+//    [self.tableView removeFromSuperview];
+//    self.tableView=[[UITableView alloc]init];
     
+    
+    
+//    [self.view addSubview:self.tableView];
     [self.tableView setBackgroundColor:backgroundColor];
+//    [self.view setBackgroundColor:[UIColor blueColor]];
+//    [self.tableView setTranslatesAutoresizingMaskIntoConstraints:YES];
+//    [self.tableView setFrame:CGRectMake(0, 0, 320, 455)];
+    
+
+    tableViewTopConstraint.constant=0;
 //    TableView=[[commentTableView alloc]initWithFrame:self.view.bounds];
     [self.tableView registerClass:[commentTableViewCell class] forCellReuseIdentifier:cellIdentifier];
 //    [self.view addSubview:TableView];
     self.tableView.delegate=self;
     self.tableView.dataSource=self;
+
     
-    [self.tableView removeConstraints:self.tableView.constraints];
-    __weak UITableView *table = self.tableView;
-    [table setTranslatesAutoresizingMaskIntoConstraints:NO];
-    [self.view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|[table]|" options:0 metrics:nil views:NSDictionaryOfVariableBindings(table)]];
-        [self.view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|[table]|" options:0 metrics:nil views:NSDictionaryOfVariableBindings(table)]];
+//    NSLog(@"%f,%f,%f,%f",self.tableView.frame.origin.x,self.tableView.frame.origin.y,self.tableView.frame.size.width,self.tableView.frame.size.height);
     
+    
+//    [self.tableView setTranslatesAutoresizingMaskIntoConstraints:YES];
+//    CGRect re = self.tableView.frame;
+//    re.origin.y=0;
+//    [self.tableView setFrame:re];
+//    NSLog(@"%f",self.tableView.frame.origin.y);
+
+//    [self.tableView setFrame:<#(CGRect)#>]
+
+    
+    
+//    [self.tableView setClipsToBounds:NO];
+//    [self.tableView setTranslatesAutoresizingMaskIntoConstraints:NO];
+//    [self.tableView removeConstraints:self.tableView.constraints];
+//    __weak UITableView *table = self.tableView;
+////    [self.tableView setBackgroundColor:[UIColor redColor]];
+//    [table setTranslatesAutoresizingMaskIntoConstraints:NO];
+//    [self.view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|[table]|" options:0 metrics:nil views:NSDictionaryOfVariableBindings(table)]];
+//        [self.view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|[table]|" options:0 metrics:nil views:NSDictionaryOfVariableBindings(table)]];
+    
+    
+//    tableViewTopConstraint.constant=0;
+    
+    
+    NSLog(@"%@",self.view.subviews);
+    NSLog(@"%@",self.view.constraints);
+    [self.tableView reloadData];
+    [self.view setNeedsLayout];
 //    [self.tableView setContentInset:UIEdgeInsetsMake(-30, 0, 0, 0)];
     
 #pragma mark 加导航栏按钮
@@ -152,7 +194,7 @@ static NSString *cellIdentifier=@"cell";
     
  
     
-    [self.tableView beginRefreshing];
+//    [self.tableView beginRefreshing];
     
 	// Do any additional setup after loading the view.
 }
@@ -163,11 +205,7 @@ static NSString *cellIdentifier=@"cell";
     // Dispose of any resources that can be recreated.
 }
 
--(void)_requestList{
-    
 
-
-}
 
 #pragma mark - tableview Delegate and DataSource
 
@@ -185,10 +223,14 @@ static NSString *cellIdentifier=@"cell";
 
 -(UITableViewCell*)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     commentTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier forIndexPath:indexPath];
+    
+    
     [cell.headImageView setImageWithURL:tableViewDataArray[indexPath.row][@"headImageUrl"] placeholderImage:[UIImage imageNamed:@"touxiang.png"]];
     
     cell.userName.text=tableViewDataArray[indexPath.row][@"userName"];
     cell.commentBody.text=tableViewDataArray[indexPath.row][@"commentBody"];
+    NSLog(@"%@",cell);
+    NSLog(@"%@",cell.contentView);
     return cell;
 }
 
@@ -219,7 +261,7 @@ static NSString *cellIdentifier=@"cell";
             //弹出提示：评论成功
 //            NSLog(@"评论成功");
             [co closeCommentView];
-            [self _requestList];
+//            [self _requestList];
             
         } FailureBlock:^(AFHTTPRequestOperation *operation, NSError *error) {
             //弹出提示：评论失败
