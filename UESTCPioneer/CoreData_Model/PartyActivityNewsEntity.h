@@ -16,6 +16,7 @@
 @property (nonatomic, retain) NSString * branch;
 @property (nonatomic, retain) NSNumber * count;
 @property (nonatomic, retain) NSString * institute;
+///是否已点赞
 @property (nonatomic, retain) NSNumber * love;
 @property (nonatomic, retain) NSNumber * signUp;
 @property (nonatomic, retain) NSNumber * top;

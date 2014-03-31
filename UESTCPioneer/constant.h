@@ -19,7 +19,7 @@
 #define kNotificationUnreadTotalRefreshed @"NotificationUnreadTotalRefreshed"
 
 
-
+#define kNewsEntityName @"NewsEntity"
 #define kPioneerEntityName @"PioneerNewsEntity"
 #define kPartyNoticeNewsEntityName @"PartyNoticeNewsEntity"
 #define kPublicityNewsEntityName @"PublicityNewsEntity"
@@ -36,4 +36,10 @@
 +(void)setUserId:(NSString*)user;
 +(NSString*)getUserName;
 +(void)setUserName:(NSString*)name;
+
+
++(NSString*)getName;
+
++(void)setName:(NSString*)name;
+
 @end

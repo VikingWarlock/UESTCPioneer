@@ -113,6 +113,7 @@ static NSString *cellIdentifier=@"cell";
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+//    [self.navigationController.navigationBar setTranslucent:YES];
     [self.view setBackgroundColor:backgroundColor];
     
     [self.tableView setBackgroundColor:backgroundColor];
@@ -122,8 +123,13 @@ static NSString *cellIdentifier=@"cell";
     self.tableView.delegate=self;
     self.tableView.dataSource=self;
     
-
+    [self.tableView removeConstraints:self.tableView.constraints];
+    __weak UITableView *table = self.tableView;
+    [table setTranslatesAutoresizingMaskIntoConstraints:NO];
+    [self.view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|[table]|" options:0 metrics:nil views:NSDictionaryOfVariableBindings(table)]];
+        [self.view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|[table]|" options:0 metrics:nil views:NSDictionaryOfVariableBindings(table)]];
     
+//    [self.tableView setContentInset:UIEdgeInsetsMake(-30, 0, 0, 0)];
     
 #pragma mark 加导航栏按钮
     //    UIView *customView=[[UIView alloc]initWithFrame:CGRectMake(0, 0, 88, 44)];
@@ -245,7 +251,6 @@ static NSString *cellIdentifier=@"cell";
 
         
         
-
         
         
         
@@ -262,7 +267,7 @@ static NSString *cellIdentifier=@"cell";
             //@根据映射字典把服务器返回json的字段映射到本地字段如commentAuthor->userName,commentContent->commentBody
             NSEnumerator *keyEnumerator=[_commentListKeyMapping keyEnumerator];
             NSString *key;
-            while((key=[[keyEnumerator nextObject] stringValue])!=nil){
+            while((key=[keyEnumerator nextObject])!=nil){
                     [targetDic setObject:sourceDic[key]  forKey:_commentListKeyMapping[key]];
             }
             
@@ -280,6 +285,12 @@ static NSString *cellIdentifier=@"cell";
 //        tableViewDataArray=targetArray;
         [refreshView endRefreshing];
         [self.tableView reloadData];
+        
+        
+
+
+
+        
         PullUpRefreshTimes++;
     } FailureBlock:^(AFHTTPRequestOperation *operation, NSError *error) {
         NSLog(@"commentViewController init request error:%@",error);

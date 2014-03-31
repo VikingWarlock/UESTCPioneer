@@ -66,6 +66,16 @@
 
 }
 
++(UIImage*)makeImageWithColor:(UIColor*)color{
+    UIGraphicsBeginImageContext(CGSizeMake(1, 1));
+    CGContextRef context = UIGraphicsGetCurrentContext();
+    CGContextSetFillColorWithColor(context, color.CGColor);
+    CGContextFillRect(context, CGRectMake(0, 0, 1, 1));
+    UIImage *image =UIGraphicsGetImageFromCurrentImageContext();
+    UIGraphicsEndImageContext();
+    return image;
+}
+
 
 
 

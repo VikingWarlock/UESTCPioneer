@@ -15,8 +15,24 @@
 #define titleFontSize    16
 #define timeFontSize    12
 
-@interface UPTitleCell : UITableViewCell
--(void)setTitle:(NSString*)title;
+@class UPTitleCell;
 
+@protocol UPTitleCellDelegate <NSObject>
+
+@optional
+-(void)UPTitleCell:(UPTitleCell*)cell CollectButtonClick:(UIButton*)button;
+
+@end
+
+@interface UPTitleCell : UITableViewCell
+
+-(void)setTitle:(NSString*)title;
 -(void)setTime:(NSString*)time;
+-(void)setCollectButtonStatus:(BOOL)status;
+@property(nonatomic,weak)id<UPTitleCellDelegate>delegate;
+
+///用于异步锁
+@property(nonatomic)BOOL collecting;
+
+@property(nonatomic)BOOL CollectButtonEnable;
 @end

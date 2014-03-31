@@ -9,7 +9,14 @@
 #import <UIKit/UIKit.h>
 
 
-@interface commentView : UIView
+@interface commentView : UIView{
+    UIView *commentRectView;
+    UIButton *closeButton,*commitButton;
+    UITextField *commentTextField;
+    UILabel *titleLabel;
+
+}
+
 @property (nonatomic,copy) void (^commitBlock)(NSString* commentBody);
 -(void)popUpCommentViewWithCommitBlock:(void(^)(NSString *commentBody))commitBlock;
 -(void)closeCommentView;

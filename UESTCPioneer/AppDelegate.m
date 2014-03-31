@@ -42,6 +42,7 @@
     
     [constant setUserId:@"001002200011"];
     [constant setUserName:@"IOS test"];
+    [constant setName:@"TestName"];
 #endif
     
     

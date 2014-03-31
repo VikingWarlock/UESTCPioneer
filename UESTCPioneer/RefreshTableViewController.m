@@ -61,6 +61,10 @@
     //@加UPTableView
 //    //    self.tableView=[[UPTableView alloc]initWithFrame:CGRectMake(10, 35, 300, 420) style:UITableViewStyleGrouped];
     self.tableView=[[UPTableView alloc]initWithFrame:CGRectMake(10, 35, 300, 415) style:UITableViewStyleGrouped];
+    
+
+    
+    
     if(IS_IOS7)
         [self.tableView setSeparatorInset:UIEdgeInsetsZero];
     [self.tableView setAllowsSelection:NO];
@@ -68,6 +72,13 @@
     [background setBackgroundColor:self.tableView.backgroundColor];
     [self.view addSubview:background];
     [self.view addSubview:self.tableView];
+    
+//    [self.tableView setTranslatesAutoresizingMaskIntoConstraints:NO];
+//    tableViewVerticalConstraint=[NSLayoutConstraint constraintsWithVisualFormat:@"V:|[_tableView]|" options:0 metrics:nil views:NSDictionaryOfVariableBindings(_tableView)];
+//    [self.view addConstraints:tableViewVerticalConstraint];
+//    [self.view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|[_tableView]|" options:0 metrics:nil views:NSDictionaryOfVariableBindings(_tableView)]];
+    
+    
 }
 
 -(void)dealloc{

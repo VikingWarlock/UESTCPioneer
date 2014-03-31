@@ -10,7 +10,15 @@
 
 #define wordsTag          2
 #define wordsFontSize    16
+@protocol UPMainInfoCellDelegate<NSObject>
+@optional
+-(void)WholeNewsButtonClick:(NSInteger)theId;
+
+@end
 
 @interface UPMainInfoCell : UITableViewCell
 -(void)setNewsBody:(NSString*)newsBody;
+@property (nonatomic)NSInteger theId;
+@property (nonatomic,weak)id<UPMainInfoCellDelegate>delegate;
+
 @end

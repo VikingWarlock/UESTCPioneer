@@ -3,43 +3,19 @@
     {
       "size" : "29x29",
       "idiom" : "iphone",
-<<<<<<< HEAD
-      "filename" : "icon29-1.png",
-=======
       "filename" : "app_logo_29.png",
->>>>>>> bfbcc1852901b6405d7be08135a3176382ebbcd6
       "scale" : "1x"
     },
     {
       "size" : "29x29",
       "idiom" : "iphone",
-<<<<<<< HEAD
-      "filename" : "icon58.png",
-=======
       "filename" : "app_logo_58.png",
->>>>>>> bfbcc1852901b6405d7be08135a3176382ebbcd6
       "scale" : "2x"
     },
     {
       "size" : "40x40",
       "idiom" : "iphone",
-<<<<<<< HEAD
-      "filename" : "icon80-1.png",
-      "scale" : "2x"
-    },
-    {
-      "size" : "57x57",
-      "idiom" : "iphone",
-      "filename" : "icon57.png",
-      "scale" : "1x"
-    },
-    {
-      "size" : "57x57",
-      "idiom" : "iphone",
-      "filename" : "icon114.png",
-=======
       "filename" : "app_logo_80.png",
->>>>>>> bfbcc1852901b6405d7be08135a3176382ebbcd6
       "scale" : "2x"
     },
     {
@@ -73,8 +49,9 @@
       "scale" : "2x"
     },
     {
-      "idiom" : "ipad",
       "size" : "40x40",
+      "idiom" : "ipad",
+      "filename" : "icon-40.png",
       "scale" : "1x"
     },
     {
@@ -84,33 +61,39 @@
       "scale" : "2x"
     },
     {
-      "idiom" : "ipad",
       "size" : "50x50",
+      "idiom" : "ipad",
+      "filename" : "icon-50.png",
       "scale" : "1x"
     },
     {
-      "idiom" : "ipad",
       "size" : "50x50",
+      "idiom" : "ipad",
+      "filename" : "icon-100.png",
       "scale" : "2x"
     },
     {
-      "idiom" : "ipad",
       "size" : "72x72",
+      "idiom" : "ipad",
+      "filename" : "icon-72.png",
       "scale" : "1x"
     },
     {
-      "idiom" : "ipad",
       "size" : "72x72",
+      "idiom" : "ipad",
+      "filename" : "icon-72@2x.png",
       "scale" : "2x"
     },
     {
-      "idiom" : "ipad",
       "size" : "76x76",
+      "idiom" : "ipad",
+      "filename" : "icon-76.png",
       "scale" : "1x"
     },
     {
-      "idiom" : "ipad",
       "size" : "76x76",
+      "idiom" : "ipad",
+      "filename" : "icon-76@2x.png",
       "scale" : "2x"
     }
   ],

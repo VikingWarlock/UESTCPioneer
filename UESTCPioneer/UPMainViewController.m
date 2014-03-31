@@ -65,8 +65,19 @@
     [dropbtn addSubview:xiala];
     [dropdownview addSubview:dropbtn];
     //[self.view addSubview:background];
-    [self.view addSubview:self.tableView];
+//    [self.view addSubview:self.tableView];
     [self.view addSubview:dropdownview];
+
+//    __weak UITableView* tempTableView =self.tableView;
+    
+//    [tempTableView setTranslatesAutoresizingMaskIntoConstraints:NO];
+//    [dropdownview setTranslatesAutoresizingMaskIntoConstraints:NO];
+//    [dropbtn setTranslatesAutoresizingMaskIntoConstraints:YES];
+//    [xiala setTranslatesAutoresizingMaskIntoConstraints:YES];
+//    [self.view removeConstraints:tableViewVerticalConstraint];
+
+//    [self.view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|-30-[tempTableView]|" options:0 metrics:nil views:NSDictionaryOfVariableBindings(dropdownview,tempTableView)]];
+//    NSLog(@"%@",self.view.constraints);
 	// Do any additional setup after loading the view.
     
     

@@ -9,10 +9,7 @@
 #import "commentView.h"
 
 @interface commentView(){
-    UIView *commentRectView;
-    UIButton *closeButton,*commitButton;
-    UITextField *commentTextField;
-    UILabel *titleLabel;
+
 
 }
 
@@ -68,15 +65,30 @@
     //设置评论外框的布局
     [commentRectView setTranslatesAutoresizingMaskIntoConstraints:NO];
     [self addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|[commentRectView]|" options:0 metrics:nil views:NSDictionaryOfVariableBindings(commentRectView)]];
-    [self addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:[commentRectView(==180)]-216-|" options:0 metrics:nil views:NSDictionaryOfVariableBindings(commentRectView)]];
+    
+    
+    [self addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:[commentRectView]-216-|" options:0 metrics:nil views:NSDictionaryOfVariableBindings(commentRectView)]];
+//    constraintRectHeight = [NSLayoutConstraint constraintWithItem:commentRectView attribute:NSLayoutAttributeHeight relatedBy:NSLAyoutAttributeEq toItem:<#(id)#> attribute:<#(NSLayoutAttribute)#> multiplier:<#(CGFloat)#> constant:<#(CGFloat)#>]
+
+    
     
     //文本框
     commentTextField = [[UITextField alloc]init];
     [commentRectView addSubview:commentTextField];
     [commentTextField  setTranslatesAutoresizingMaskIntoConstraints:NO];
+
+
     
     [commentRectView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-20-[commentTextField]-20-|" options:0 metrics:nil views:NSDictionaryOfVariableBindings(commentTextField)]];
-    [commentRectView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|-60-[commentTextField]-20-|" options:0 metrics:nil views:NSDictionaryOfVariableBindings(commentTextField)]];
+    [commentRectView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|-60-[commentTextField(==120)]" options:0 metrics:nil views:NSDictionaryOfVariableBindings(commentTextField)]];
+    
+    
+    //文本框相对于父类view的底部约束
+    NSLayoutConstraint *bottomContraint = [NSLayoutConstraint constraintWithItem:commentTextField attribute:NSLayoutAttributeBottom relatedBy:NSLayoutRelationEqual toItem:commentRectView attribute:NSLayoutAttributeBottom multiplier:1 constant:-20];
+    bottomContraint.priority=10;
+    [commentRectView addConstraint:bottomContraint];
+//    NSLog(@"%@",commentRectView.constraints);
+    
     
     //取消按钮
     closeButton = [UIButton buttonWithType:UIButtonTypeCustom];

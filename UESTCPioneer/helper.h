@@ -17,6 +17,6 @@
 
 +(UIBarButtonItem*)BarButtonItemWithUIButton:(UIButton*)button ButtonOrigin:(CGPoint)point CustomViewSize:(CGSize)size;
 
-
++(UIImage*)makeImageWithColor:(UIColor*)color;
 
 @end

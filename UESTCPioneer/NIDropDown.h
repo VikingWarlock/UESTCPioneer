@@ -19,7 +19,7 @@
 
 @interface NIDropDown : UIView <UITableViewDelegate, UITableViewDataSource>
 
-@property (nonatomic, retain) id <NIDropDownDelegate> delegate;
+@property (nonatomic, weak) id <NIDropDownDelegate> delegate;
 
 -(void)hideDropDown:(UIButton *)b;
 - (id)initDropDown:(UIButton *)b:(CGFloat *)height:(NSArray *)arr;

@@ -90,7 +90,7 @@
 }
 
 -(void)viewWillAppear:(BOOL)animated{
-        [self.leveyTabBarController.navigationItem setTitle:@"成电先锋"];
+        [self.leveyTabBarController.navigationItem setTitle:@"成电视角"];
 }
 
 -(void)viewDidAppear:(BOOL)animated{
@@ -142,6 +142,7 @@
         requestData=[RequestData CollegeRequestDataWithCode:@"013"];
         [self.tableView beginRefreshing];
     }
+    [self rel];
 }
 
 //每个分区的行数
