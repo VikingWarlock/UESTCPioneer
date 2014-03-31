@@ -41,7 +41,6 @@
 
 -(void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
-    //[self.leveyTabBarController.navigationItem setTitle:@""];
     
     UIImageView *customView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, 30, 30)];
     UIButton *button = [UIButton buttonWithType:UIButtonTypeCustom];
@@ -64,7 +63,7 @@
 
 -(void)viewDidDisappear:(BOOL)animated{
     [super viewDidDisappear:animated];
-    //[self.leveyTabBarController.navigationItem setRightBarButtonItem:Nil];
+    [self.leveyTabBarController.navigationItem setRightBarButtonItem:Nil];
 }
 
 - (void)didReceiveMemoryWarning

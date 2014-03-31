@@ -44,11 +44,8 @@
 - (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
-    [self.navigationItem setTitle:@""];
-    
-    
-    self.navigationItem.title = @"修改信息";
-    
+    UIBarButtonItem *right=[[UIBarButtonItem alloc] initWithTitle:@"提交" style:UIBarButtonItemStyleDone target:self action:@selector(complete:)];
+    self.navigationItem.rightBarButtonItem = right;
 }
 
 - (void)complete:(id)sender
