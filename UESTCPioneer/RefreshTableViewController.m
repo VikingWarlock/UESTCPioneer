@@ -77,9 +77,9 @@
 
     
     
-//    if(IS_IOS7)
-//        [self.tableView setSeparatorInset:UIEdgeInsetsZero];
-//    [self.tableView setAllowsSelection:NO];
+    if(IS_IOS7)
+        [self.tableView setSeparatorInset:UIEdgeInsetsZero];
+    [self.tableView setAllowsSelection:NO];
 //    UIImageView *background = [[UIImageView alloc]initWithFrame:CGRectMake(0, 0, 320, 455)];
 //    [background setBackgroundColor:self.tableView.backgroundColor];
 //    [self.view addSubview:background];

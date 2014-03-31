@@ -130,6 +130,7 @@
 		DC0BFFDD18E255F7002E3D38 /* MJRefreshFooterView.m in Sources */ = {isa = PBXBuildFile; fileRef = DC0BFFD718E255F7002E3D38 /* MJRefreshFooterView.m */; };
 		DC0BFFDE18E255F7002E3D38 /* MJRefreshHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = DC0BFFD918E255F7002E3D38 /* MJRefreshHeaderView.m */; };
 		DC144C3618E96AC100ADEFA1 /* UPCell.m in Sources */ = {isa = PBXBuildFile; fileRef = DC144C3518E96AC100ADEFA1 /* UPCell.m */; };
+		DC144C3818E9750D00ADEFA1 /* defaultHeadImage.png in Resources */ = {isa = PBXBuildFile; fileRef = DC144C3718E9750D00ADEFA1 /* defaultHeadImage.png */; };
 		DC14F9F018E6B109003D6B2C /* RequestData.m in Sources */ = {isa = PBXBuildFile; fileRef = DC14F9EF18E6B109003D6B2C /* RequestData.m */; };
 		DC376ECE18E522C5005F7DC8 /* PioneerNewsEntity.m in Sources */ = {isa = PBXBuildFile; fileRef = DC376ECD18E522C5005F7DC8 /* PioneerNewsEntity.m */; };
 		DC376ED118E522C6005F7DC8 /* MoodShareNewsEntity.m in Sources */ = {isa = PBXBuildFile; fileRef = DC376ED018E522C6005F7DC8 /* MoodShareNewsEntity.m */; };
@@ -370,6 +371,7 @@
 		DC0BFFD918E255F7002E3D38 /* MJRefreshHeaderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MJRefreshHeaderView.m; sourceTree = "<group>"; };
 		DC144C3418E96AC100ADEFA1 /* UPCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UPCell.h; sourceTree = "<group>"; };
 		DC144C3518E96AC100ADEFA1 /* UPCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UPCell.m; sourceTree = "<group>"; };
+		DC144C3718E9750D00ADEFA1 /* defaultHeadImage.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = defaultHeadImage.png; sourceTree = "<group>"; };
 		DC14F9EE18E6B109003D6B2C /* RequestData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RequestData.h; sourceTree = "<group>"; };
 		DC14F9EF18E6B109003D6B2C /* RequestData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RequestData.m; sourceTree = "<group>"; };
 		DC376ECC18E522C5005F7DC8 /* PioneerNewsEntity.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PioneerNewsEntity.h; path = CoreData_Model/PioneerNewsEntity.h; sourceTree = "<group>"; };
@@ -705,6 +707,7 @@
 		D2A2CB1E18D03E77001AD968 /* center */ = {
 			isa = PBXGroup;
 			children = (
+				DC144C3718E9750D00ADEFA1 /* defaultHeadImage.png */,
 				D24336DE18D2CA1400845121 /* collect_highlighted.png */,
 				D24336DF18D2CA1400845121 /* collect.png */,
 				D24336E018D2CA1400845121 /* comment.png */,
@@ -1177,6 +1180,7 @@
 				8834BA1C18D6EF980023BA87 /* theory.png in Resources */,
 				8839C31B18D963E8008D01B9 /* icon.png in Resources */,
 				D24336F718D2CA1400845121 /* dot.png in Resources */,
+				DC144C3818E9750D00ADEFA1 /* defaultHeadImage.png in Resources */,
 				D2DA747518E19E3E008A2294 /* xiala.png in Resources */,
 				517485C718CA056F00413228 /* share2.png in Resources */,
 				8839C32918D96557008D01B9 /* icon29.png in Resources */,

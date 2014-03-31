@@ -47,18 +47,19 @@
         [self.userName setTranslatesAutoresizingMaskIntoConstraints:NO];
         [self.commentBody setTranslatesAutoresizingMaskIntoConstraints:NO];
 
-        
+        [self.userName setFont:[UIFont systemFontOfSize:13]];
+        [self.userName setTextColor:[UIColor colorWithRed:69.0/255.0 green:120.0/255.0 blue:200.0/255.0 alpha:1]];
 
         
         
-        [self.contentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-5-[_headImageView(==22)]-[_userName]-|" options:0 metrics:0 views:NSDictionaryOfVariableBindings(_headImageView,_userName)]];
+        [self.contentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-10-[_headImageView(==22)]-[_userName]-|" options:0 metrics:0 views:NSDictionaryOfVariableBindings(_headImageView,_userName)]];
 
-        [self.contentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|-8-[_headImageView(==22)]" options:0 metrics:0 views:NSDictionaryOfVariableBindings(_headImageView)]];
+        [self.contentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|-12-[_headImageView(==22)]" options:0 metrics:0 views:NSDictionaryOfVariableBindings(_headImageView)]];
         
-                [self.contentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|-8-[_userName(==22)]" options:0 metrics:0 views:NSDictionaryOfVariableBindings(_userName)]];
+                [self.contentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|-12-[_userName(==22)]" options:0 metrics:0 views:NSDictionaryOfVariableBindings(_userName)]];
         
         
-        [self.contentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-[_commentBody]-|" options:0 metrics:Nil views:NSDictionaryOfVariableBindings(_commentBody)]];
+        [self.contentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-10-[_commentBody]-|" options:0 metrics:Nil views:NSDictionaryOfVariableBindings(_commentBody)]];
         
                 [self.contentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:[_userName]-[_commentBody]-|" options:0 metrics:Nil views:NSDictionaryOfVariableBindings(_commentBody,_userName)]];
         
@@ -167,10 +168,10 @@ static NSString *cellIdentifier=@"cell";
 //    tableViewTopConstraint.constant=0;
     
     
-    NSLog(@"%@",self.view.subviews);
-    NSLog(@"%@",self.view.constraints);
-    [self.tableView reloadData];
-    [self.view setNeedsLayout];
+//    NSLog(@"%@",self.view.subviews);
+//    NSLog(@"%@",self.view.constraints);
+//    [self.tableView reloadData];
+//    [self.view setNeedsLayout];
 //    [self.tableView setContentInset:UIEdgeInsetsMake(-30, 0, 0, 0)];
     
 #pragma mark 加导航栏按钮
@@ -178,15 +179,15 @@ static NSString *cellIdentifier=@"cell";
     UIButton *commentButton = [UIButton buttonWithType:UIButtonTypeCustom];
     //    [customView addSubview:commentButton];
     
-    UIImageView *imageView=[[UIImageView alloc]initWithFrame:CGRectMake(4, 4, 30, 22)];
+    UIImageView *imageView=[[UIImageView alloc]initWithFrame:CGRectMake(0, 0, 18, 18)];
     [imageView setImage:[UIImage imageNamed:@"com.png"]];
     [commentButton addSubview:imageView];
     
     //    [commentButton setFrame:customView.bounds];
     [commentButton setTitle:[NSString stringWithFormat:@"%d",self.numberOfComment] forState:UIControlStateNormal];
     [commentButton addTarget:self action:@selector(commentButtonPress:) forControlEvents:UIControlEventTouchUpInside];
-    [commentButton setTitleEdgeInsets:UIEdgeInsetsMake(0, 22, 0, 0)];
-    UIBarButtonItem *rightCommentBarButton=[helper BarButtonItemWithUIButton:commentButton ButtonOrigin:CGPointMake(20, 0) CustomViewSize:CGSizeMake(88, 44)];
+    [commentButton setTitleEdgeInsets:UIEdgeInsetsMake(0, 0, 24, 24)];
+    UIBarButtonItem *rightCommentBarButton=[helper BarButtonItemWithUIButton:commentButton ButtonOrigin:CGPointMake(46, 13) CustomViewSize:CGSizeMake(88, 44)];
     NSLog(@"%@",self.navigationController.navigationItem.leftBarButtonItems);
     
     [self.navigationItem setRightBarButtonItem:rightCommentBarButton];
@@ -225,7 +226,7 @@ static NSString *cellIdentifier=@"cell";
     commentTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier forIndexPath:indexPath];
     
     
-    [cell.headImageView setImageWithURL:tableViewDataArray[indexPath.row][@"headImageUrl"] placeholderImage:[UIImage imageNamed:@"touxiang.png"]];
+    [cell.headImageView setImageWithURL:tableViewDataArray[indexPath.row][@"headImageUrl"] placeholderImage:[UIImage imageNamed:@"defaultHeadImage.png"]];
     
     cell.userName.text=tableViewDataArray[indexPath.row][@"userName"];
     cell.commentBody.text=tableViewDataArray[indexPath.row][@"commentBody"];
