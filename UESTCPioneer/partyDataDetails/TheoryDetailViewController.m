@@ -61,9 +61,6 @@
         _titleLabel.font = titleFont;
         _titleLabel.textColor = [UIColor colorWithRed:100.0/255.0 green:100.0/255.0 blue:100.0/255.0 alpha:1];
         
-        NSLog(@"aaaaaaaa:%f",_titleLabel.frame.size.height);
-        
-        
     }
     return _titleLabel;
 }

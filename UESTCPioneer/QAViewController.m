@@ -17,6 +17,7 @@
 @property (nonatomic,strong) UIButton * cancelBtn;
 @property (nonatomic,strong) UILabel * tvLabel;
 
+
 @end
 
 @implementation QAViewController
@@ -52,7 +53,6 @@ static NSString * cellIdentifier = @"cellIdentifier";
     // Do any additional setup after loading the view.
 }
 
-
 - (UITableView *)tableView{
     if (!_tableView) {
         _tableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 0, 320, self.view.frame.size.height-100) style:UITableViewStyleGrouped];
@@ -62,6 +62,9 @@ static NSString * cellIdentifier = @"cellIdentifier";
     }
     return _tableView;
 }
+
+
+
 
 -(UITextView *)questTV{
     if (!_questTV) {
@@ -116,6 +119,19 @@ static NSString * cellIdentifier = @"cellIdentifier";
 
 - (void)textViewDidBeginEditing:(UITextView *)textView{
     [self.cancelBtn addTarget:self action:@selector(cancelBtnClick:) forControlEvents:UIControlEventTouchUpInside];
+    self.questTV.frame = CGRectMake(20, 40, 280, 130);
+    self.questTV.text = NULL;
+    
+    
+    self.tvLabel.center = CGPointMake(self.view.frame.size.width/2, 20);
+    self.tvLabel.text = @"写问题";
+    self.tvLabel.textAlignment = NSTextAlignmentCenter;
+    self.tvLabel.hidden = NO;
+    self.cancelBtn.hidden = NO;
+    self.completeBtn.hidden = NO;
+    [self.toolBar addSubview:self.tvLabel];
+    [self.toolBar addSubview:self.completeBtn];
+    [self.toolBar addSubview:self.cancelBtn];
 }
 
 - (void)textViewDidChange:(UITextView *)textView{
@@ -124,6 +140,8 @@ static NSString * cellIdentifier = @"cellIdentifier";
         [self.completeBtn setBackgroundImage:[UIImage imageNamed:@"complete2.png"] forState:UIControlStateNormal];
         [self.completeBtn addTarget:self action:@selector(completeBtnClick:) forControlEvents:UIControlEventTouchUpInside];
     }
+    
+    
 }
 
 - (void)cancelBtnClick:(UIButton *)sender{
@@ -160,13 +178,13 @@ static NSString * cellIdentifier = @"cellIdentifier";
 - (void)keyboardWasShown:(NSNotification *)aNotification{
     NSDictionary * info = [aNotification userInfo];
     CGSize kbSize = [[info objectForKey:UIKeyboardFrameBeginUserInfoKey] CGRectValue].size;
-    
+
     [UIView beginAnimations:nil context:NULL];
     [UIView setAnimationDelegate:self];
     [UIView setAnimationDuration:0.0];
     [UIView setAnimationBeginsFromCurrentState:YES];
     
-    [self toolBarChangeWithSize:kbSize];
+    self.toolBar.frame = CGRectMake(self.toolBar.frame.origin.x, self.toolBar.frame.origin.y - kbSize.height - 150, self.view.frame.size.width, self.toolBar.frame.size.height + 180);
     
     [UIView commitAnimations];
 }
@@ -176,7 +194,6 @@ static NSString * cellIdentifier = @"cellIdentifier";
     self.questTV.frame = CGRectMake(20, 40, 280, 130);
     self.questTV.text = NULL;
     
-
     self.tvLabel.center = CGPointMake(self.view.frame.size.width/2, 20);
     self.tvLabel.text = @"写问题";
     self.tvLabel.textAlignment = NSTextAlignmentCenter;
