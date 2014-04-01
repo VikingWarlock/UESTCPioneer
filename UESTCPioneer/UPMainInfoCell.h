@@ -18,7 +18,7 @@
 
 @interface UPMainInfoCell : UPCell
 -(void)setNewsBody:(NSString*)newsBody;
-@property (nonatomic)NSInteger theId;
+//@property (nonatomic)NSInteger theId;
 @property (nonatomic,weak)id<UPMainInfoCellDelegate>delegate;
 
 @end

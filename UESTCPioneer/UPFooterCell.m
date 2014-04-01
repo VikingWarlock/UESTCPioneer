@@ -15,14 +15,12 @@
 
 @interface UPFooterCell(){
     commentButton *commentBtn,*shareButton;
-    UIButton*markButton;
 }
 
 
 @end
 
 @implementation UPFooterCell
-@synthesize markButton;
 - (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier
 {
     self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
@@ -31,7 +29,7 @@
 #pragma makr 变量初始化
         _shareButtonEnable=NO;
         _shareButtonRequesting=NO;
-        
+                _marking=NO;
 
         
         CGRect btn3Rect = CGRectMake(230, 5, 60, 30);
@@ -133,10 +131,10 @@
 #pragma mark markButton
 -(void)setMarkButtonEnable:(BOOL)markButtonEnable{
     if (markButtonEnable){
-        if (markButton!=nil)return;
+        if (_markButton!=nil)return;
         CGRect btn1Rect = CGRectMake(10, 10, 75, 20);
         UIButton *btn1 = [[UIButton alloc]initWithFrame:btn1Rect];
-        markButton=btn1;
+        _markButton=btn1;
         btn1.tag = btn1Tag;
         [btn1 addTarget:self action:@selector(markButtonClick:) forControlEvents:UIControlEventTouchUpInside];
         //        btn1.hidden = YES;
@@ -145,8 +143,8 @@
         [self.contentView addSubview:btn1];
     }
     else {
-        [markButton removeFromSuperview];
-        markButton=nil;
+        [_markButton removeFromSuperview];
+        _markButton=nil;
     }
 }
 
@@ -160,10 +158,10 @@
 
 -(void)setMarkButtonStatus:(BOOL)status{
     if (status){
-        markButton.selected=YES;
+        _markButton.selected=YES;
     }
     else {
-        markButton.selected=NO;
+        _markButton.selected=NO;
     }
 }
 

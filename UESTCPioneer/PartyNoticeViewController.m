@@ -155,12 +155,18 @@
 
         UPTitleCell *titleCell = (UPTitleCell*)cell;
         
+        
+        
         titleCell.delegate=self;
         [titleCell setCollectButtonEnable:YES];
         
+        //收藏按钮
         BOOL collected = [entity.shoucang boolValue];
         if (collected)[titleCell setCollectButtonStatus:YES];
         else [titleCell setCollectButtonStatus:NO];
+        
+
+
         
 //        UIButton *collect = (UIButton *)[titleCell.contentView viewWithTag:collectTag];
 //        collect.hidden = NO;
@@ -195,7 +201,14 @@
 //        
 //        [btn1 setImage:[UIImage imageNamed:@"read.png"] forState:UIControlStateNormal];
         
-
+                //标记已读按钮
+        [cell3 setMarkButtonEnable:YES];
+        [cell3 setMarkButtonStatus:[entity.chakan boolValue]];
+        [cell3.markButton setImage:[UIImage imageNamed:@"read"] forState:UIControlStateNormal];
+        [cell3.markButton setImage:[UIImage imageNamed:@"read_mark"] forState:UIControlStateSelected];
+        
+        
+        
         [cell3 setShareButtonEnable:YES];        
         [cell3 setShareNum:[entity.transnum integerValue]];
         UIButton *btn1 = (UIButton *)[cell3.contentView viewWithTag:btn1Tag];
@@ -316,12 +329,12 @@
                                          ,@"shoucang":[NSString stringWithFormat:@"%d",flag]
                                          ,@"fromusername":[constant getUserName]
                                          ,@"fromuserid":[constant getUserId]
+                                         ,@"gonggaoid":[NSString stringWithFormat:@"%d",cell.theId]
+                                         ,@"typepid":@"1"
                                          };
     
     //异步锁
     cell.collecting=YES;
-    
-#warning 这边服务器内部错误,正在协商
     [NetworkCenter AFRequestWithData:CollectReqeustData SuccessBlock:^(AFHTTPRequestOperation *operation, id resultObject) {
         NSDictionary *dic = [NSJSONSerialization JSONObjectWithData:resultObject options:NSJSONReadingMutableLeaves error:Nil];
         if ([dic[@"result"] isEqualToString:@"success"]){
@@ -336,12 +349,48 @@
         cell.collecting=NO;
     }];
     
-    if (button.selected){
-        NSLog(@"已赞");
+//    if (button.selected){
+//        NSLog(@"已赞");
+//    }
+//    else {
+//        NSLog(@"取消赞");
+//    }
+}
+
+-(void)UPFooterCell:(UPFooterCell *)cell markButtonClick:(UIButton *)button{
+    
+    if (cell.marking){
+        [Alert showAlert:@"点太快了"];
+        return;
     }
-    else {
-        NSLog(@"取消赞");
-    }
+    
+    BOOL flag = button.selected;
+    cell.marking=YES;
+    NSDictionary *MarkReqeustData = @{
+                                         @"type":@"naViewcollect"
+                                         ,@"view_collect":@"0"
+                                         ,@"shoucang":[NSString stringWithFormat:@"%d",flag]
+                                         ,@"fromusername":[constant getUserName]
+                                         ,@"fromuserid":[constant getUserId]
+                                         ,@"gonggaoid":[NSString stringWithFormat:@"%d",cell.theId]
+                                         ,@"typepid":@"1"
+                                         };
+    
+    [NetworkCenter AFRequestWithData:MarkReqeustData SuccessBlock:^(AFHTTPRequestOperation *operation, id resultObject) {
+        NSDictionary *dic = [NSJSONSerialization JSONObjectWithData:resultObject options:NSJSONReadingMutableLeaves error:Nil];
+        if ([dic[@"result"] isEqualToString:@"success"]){
+            [Alert showAlert:@"标记成功！"];
+        }
+        else {
+            [Alert showAlert:@"标记失败!"];
+        }
+
+        
+        cell.marking=NO;
+    } FailureBlock:^(AFHTTPRequestOperation *operation, NSError *error) {
+        [Alert showAlert:@"发生错误"];
+        cell.marking=NO;
+    }];
 }
 
 @end

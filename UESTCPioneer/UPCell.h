@@ -9,5 +9,5 @@
 #import <UIKit/UIKit.h>
 
 @interface UPCell : UITableViewCell
-
+@property(nonatomic)NSInteger theId;
 @end

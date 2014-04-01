@@ -16,7 +16,7 @@
 static NSString *customTitleCellIndentifier = @"CustomTitleCellIndentifier";
 static NSString *customMainCellIndentifier = @"CustomMainCellIndentifier";
 static NSString *customFooterCellIndentifier = @"CustomFooterCellIndentifier";
-@interface RefreshRequestViewController ()<UPMainInfoCellDelegate>{
+@interface RefreshRequestViewController ()<UPMainInfoCellDelegate,UPTitleCellDelegate,UPFooterCellDelegate>{
 
     
 
@@ -196,7 +196,7 @@ static NSString *customFooterCellIndentifier = @"CustomFooterCellIndentifier";
     if (indexPath.row == 0) {
         //6.0后用这种方式更直接，可以省掉if（cell2＝＝nil）的判断   @黄卓越 2014-3-28
         UPTitleCell *cell = [tableView dequeueReusableCellWithIdentifier:customTitleCellIndentifier forIndexPath:indexPath];
-        
+        cell.theId=[entity.theId integerValue];
         [cell setTitle:entity.titleBody];
         [cell setTime:entity.timeAndDate];
         

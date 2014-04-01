@@ -25,7 +25,7 @@
         
         _CollectButtonEnable=NO;
         _collecting=NO;
-        
+
         
         
         CGRect titleRect = CGRectMake(10, 10, 250, 20);

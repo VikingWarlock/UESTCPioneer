@@ -35,5 +35,6 @@
 ///用于异步锁
 @property(nonatomic)BOOL collecting;
 
+
 @property(nonatomic)BOOL CollectButtonEnable;
 @end

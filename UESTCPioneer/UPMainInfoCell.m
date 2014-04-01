@@ -58,7 +58,7 @@
 
 -(void)WholeNewsContentButtonPress:(UIButton*)button{
     if ([self.delegate respondsToSelector:@selector(WholeNewsButtonClick:)]){
-        [self.delegate WholeNewsButtonClick:_theId];
+        [self.delegate WholeNewsButtonClick:self.theId];
     }
 }
 
