@@ -118,8 +118,9 @@
 {
     
     MJRefreshHeaderView *header = [MJRefreshHeaderView header];
+//    [header setBackgroundColor:[UIColor blackColor]];
     header.scrollView = self;
-
+    
     
     
     

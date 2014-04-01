@@ -44,7 +44,9 @@
         [weakSelf pullUpRefresh:refreshView];
     }];
     
-    [self.tableView beginRefreshing];
+    
+        [self.tableView beginRefreshing];
+
 	// Do any additional setup after loading the view.
 }
 
@@ -60,14 +62,35 @@
 -(void)_loadUPTableView{
     //@加UPTableView
 //    //    self.tableView=[[UPTableView alloc]initWithFrame:CGRectMake(10, 35, 300, 420) style:UITableViewStyleGrouped];
-    self.tableView=[[UPTableView alloc]initWithFrame:CGRectMake(10, 35, 300, 415) style:UITableViewStyleGrouped];
+    
+    //@改用自动布局 @黄卓越 2014－3-31
+    self.tableView=[[UPTableView alloc]initWithFrame:CGRectMake(0, 0, 0, 0) style:UITableViewStyleGrouped];
+        [self.view addSubview:self.tableView];
+    __weak UITableView *table = self.tableView;
+    
+    [self.tableView setTranslatesAutoresizingMaskIntoConstraints:NO];
+    [self.view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|[table]|" options:0 metrics:Nil views:NSDictionaryOfVariableBindings(table)]];
+        [self.view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:[table]|" options:0 metrics:Nil views:NSDictionaryOfVariableBindings(table)]];
+    tableViewTopConstraint=[NSLayoutConstraint constraintWithItem:table attribute:NSLayoutAttributeTop relatedBy:NSLayoutRelationEqual toItem:self.view attribute:NSLayoutAttributeTop multiplier:1 constant:30];
+    [self.view addConstraint:tableViewTopConstraint];
+    
+
+    
+    
     if(IS_IOS7)
         [self.tableView setSeparatorInset:UIEdgeInsetsZero];
     [self.tableView setAllowsSelection:NO];
-    UIImageView *background = [[UIImageView alloc]initWithFrame:CGRectMake(0, 0, 320, 455)];
-    [background setBackgroundColor:self.tableView.backgroundColor];
-    [self.view addSubview:background];
-    [self.view addSubview:self.tableView];
+//    UIImageView *background = [[UIImageView alloc]initWithFrame:CGRectMake(0, 0, 320, 455)];
+//    [background setBackgroundColor:self.tableView.backgroundColor];
+//    [self.view addSubview:background];
+
+    
+//    [self.tableView setTranslatesAutoresizingMaskIntoConstraints:NO];
+//    tableViewVerticalConstraint=[NSLayoutConstraint constraintsWithVisualFormat:@"V:|[_tableView]|" options:0 metrics:nil views:NSDictionaryOfVariableBindings(_tableView)];
+//    [self.view addConstraints:tableViewVerticalConstraint];
+//    [self.view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|[_tableView]|" options:0 metrics:nil views:NSDictionaryOfVariableBindings(_tableView)]];
+    
+    
 }
 
 -(void)dealloc{

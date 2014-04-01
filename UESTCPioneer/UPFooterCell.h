@@ -7,6 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "UPCell.h"
 
 #define btn1Tag          1
 #define btn2Tag          2
@@ -17,11 +18,15 @@
 @optional
 -(void)shareButtonClick:(NSInteger)theId;
 -(void)UPFooterCell:(UPFooterCell*)cell shareButtonPress:(UIButton*)button;
-
+-(void)UPFooterCell:(UPFooterCell*)cell markButtonClick:(UIButton*)button;
 @end
 
 
-@interface UPFooterCell : UITableViewCell
+@interface UPFooterCell : UPCell
+
+
+
+
 -(void)addCommentButtonTaget:(id)target Action:(SEL)action;
 
 -(void)setCommentId:(NSInteger)theId;
@@ -31,10 +36,15 @@
 
 -(void)setShareButtonImage:(UIImage*)image;
 
-@property (nonatomic)NSInteger theId;
+-(void)setMarkButtonStatus:(BOOL)status;
+
+//@property (nonatomic)NSInteger theId;
 @property (nonatomic,weak)id<UPFooterCellDelegate>delegate;
 @property(nonatomic) BOOL shareButtonEnable;
+@property(nonatomic)BOOL markButtonEnable;
+@property(nonatomic)UIButton *markButton;
 //用于异步请求的一些判断用途
 @property (nonatomic)BOOL shareButtonRequesting;
+@property(nonatomic)BOOL marking;
 
 @end

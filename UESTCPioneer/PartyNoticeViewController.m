@@ -14,7 +14,7 @@
 #import "LeveyTabBarController.h"
 #import "shareEditView.h"
 
-@interface PartyNoticeViewController ()<UPFooterCellDelegate>
+@interface PartyNoticeViewController ()<UPFooterCellDelegate,UPTitleCellDelegate>
 
 @end
 
@@ -138,12 +138,12 @@
     return [tableViewEntitiesArray count];
 }
 
-- (void)collectTaped:(UIButton *)collect{
-    UITableViewCell *cell = (UITableViewCell *)[[[collect superview]superview]superview];
-    NSIndexPath *indexPath = [self.tableView indexPathForCell:cell];
-    //收藏
-    [collect setImage:[UIImage imageNamed:@"collect_highlighted.png"] forState:UIControlStateNormal];
-}
+//- (void)collectTaped:(UIButton *)collect{
+//    UITableViewCell *cell = (UITableViewCell *)[[[collect superview]superview]superview];
+//    NSIndexPath *indexPath = [self.tableView indexPathForCell:cell];
+//    //收藏
+//    [collect setImage:[UIImage imageNamed:@"collect_highlighted.png"] forState:UIControlStateNormal];
+//}
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     UITableViewCell *cell=[super tableView:tableView cellForRowAtIndexPath:indexPath];
@@ -152,24 +152,25 @@
     
     
     if (indexPath.row == 0) {
-//        UPTitleCell*cell=(UPTitleCell*)[super tableView:tableView cellForRowAtIndexPath:indexPath];
-//        static NSString *customTitleCellIndentifier = @"CustomTitleCellIndentifier";
-//        UPTitleCell *cell = [tableView dequeueReusableCellWithIdentifier:customTitleCellIndentifier forIndexPath:indexPath];
-////        if(cell == nil){
-////            cell = [[UPTitleCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:customTitleCellIndentifier];
-////        }
-//        UILabel *title = (UILabel *)[cell.contentView viewWithTag:titleTag];
-//        title.text = @"title";
-//        UILabel *time = (UILabel *)[cell.contentView viewWithTag:timeTag];
-////        time.text = @"time";
-//        UIButton *collect = (UIButton *)[cell.contentView viewWithTag:collectTag];
-//        collect.hidden = NO;
-//        [collect addTarget:self action:@selector(collectTaped:) forControlEvents:UIControlEventTouchUpInside];
+
         UPTitleCell *titleCell = (UPTitleCell*)cell;
         
-        UIButton *collect = (UIButton *)[titleCell.contentView viewWithTag:collectTag];
-        collect.hidden = NO;
-        [collect addTarget:self action:@selector(collectTaped:) forControlEvents:UIControlEventTouchUpInside];
+        
+        
+        titleCell.delegate=self;
+        [titleCell setCollectButtonEnable:YES];
+        
+        //收藏按钮
+        BOOL collected = [entity.shoucang boolValue];
+        if (collected)[titleCell setCollectButtonStatus:YES];
+        else [titleCell setCollectButtonStatus:NO];
+        
+
+
+        
+//        UIButton *collect = (UIButton *)[titleCell.contentView viewWithTag:collectTag];
+//        collect.hidden = NO;
+//        [collect addTarget:self action:@selector(collectTaped:) forControlEvents:UIControlEventTouchUpInside];
         return cell;
     }
     else if (indexPath.row == 1) {
@@ -200,7 +201,14 @@
 //        
 //        [btn1 setImage:[UIImage imageNamed:@"read.png"] forState:UIControlStateNormal];
         
-
+                //标记已读按钮
+        [cell3 setMarkButtonEnable:YES];
+        [cell3 setMarkButtonStatus:[entity.chakan boolValue]];
+        [cell3.markButton setImage:[UIImage imageNamed:@"read"] forState:UIControlStateNormal];
+        [cell3.markButton setImage:[UIImage imageNamed:@"read_mark"] forState:UIControlStateSelected];
+        
+        
+        
         [cell3 setShareButtonEnable:YES];        
         [cell3 setShareNum:[entity.transnum integerValue]];
         UIButton *btn1 = (UIButton *)[cell3.contentView viewWithTag:btn1Tag];
@@ -298,6 +306,91 @@
         
     }];
     
+}
+#pragma mark - UPTitleCell Delegate 
+
+/*
+    type=naViewcollect&view_collect=0&shoucang=1&fromusername=xiaopangzi&fromuserid=00120
+ 
+ */
+
+-(void)UPTitleCell:(UPTitleCell *)cell CollectButtonClick:(UIButton *)button{
+    
+    if (cell.collecting){
+        [Alert showAlert:@"点太快了"];
+        return;
+    }
+    
+    NSInteger flag = button.selected;
+    
+    NSDictionary *CollectReqeustData = @{
+                                         @"type":@"naViewcollect"
+                                         ,@"view_collect":@"0"
+                                         ,@"shoucang":[NSString stringWithFormat:@"%d",flag]
+                                         ,@"fromusername":[constant getUserName]
+                                         ,@"fromuserid":[constant getUserId]
+                                         ,@"gonggaoid":[NSString stringWithFormat:@"%d",cell.theId]
+                                         ,@"typepid":@"1"
+                                         };
+    
+    //异步锁
+    cell.collecting=YES;
+    [NetworkCenter AFRequestWithData:CollectReqeustData SuccessBlock:^(AFHTTPRequestOperation *operation, id resultObject) {
+        NSDictionary *dic = [NSJSONSerialization JSONObjectWithData:resultObject options:NSJSONReadingMutableLeaves error:Nil];
+        if ([dic[@"result"] isEqualToString:@"success"]){
+            [Alert showAlert:@"成功！"];
+        }
+        else {
+            [Alert showAlert:@"失败!"];
+        }
+        cell.collecting=NO;
+    } FailureBlock:^(AFHTTPRequestOperation *operation, NSError *error) {
+        [Alert showAlert:@"发生错误"];
+        cell.collecting=NO;
+    }];
+    
+//    if (button.selected){
+//        NSLog(@"已赞");
+//    }
+//    else {
+//        NSLog(@"取消赞");
+//    }
+}
+
+-(void)UPFooterCell:(UPFooterCell *)cell markButtonClick:(UIButton *)button{
+    
+    if (cell.marking){
+        [Alert showAlert:@"点太快了"];
+        return;
+    }
+    
+    BOOL flag = button.selected;
+    cell.marking=YES;
+    NSDictionary *MarkReqeustData = @{
+                                         @"type":@"naViewcollect"
+                                         ,@"view_collect":@"0"
+                                         ,@"shoucang":[NSString stringWithFormat:@"%d",flag]
+                                         ,@"fromusername":[constant getUserName]
+                                         ,@"fromuserid":[constant getUserId]
+                                         ,@"gonggaoid":[NSString stringWithFormat:@"%d",cell.theId]
+                                         ,@"typepid":@"1"
+                                         };
+    
+    [NetworkCenter AFRequestWithData:MarkReqeustData SuccessBlock:^(AFHTTPRequestOperation *operation, id resultObject) {
+        NSDictionary *dic = [NSJSONSerialization JSONObjectWithData:resultObject options:NSJSONReadingMutableLeaves error:Nil];
+        if ([dic[@"result"] isEqualToString:@"success"]){
+            [Alert showAlert:@"标记成功！"];
+        }
+        else {
+            [Alert showAlert:@"标记失败!"];
+        }
+
+        
+        cell.marking=NO;
+    } FailureBlock:^(AFHTTPRequestOperation *operation, NSError *error) {
+        [Alert showAlert:@"发生错误"];
+        cell.marking=NO;
+    }];
 }
 
 @end

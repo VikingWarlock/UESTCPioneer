@@ -8,6 +8,8 @@
 
 #import "UPMainInfoCell.h"
 
+#define wholeNewsButtonColor         [UIColor colorWithRed:93.0/255.0 green:107.0/255.0 blue:142.0/255.0 alpha:1]
+
 @implementation UPMainInfoCell
 
 - (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier
@@ -29,9 +31,11 @@
         UIButton *btnLabel = [[UIButton alloc]initWithFrame:btnRect];
         btnLabel.titleLabel.font = [UIFont systemFontOfSize:16];
         btnLabel.tag = 1;
+        
 
-        [btnLabel setTitleColor:[UIColor colorWithRed:0 green:0 blue:0.4 alpha:1] forState:UIControlStateNormal];
-        [btnLabel setTitleColor:[UIColor colorWithRed:0.4 green:0.4 blue:0.4 alpha:1] forState:UIControlStateHighlighted];
+
+        [btnLabel setTitleColor:wholeNewsButtonColor forState:UIControlStateNormal];
+        [btnLabel setTitleColor:[UIColor blackColor] forState:UIControlStateHighlighted];
         [btnLabel setTitle:@"全文" forState:UIControlStateNormal];
         [btnLabel addTarget:self action:@selector(WholeNewsContentButtonPress:) forControlEvents:UIControlEventTouchUpInside];
         [btnLabel.titleLabel setTextAlignment:NSTextAlignmentCenter];
@@ -54,7 +58,7 @@
 
 -(void)WholeNewsContentButtonPress:(UIButton*)button{
     if ([self.delegate respondsToSelector:@selector(WholeNewsButtonClick:)]){
-        [self.delegate WholeNewsButtonClick:_theId];
+        [self.delegate WholeNewsButtonClick:self.theId];
     }
 }
 

@@ -9,7 +9,8 @@
 #import <UIKit/UIKit.h>
 
 @interface commentButton : UIButton
-
+- (id)initWithFrame:(CGRect)frame WithImage:(UIImage*)image;
+-(void)setButtonImage:(UIImage*)image;
 ///用于网络请求的Id
 @property NSInteger theId;
 @end

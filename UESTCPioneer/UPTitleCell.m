@@ -8,6 +8,12 @@
 
 #import "UPTitleCell.h"
 
+@interface UPTitleCell(){
+    UIButton *collectButton;
+}
+
+@end
+
 @implementation UPTitleCell
 
 - (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier
@@ -15,6 +21,12 @@
     self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
     if (self) {
         // Initialization code
+        
+        
+        _CollectButtonEnable=NO;
+        _collecting=NO;
+
+        
         
         CGRect titleRect = CGRectMake(10, 10, 250, 20);
         UILabel *titleLabel = [[UILabel alloc]initWithFrame:titleRect];
@@ -32,13 +44,7 @@
         [timeLabel setTextAlignment:NSTextAlignmentLeft];
         [self.contentView addSubview:timeLabel];
         
-        CGRect collectRect = CGRectMake(230, 20, 60, 20);
-        UIButton *collect = [[UIButton alloc]initWithFrame:collectRect];
-        collect.tag = collectTag;
-        collect.hidden = YES;
-        [collect setImage:[UIImage imageNamed:@"collect.png"] forState:UIControlStateNormal];
-        [self.contentView addSubview:collect];
-
+      
     }
     return self;
 }
@@ -59,5 +65,47 @@
             UILabel *timeLabel = (UILabel *)[self.contentView viewWithTag:timeTag];
     timeLabel.text=time;
 }
+
+-(void)setCollectButtonEnable:(BOOL)CollectButtonEnable{
+    _CollectButtonEnable=CollectButtonEnable;
+    if (CollectButtonEnable){
+        if (collectButton!=nil)return;
+        
+        CGRect collectRect = CGRectMake(230, 20, 60, 20);
+        UIButton *collect = [[UIButton alloc]initWithFrame:collectRect];
+        collectButton=collect;
+        collect.tag = collectTag;
+//        collect.hidden = YES;
+        [collect setImage:[UIImage imageNamed:@"collect.png"] forState:UIControlStateNormal];
+        [collect setImage:[UIImage imageNamed:@"collect_highlighted.png"] forState:UIControlStateHighlighted];
+        [collect setImage:[UIImage imageNamed:@"collect_highlighted.png"] forState:UIControlStateSelected];
+        [collect addTarget:self action:@selector(collect:) forControlEvents:UIControlEventTouchUpInside];
+        [self.contentView addSubview:collect];
+
+    }
+    else {
+        [collectButton removeFromSuperview];
+        collectButton=nil;
+    }
+}
+
+-(void)collect:(UIButton*)button{
+    button.selected=!button.selected;
+    if ([self.delegate respondsToSelector:@selector(UPTitleCell:CollectButtonClick:)]){
+        [self.delegate UPTitleCell:self CollectButtonClick:button];
+    }
+}
+
+-(void)setCollectButtonStatus:(BOOL)status{
+    if (status){
+        collectButton.selected=YES;
+    }
+    else {
+        collectButton.selected=NO;
+    }
+}
+
+
+
 
 @end

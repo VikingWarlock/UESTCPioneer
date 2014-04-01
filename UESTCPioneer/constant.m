@@ -12,6 +12,7 @@ static id centerController=nil;
 
 static NSString *userId =@"";
 static NSString *userName=@"";
+static NSString *Name=@"";
 @implementation constant
 +(id)getCenterController{
     return centerController;
@@ -35,6 +36,15 @@ static NSString *userName=@"";
 
 +(void)setUserName:(NSString*)name{
     userName=name;
+}
+
+
++(NSString*)getName{
+    return Name;
+}
+
++(void)setName:(NSString*)name{
+    Name=name;
 }
 
 @end

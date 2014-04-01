@@ -12,6 +12,8 @@
 @interface RefreshTableViewController : UIViewController{
     ///上拉加载的次数，仅仅是一个变量，请子类自行使用
     NSInteger PullUpRefreshTimes;
+    NSArray *tableViewVerticalConstraint;
+    NSLayoutConstraint *tableViewTopConstraint;
 }
 
 

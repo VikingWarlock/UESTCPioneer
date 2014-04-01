@@ -68,7 +68,7 @@
     [self setExtraCellLineHidden];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(displayNewsCount:) name:@"newsCount" object:nil];
     indexForSelected = [NSIndexPath indexPathForRow:0 inSection:0];
-    nameArray=@[@"成电视角",@"党委通知",@"公示公告",@"组织活动",@"心情分享"];
+    nameArray=@[@"成电视角",@"党委通知",@"公示公告",@"组织活动",@"活动分享"];
     classArray=@[[PioneerViewController class],[PartyNoticeViewController class],[PublicityViewController class],[PartyActivityViewController class],[MoodShareViewController class]];
     cellIcon = @[@"news1.png",@"notice1.png",@"note1.png",@"act1.png",@"share1.png"];
     selectedCellIcon = @[@"news2.png",@"notice2.png",@"note2.png",@"act2.png",@"share2.png"];
