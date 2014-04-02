@@ -7,6 +7,7 @@
 //
 
 #import "AppDelegate.h"
+#import "LoginViewController.h"
 #import "PioneerViewController.h"
 #import "PPRevealSideViewController.h"
 #import "LeveyTabBarController.h"
@@ -34,6 +35,29 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
+    
+    //运营商和时间的风格
+    [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent];
+    
+    
+    if(IS_IOS7)[[UINavigationBar appearance]setBarTintColor:kNavigationBarColor];
+    else [[UINavigationBar appearance] setTintColor:kNavigationBarColor];
+    [[UINavigationBar appearance] setTitleTextAttributes:@{NSForegroundColorAttributeName:[UIColor whiteColor]}];
+    
+    
+    NSUserDefaults * defaultData = [NSUserDefaults standardUserDefaults];
+    BOOL login = [defaultData boolForKey:@"login"];
+    if (!login){
+        LoginViewController *loginViewController  = [[LoginViewController alloc]init];
+        UINavigationController *nav = [[UINavigationController alloc]initWithRootViewController:loginViewController];
+        nav.navigationBar.translucent=NO;
+        self.window.rootViewController=nav;
+        
+        self.window.backgroundColor = [UIColor whiteColor];
+        [self.window makeKeyAndVisible];
+        return YES;
+        
+    }
     
     //调试模式
 #if debugMode
@@ -102,8 +126,7 @@
     
     
     
-    if(IS_IOS7)[[UINavigationBar appearance]setBarTintColor:kNavigationBarColor];
-    else [[UINavigationBar appearance] setTintColor:kNavigationBarColor];
+
     
     
     NSMutableDictionary *imgDic = [NSMutableDictionary dictionaryWithCapacity:3];
@@ -131,7 +154,7 @@
     tab = [[LeveyTabBarController alloc] initWithViewControllers:@[main,communicationViewController,partyDataViewController,personalViewController] imageArray:imgArr titles:titleArray];
     
     UINavigationController *nav=[[UINavigationController alloc]initWithRootViewController:tab];
-    [tab.navigationController.navigationBar setTitleTextAttributes:@{UITextAttributeTextColor:[UIColor whiteColor]}];
+//    [tab.navigationController.navigationBar setTitleTextAttributes:@{NSForegroundColorAttributeName:[UIColor whiteColor]}];
     [nav.navigationBar setTranslucent:NO];
     //    [nav.navigationBar setTintColor:kNavigationBarColor];
     //    [nav.navigationBar setBarTintColor:[UIColor redColor]];
@@ -152,8 +175,7 @@
     // Override point for customization after application launch.
     
     
-    //运营商和时间的风格
-    [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent];
+
     
     
     
