@@ -45,6 +45,10 @@
     [[UINavigationBar appearance] setTitleTextAttributes:@{NSForegroundColorAttributeName:[UIColor whiteColor]}];
     
     
+    
+#if debugMode
+    
+#else
     NSUserDefaults * defaultData = [NSUserDefaults standardUserDefaults];
     BOOL login = [defaultData boolForKey:@"login"];
     if (!login){
@@ -58,6 +62,7 @@
         return YES;
         
     }
+#endif
     
     //调试模式
 #if debugMode
