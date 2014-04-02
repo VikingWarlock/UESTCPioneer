@@ -19,9 +19,17 @@
 
 static NSString *CellTableIdentifier = @"CellTableIdentifier";
 
+- (id)initWithArray:(NSArray *)data forTitle:(NSString *)title{
+    if (self) {
+        self.data = data;
+        self.title = title;
+    }
+    return self;
+}
+
 -(NSArray *) data{
     if (!_data) {
-        _data = @[@{@"title":@"1",@"content":@"111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111",@"time":@"2014-3-19"},@{@"title":@"2",@"content":@"222222222222222222222222222222222222222222222222222222222222",@"time":@"2014-3-19"}];
+        _data = @[@{@"title":@"1",@"content":@"111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111",@"time":@"2014-3-19"},@{@"title":@"2",@"content":@"222222222222222222222222222222222222222222222222222222222222",@"time":@"2014-3-19"}];
     }
     return _data;
 }
@@ -30,7 +38,6 @@ static NSString *CellTableIdentifier = @"CellTableIdentifier";
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
-        self.navigationItem.title = @"中央精神";
     }
     return self;
 }
@@ -95,9 +102,16 @@ heightForRowAtIndexPath:(NSIndexPath *)indexPath
     return cell.timeValue.frame.origin.y + cell.timeValue.frame.size.height;
 }
 
+
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
-    UIViewController * viewController = [[TheoryDetailViewController alloc] init];
+    NSDictionary * detailData;
+    if ([self.data[indexPath.row] isKindOfClass:[NSDictionary class]]) {
+        detailData = self.data[indexPath.row];
+    }
+    UIViewController * viewController = [[TheoryDetailViewController alloc] initWithDictionary:detailData];
     [self.navigationController pushViewController:viewController animated:YES];
+    [self.tableView deselectRowAtIndexPath:indexPath animated:YES];
+    
 }
 
 @end

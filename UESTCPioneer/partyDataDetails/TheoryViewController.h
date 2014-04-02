@@ -12,4 +12,6 @@
 @property(nonatomic,strong)UITableView * tableView;
 @property (nonatomic,strong) NSArray * data;
 
+- (id)initWithArray:(NSArray *)data forTitle:(NSString *)title;
+
 @end
