@@ -37,15 +37,20 @@
 -(void)_viewLayout{
     [commentRectView addSubview:shareSourceInfoLabel];
     [shareSourceInfoLabel setTranslatesAutoresizingMaskIntoConstraints:NO];
+
     
-    [commentRectView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-20-[shareSourceInfoLabel]-20-|" options:0 metrics:nil views:NSDictionaryOfVariableBindings(shareSourceInfoLabel)]];
+    [commentRectView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-16-[shareSourceInfoLabel]-16-|" options:0 metrics:nil views:NSDictionaryOfVariableBindings(shareSourceInfoLabel)]];
     
     [commentRectView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:[commentTextField]-[shareSourceInfoLabel(==80)]-|" options:0 metrics:nil views:NSDictionaryOfVariableBindings(commentTextField,shareSourceInfoLabel)]];
 }
 
 -(void)_viewStyle{
-    [shareSourceInfoLabel setBackgroundColor:[UIColor colorWithWhite:0.8 alpha:1]];
+    [shareSourceInfoLabel.layer setBorderWidth:1];
+    [shareSourceInfoLabel.layer setBorderColor:[UIColor colorWithRed:136.0/255.0 green:136.0/255.0 blue:136.0/255.0 alpha:0.3].CGColor];
+    [shareSourceInfoLabel setBackgroundColor:[UIColor colorWithRed:237.0/255.0 green:237.0/255.0 blue:237.0/255.0 alpha:1]];
     [shareSourceInfoLabel setNumberOfLines:2];
+    [shareSourceInfoLabel setFont:[UIFont systemFontOfSize:20]];
+
 }
 
 -(void)popUpCommentViewWithShareSourceInfo:(NSString*)string CommitBlock:(void (^)(NSString *ommentBody))commitBlock{

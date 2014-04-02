@@ -12,7 +12,7 @@
 @interface commentView : UIView{
     UIView *commentRectView;
     UIButton *closeButton,*commitButton;
-    UITextField *commentTextField;
+    UITextView *commentTextField;
     UILabel *titleLabel;
 
 }
