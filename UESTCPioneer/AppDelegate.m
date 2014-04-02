@@ -48,7 +48,6 @@
     
 #if debugMode
     
-#else
     NSUserDefaults * defaultData = [NSUserDefaults standardUserDefaults];
     BOOL login = [defaultData boolForKey:@"login"];
     if (!login){

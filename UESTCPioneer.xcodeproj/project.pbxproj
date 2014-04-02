@@ -144,6 +144,8 @@
 		DC7A078518EC00B20040794B /* sepline.png in Resources */ = {isa = PBXBuildFile; fileRef = DC7A078418EC00B20040794B /* sepline.png */; };
 		DCA5962618C81A0F00F001D9 /* UPSwitch.m in Sources */ = {isa = PBXBuildFile; fileRef = DCA5962518C81A0F00F001D9 /* UPSwitch.m */; };
 		DCA5962918C81AED00F001D9 /* UPComplexSwitch.m in Sources */ = {isa = PBXBuildFile; fileRef = DCA5962818C81AED00F001D9 /* UPComplexSwitch.m */; };
+		DCA7D9E518EC52C60006BDAF /* registViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DCA7D9E418EC52C60006BDAF /* registViewController.m */; };
+		DCA7D9EC18EC55E00006BDAF /* entranceViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DCA7D9EB18EC55E00006BDAF /* entranceViewController.m */; };
 		DCAFE85D18E51EAE00702864 /* Mapping.m in Sources */ = {isa = PBXBuildFile; fileRef = DCAFE85C18E51EAE00702864 /* Mapping.m */; };
 		DCB22CFA18CC9F37004F36D0 /* helper.m in Sources */ = {isa = PBXBuildFile; fileRef = DCB22CF918CC9F37004F36D0 /* helper.m */; };
 		DCB22CFD18CCBCD0004F36D0 /* constant.m in Sources */ = {isa = PBXBuildFile; fileRef = DCB22CFC18CCBCD0004F36D0 /* constant.m */; };
@@ -420,6 +422,10 @@
 		DCA5962518C81A0F00F001D9 /* UPSwitch.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UPSwitch.m; sourceTree = "<group>"; };
 		DCA5962718C81AED00F001D9 /* UPComplexSwitch.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UPComplexSwitch.h; sourceTree = "<group>"; };
 		DCA5962818C81AED00F001D9 /* UPComplexSwitch.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UPComplexSwitch.m; sourceTree = "<group>"; };
+		DCA7D9E318EC52C60006BDAF /* registViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = registViewController.h; sourceTree = "<group>"; };
+		DCA7D9E418EC52C60006BDAF /* registViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = registViewController.m; sourceTree = "<group>"; };
+		DCA7D9EA18EC55E00006BDAF /* entranceViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = entranceViewController.h; sourceTree = "<group>"; };
+		DCA7D9EB18EC55E00006BDAF /* entranceViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = entranceViewController.m; sourceTree = "<group>"; };
 		DCAFE85B18E51EAE00702864 /* Mapping.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Mapping.h; path = CoreData_Model/Mapping.h; sourceTree = "<group>"; };
 		DCAFE85C18E51EAE00702864 /* Mapping.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Mapping.m; path = CoreData_Model/Mapping.m; sourceTree = "<group>"; };
 		DCB22CF818CC9F37004F36D0 /* helper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = helper.h; sourceTree = "<group>"; };
@@ -846,8 +852,11 @@
 		DC7A077D18EBCB8B0040794B /* Login */ = {
 			isa = PBXGroup;
 			children = (
+				DCA7D9E918EC55C90006BDAF /* superClass */,
 				DC7A077E18EBCB9E0040794B /* LoginViewController.h */,
 				DC7A077F18EBCB9E0040794B /* LoginViewController.m */,
+				DCA7D9E318EC52C60006BDAF /* registViewController.h */,
+				DCA7D9E418EC52C60006BDAF /* registViewController.m */,
 			);
 			name = Login;
 			sourceTree = "<group>";
@@ -870,6 +879,15 @@
 				DCA5962818C81AED00F001D9 /* UPComplexSwitch.m */,
 			);
 			name = Button;
+			sourceTree = "<group>";
+		};
+		DCA7D9E918EC55C90006BDAF /* superClass */ = {
+			isa = PBXGroup;
+			children = (
+				DCA7D9EA18EC55E00006BDAF /* entranceViewController.h */,
+				DCA7D9EB18EC55E00006BDAF /* entranceViewController.m */,
+			);
+			name = superClass;
 			sourceTree = "<group>";
 		};
 		DCB5134F18C6C43700B7EE95 = {
@@ -1486,6 +1504,7 @@
 				DCB5146618C6DF4500B7EE95 /* UPFooterCell.m in Sources */,
 				F23FA50818E3EB2B00E174A2 /* OrganDetailTableViewController.m in Sources */,
 				DCB5146018C6DF1C00B7EE95 /* UPTitleCell.m in Sources */,
+				DCA7D9E518EC52C60006BDAF /* registViewController.m in Sources */,
 				F23FA50218E3EA4A00E174A2 /* LearnDetailViewController.m in Sources */,
 				DC0BFF9718E24A40002E3D38 /* Unread.m in Sources */,
 				DC0BFFAD18E24C1D002E3D38 /* PullRefreshTableView.m in Sources */,
@@ -1499,6 +1518,7 @@
 				51A0C51618E31CB600404885 /* EditPersonalInformation.m in Sources */,
 				5153824918DAE23E007C4675 /* DailyCare.m in Sources */,
 				DCB5144018C6D27000B7EE95 /* LeftMenuTableViewController.m in Sources */,
+				DCA7D9EC18EC55E00006BDAF /* entranceViewController.m in Sources */,
 				5153825518DB03A4007C4675 /* PublishNotice.m in Sources */,
 				DC376EDB18E55B60005F7DC8 /* PublicityNewsEntity.m in Sources */,
 				DCA5962918C81AED00F001D9 /* UPComplexSwitch.m in Sources */,
