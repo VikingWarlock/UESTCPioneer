@@ -142,6 +142,7 @@
 		DC7A078018EBCB9E0040794B /* LoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DC7A077F18EBCB9E0040794B /* LoginViewController.m */; };
 		DC7A078318EBD17E0040794B /* inputkuang.png in Resources */ = {isa = PBXBuildFile; fileRef = DC7A078218EBD17E0040794B /* inputkuang.png */; };
 		DC7A078518EC00B20040794B /* sepline.png in Resources */ = {isa = PBXBuildFile; fileRef = DC7A078418EC00B20040794B /* sepline.png */; };
+		DCA4DB2118ECEB76001BDA59 /* inputRectView.m in Sources */ = {isa = PBXBuildFile; fileRef = DCA4DB2018ECEB76001BDA59 /* inputRectView.m */; };
 		DCA5962618C81A0F00F001D9 /* UPSwitch.m in Sources */ = {isa = PBXBuildFile; fileRef = DCA5962518C81A0F00F001D9 /* UPSwitch.m */; };
 		DCA5962918C81AED00F001D9 /* UPComplexSwitch.m in Sources */ = {isa = PBXBuildFile; fileRef = DCA5962818C81AED00F001D9 /* UPComplexSwitch.m */; };
 		DCA7D9E518EC52C60006BDAF /* registViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DCA7D9E418EC52C60006BDAF /* registViewController.m */; };
@@ -418,6 +419,8 @@
 		DC7A077F18EBCB9E0040794B /* LoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoginViewController.m; sourceTree = "<group>"; };
 		DC7A078218EBD17E0040794B /* inputkuang.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = inputkuang.png; sourceTree = "<group>"; };
 		DC7A078418EC00B20040794B /* sepline.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = sepline.png; sourceTree = "<group>"; };
+		DCA4DB1F18ECEB76001BDA59 /* inputRectView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = inputRectView.h; sourceTree = "<group>"; };
+		DCA4DB2018ECEB76001BDA59 /* inputRectView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = inputRectView.m; sourceTree = "<group>"; };
 		DCA5962418C81A0F00F001D9 /* UPSwitch.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UPSwitch.h; sourceTree = "<group>"; };
 		DCA5962518C81A0F00F001D9 /* UPSwitch.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UPSwitch.m; sourceTree = "<group>"; };
 		DCA5962718C81AED00F001D9 /* UPComplexSwitch.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UPComplexSwitch.h; sourceTree = "<group>"; };
@@ -886,6 +889,8 @@
 			children = (
 				DCA7D9EA18EC55E00006BDAF /* entranceViewController.h */,
 				DCA7D9EB18EC55E00006BDAF /* entranceViewController.m */,
+				DCA4DB1F18ECEB76001BDA59 /* inputRectView.h */,
+				DCA4DB2018ECEB76001BDA59 /* inputRectView.m */,
 			);
 			name = superClass;
 			sourceTree = "<group>";
@@ -1523,6 +1528,7 @@
 				DC376EDB18E55B60005F7DC8 /* PublicityNewsEntity.m in Sources */,
 				DCA5962918C81AED00F001D9 /* UPComplexSwitch.m in Sources */,
 				5135CCA718E699EB00BFD748 /* FirstEditCell.m in Sources */,
+				DCA4DB2118ECEB76001BDA59 /* inputRectView.m in Sources */,
 				5153825218DAE40E007C4675 /* MyNotice.m in Sources */,
 				DC376ECE18E522C5005F7DC8 /* PioneerNewsEntity.m in Sources */,
 				DCB5136818C6C43700B7EE95 /* main.m in Sources */,

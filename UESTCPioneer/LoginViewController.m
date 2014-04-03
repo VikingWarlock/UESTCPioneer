@@ -7,7 +7,7 @@
 //
 
 #import "LoginViewController.h"
-
+#import "registViewController.h"
 
 @interface inputRect : UIView
 @property (nonatomic)UILabel *userNameLabel,*passwordLabel;
@@ -26,9 +26,12 @@
         
         //背景
         UIImageView *backgroundImageView = [[UIImageView alloc]init];
-        [backgroundImageView setImage:[UIImage imageNamed:@"inputkuang"]];
+//        [backgroundImageView setImage:[UIImage imageNamed:@"inputkuang"]];
         [self addSubview:backgroundImageView];
-        [backgroundImageView setContentMode:UIViewContentModeRedraw];
+        [backgroundImageView.layer setCornerRadius:5];
+        [backgroundImageView.layer setBorderWidth:1];
+        [backgroundImageView.layer setBorderColor:[UIColor colorWithWhite:146.0/255.0 alpha:0.5].CGColor];
+//        [backgroundImageView setContentMode:UIViewContentModeRedraw];
         [backgroundImageView setTranslatesAutoresizingMaskIntoConstraints:NO];
         [self addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-10-[backgroundImageView]-10-|" options:0 metrics:nil views:NSDictionaryOfVariableBindings(backgroundImageView)]];
         [self addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|-8-[backgroundImageView]-8-|" options:0 metrics:nil views:NSDictionaryOfVariableBindings(backgroundImageView)]];
@@ -109,7 +112,7 @@
 @interface LoginViewController (){
     UILabel *welcomeLabel;
     UITextField *userNameField,*passwordField;
-    inputRect *inputRectView;
+    inputRect *inputRectV;
     UIButton *registButton,*loginButton;
 }
 
@@ -142,17 +145,17 @@
     [welcomeLabel setTextColor:kNavigationBarColor];
 
     //输入框
-    inputRectView = [[inputRect alloc]init];
-    [self.view addSubview:inputRectView];
-    [inputRectView setTranslatesAutoresizingMaskIntoConstraints:NO];
+    inputRectV = [[inputRect alloc]init];
+    [self.view addSubview:inputRectV];
+    [inputRectV setTranslatesAutoresizingMaskIntoConstraints:NO];
     
     
     [welcomeLabel setTranslatesAutoresizingMaskIntoConstraints:NO];
-    [self.view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|-8-[welcomeLabel(==44)]" options:0 metrics:nil views:NSDictionaryOfVariableBindings(welcomeLabel,inputRectView)]];
+    [self.view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|-8-[welcomeLabel(==44)]" options:0 metrics:nil views:NSDictionaryOfVariableBindings(welcomeLabel)]];
     [self.view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|[welcomeLabel]|" options:0 metrics:nil views:NSDictionaryOfVariableBindings(welcomeLabel)]];
 
-    [self.view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:[welcomeLabel][inputRectView(==88)]" options:0 metrics:nil views:NSDictionaryOfVariableBindings(inputRectView,welcomeLabel)]];
-    [self.view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|[inputRectView]|" options:0 metrics:nil views:NSDictionaryOfVariableBindings(inputRectView)]];
+    [self.view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:[welcomeLabel][inputRectV(==88)]" options:0 metrics:nil views:NSDictionaryOfVariableBindings(inputRectV,welcomeLabel)]];
+    [self.view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|[inputRectV]|" options:0 metrics:nil views:NSDictionaryOfVariableBindings(inputRectV)]];
 
     //注册按钮
     registButton = [[UIButton alloc]init];
@@ -167,7 +170,10 @@
     [registButton setTranslatesAutoresizingMaskIntoConstraints:NO];
 //    [self.view addConstraint:[NSLayoutConstraint constraintWithItem:registButton attribute:NSLayoutAttributeLeft relatedBy:NSLayoutRelationEqual toItem:inputRectView attribute:NSLayoutAttributeLeft multiplier:1 constant:0]];
     [self.view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-16-[registButton(==100)]" options:0 metrics:nil views:NSDictionaryOfVariableBindings(registButton)]];
-        [self.view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:[inputRectView]-20-[registButton(==34)]" options:0 metrics:nil views:NSDictionaryOfVariableBindings(registButton,inputRectView)]];
+        [self.view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:[inputRectV]-20-[registButton(==34)]" options:0 metrics:nil views:NSDictionaryOfVariableBindings(registButton,inputRectV)]];
+    
+    
+    [registButton addTarget:self action:@selector(regist:) forControlEvents:UIControlEventTouchUpInside];
     
     //登陆按钮
     loginButton = [[UIButton alloc]init];
@@ -195,8 +201,8 @@
 
 
 -(void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event{
-    [inputRectView.userNameField resignFirstResponder];
-    [inputRectView.passwordField resignFirstResponder];
+    [inputRectV.userNameField resignFirstResponder];
+    [inputRectV.passwordField resignFirstResponder];
 }
 
 - (void)didReceiveMemoryWarning
@@ -206,7 +212,18 @@
 }
 
 
-
+#pragma mark - registButton 
+-(void)regist:(UIButton*)button{
+    
+    NSArray *mut = @[@"昵       称:",@"邮       箱:",@"身份证号:",@"所属党委:",@"所属单位:",@"用户职位:",@"选择支部:",@"输入密码:",@"确认密码:"];
+    
+    registViewController *registController = [[registViewController alloc]initWithLabelTextArray:mut];
+    [self.navigationController pushViewController:registController animated:YES];
+    
+    
+    
+    
+}
 
 
 @end
