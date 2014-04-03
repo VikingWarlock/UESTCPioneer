@@ -102,5 +102,9 @@
     return [[NSDictionary alloc]initWithObjects:valueArray forKeys:keyArray];
 }
 
++(NSDictionary*)partiesMapping{
+    return @{@"partyName":@"partyName",@"partyNo":@"partyNo"};
+}
+
 
 @end

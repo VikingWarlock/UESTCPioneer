@@ -36,9 +36,43 @@
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
     
+    ///////////////CoreDate Init
+    [MagicalRecord setupCoreDataStack];
+    
+    
+    NSManagedObjectModel *managedObjectModel = [NSManagedObjectModel mergedModelFromBundles:nil];
+    
+    RKManagedObjectStore *managedObjectStore = [[RKManagedObjectStore alloc] initWithManagedObjectModel:managedObjectModel];
+    
+    
+    NSError *error = nil;
+    BOOL success = RKEnsureDirectoryExistsAtPath(RKApplicationDataDirectory(), &error);
+    if (! success) {
+        RKLogError(@"Failed to create Application Data Directory at path '%@': %@", RKApplicationDataDirectory(), error);
+    }
+    NSString *path = [RKApplicationDataDirectory() stringByAppendingPathComponent:@"Store.sqlite"];
+    NSPersistentStore *persistentStore = [managedObjectStore addSQLitePersistentStoreAtPath:path fromSeedDatabaseAtPath:nil withConfiguration:nil options:nil error:&error];
+    if (! persistentStore) {
+        RKLogError(@"Failed adding persistent store at path '%@': %@", path, error);
+    }
+    
+    [managedObjectStore createManagedObjectContexts];
+    
+    
+    
+    
+    
+    [NSPersistentStoreCoordinator MR_setDefaultStoreCoordinator:managedObjectStore.persistentStoreCoordinator];
+    [NSManagedObjectContext MR_setRootSavingContext:managedObjectStore.persistentStoreManagedObjectContext];
+    [NSManagedObjectContext MR_setDefaultContext:managedObjectStore.mainQueueManagedObjectContext];
+    
+    [PublicMethod refreshStaticCoreData];
+    
     //运营商和时间的风格
     [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent];
     
+    //白色
+    [[UINavigationBar appearance]setTintColor:[UIColor whiteColor]];
     
     if(IS_IOS7)[[UINavigationBar appearance]setBarTintColor:kNavigationBarColor];
     else [[UINavigationBar appearance] setTintColor:kNavigationBarColor];
@@ -79,37 +113,7 @@
     
     //    RootViewController *main = [[RootViewController alloc] initWithStyle:UITableViewStyleGrouped];
     
-    ///////////////CoreDate Init
-    [MagicalRecord setupCoreDataStack];
-    
-    
-    NSManagedObjectModel *managedObjectModel = [NSManagedObjectModel mergedModelFromBundles:nil];
-    
-    RKManagedObjectStore *managedObjectStore = [[RKManagedObjectStore alloc] initWithManagedObjectModel:managedObjectModel];
-    
-    
-    NSError *error = nil;
-    BOOL success = RKEnsureDirectoryExistsAtPath(RKApplicationDataDirectory(), &error);
-    if (! success) {
-        RKLogError(@"Failed to create Application Data Directory at path '%@': %@", RKApplicationDataDirectory(), error);
-    }
-    NSString *path = [RKApplicationDataDirectory() stringByAppendingPathComponent:@"Store.sqlite"];
-    NSPersistentStore *persistentStore = [managedObjectStore addSQLitePersistentStoreAtPath:path fromSeedDatabaseAtPath:nil withConfiguration:nil options:nil error:&error];
-    if (! persistentStore) {
-        RKLogError(@"Failed adding persistent store at path '%@': %@", path, error);
-    }
-    
-    [managedObjectStore createManagedObjectContexts];
-    
-    
-    
-    
-    
-    [NSPersistentStoreCoordinator MR_setDefaultStoreCoordinator:managedObjectStore.persistentStoreCoordinator];
-    [NSManagedObjectContext MR_setRootSavingContext:managedObjectStore.persistentStoreManagedObjectContext];
-    [NSManagedObjectContext MR_setDefaultContext:managedObjectStore.mainQueueManagedObjectContext];
-    
-    [PublicMethod refreshStaticCoreData];
+   
     
     /////////////// APN register
     [application registerForRemoteNotificationTypes:UIRemoteNotificationTypeBadge|UIRemoteNotificationTypeAlert|UIRemoteNotificationTypeSound];

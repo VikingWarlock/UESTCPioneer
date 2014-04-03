@@ -15,4 +15,6 @@
 +(NSDictionary*)PartyNoticeMapping;
 +(NSDictionary*)PublicityMapping;
 +(NSDictionary*)PartyActivityMapping;
+
++(NSDictionary*)partiesMapping;
 @end

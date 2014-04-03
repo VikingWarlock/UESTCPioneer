@@ -18,6 +18,10 @@
         <attribute name="timeAndDate" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="titleBody" optional="YES" attributeType="String" syncable="YES"/>
     </entity>
+    <entity name="PartiesEntity" representedClassName="PartiesEntity" syncable="YES">
+        <attribute name="partyName" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="partyNo" optional="YES" attributeType="String" indexed="YES" syncable="YES"/>
+    </entity>
     <entity name="PartyActivityNewsEntity" representedClassName="PartyActivityNewsEntity" parentEntity="NewsEntity" syncable="YES">
         <attribute name="branch" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="count" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
@@ -62,10 +66,11 @@
         <element name="MessageEntity" positionX="0" positionY="0" width="0" height="0"/>
         <element name="MoodShareNewsEntity" positionX="0" positionY="0" width="0" height="0"/>
         <element name="NewsEntity" positionX="0" positionY="0" width="0" height="0"/>
-        <element name="PioneerNewsEntity" positionX="0" positionY="0" width="0" height="0"/>
-        <element name="UserEntity" positionX="0" positionY="0" width="0" height="0"/>
-        <element name="PartyNoticeNewsEntity" positionX="0" positionY="0" width="0" height="0"/>
-        <element name="PublicityNewsEntity" positionX="0" positionY="0" width="0" height="0"/>
         <element name="PartyActivityNewsEntity" positionX="0" positionY="0" width="0" height="0"/>
+        <element name="PartyNoticeNewsEntity" positionX="0" positionY="0" width="0" height="0"/>
+        <element name="PioneerNewsEntity" positionX="0" positionY="0" width="0" height="0"/>
+        <element name="PublicityNewsEntity" positionX="0" positionY="0" width="0" height="0"/>
+        <element name="UserEntity" positionX="0" positionY="0" width="0" height="0"/>
+        <element name="PartiesEntity" positionX="0" positionY="0" width="0" height="0"/>
     </elements>
 </model>

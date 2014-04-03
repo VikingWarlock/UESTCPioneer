@@ -25,6 +25,7 @@
 #define kPublicityNewsEntityName @"PublicityNewsEntity"
 #define kPartyActivityNewsEntityName @"PartyActivityNewsEntity"
 #define kMoodShareNewsEntityName @"MoodShareNewsEntity"
+#define kPartiesEntityName @"PartiesEntity"
 
 
 #define debugMode 1

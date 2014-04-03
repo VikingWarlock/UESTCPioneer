@@ -193,6 +193,7 @@
 		DCB576CC18E7AC2E005DCA0D /* shareEditView.m in Sources */ = {isa = PBXBuildFile; fileRef = DCB576CB18E7AC2E005DCA0D /* shareEditView.m */; };
 		DCB63E0B18E6565100AA0B58 /* Alert.m in Sources */ = {isa = PBXBuildFile; fileRef = DCB63E0A18E6565100AA0B58 /* Alert.m */; };
 		DCB6DE5318E2947D00001701 /* commentViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DCB6DE5118E2947D00001701 /* commentViewController.m */; };
+		DCBD910C18ED835700E03781 /* PartiesEntity.m in Sources */ = {isa = PBXBuildFile; fileRef = DCBD910B18ED835700E03781 /* PartiesEntity.m */; };
 		F214420318E8605700B56DEE /* QAViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F214420218E8605700B56DEE /* QAViewController.m */; };
 		F214420E18E863CF00B56DEE /* bottombg.png in Resources */ = {isa = PBXBuildFile; fileRef = F214420518E863CF00B56DEE /* bottombg.png */; };
 		F214420F18E863CF00B56DEE /* cancel.png in Resources */ = {isa = PBXBuildFile; fileRef = F214420618E863CF00B56DEE /* cancel.png */; };
@@ -503,6 +504,8 @@
 		DCB63E0A18E6565100AA0B58 /* Alert.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Alert.m; sourceTree = "<group>"; };
 		DCB6DE5118E2947D00001701 /* commentViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = commentViewController.m; sourceTree = "<group>"; };
 		DCB6DE5218E2947D00001701 /* commentViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = commentViewController.h; sourceTree = "<group>"; };
+		DCBD910A18ED835700E03781 /* PartiesEntity.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PartiesEntity.h; path = CoreData_Model/PartiesEntity.h; sourceTree = "<group>"; };
+		DCBD910B18ED835700E03781 /* PartiesEntity.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PartiesEntity.m; path = CoreData_Model/PartiesEntity.m; sourceTree = "<group>"; };
 		F214420118E8605700B56DEE /* QAViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QAViewController.h; sourceTree = "<group>"; };
 		F214420218E8605700B56DEE /* QAViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QAViewController.m; sourceTree = "<group>"; };
 		F214420518E863CF00B56DEE /* bottombg.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = bottombg.png; sourceTree = "<group>"; };
@@ -760,6 +763,8 @@
 				DC376ED918E55B60005F7DC8 /* PublicityNewsEntity.h */,
 				DC376EDA18E55B60005F7DC8 /* PublicityNewsEntity.m */,
 				DC376EEE18E56273005F7DC8 /* EntityHeader.h */,
+				DCBD910A18ED835700E03781 /* PartiesEntity.h */,
+				DCBD910B18ED835700E03781 /* PartiesEntity.m */,
 			);
 			name = CoreData;
 			sourceTree = "<group>";
@@ -1549,6 +1554,7 @@
 				DCB5146C18C6E2AF00B7EE95 /* PartyActivityViewController.m in Sources */,
 				51071D8318DDBAB600695D41 /* ShortTitleCell.m in Sources */,
 				F23FA50E18E3EBA300E174A2 /* TheoryDetailViewController.m in Sources */,
+				DCBD910C18ED835700E03781 /* PartiesEntity.m in Sources */,
 				F23FA4FF18E3E9CA00E174A2 /* GuideTableViewController.m in Sources */,
 				F23FA4F918E3E8AA00E174A2 /* Cells.m in Sources */,
 				DCA5962618C81A0F00F001D9 /* UPSwitch.m in Sources */,
