@@ -80,8 +80,12 @@
     
     
     
-#if debugMode
     
+    
+//@这是注册界面和登陆界面的代码，暂时用宏定义隐藏起来
+#if debugMode
+
+#else
     NSUserDefaults * defaultData = [NSUserDefaults standardUserDefaults];
     BOOL login = [defaultData boolForKey:@"login"];
     if (!login){
