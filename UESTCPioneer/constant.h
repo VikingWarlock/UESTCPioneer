@@ -28,7 +28,7 @@
 #define kPartiesEntityName @"PartiesEntity"
 
 
-#define debugMode 1
+#define debugMode 0
 
 @interface constant : NSObject
 +(id)getCenterController;
@@ -38,6 +38,9 @@
 +(NSString*)getUserName;
 +(void)setUserName:(NSString*)name;
 
+
++(NSDictionary*)getPersonalInfo;
++(void)setPersonalInfo:(NSDictionary*)info;
 
 +(NSString*)getName;
 

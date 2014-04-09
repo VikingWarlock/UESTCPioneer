@@ -27,7 +27,7 @@
     NSArray *unitInfoArray,*branchInfoArray;
     
     
-    BOOL jobSelect,unitSelect,insitituSelect;
+    BOOL jobSelect,unitSelect,insitituSelect,branchEnable;
     
 }
 
@@ -168,6 +168,12 @@
     
 #warning text here
     pickerDataSourceArray=@[@"111",@"222",@"333"];
+    
+    
+    UITextField *pas =self.TextFieldArray[7];
+    [pas setSecureTextEntry:YES];
+    UITextField *pas1 =self.TextFieldArray[8];
+    [pas1 setSecureTextEntry:YES];
 }
 
 - (void)didReceiveMemoryWarning
@@ -221,10 +227,13 @@
 #pragma  mark - picker delegate 
 
 -(void)pickerView:(UIPickerView *)pickerView didSelectRow:(NSInteger)row inComponent:(NSInteger)component{
-    if (curPickField==unitField)unitSelect=YES;
-    if (curPickField==jobField)jobSelect=YES;
-    if (curPickField==partyField)insitituSelect=YES;
+    if (curPickField!=branchField)branchEnable=NO;
+
+    
     [curPickField setText:[self pickerView:pickerView titleForRow:row forComponent:component]];
+    if (curPickField==jobField){
+        [self requestBranchDataSource];
+    }
 }
 
 -(NSInteger)numberOfComponentsInPickerView:(UIPickerView *)pickerView{
@@ -255,73 +264,61 @@
     pickerDataSourceArray=partyDataSource;
     [picker reloadAllComponents];
     [self showPicker];
+    partyField.text=pickerDataSourceArray[[picker selectedRowInComponent:0]];
+    insitituSelect=YES;
+    
 }
 
 -(void)tapGestureForUnitField:(UITapGestureRecognizer *)recognizer{
+
+    
+    if (insitituSelect==NO){
+        [Alert showAlert:@"请选择党委"];
+        return;
+    }
         curPickField=unitField;
     pickerDataSourceArray=unitDataSource;
         [picker reloadAllComponents];
     [self showPicker];
+    unitField.text=pickerDataSourceArray[[picker selectedRowInComponent:0]];
+    unitSelect=YES;
 }
 -(void)tapGestureForJobField:(UITapGestureRecognizer *)recognizer{
+    if (unitSelect==NO){
+        [Alert showAlert:@"请选择单位"];
+        return;
+    }
+    
     inputRectTopConstraint.constant=-jobField.frame.origin.y+100;
     [welcomeLabel setAlpha:0];
     curPickField=jobField;
     pickerDataSourceArray=jobDataSource;
         [picker reloadAllComponents];
     [self showPicker];
-}
--(void)tapGestureForBranchField:(UITapGestureRecognizer *)recognizer{
+    jobField.text=pickerDataSourceArray[[picker selectedRowInComponent:0]];
+    if (!jobSelect)    [self requestBranchDataSource];
+    jobSelect=YES;
     
-    if (!(jobSelect&&insitituSelect&&unitSelect)){
-        [Alert showAlert:@"请先选择以上信息"];
+    
+
+
+    
+    
+}
+
+
+//点击支部栏
+-(void)tapGestureForBranchField:(UITapGestureRecognizer *)recognizer{
+    if (!branchEnable){
+        [Alert showAlert:@"请等待数据"];
+        return;
+    }
+    if (!jobSelect){
+        [Alert showAlert:@"请选择职位"];
         return;
     }
     
-#pragma mark 请求支部
 
-    
-    //@查找institute
-    NSString *institute;
-    for(NSDictionary *dic in unitInfoArray){
-        if ([dic[@"partyName"] isEqualToString:unitField.text]){
-            institute=dic[@"partyNo"];
-        }
-    }
-    
-    NSInteger byb;
-    if ([jobField.text isEqualToString:@"本科生"]){
-        byb=1;
-    }
-    else if ([jobField.text isEqualToString:@"研究生"]){
-        byb=2;
-    }
-        else if ([jobField.text isEqualToString:@"博士"]){
-            byb=3;
-        }
-        else if ([jobField.text isEqualToString:@"教师"]){
-            byb=4;
-        }
-        else byb=0;
-    
-    NSDictionary *requestDic = @{@"type":@"getBranch",@"institute":institute,@"byb":[NSString stringWithFormat:@"%d",byb]};
-    
-    
-    [NetworkCenter AFRequestWithData:requestDic SuccessBlock:^(AFHTTPRequestOperation *operation, id resultObject) {
-        NSArray *arr=  [NSJSONSerialization JSONObjectWithData:resultObject options:NSJSONReadingMutableLeaves error:nil];
-        branchInfoArray=arr;
-        
-        
-        NSMutableArray *mut = [[NSMutableArray alloc]init];
-        for (NSDictionary *dic in branchInfoArray){
-            [mut addObject:dic[@"partyName"]];
-        }
-        branchDataSource=[[NSArray alloc]initWithArray:mut];
-        [picker reloadAllComponents];
-        
-    } FailureBlock:^(AFHTTPRequestOperation *operation, NSError *error) {
-        
-    }];
     
     inputRectTopConstraint.constant=-jobField.frame.origin.y+100;
     [welcomeLabel setAlpha:0];
@@ -329,6 +326,7 @@
     pickerDataSourceArray=branchDataSource;
         [picker reloadAllComponents];
     [self showPicker];
+        branchField.text=pickerDataSourceArray[[picker selectedRowInComponent:0]];
 }
 
 #pragma mark - picker animation
@@ -352,10 +350,129 @@
 }
 #pragma mark - regist Button 
 -(void)registButton:(UIButton *)button{
+/*
+    type=register&userName=ping&passwd=123465&email=232@qq.com&institute=010&branch=（utf-8编码）&byb=1&sfz=12134443&branchNum=200113
+ 
+ */
+    
+    UITextField *pwdField = self.TextFieldArray[7];
+    UITextField *pwdCField =self.TextFieldArray[8];
+    if (!([pwdCField.text isEqualToString:pwdCField.text])){
+        [Alert showAlert:@"密码不一致"];
+        return;
+    }
+    
+    UITextField *userNameField = self.TextFieldArray[0];
+    UITextField *mailField = self.TextFieldArray[1];
+    UITextField *sfzField  = self.TextFieldArray[2];
+    UITextField *instituteField =self.TextFieldArray[4];
+    NSString *institute;
+    for (NSDictionary *dic  in unitInfoArray){
+        if ([dic[@"partyName"] isEqualToString:instituteField.text]){
+            institute=dic[@"partyNo"];
+        }
+    }
+    
+    
+    UITextField *jobField = self.TextFieldArray[5];
+    NSInteger byb=[self getJobNum:jobField.text];
+    
+    UITextField *branchF = self.TextFieldArray[6];
+    NSString *branchNum;
+    for (NSDictionary *dic  in branchInfoArray){
+        if ([dic[@"partyName"] isEqualToString:branchF.text]){
+            branchNum=dic[@"partyNo"];
+        }
+    }
+    
+    NSDictionary *requestData = @{@"type":@"register"
+                                  ,@"userName":userNameField.text
+                                  ,@"email":mailField.text
+                                  ,@"sfz":sfzField.text
+                                  ,@"institute":institute
+                                  ,@"byb":[NSString stringWithFormat:@"%d",byb]
+                                  ,@"branch":branchF.text
+                                  ,@"passwd":pwdField.text
+                                  ,@"branchNum":branchNum};
+    
+    [NetworkCenter AFRequestWithData:requestData SuccessBlock:^(AFHTTPRequestOperation *operation, id resultObject) {
+        NSDictionary *dic = [NSJSONSerialization JSONObjectWithData:resultObject options:NSJSONReadingMutableLeaves error:Nil];
+        NSLog(@"%@",dic);
+        [Alert showAlert:[NSString stringWithFormat:@"%@",dic[@"success"]]];
+        [self.navigationController popViewControllerAnimated:YES];
+    } FailureBlock:^(AFHTTPRequestOperation *operation, NSError *error) {
+        
+    }];
+
 
 }
 
+-(void)requestBranchDataSource{
+#pragma mark 请求支部
+    
+    
+    //@查找institute
+    NSString *institute;
+    for(NSDictionary *dic in unitInfoArray){
+        if ([dic[@"partyName"] isEqualToString:unitField.text]){
+            institute=dic[@"partyNo"];
+        }
+    }
+    
+    NSInteger byb;
+    if ([jobField.text isEqualToString:@"本科生"]){
+        byb=1;
+    }
+    else if ([jobField.text isEqualToString:@"研究生"]){
+        byb=2;
+    }
+    else if ([jobField.text isEqualToString:@"博士"]){
+        byb=3;
+    }
+    else if ([jobField.text isEqualToString:@"教师"]){
+        byb=4;
+    }
+    else byb=0;
+    
+    NSDictionary *requestDic = @{@"type":@"getBranch",@"institute":institute,@"byb":[NSString stringWithFormat:@"%d",byb]};
+    
+    
+    [NetworkCenter AFRequestWithData:requestDic SuccessBlock:^(AFHTTPRequestOperation *operation, id resultObject) {
+        NSArray *arr=  [NSJSONSerialization JSONObjectWithData:resultObject options:NSJSONReadingMutableLeaves error:nil];
+        branchInfoArray=arr;
+        
+        
+        NSMutableArray *mut = [[NSMutableArray alloc]init];
+        for (NSDictionary *dic in branchInfoArray){
+            [mut addObject:dic[@"partyName"]];
+        }
+        branchDataSource=[[NSArray alloc]initWithArray:mut];
+        branchEnable=YES;
+//        [picker reloadAllComponents];
+        
+    } FailureBlock:^(AFHTTPRequestOperation *operation, NSError *error) {
+        
+    }];
+}
 
 
+#pragma mark - 根据字符串获取职位编码
+-(NSInteger)getJobNum:(NSString*)string{
+    NSInteger byb;
+    if ([string isEqualToString:@"本科生"]){
+        byb=1;
+    }
+    else if ([string isEqualToString:@"研究生"]){
+        byb=2;
+    }
+    else if ([string isEqualToString:@"博士"]){
+        byb=3;
+    }
+    else if ([string isEqualToString:@"教师"]){
+        byb=4;
+    }
+    else byb=0;
+    return byb;
+}
 
 @end

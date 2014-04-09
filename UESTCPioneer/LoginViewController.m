@@ -156,6 +156,9 @@
 
     [self.view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:[welcomeLabel][inputRectV(==88)]" options:0 metrics:nil views:NSDictionaryOfVariableBindings(inputRectV,welcomeLabel)]];
     [self.view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|[inputRectV]|" options:0 metrics:nil views:NSDictionaryOfVariableBindings(inputRectV)]];
+    
+    userNameField=inputRectV.userNameField;
+    passwordField=inputRectV.passwordField;
 
     //注册按钮
     registButton = [[UIButton alloc]init];
@@ -184,6 +187,10 @@
     [loginButton setShowsTouchWhenHighlighted:YES];
     [loginButton setTranslatesAutoresizingMaskIntoConstraints:NO];
     [loginButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+    
+    
+    [loginButton addTarget:self action:@selector(login:) forControlEvents:UIControlEventTouchUpInside];
+    
     [self.view addSubview:loginButton];
     [loginButton setTranslatesAutoresizingMaskIntoConstraints:NO];
     //    [self.view addConstraint:[NSLayoutConstraint constraintWithItem:registButton attribute:NSLayoutAttributeLeft relatedBy:NSLayoutRelationEqual toItem:inputRectView attribute:NSLayoutAttributeLeft multiplier:1 constant:0]];
@@ -223,6 +230,38 @@
     
     
     
+}
+
+#pragma mark - loginButton  
+-(void)login:(UIButton *)button{
+    /*
+       type=login&userName=cdxf&passwd=123465
+     
+     */
+    
+    
+    NSDictionary *requestData=@{@"type":@"login"
+                                ,@"userName":userNameField.text
+                                ,@"passwd":passwordField.text};
+    
+    [NetworkCenter AFRequestWithData:requestData SuccessBlock:^(AFHTTPRequestOperation *operation, id resultObject) {
+        NSArray *arr = [NSJSONSerialization JSONObjectWithData:resultObject options:NSJSONReadingMutableLeaves error:nil];
+        NSDictionary *dic =arr[0];
+        if ([dic[@"result"] isEqualToString:@"success"]){
+            [constant setPersonalInfo:dic[@"info"]];
+            [constant setName:dic[@"info"][@"name"]];
+            [constant setUserId:dic[@"info"][@"userID"]];
+            [constant setUserName:dic[@"info"][@"userName"]];
+            
+            [[NSNotificationCenter defaultCenter]postNotificationName:@"login" object:nil];
+            
+        }
+        else {
+            [Alert showAlert:@"登陆失败"];
+        }
+    } FailureBlock:^(AFHTTPRequestOperation *operation, NSError *error) {
+        [Alert showAlert:@"发生错误"];
+    }];
 }
 
 
