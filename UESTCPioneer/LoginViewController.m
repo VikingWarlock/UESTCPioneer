@@ -253,9 +253,19 @@
             [constant setUserId:dic[@"info"][@"userID"]];
             [constant setUserName:dic[@"info"][@"userName"]];
             
-            [[NSNotificationCenter defaultCenter]postNotificationName:@"login" object:nil];
+
+
+            
+            
+            
+            
+            
+
             NSUserDefaults * defaultData = [NSUserDefaults standardUserDefaults];
+            [defaultData setObject:dic[@"info"] forKey:@"personalInfo"];
             [defaultData setBool:YES forKey:@"login"];
+            [defaultData synchronize];
+                        [[NSNotificationCenter defaultCenter]postNotificationName:@"login" object:nil];
         }
         else {
             [Alert showAlert:@"登陆失败"];

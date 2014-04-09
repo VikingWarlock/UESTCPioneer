@@ -293,6 +293,7 @@
 -(void)logout:(id)sender{
     NSUserDefaults * defaultData = [NSUserDefaults standardUserDefaults];
     [defaultData setBool:NO forKey:@"login"];
+    [defaultData synchronize];
     [[NSNotificationCenter defaultCenter]postNotificationName:@"logout" object:nil];
 }
 

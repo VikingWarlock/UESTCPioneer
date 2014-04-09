@@ -275,6 +275,15 @@
 #pragma mark - login success
 -(void)login{
     
+    //@用户信息
+                NSUserDefaults * defaultData = [NSUserDefaults standardUserDefaults];
+    NSDictionary *userInfo=[defaultData objectForKey:@"personalInfo"];
+    [constant setPersonalInfo:userInfo];
+    [constant setName:userInfo[@"name"]];
+    [constant setUserId:userInfo[@"userID"]];
+    [constant setUserName:userInfo[@"userName"]];
+    
+    
     PioneerViewController *main = [[PioneerViewController alloc]init];
     CommunicationViewController *communicationViewController =[[CommunicationViewController alloc] init];
     PartyDataViewController *partyDataViewController = [[PartyDataViewController alloc]init];
@@ -330,6 +339,8 @@
     self.window.backgroundColor = [UIColor whiteColor];
     [self.window makeKeyAndVisible];
     // Override point for customization after application launch.
+    
+    
     
 
 
