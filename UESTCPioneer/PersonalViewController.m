@@ -291,7 +291,9 @@
 
 #pragma mark - logout function 
 -(void)logout:(id)sender{
-    
+    NSUserDefaults * defaultData = [NSUserDefaults standardUserDefaults];
+    [defaultData setBool:NO forKey:@"login"];
+    [[NSNotificationCenter defaultCenter]postNotificationName:@"logout" object:nil];
 }
 
 @end

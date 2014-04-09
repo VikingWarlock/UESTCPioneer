@@ -63,7 +63,7 @@
 
 -(void)viewDidDisappear:(BOOL)animated{
     [super viewDidDisappear:animated];
-    [self.leveyTabBarController.navigationItem setRightBarButtonItem:Nil];
+    [self.navigationController.navigationItem setRightBarButtonItem:Nil];
 }
 
 - (void)didReceiveMemoryWarning
