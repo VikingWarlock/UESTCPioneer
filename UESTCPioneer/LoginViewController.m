@@ -254,7 +254,8 @@
             [constant setUserName:dic[@"info"][@"userName"]];
             
             [[NSNotificationCenter defaultCenter]postNotificationName:@"login" object:nil];
-            
+            NSUserDefaults * defaultData = [NSUserDefaults standardUserDefaults];
+            [defaultData setBool:YES forKey:@"login"];
         }
         else {
             [Alert showAlert:@"登陆失败"];
