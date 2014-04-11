@@ -41,20 +41,10 @@
     return self.imageview;
 }
 
-- (void)scrollViewDidEndZooming:(UIScrollView *)scrollView withView:(UIView *)view atScale:(CGFloat)scale
-{
-    //self.scrollview.minimumZoomScale = 1.0;
-}
-
-- (void)scrollViewWillBeginZooming:(UIScrollView *)scrollView withView:(UIView *)view
-{
-    //self.scrollview.minimumZoomScale = 0.5;
-}
-
 - (UIScrollView *)scrollview
 {
     if (!_scrollview) {
-        _scrollview = [[UIScrollView alloc] initWithFrame:self.view.frame];
+        _scrollview = [[UIScrollView alloc] initWithFrame:CGRectMake(0, 0, 320, 504)];
         _scrollview.backgroundColor = [UIColor blackColor];
         _scrollview.maximumZoomScale = 1.1;
         _scrollview.minimumZoomScale = 1.0;
@@ -67,7 +57,7 @@
 - (UIImageView *)imageview
 {
     if (!_imageview) {
-        _imageview = [[UIImageView alloc] initWithFrame:self.view.frame];
+        _imageview = [[UIImageView alloc] initWithFrame:CGRectMake(0,0, 320, 504)];
         _imageview.contentMode = UIViewContentModeScaleAspectFit;
     }
     return _imageview;

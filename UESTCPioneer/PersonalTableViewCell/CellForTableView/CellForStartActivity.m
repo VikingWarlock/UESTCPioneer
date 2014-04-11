@@ -34,6 +34,8 @@
     if (!_thumbnail) {
         _thumbnail = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, self.frame.size.width, self.frame.size.height)];
         _thumbnail.image = nil;
+        _thumbnail.contentMode = UIViewContentModeScaleAspectFill;
+        _thumbnail.clipsToBounds = YES;
     }
     return _thumbnail;
 }
