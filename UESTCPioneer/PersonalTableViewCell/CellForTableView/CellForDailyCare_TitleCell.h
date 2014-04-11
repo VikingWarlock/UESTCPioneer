@@ -1,13 +1,13 @@
 //
-//  ShortMainInfocell.h
+//  ShortTitleCell.h
 //  UESTCPioneer
 //
 //  Created by 张众 on 3/22/14.
 //  Copyright (c) 2014 Sway. All rights reserved.
 //
 
-#import "UPMainInfoCell.h"
+#import "UPTitleCell.h"
 
-@interface ShortMainInfocell : UPMainInfoCell
+@interface CellForDailyCare_TitleCell : UPTitleCell
 
 @end

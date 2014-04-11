@@ -8,11 +8,11 @@
 
 #import "MyMessage.h"
 #import "constant.h"
-#import "LongCell.h"
-#import "PopCell.h"
+#import "CellWithCustomLeftImageAndLabel.h"
+#import "CellForMyMessage_PopCell.h"
 @interface MyMessage ()
 {
-    int i;
+    int increment;
     BOOL isSelected;
     BOOL choseMessageCell;
     NSIndexPath *popIndex;
@@ -36,12 +36,39 @@
     [super viewDidLoad];
     self.tableView.delegate = self;
     self.tableView.dataSource = self;
-    [self.tableView registerClass:[LongCell class] forCellReuseIdentifier:@"setcell"];
-    [self.tableView registerClass:[PopCell class] forCellReuseIdentifier:@"setpopcell"];
+    [self.tableView registerClass:[CellWithCustomLeftImageAndLabel class] forCellReuseIdentifier:@"setcell"];
+    [self.tableView registerClass:[CellForMyMessage_PopCell class] forCellReuseIdentifier:@"setpopcell"];
     if(IS_IOS7)
         self.tableView.separatorInset = UIEdgeInsetsZero;
     [self setExtraCellLineHidden];
     popIndex = [NSIndexPath indexPathForRow:-1 inSection:0];
+    
+    
+    /*
+     
+     type=msgRemind&userId=0012005130011&page=1
+     
+     */
+    
+    NSDictionary *requestData = @{@"type":@"msgRemind",@"userId":@"0012005130011",@"page":@"1"};
+    
+    [NetworkCenter AFRequestWithData:requestData SuccessBlock:^(AFHTTPRequestOperation *operation, id resultObject) {
+        
+        NSArray *dic = [NSJSONSerialization JSONObjectWithData:resultObject options:NSJSONReadingMutableLeaves error:nil];
+        
+        
+        
+        
+        
+    } FailureBlock:^(AFHTTPRequestOperation *operation, NSError *error) {
+        NSLog(@"请求发生错误");
+        
+        
+    }];
+    
+    
+    
+    
     // Uncomment the following line to preserve selection between presentations.
     // self.clearsSelectionOnViewWillAppear = NO;
     
@@ -72,7 +99,7 @@
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
     // Return the number of rows in the section.
-    return 3 + i;
+    return 3 + increment;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -80,9 +107,9 @@
     if (!choseMessageCell)
     {
         static NSString *CellIdentifier = @"setcell";
-        LongCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+        CellWithCustomLeftImageAndLabel *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
         if (cell == nil) {
-            cell = [[LongCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
+            cell = [[CellWithCustomLeftImageAndLabel alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
         }
         cell.leftImage.image = [UIImage imageNamed:@"mm.png"];
         cell.label.text = @"天气通知";
@@ -91,9 +118,9 @@
     else
     {
         static NSString *PopCellIdentifier = @"setpopcell";
-        PopCell *popcell = [tableView dequeueReusableCellWithIdentifier:PopCellIdentifier];
+        CellForMyMessage_PopCell *popcell = [tableView dequeueReusableCellWithIdentifier:PopCellIdentifier];
         if (popcell == nil) {
-            popcell = [[PopCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:PopCellIdentifier];
+            popcell = [[CellForMyMessage_PopCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:PopCellIdentifier];
         }
         popcell.label.text = @"xxx祝您生日快乐!";
         choseMessageCell = NO;
@@ -113,8 +140,8 @@
     [self.tableView beginUpdates];
     if (isSelected == NO)
     {
-        [((LongCell *)[self.tableView cellForRowAtIndexPath:indexPath]).leftImage removeFromSuperview];
-        i++;
+        [((CellWithCustomLeftImageAndLabel *)[self.tableView cellForRowAtIndexPath:indexPath]).leftImage removeFromSuperview];
+        increment++;
         [self.tableView insertRowsAtIndexPaths:[NSArray arrayWithObject:indexOfInsert] withRowAnimation:UITableViewRowAnimationTop];
         isSelected = YES;
         choseMessageCell = YES;
@@ -131,7 +158,7 @@
 
 - (void)popBack:(id)sender
 {
-    i--;
+    increment--;
     [self.tableView deleteRowsAtIndexPaths:[NSArray arrayWithObject:popIndex] withRowAnimation:UITableViewRowAnimationTop];
     [self.tableView deselectRowAtIndexPath:clickIndex animated:NO];
     isSelected = NO;

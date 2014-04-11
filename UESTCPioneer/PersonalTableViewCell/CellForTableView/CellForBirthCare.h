@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-@interface BirthCareCell : UITableViewCell
+@interface CellForBirthCare : UITableViewCell
 @property (nonatomic,strong) UILabel *name;
 @property (nonatomic,strong) UILabel *date;
 @property (nonatomic,strong) UIImageView *image;

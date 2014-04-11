@@ -8,7 +8,7 @@
 
 #import "CheckForSuggestion.h"
 #import "constant.h"
-#import "LongCell.h"
+#import "CellWithCustomLeftImageAndLabel.h"
 @interface CheckForSuggestion ()
 
 @end
@@ -32,7 +32,7 @@
     if(IS_IOS7)
         self.tableView.separatorInset = UIEdgeInsetsZero;
     [self setExtraCellLineHidden];
-    [self.tableView registerClass:[LongCell class] forCellReuseIdentifier:@"setcell"];
+    [self.tableView registerClass:[CellWithCustomLeftImageAndLabel class] forCellReuseIdentifier:@"setcell"];
     // Uncomment the following line to preserve selection between presentations.
     // self.clearsSelectionOnViewWillAppear = NO;
     
@@ -69,9 +69,9 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     static NSString *CellIdentifier = @"setcell";
-    LongCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+    CellWithCustomLeftImageAndLabel *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
     if (cell == nil) {
-        cell = [[LongCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
+        cell = [[CellWithCustomLeftImageAndLabel alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
     }
     cell.leftImage.image = [UIImage imageNamed:@"vw.png"];
     cell.label.text =  @"天气通知";

@@ -1,6 +1,6 @@
 //
 //  PublishNotice.m
-//  
+//
 //
 //  Created by 张众 on 3/20/14.
 //
@@ -81,7 +81,7 @@
         _textView.font = [UIFont systemFontOfSize:14];
         _textView.textColor = [UIColor colorWithRed:187.0/255.0 green:187.0/255.0 blue:187.0/255.0 alpha:1];
         _textView.text = @"请在此输入通知内容...";
-
+        
     }
     return _textView;
 }
@@ -93,14 +93,14 @@
 }
 
 /*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
-{
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
+ #pragma mark - Navigation
+ 
+ // In a storyboard-based application, you will often want to do a little preparation before navigation
+ - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
+ {
+ // Get the new view controller using [segue destinationViewController].
+ // Pass the selected object to the new view controller.
+ }
+ */
 
 @end

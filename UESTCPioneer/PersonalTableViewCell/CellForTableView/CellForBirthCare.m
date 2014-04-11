@@ -6,9 +6,9 @@
 //  Copyright (c) 2014 Sway. All rights reserved.
 //
 
-#import "BirthCareCell.h"
+#import "CellForBirthCare.h"
 
-@implementation BirthCareCell
+@implementation CellForBirthCare
 
 - (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier
 {

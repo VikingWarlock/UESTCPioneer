@@ -6,9 +6,9 @@
 //  Copyright (c) 2014 Sway. All rights reserved.
 //
 
-#import "PopCell.h"
+#import "CellForMyMessage_PopCell.h"
 
-@implementation PopCell
+@implementation CellForMyMessage_PopCell
 
 - (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier
 {

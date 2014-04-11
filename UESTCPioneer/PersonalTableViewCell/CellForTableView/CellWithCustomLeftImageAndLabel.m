@@ -6,9 +6,9 @@
 //  Copyright (c) 2014 Sway. All rights reserved.
 //
 
-#import "LongCell.h"
+#import "CellWithCustomLeftImageAndLabel.h"
 
-@implementation LongCell
+@implementation CellWithCustomLeftImageAndLabel
 
 - (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier
 {

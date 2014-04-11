@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-@interface FirstEditCell : UITableViewCell
+@interface CellForEditPersonalInformation_FirstCell : UITableViewCell
 @property (nonatomic,strong) UIButton *touXiang;
 @property (nonatomic,strong) UILabel *staticLabel;
 @end

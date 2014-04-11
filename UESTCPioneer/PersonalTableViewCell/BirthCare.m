@@ -8,7 +8,7 @@
 
 #import "BirthCare.h"
 #import "constant.h"
-#import "BirthCareCell.h"
+#import "CellForBirthCare.h"
 @interface BirthCare ()
 
 @end
@@ -33,7 +33,7 @@
         self.tableView.separatorInset = UIEdgeInsetsZero;
     [self setExtraCellLineHidden];
     [self.tableView setAllowsSelection:NO];
-    [self.tableView registerClass:[BirthCareCell class] forCellReuseIdentifier:@"setcell"];
+    [self.tableView registerClass:[CellForBirthCare class] forCellReuseIdentifier:@"setcell"];
     // Uncomment the following line to preserve selection between presentations.
     // self.clearsSelectionOnViewWillAppear = NO;
     

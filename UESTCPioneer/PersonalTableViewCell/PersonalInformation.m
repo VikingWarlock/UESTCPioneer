@@ -8,7 +8,7 @@
 
 #import "PersonalInformation.h"
 #import "constant.h"
-#import "ShortCell.h"
+#import "CellForPersonalInformation.h"
 #import "LeveyTabBarController.h"
 #import "EditPersonalInformation.h"
 @interface PersonalInformation ()
@@ -32,16 +32,18 @@
     [super viewDidLoad];
     self.tableView.delegate = self;
     self.tableView.dataSource = self;
-    [self.tableView registerClass:[ShortCell class] forCellReuseIdentifier:@"setcell"];
+    [self.tableView registerClass:[CellForPersonalInformation class] forCellReuseIdentifier:@"setcell"];
     self.tableView.allowsSelection = NO;
     self.tableView.separatorInset = UIEdgeInsetsZero;
-#warning mark - 这样的对齐方式真的好傻逼。。。
+#warning mark - 对齐方式
     array = @[@"",@"姓       名",@"性       别",@"民       族",@"籍       贯",@"入党时间",@"转正时间",@"政治面貌",@"所属支部"];
 }
 
 -(void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
+    self.navigationItem.title = @"个人信息";
     
+    //加入导航栏rightBarButtonItem
     UIImageView *customView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, 30, 30)];
     UIButton *button = [UIButton buttonWithType:UIButtonTypeCustom];
     [button setFrame:customView.bounds];
@@ -50,15 +52,13 @@
     [button addTarget:self action:@selector(editInformation:) forControlEvents:UIControlEventTouchUpInside];
     UIBarButtonItem *right=[[UIBarButtonItem alloc] initWithCustomView:customView];
     self.navigationItem.rightBarButtonItem = right;
-    
-    self.navigationItem.title = @"个人信息";
 }
 
+//rightBarButtonItem的按钮事件调用的方法
 - (void)editInformation:(id)sender
 {
     EditPersonalInformation *edit = [[EditPersonalInformation alloc] initWithStyle:UITableViewStyleGrouped];
     [self.navigationController pushViewController:edit animated:YES];
-    
 }
 
 -(void)viewDidDisappear:(BOOL)animated{
@@ -107,25 +107,28 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     static NSString *CellIdentifier = @"setcell";
-    ShortCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+    CellForPersonalInformation *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
     if (cell == nil) {
-        cell = [[ShortCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
+        cell = [[CellForPersonalInformation alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
     }
     if (indexPath.section == 0 )
     {
         cell.staticLabel.text = array[indexPath.row];
-        UIImageView *imageview = [[UIImageView alloc] init];
-        [imageview setFrame:CGRectMake(cell.frame.origin.x ,4,55,55)];
-        imageview.image = [UIImage imageNamed:@"touxiang.png"];
-        [cell.contentView addSubview:imageview];
+        cell.leftImage.image = [UIImage imageNamed:@"touxiang.png"];
     }
     else if (indexPath.section ==1 )
         cell.staticLabel.text = array[indexPath.row + 1];
     else
         cell.staticLabel.text = array[indexPath.row + 5];
     cell.textLabel.font = [UIFont systemFontOfSize:17];
-    cell.textLabel.text = @"李强";
+    
+    [self displayPersonalInformation:indexPath];//从coredata获取个人信息并显示显示
     return cell;
+}
+
+- (void)displayPersonalInformation:(NSIndexPath *)indexPath
+{
+    //从coredata获取个人信息并显示显示
 }
 
 - (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section
@@ -160,14 +163,14 @@
 }
 
 /*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
-{
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
+ #pragma mark - Navigation
+ 
+ // In a storyboard-based application, you will often want to do a little preparation before navigation
+ - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
+ {
+ // Get the new view controller using [segue destinationViewController].
+ // Pass the selected object to the new view controller.
+ }
+ */
 
 @end
