@@ -183,14 +183,15 @@ ype：请求类型；userId：请求者权限Id；userName：请求者用户名�
 
 //修改行高度的位置
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
-    if (indexPath.row == 0) {
-        return 55;
-    }
-    else if (indexPath.row == 1){
-        return 110;
-    }
-    else
-        return 40;
+//    if (indexPath.row == 0) {
+//        return 55;
+//    }
+//    else if (indexPath.row == 1){
+//        return 110;
+//    }
+//    else
+//        return 40;
+        return [super tableView:tableView heightForRowAtIndexPath:indexPath];
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section{

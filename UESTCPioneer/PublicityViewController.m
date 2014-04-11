@@ -148,14 +148,15 @@ type=getNoticeOrAnnounce&userId=0004003990022&userName=xiao002&page=1&typepid=0
 
 //修改行高度的位置
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
-    if (indexPath.row == 0) {
-        return 55;
-    }
-    else if (indexPath.row == 1){
-        return 110;
-    }
-    else
-        return 40;
+//    if (indexPath.row == 0) {
+//        return 55;
+//    }
+//    else if (indexPath.row == 1){
+//        return 110;
+//    }
+//    else
+//        return 40;
+        return [super tableView:tableView heightForRowAtIndexPath:indexPath];
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section{

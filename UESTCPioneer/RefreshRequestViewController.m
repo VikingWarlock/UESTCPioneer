@@ -237,4 +237,15 @@ static NSString *customFooterCellIndentifier = @"CustomFooterCellIndentifier";
     
 }
 
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
+    if (indexPath.row == 0) {
+        return 55;
+    }
+    else if (indexPath.row == 1){
+        return 110;
+    }
+    else
+        return 40;
+}
+
 @end
