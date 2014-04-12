@@ -56,7 +56,7 @@
     [self.view addSubview:self.PersonalTableView];
     [self.view addSubview:self.headPicture];
     [self.view addSubview:self.name];
-    //[self setPersonalInformation:xxpp];
+    [self setPersonalInformation];
 }
 -(void)viewWillAppear:(BOOL)animated{
     [self.leveyTabBarController.navigationItem setTitle:@"个人"];
@@ -79,11 +79,14 @@
 }
 
 
-- (void)setPersonalInformation:(id)person
+- (void)setPersonalInformation
 {
-    self.headPictureImage = person;
-    self.department.text = person;
-    self.name.text = person;
+    if ((NSString *)[[constant getPersonalInfo] objectForKey:@"headpicture"] != nil)
+        self.headPictureImage = [[constant getPersonalInfo] objectForKey:@"headpicture"];
+    if ((NSString *)[[constant getPersonalInfo] objectForKey:@"branch"] != nil)
+        self.department.text = [[constant getPersonalInfo] objectForKey:@"branch"];
+    if ((NSString *)[[constant getPersonalInfo] objectForKey:@"name"] != nil)
+        self.name.text = [[constant getPersonalInfo] objectForKey:@"name"];
 }//获得个人信息的接口
 
 #pragma mark -datasource

@@ -61,7 +61,7 @@
 }
 
 //“全部”新闻请求数据
-+(NSDictionary*)AllNewsReqeustData{
++(NSDictionary*)AllNewsRequestData{
   return @{@"type":@"getNews",@"page":@"1"};
 }
 
@@ -83,4 +83,33 @@
         return @{@"type":@"sortEvent",@"userId":[constant getUserId],@"page":@"1"};
     return  nil;
 }
+
+
+
+
+//个人管理模块请求数据
++ (NSDictionary *)sendBirthCareRequestData:(NSUInteger)foruserid
+{
+    return @{
+             @"tpye":@"lifecareBless",
+             @"userid":[constant getUserId],
+             @"typeid":@"sendbless",
+             @"username":[constant getUserName],
+             @"foruserid":[NSString stringWithFormat:@"%D",foruserid]
+             };
+}
+
++ (NSDictionary *)getListOfBirthRequestData:(NSUInteger)page
+{
+    return @{
+             @"tpye":@"lifecareBless",
+             @"userid":[constant getUserId],
+             @"typeid":@"blesslist",
+             @"page":[NSString stringWithFormat:@"%d",page],
+             };
+}
+
+
+
+
 @end

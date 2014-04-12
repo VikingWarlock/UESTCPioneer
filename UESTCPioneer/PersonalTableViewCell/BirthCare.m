@@ -10,6 +10,9 @@
 #import "constant.h"
 #import "CellForBirthCare.h"
 @interface BirthCare ()
+{
+    NSMutableArray *BirthListArray;
+}
 
 @end
 
@@ -34,11 +37,6 @@
     [self setExtraCellLineHidden];
     [self.tableView setAllowsSelection:NO];
     [self.tableView registerClass:[CellForBirthCare class] forCellReuseIdentifier:@"setcell"];
-    // Uncomment the following line to preserve selection between presentations.
-    // self.clearsSelectionOnViewWillAppear = NO;
-    
-    // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-    // self.navigationItem.rightBarButtonItem = self.editButtonItem;
 }
 
 - (void)viewWillAppear:(BOOL)animated
@@ -53,7 +51,14 @@
     // Dispose of any resources that can be recreated.
 }
 
-#pragma mark - Table view data source
+-(void)setExtraCellLineHidden
+{
+    UIView *view = [[UIView alloc] init];
+    view.backgroundColor = [UIColor clearColor];
+    [self.tableView setTableFooterView:view];
+}
+
+#pragma mark - Table view delegate
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
@@ -64,28 +69,21 @@
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
     // Return the number of rows in the section.
-    return 2;
+    return 1;//[BirthListArray count];
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     static NSString *CellIdentifier = @"setcell";
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+    CellForBirthCare *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
     if (cell == nil) {
-        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:CellIdentifier];
+        cell = [[CellForBirthCare alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:CellIdentifier];
     }
+    cell.name.text = [((NSDictionary *)BirthListArray[indexPath.row]) objectForKey:@"username"];
+    cell.date.text = [NSString stringWithFormat:@"%@%@",[((NSDictionary *)BirthListArray[indexPath.row]) objectForKey:@"date"],@"天后过生日" ];
+    cell.button.tag = [[((NSDictionary *)BirthListArray[indexPath.row]) objectForKey:@"userid"] intValue];
+    [cell.button addTarget:self action:@selector(sendWish:) forControlEvents:UIControlEventTouchUpInside];
     return cell;
-}
-
-- (void)sendWish:(id)sender
-{
-    UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(250,17, 60, 30)];
-    label.text = @"已送祝福";
-    label.font = [UIFont systemFontOfSize:14];
-    label.textColor = [UIColor colorWithRed:119.0/255.0 green:123.0/255.0 blue:134.0/255.0 alpha:1];
-    [((UIButton *)sender).superview.superview addSubview:label];
-    [((UIButton *)sender) setFrame:CGRectMake(230, 25, 15, 15)];
-    [((UIButton *)sender) setBackgroundImage:[UIImage imageNamed:@"already.png"] forState:UIControlStateNormal];
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
@@ -93,25 +91,43 @@
     return 0.1;
 }
 
--(void)setExtraCellLineHidden
-{
-    UIView *view = [[UIView alloc] init];
-    view.backgroundColor = [UIColor clearColor];
-    [self.tableView setTableFooterView:view];
-}
-
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     return 64;
 }
 
-#pragma mark - Navigation
+#pragma 网络请求部分
 
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
+- (void)sendWish:(id)sender
 {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
+    [NetworkCenter AFRequestWithData:[RequestData sendBirthCareRequestData:((UIButton *)sender).tag] SuccessBlock:^(AFHTTPRequestOperation *operation, id resultObject) {
+        NSDictionary *dic = [NSJSONSerialization JSONObjectWithData:resultObject options:NSJSONReadingMutableLeaves error:nil];
+        if ([dic[@"result"] isEqualToString:@"success"]){
+            
+            UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(250,17, 60, 30)];
+            label.text = @"已送祝福";
+            label.font = [UIFont systemFontOfSize:14];
+            label.textColor = [UIColor colorWithRed:119.0/255.0 green:123.0/255.0 blue:134.0/255.0 alpha:1];
+            [((UIButton *)sender).superview addSubview:label];
+            [((UIButton *)sender) setFrame:CGRectMake(230, 25, 15, 15)];
+            [((UIButton *)sender) setBackgroundImage:[UIImage imageNamed:@"already.png"] forState:UIControlStateNormal];
+        }
+        else {
+            [Alert showAlert:@"送祝福失败"];
+        }
+        
+    } FailureBlock:^(AFHTTPRequestOperation *operation, NSError *error) {
+        NSLog(@"送祝福失败");
+    }];
+}
+
+- (void)getListOfBirth
+{
+    [NetworkCenter RKRequestWithData:[RequestData getListOfBirthRequestData:1] EntityName:@"PersonalBirthEntity" Mapping:[Mapping personalBirthMapping] SuccessBlock:^(NSArray *resultArray) {
+        //do something;
+    } failure:^(NSError *error) {
+        //do something;
+    }];
 }
 
 

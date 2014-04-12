@@ -107,4 +107,23 @@
 }
 
 
++ (NSDictionary *)personalBirthMapping
+{
+    NSArray *keyArray=@[
+                        @"content"
+                        ,@"date"
+                        ,@"flag"
+                        ,@"userid"
+                        ,@"username"
+                        ];
+    NSArray *valueArray=@[
+                          @"content"
+                          ,@"daysLeft"
+                          ,@"flag"
+                          ,@"userid"
+                          ,@"username"
+                          ];
+    return [[NSDictionary alloc]initWithObjects:valueArray forKeys:keyArray];
+}
+
 @end

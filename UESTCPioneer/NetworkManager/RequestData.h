@@ -50,9 +50,21 @@
  */
 +(NSDictionary*)CollegeRequestDataWithCode:(NSString*)collegeCodeString;
 
-+(NSDictionary*)AllNewsReqeustData;
++(NSDictionary*)AllNewsRequestData;
 
 +(NSDictionary*)NoticeDataWithLevel:(NSInteger)level;
 
 +(NSDictionary*)ActivityDataWithTypeName:(NSString*)type;
+
+
+
+
+//以下是个人管理模块的数据请求 张众
++ (NSDictionary *)sendBirthCareRequestData:(NSUInteger)foruserid;
+
++ (NSDictionary *)getListOfBirthRequestData:(NSUInteger)page;
+
+
+
+
 @end

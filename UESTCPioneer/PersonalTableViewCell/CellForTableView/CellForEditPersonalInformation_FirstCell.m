@@ -45,7 +45,7 @@
 {
     if (!_touXiang) {
         _touXiang = [[UIButton alloc] initWithFrame:CGRectMake(100,4,55,55)];
-        [_touXiang setBackgroundImage:[UIImage imageNamed:@"touxiang.png"] forState:UIControlStateNormal];
+        [_touXiang setBackgroundImage:[UIImage imageNamed:@"persontx.png"] forState:UIControlStateNormal];
     }
     return _touXiang;
 }

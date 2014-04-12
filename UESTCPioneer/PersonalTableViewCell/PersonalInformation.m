@@ -14,6 +14,7 @@
 @interface PersonalInformation ()
 {
     NSArray *array;
+    NSArray *infoArray;
 }
 @end
 
@@ -36,7 +37,22 @@
     self.tableView.allowsSelection = NO;
     self.tableView.separatorInset = UIEdgeInsetsZero;
 #warning mark - 对齐方式
-    array = @[@"",@"姓       名",@"性       别",@"民       族",@"籍       贯",@"入党时间",@"转正时间",@"政治面貌",@"所属支部"];
+    array = @[@"",
+              @"姓       名",
+              @"性       别",
+              @"民       族",
+              @"籍       贯",
+              @"入党时间",@"转正时间",
+              @"政治面貌",@"所属支部"];
+    infoArray = @[[[constant getPersonalInfo] objectForKey:@"name"],
+                  [[constant getPersonalInfo] objectForKey:@"name"],
+                  [[constant getPersonalInfo] objectForKey:@"sex"],
+                  [[constant getPersonalInfo] objectForKey:@"nation"],
+                  [[constant getPersonalInfo] objectForKey:@"homeTown"],
+                  [[constant getPersonalInfo] objectForKey:@"partyTime"],
+                  [[constant getPersonalInfo] objectForKey:@"zsDate"],
+                  [[constant getPersonalInfo] objectForKey:@"state"],
+                  [[constant getPersonalInfo] objectForKey:@"branch"]];
 }
 
 -(void)viewWillAppear:(BOOL)animated{
@@ -114,21 +130,22 @@
     if (indexPath.section == 0 )
     {
         cell.staticLabel.text = array[indexPath.row];
-        cell.leftImage.image = [UIImage imageNamed:@"touxiang.png"];
+        cell.leftImage.image = [UIImage imageNamed:@"persontx.png"];
+        
+        cell.textLabel.text = infoArray[indexPath.row];
     }
     else if (indexPath.section ==1 )
+    {
         cell.staticLabel.text = array[indexPath.row + 1];
+        cell.textLabel.text = infoArray[indexPath.row + 1];
+    }
     else
+    {
         cell.staticLabel.text = array[indexPath.row + 5];
+        cell.textLabel.text = infoArray[indexPath.row + 5];
+    }
     cell.textLabel.font = [UIFont systemFontOfSize:17];
-    
-    [self displayPersonalInformation:indexPath];//从coredata获取个人信息并显示显示
     return cell;
-}
-
-- (void)displayPersonalInformation:(NSIndexPath *)indexPath
-{
-    //从coredata获取个人信息并显示显示
 }
 
 - (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section

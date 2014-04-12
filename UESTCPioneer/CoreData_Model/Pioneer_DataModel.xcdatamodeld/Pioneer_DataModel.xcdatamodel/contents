@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<model userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="3396" systemVersion="12F37" minimumToolsVersion="Xcode 4.3" macOSVersion="Automatic" iOSVersion="Automatic">
+<model userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="5064" systemVersion="13C64" minimumToolsVersion="Xcode 4.3" macOSVersion="Automatic" iOSVersion="Automatic">
     <entity name="MessageEntity" representedClassName="MessageEntity" syncable="YES">
         <attribute name="from" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="fromID" optional="YES" attributeType="String" syncable="YES"/>
@@ -41,6 +41,13 @@
         <attribute name="userId" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="userName" optional="YES" attributeType="String" syncable="YES"/>
     </entity>
+    <entity name="PersonalBirthEntity" representedClassName="PersonalBirthEntity" syncable="YES">
+        <attribute name="content" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="daysLeft" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
+        <attribute name="flag" optional="YES" attributeType="Boolean" syncable="YES"/>
+        <attribute name="userid" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="username" optional="YES" attributeType="String" syncable="YES"/>
+    </entity>
     <entity name="PioneerNewsEntity" representedClassName="PioneerNewsEntity" parentEntity="NewsEntity" syncable="YES">
         <attribute name="comeCode" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="comeFrom" optional="YES" attributeType="String" syncable="YES"/>
@@ -63,14 +70,15 @@
         <attribute name="userName" optional="YES" attributeType="String" syncable="YES"/>
     </entity>
     <elements>
-        <element name="MessageEntity" positionX="0" positionY="0" width="0" height="0"/>
-        <element name="MoodShareNewsEntity" positionX="0" positionY="0" width="0" height="0"/>
-        <element name="NewsEntity" positionX="0" positionY="0" width="0" height="0"/>
-        <element name="PartyActivityNewsEntity" positionX="0" positionY="0" width="0" height="0"/>
-        <element name="PartyNoticeNewsEntity" positionX="0" positionY="0" width="0" height="0"/>
-        <element name="PioneerNewsEntity" positionX="0" positionY="0" width="0" height="0"/>
-        <element name="PublicityNewsEntity" positionX="0" positionY="0" width="0" height="0"/>
-        <element name="UserEntity" positionX="0" positionY="0" width="0" height="0"/>
-        <element name="PartiesEntity" positionX="0" positionY="0" width="0" height="0"/>
+        <element name="MessageEntity" positionX="-198" positionY="96" width="128" height="120"/>
+        <element name="MoodShareNewsEntity" positionX="-216" positionY="3" width="128" height="60"/>
+        <element name="NewsEntity" positionX="-18" positionY="-0" width="128" height="133"/>
+        <element name="PartiesEntity" positionX="-45" positionY="159" width="128" height="75"/>
+        <element name="PartyActivityNewsEntity" positionX="187" positionY="-144" width="128" height="178"/>
+        <element name="PartyNoticeNewsEntity" positionX="-234" positionY="-144" width="128" height="135"/>
+        <element name="PioneerNewsEntity" positionX="88" positionY="-198" width="128" height="133"/>
+        <element name="PublicityNewsEntity" positionX="-72" positionY="-162" width="128" height="135"/>
+        <element name="UserEntity" positionX="178" positionY="126" width="128" height="90"/>
+        <element name="PersonalBirthEntity" positionX="-36" positionY="-18" width="128" height="118"/>
     </elements>
 </model>

@@ -17,4 +17,7 @@
 +(NSDictionary*)PartyActivityMapping;
 
 +(NSDictionary*)partiesMapping;
+
+
++ (NSDictionary *)personalBirthMapping;
 @end

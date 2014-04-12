@@ -38,7 +38,7 @@
 {
     if (!_date)
     {
-        _date = [[UILabel alloc] initWithFrame:CGRectMake(75, 30, 100, 30)];
+        _date = [[UILabel alloc] initWithFrame:CGRectMake(75, 30, 200, 30)];
         _date.font = [UIFont systemFontOfSize:15];
         _date.textColor = [UIColor colorWithRed:119.0/255.0 green:123.0/255.0 blue:134.0/255.0 alpha:1];
         _date.text = @"0天后过生日";
@@ -74,23 +74,11 @@
         _button = [[UIButton alloc] initWithFrame:CGRectMake(250, 21, 55,22)];
         [_button setBackgroundImage:[UIImage imageNamed:@"birremind.png" ] forState:UIControlStateNormal];
         _button.titleLabel.font = [UIFont systemFontOfSize:10];
-        [_button addTarget:self action:@selector(sendWish:) forControlEvents:UIControlEventTouchUpInside];
         [_button setTitle:@"送祝福" forState:UIControlStateNormal];
         [_button setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
         [_button setTitleEdgeInsets:UIEdgeInsetsMake(1, 18, 1, 1)];
     }
     return _button;
-}
-
-- (void)sendWish:(id)sender
-{
-    UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(250,17, 60, 30)];
-    label.text = @"已送祝福";
-    label.font = [UIFont systemFontOfSize:14];
-    label.textColor = [UIColor colorWithRed:119.0/255.0 green:123.0/255.0 blue:134.0/255.0 alpha:1];
-    [((UIButton *)sender).superview.superview addSubview:label];
-    [((UIButton *)sender) setFrame:CGRectMake(230, 25, 15, 15)];
-    [((UIButton *)sender) setBackgroundImage:[UIImage imageNamed:@"already.png"] forState:UIControlStateNormal];
 }
 
 @end
