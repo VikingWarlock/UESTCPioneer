@@ -113,7 +113,7 @@
             [((UIButton *)sender) setBackgroundImage:[UIImage imageNamed:@"already.png"] forState:UIControlStateNormal];
         }
         else {
-            [Alert showAlert:@"送祝福失败"];
+            [Alert showAlert:@"送过祝福啦"];
         }
         
     } FailureBlock:^(AFHTTPRequestOperation *operation, NSError *error) {

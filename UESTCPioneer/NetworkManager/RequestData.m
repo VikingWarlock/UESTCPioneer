@@ -91,9 +91,9 @@
 + (NSDictionary *)sendBirthCareRequestData:(NSUInteger)foruserid
 {
     return @{
-             @"tpye":@"lifecareBless",
+             @"type":@"lifecareBless",
              @"userid":[constant getUserId],
-             @"typeid":@"sendbless",
+             @"typepid":@"sendbless",
              @"username":[constant getUserName],
              @"foruserid":[NSString stringWithFormat:@"%D",foruserid]
              };
@@ -102,9 +102,9 @@
 + (NSDictionary *)getListOfBirthRequestData:(NSUInteger)page
 {
     return @{
-             @"tpye":@"lifecareBless",
+             @"type":@"lifecareBless",
              @"userid":[constant getUserId],
-             @"typeid":@"blesslist",
+             @"typepid":@"blesslist",
              @"page":[NSString stringWithFormat:@"%d",page],
              };
 }
