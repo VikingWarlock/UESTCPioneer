@@ -10,6 +10,7 @@
 #import "UPCell.h"
 #define wordsTag          2
 #define wordsFontSize    16
+#define imageViewWidth 100
 @protocol UPMainInfoCellDelegate<NSObject>
 @optional
 -(void)WholeNewsButtonClick:(NSInteger)theId;
@@ -20,5 +21,7 @@
 -(void)setNewsBody:(NSString*)newsBody;
 //@property (nonatomic)NSInteger theId;
 @property (nonatomic,weak)id<UPMainInfoCellDelegate>delegate;
-
+@property (nonatomic) NSArray *imageUrlArray;
+@property(nonatomic) BOOL hasImage;
+-(void)setImageUrlArray:(NSArray *)imageUrlArray;
 @end
