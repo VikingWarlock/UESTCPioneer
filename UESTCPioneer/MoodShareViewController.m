@@ -103,6 +103,14 @@
 -(void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
     [self.leveyTabBarController.navigationItem setTitle:@"活动分享"];
+    
+    
+    UIButton *writeButton = [UIButton buttonWithType:UIButtonTypeCustom];
+    [writeButton setImage:[UIImage imageNamed:@"write"] forState:UIControlStateNormal];
+    [writeButton setImageEdgeInsets:UIEdgeInsetsMake(10, 10, 5, 5)];
+    [writeButton addTarget:self action:@selector(writeButtonPress:) forControlEvents:UIControlEventTouchUpInside];
+    UIBarButtonItem *barButton=[helper BarButtonItemWithUIButton:writeButton ButtonOrigin:CGPointMake(10, 0)];
+    [self.leveyTabBarController.navigationItem setRightBarButtonItem:barButton];
 }
 
 //每个分区的行数
@@ -273,5 +281,11 @@
 //    comment.numberOfComment=[button.titleLabel.text integerValue];
 //    [self.leveyTabBarController.navigationController pushViewController:comment animated:YES];
 //}
+
+
+#pragma mark - writeButtonPress
+-(void)writeButtonPress:(UIButton*)button{
+    
+}
 
 @end
