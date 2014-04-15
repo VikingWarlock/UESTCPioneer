@@ -11,8 +11,10 @@
 #import "StartActivity_displaySelectedImage.h"
 @interface StartActivity ()
 {
-    BOOL isFirstEdit1;
+        //edit by @黄卓越 ：移到头文件
+//    BOOL isFirstEdit1;
     BOOL isFirstEdit2;
+
     BOOL isTitleNotNull;
     BOOL isBodyNotNull;
     NSMutableArray *pickedImage;//用来保存pick的图片
@@ -340,5 +342,7 @@
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
+
+
 
 @end

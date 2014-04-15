@@ -46,9 +46,7 @@
 -(void)viewDidLoad{
     [super viewDidLoad];
     
-    
-    
-    
+    isFirstEdit1=NO;
     
     [self.navigationItem setHidesBackButton:YES];
         self.navigationItem.title=@"编辑分享";
@@ -165,6 +163,7 @@
 @interface SelectShareViewController : UIViewController<UITableViewDataSource,UITableViewDelegate>{
     UITextField *searchField;
     SelectTableView *_tableView;
+    NSLayoutConstraint *tableViewHeightConstraint;
     
 }
 
@@ -201,7 +200,13 @@
     [self.view addSubview:_tableView];
     [_tableView setTranslatesAutoresizingMaskIntoConstraints:NO];
     [self.view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-10-[_tableView]-10-|" options:0 metrics:nil views:NSDictionaryOfVariableBindings(_tableView)]];
-    [self.view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:[topRect]-8-[_tableView]-40-|" options:0 metrics:nil views:NSDictionaryOfVariableBindings(_tableView,topRect)]];
+    [self.view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:[topRect]-8-[_tableView]" options:0 metrics:nil views:NSDictionaryOfVariableBindings(_tableView,topRect)]];
+    
+//    [self.view addConstraint:[NSLayoutConstraint constraintWithItem:_tableView attribute:NSLayoutAttributeBottom relatedBy:NSLayoutRelationGreaterThanOrEqual toItem:self.view attribute:NSLayoutAttributeBottom multiplier:1 constant:-40]];
+    
+    tableViewHeightConstraint=[NSLayoutConstraint constraintWithItem:_tableView attribute:NSLayoutAttributeHeight relatedBy:NSLayoutRelationEqual toItem:nil attribute:NSLayoutAttributeNotAnAttribute multiplier:1 constant:0];
+    [self.view addConstraint:tableViewHeightConstraint];
+    
     _tableView.delegate=self;
     _tableView.dataSource=self;
     
@@ -226,7 +231,9 @@
 
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return 3;
+    NSInteger row=3;
+    tableViewHeightConstraint.constant=row*44;
+    return row;
 }
 
 -(UITableViewCell*)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
