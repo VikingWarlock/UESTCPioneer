@@ -88,7 +88,7 @@
     commentIdKey=@"shareId";
     commentContentKey=@"comment";
     commentWriteIdKey=commentIdKey;
-    commentListKeyMapping=@{@"userName":@"userName",@"comment":@"commentBody"};
+    commentListKeyMapping=@{@"commentAuthor":@"userName",@"commentContent":@"commentBody"};
     
 }
 
