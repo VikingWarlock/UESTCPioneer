@@ -63,6 +63,7 @@
     [self.view setUserInteractionEnabled:YES];
     [self.PersonalTableView setScrollEnabled:YES];
     
+    
     UIView *customView = [[UIView alloc]initWithFrame:CGRectMake(0, 0, 20, 20)];
     UIButton *button = [UIButton buttonWithType:UIButtonTypeCustom];
     [button setFrame:customView.bounds];
@@ -74,7 +75,7 @@
     
 }
 
--(void)viewDidDisappear:(BOOL)animated{
+-(void)viewWillDisappear:(BOOL)animated{
     [self.leveyTabBarController.navigationItem setRightBarButtonItem:Nil];
 }
 

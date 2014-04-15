@@ -11,8 +11,10 @@
 #import "StartActivity_displaySelectedImage.h"
 @interface StartActivity ()
 {
-    BOOL isFirstEdit1;
+        //edit by @黄卓越 ：移到头文件
+//    BOOL isFirstEdit1;
     BOOL isFirstEdit2;
+
     BOOL isTitleNotNull;
     BOOL isBodyNotNull;
     NSMutableArray *pickedImage;//用来保存pick的图片
@@ -43,6 +45,10 @@
     [self.tableView addSubview:self.collectionview];
     [self.collectionview registerClass:[CellForStartActivity class] forCellWithReuseIdentifier:@"GradientCell"];
     [self.collectionview setScrollEnabled:NO];
+    
+    //edit by @黄卓越 2014-4-15
+    //不能滑动
+    [self.tableView setScrollEnabled:NO];
 }
 
 - (void)viewWillAppear:(BOOL)animated
@@ -336,5 +342,7 @@
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
+
+
 
 @end

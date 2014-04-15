@@ -77,6 +77,8 @@
     //白色
     [[UINavigationBar appearance]setTintColor:[UIColor whiteColor]];
     
+    
+    
     if(IS_IOS7)[[UINavigationBar appearance]setBarTintColor:kNavigationBarColor];
     else [[UINavigationBar appearance] setTintColor:kNavigationBarColor];
     [[UINavigationBar appearance] setTitleTextAttributes:@{NSForegroundColorAttributeName:[UIColor whiteColor]}];

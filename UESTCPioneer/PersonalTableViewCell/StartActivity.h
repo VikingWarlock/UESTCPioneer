@@ -8,7 +8,9 @@
 
 #import <UIKit/UIKit.h>
 
-@interface StartActivity : UITableViewController <UITableViewDelegate,UITableViewDataSource,UITextViewDelegate,UIActionSheetDelegate,UIImagePickerControllerDelegate,UINavigationControllerDelegate,UICollectionViewDataSource,UICollectionViewDelegateFlowLayout,UICollectionViewDelegate,UIScrollViewDelegate>
+@interface StartActivity : UITableViewController <UITableViewDelegate,UITableViewDataSource,UITextViewDelegate,UIActionSheetDelegate,UIImagePickerControllerDelegate,UINavigationControllerDelegate,UICollectionViewDataSource,UICollectionViewDelegateFlowLayout,UICollectionViewDelegate,UIScrollViewDelegate>{
+BOOL isFirstEdit1;
+}
 @property (nonatomic,strong) UITextView *editTitle;
 @property (nonatomic,strong) UITextView *editBody;
 @property (nonatomic,strong) UICollectionView *collectionview;
