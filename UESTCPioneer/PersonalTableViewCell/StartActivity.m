@@ -43,6 +43,10 @@
     [self.tableView addSubview:self.collectionview];
     [self.collectionview registerClass:[CellForStartActivity class] forCellWithReuseIdentifier:@"GradientCell"];
     [self.collectionview setScrollEnabled:NO];
+    
+    //edit by @黄卓越 2014-4-15
+    //不能滑动
+    [self.tableView setScrollEnabled:NO];
 }
 
 - (void)viewWillAppear:(BOOL)animated

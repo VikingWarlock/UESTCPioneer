@@ -75,7 +75,7 @@
     
 }
 
--(void)viewDidDisappear:(BOOL)animated{
+-(void)viewWillDisappear:(BOOL)animated{
     [self.leveyTabBarController.navigationItem setRightBarButtonItem:Nil];
 }
 

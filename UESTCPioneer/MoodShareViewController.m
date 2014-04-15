@@ -13,7 +13,7 @@
 #import "UPFooterCell.h"
 #import "LeveyTabBarController.h"
 #import "MoodShareNewsEntity.h"
-
+#import "StartActivity.h"
 
 
 //#define MoodShareMapping @{@"commentNum":@"numberOfComment"\
@@ -36,7 +36,7 @@
 
 
 #pragma mark - EditShareViewController
-@interface EditShareViewController:UIViewController{
+@interface EditShareViewController:StartActivity{
     UILabel *_titleLabel;
     UITextView *writeRect;
 }
@@ -44,6 +44,12 @@
 @implementation EditShareViewController
 
 -(void)viewDidLoad{
+    [super viewDidLoad];
+    
+    
+    
+    
+    
     [self.navigationItem setHidesBackButton:YES];
         self.navigationItem.title=@"编辑分享";
     [self.view setBackgroundColor:ViewControllerBackgroundColor];
@@ -66,39 +72,49 @@
     [self.navigationItem setRightBarButtonItem:rightBarButton];
     [rightBarButton setTitleTextAttributes:@{NSForegroundColorAttributeName:normalCommitButtonColor} forState:UIControlStateNormal];
     
+
     
-#pragma mark 标题栏
-    _titleLabel=[[UILabel alloc]init];
-    [self.view addSubview:_titleLabel];
-    [_titleLabel setTranslatesAutoresizingMaskIntoConstraints:NO];
-    [self.view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|-20-[_titleLabel(==30)]" options:0 metrics:Nil views:NSDictionaryOfVariableBindings(_titleLabel)]];
-    [self.view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-10-[_titleLabel]-10-|" options:0 metrics:nil views:NSDictionaryOfVariableBindings(_titleLabel)]];
-    _titleLabel.text=@"  支部生活有你我";
-    [_titleLabel.layer setBorderColor:kBorderColor.CGColor];
-    [_titleLabel.layer setBorderWidth:1];
-    [_titleLabel.layer setCornerRadius:4];
-    [_titleLabel setBackgroundColor:[UIColor whiteColor]];
+    self.editTitle.editable=NO;
+    self.editTitle.text=@"支部生活有你我";
+    [self.editTitle setTextColor:[UIColor blackColor]];
     
-#pragma mark 书写栏
-    writeRect = [[UITextView alloc]init];
-    [self.view addSubview:writeRect];
-    [writeRect setTranslatesAutoresizingMaskIntoConstraints:NO];
-    [writeRect.layer setBorderColor:kBorderColor.CGColor];
-    [writeRect.layer setBorderWidth:1];
-    [writeRect.layer setCornerRadius:4];
-    [writeRect setBackgroundColor:[UIColor whiteColor]];
-    [self.view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:[_titleLabel]-10-[writeRect(==160)]" options:0 metrics:nil views:NSDictionaryOfVariableBindings(_titleLabel,writeRect)]];
-    [self.view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-10-[writeRect]-10-|" options:0 metrics:nil views:NSDictionaryOfVariableBindings(writeRect)]];
-    [writeRect setFont:[UIFont systemFontOfSize:18]];
-    [self addObserver:writeRect forKeyPath:UITextFieldTextDidBeginEditingNotification options:NSKeyValueObservingOptionInitial context:NULL];
+//#pragma mark 标题栏
+//    _titleLabel=[[UILabel alloc]init];
+//    [self.view addSubview:_titleLabel];
+//    [_titleLabel setTranslatesAutoresizingMaskIntoConstraints:NO];
+//    [self.view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|-20-[_titleLabel(==30)]" options:0 metrics:Nil views:NSDictionaryOfVariableBindings(_titleLabel)]];
+//    [self.view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-10-[_titleLabel]-10-|" options:0 metrics:nil views:NSDictionaryOfVariableBindings(_titleLabel)]];
+//    _titleLabel.text=@"  支部生活有你我";
+//    [_titleLabel.layer setBorderColor:kBorderColor.CGColor];
+//    [_titleLabel.layer setBorderWidth:1];
+//    [_titleLabel.layer setCornerRadius:4];
+//    [_titleLabel setBackgroundColor:[UIColor whiteColor]];
+//    
+//#pragma mark 书写栏
+//    writeRect = [[UITextView alloc]init];
+//    [self.view addSubview:writeRect];
+//    [writeRect setTranslatesAutoresizingMaskIntoConstraints:NO];
+//    [writeRect.layer setBorderColor:kBorderColor.CGColor];
+//    [writeRect.layer setBorderWidth:1];
+//    [writeRect.layer setCornerRadius:4];
+//    [writeRect setBackgroundColor:[UIColor whiteColor]];
+//    [self.view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:[_titleLabel]-10-[writeRect(==160)]" options:0 metrics:nil views:NSDictionaryOfVariableBindings(_titleLabel,writeRect)]];
+//    [self.view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-10-[writeRect]-10-|" options:0 metrics:nil views:NSDictionaryOfVariableBindings(writeRect)]];
+//    [writeRect setFont:[UIFont systemFontOfSize:18]];
     
 
     
 }
 
 
+-(void)viewWillAppear:(BOOL)animated{
+    [super viewWillAppear:animated];
+            self.navigationItem.title=@"编辑分享";
+}
+
 
 -(void)viewWillDisappear:(BOOL)animated{
+    [super viewWillDisappear:animated];
         [self.navigationController.navigationBar setBarTintColor:kNavigationBarColor];
         [self.navigationController.navigationBar setTintColor:[UIColor whiteColor]];
         [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent];
@@ -118,6 +134,10 @@
 #pragma mark - commit share 
 -(void)commitShare:(UIButton*)button{
     
+}
+
+-(void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event{
+    [writeRect resignFirstResponder];
 }
 
 @end
@@ -216,7 +236,7 @@
 }
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
-    EditShareViewController *editShare = [[EditShareViewController alloc]init];
+    EditShareViewController *editShare = [[EditShareViewController alloc]initWithStyle:UITableViewStyleGrouped];
 //    [self.navigationController presentViewController:editShare animated:YES completion:NULL];
     [self.navigationController pushViewController:editShare animated:YES];
 }
@@ -307,6 +327,10 @@
     [writeButton addTarget:self action:@selector(writeButtonPress:) forControlEvents:UIControlEventTouchUpInside];
     UIBarButtonItem *barButton=[helper BarButtonItemWithUIButton:writeButton ButtonOrigin:CGPointMake(10, 0)];
     [self.leveyTabBarController.navigationItem setRightBarButtonItem:barButton];
+}
+
+-(void)viewWillDisappear:(BOOL)animated{
+    [self.leveyTabBarController.navigationItem setRightBarButtonItem:nil];
 }
 
 //每个分区的行数
