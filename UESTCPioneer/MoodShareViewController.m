@@ -231,8 +231,9 @@
 
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    NSInteger row=3;
-    tableViewHeightConstraint.constant=row*44;
+    NSInteger row=20;
+    if (row>10)tableViewHeightConstraint.constant=44*10;
+    else tableViewHeightConstraint.constant=row*44;
     return row;
 }
 
