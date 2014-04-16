@@ -7,7 +7,10 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "superTableViewController.h"
 
-@interface LearnTableViewController : UITableViewController
+@interface LearnTableViewController : superTableViewController
+
+- (id)initWithRequestData:(NSDictionary *)requestData entityName:(NSString *)entityName Mapping:(NSDictionary *)mapping;
 
 @end

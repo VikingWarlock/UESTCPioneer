@@ -9,20 +9,63 @@
 #import "OrganTableViewController.h"
 #import "helper.h"
 #import "OrganDetailTableViewController.h"
+#import "AFJSONRequestOperation.h"
 
-@interface OrganTableViewController ()
-@property(nonatomic,strong) NSArray * data;
+@interface OrganTableViewController (){
+    NSDictionary * detailData;
+}
+
+@property (nonatomic,strong) NSArray * data;
+
+
 @end
 
 @implementation OrganTableViewController
 
 static  NSString *CellTableIdentifier = @"CellTableIdentifier";
 
+- (id)initWithRequestData:(NSDictionary*)RequestData EntityName:(NSString *)EntityName Mapping:(NSDictionary*)Mapping{
+    if (self) {
+        self.title = @"组织架构";
+        NSString * requestUrl = @"http://222.197.183.81:8080/UestcApp/ieaction.do?type=getInstitute";
+        NSURL * url = [NSURL URLWithString:requestUrl];
+        NSURLRequest * request = [NSURLRequest requestWithURL:url];
+        [AFJSONRequestOperation JSONRequestOperationWithRequest:request success:^(NSURLRequest *request, NSHTTPURLResponse *response, id JSON) {
+            detailData = (NSDictionary*)JSON;
+        } failure:^(NSURLRequest *request, NSHTTPURLResponse *response, NSError *error, id JSON) {
+            NSLog(@"加载失败");
+        }];
+        
+    }
+    return self;
+}
+/*    NSString *weatherUrl = [NSString stringWithFormat:@"%@weather.php?format=json", BaseURLString];
+ NSURL *url = [NSURL URLWithString:weatherUrl];
+ NSURLRequest *request = [NSURLRequest requestWithURL:url];
+ 
+ // 2
+ AFJSONRequestOperation *operation =
+ [AFJSONRequestOperation JSONRequestOperationWithRequest:request
+ // 3
+ success:^(NSURLRequest *request, NSHTTPURLResponse *response, id JSON) {
+ self.weather  = (NSDictionary *)JSON;
+ self.title = @"JSON Retrieved";
+ [self.tableView reloadData];
+ }
+ // 4
+ failure:^(NSURLRequest *request, NSHTTPURLResponse *response, NSError *error, id JSON) {
+ UIAlertView *av = [[UIAlertView alloc] initWithTitle:@"Error Retrieving Weather"
+ message:[NSString stringWithFormat:@"%@",error]
+ delegate:nil
+ cancelButtonTitle:@"OK" otherButtonTitles:nil];
+ [av show];
+ */
 
 - (id)initWithStyle:(UITableViewStyle)style
 {
     self = [super initWithStyle:style];
     if (self) {
+        self.title = @"组织架构";
         // Custom initialization
     }
     return self;
@@ -30,7 +73,8 @@ static  NSString *CellTableIdentifier = @"CellTableIdentifier";
 
 -(NSArray *)data{
     if (!_data) {
-        _data = @[@{@"image": @"01.png",@"title":@"各单位党委"},@{@"image":@"02.png",@"title":@"机关与直属单位党委"}];
+        _data = @[@{@"title":@"各单位党委",@"image":@"01.png"},@{@"title":@"机关与直属单位党委",@"image":@"02.png"}];
+        
     }
     return _data;
 }
@@ -39,16 +83,21 @@ static  NSString *CellTableIdentifier = @"CellTableIdentifier";
 {
     [super viewDidLoad];
     [self.tableView registerClass:[UITableViewCell class] forCellReuseIdentifier: CellTableIdentifier];
+    NSString * requestUrl = @"http://222.197.183.81:8080/UestcApp/ieaction.do?type=getInstitute";
+    NSURL * url = [NSURL URLWithString:requestUrl];
+    NSURLRequest * request = [NSURLRequest requestWithURL:url];
+    [AFJSONRequestOperation JSONRequestOperationWithRequest:request success:^(NSURLRequest *request, NSHTTPURLResponse *response, id JSON) {
+        detailData = (NSDictionary*)JSON;
+        if(detailData == nil) {
+            NSLog(@"aaaaaaa");
+        }
+        
+    } failure:^(NSURLRequest *request, NSHTTPURLResponse *response, NSError *error, id JSON) {
+        NSLog(@"加载失败");
+    }];
     // [self.tableView setFrame:CGRectMake(0, 0, 320, 300)];
     
-    self.title = @"组织架构";
     self.tableView.separatorInset = UIEdgeInsetsZero;
-    
-    // Uncomment the following line to preserve selection between presentations.
-    // self.clearsSelectionOnViewWillAppear = NO;
-    
-    // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-    // self.navigationItem.rightBarButtonItem = self.editButtonItem;
 }
 
 - (void)didReceiveMemoryWarning
@@ -98,9 +147,15 @@ static  NSString *CellTableIdentifier = @"CellTableIdentifier";
 
 
 - (void) tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
-    UIViewController * viewController = [[OrganDetailTableViewController alloc] init];
+    NSArray * detailArr;
+    if (indexPath.row == 0) {
+        detailArr = detailData[@"content1"];
+    }else
+        detailArr = detailData[@"content2"];
+    UIViewController * viewController = [[OrganDetailTableViewController alloc] initWithArray:detailArr];
     [self.navigationController pushViewController:viewController animated:YES];
 }
+
 
 
 @end

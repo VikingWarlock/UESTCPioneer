@@ -1,6 +1,6 @@
 //
 //  Cells.m
-//  
+//
 //
 //  Created by 马君 on 14-3-27.
 //
@@ -21,13 +21,13 @@
         _titleValue.textColor = [UIColor blackColor];
         [self.contentView addSubview:_titleValue];
         
-        _contentValue = [[UILabel alloc] init/*WithFrame:CGRectMake(10, 25, 300, 40)*/];
+        _contentValue = [[UILabel alloc] initWithFrame:CGRectMake(10, 25, 300, 60)];
         _contentValue.font = [UIFont systemFontOfSize:15];
-        _contentValue.numberOfLines = 0;
+        _contentValue.numberOfLines = 3;
         _contentValue.textColor = [UIColor grayColor];
         [self.contentView addSubview:_contentValue];
         
-        _timeValue = [[UILabel alloc] init/*WithFrame:CGRectMake(250, 50, 50, 20)*/];
+        _timeValue = [[UILabel alloc] initWithFrame:CGRectMake(230, 85, 80, 20)];
         _timeValue.font = [UIFont systemFontOfSize:15];
         _timeValue.numberOfLines = 1;
         _timeValue.textColor = [UIColor grayColor];

@@ -102,11 +102,6 @@
     return [[NSDictionary alloc]initWithObjects:valueArray forKeys:keyArray];
 }
 
-+(NSDictionary*)partiesMapping{
-    return @{@"partyName":@"partyName",@"partyNo":@"partyNo"};
-}
-
-
 + (NSDictionary *)personalBirthMapping
 {
     NSArray *keyArray=@[
@@ -125,5 +120,34 @@
                           ];
     return [[NSDictionary alloc]initWithObjects:valueArray forKeys:keyArray];
 }
+
++(NSDictionary*)PartyDataGuideEntityMapping{
+    return @{@"ZN_content":@"content",@"ZN_name":@"title",@"ZN_picName":@"piaName",@"ZN_picUrl":@"picUrl",@"ZN_time":@"time",@"id":@"theId"};
+}
+
++(NSDictionary*)partiesMapping{
+    return @{@"partyName":@"partyName",@"partyNo":@"partyNo"};
+}
+
++(NSDictionary*)PartyDataLearnEntityMapping{
+    return @{@"id":@"theId",@"filename":@"fileName"};
+}
+
++(NSDictionary*)PartyDataProcessEntityMapping{
+    return @{@"content":@"content",@"dangType":@"dangType",@"id":@"theId",@"picPath":@"picPath",@"time":@"time",@"title":@"title"};
+}
+
++(NSDictionary*)PartyDataSpiritEntityMapping{
+    return @{@"content":@"content",@"title":@"title",@"desc":@"desc",@"id":@"theId",@"time":@"time",@"tyoe":@"type",@"picName":@"picName",@"picUrl":@"picUrl"};
+}
+
++(NSDictionary*)PartyDataGuideDetailEntityMapping{
+    return @{@"ZN_content":@"content",@"ZN_name":@"title",@"ZN_picName":@"picName",@"ZN_picUrl":@"picUrl",@"ZN_time":@"time",@"frontId":@"frontId",@"frontTitle":@"frontTitle",@"id":@"theId",@"nextId":@"nextId",@"nextTitle":@"nextTitle"};
+}
+
++(NSDictionary*)PartyDataMLearnEntityMapping{
+    return @{@"comeCode":@"comeCode",@"comeFrom":@"comeFrome",@"fileName":@"fileName",@"filePath":@"filePath",@"fileTyoe":@"fileType",@"id":@"theId",@"time":@"time",@"type":@"type",@"typeText":@"typeText"};
+}
+
 
 @end

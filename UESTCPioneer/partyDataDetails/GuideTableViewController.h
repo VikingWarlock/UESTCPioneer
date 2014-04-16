@@ -7,8 +7,9 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "superTableViewController.h"
 
-@interface GuideTableViewController : UITableViewController
+@interface GuideTableViewController : superTableViewController
 
 
 @end

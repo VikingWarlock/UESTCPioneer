@@ -7,7 +7,8 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "superTableViewController.h"
 
-@interface OrganTableViewController : UITableViewController
+@interface OrganTableViewController : UITableViewController//UITableViewController
 
 @end

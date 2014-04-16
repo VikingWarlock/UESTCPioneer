@@ -65,6 +65,7 @@
     
     //@改用自动布局 @黄卓越 2014－3-31
     self.tableView=[[UPTableView alloc]initWithFrame:CGRectMake(0, 0, 0, 0) style:UITableViewStyleGrouped];
+    self.tableView.tag = 27;
         [self.view addSubview:self.tableView];
     __weak UITableView *table = self.tableView;
     

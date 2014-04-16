@@ -12,6 +12,5 @@
 @property(nonatomic,strong)UITableView * tableView;
 @property (nonatomic,strong) NSArray * data;
 
-- (id)initWithArray:(NSArray *)data forTitle:(NSString *)title;
-
+- (id)initWithTitle:(NSString *)title RequestData:(NSDictionary*)RequestData EntityName:(NSString *)EntityName Mapping:(NSDictionary*)Mapping;
 @end
