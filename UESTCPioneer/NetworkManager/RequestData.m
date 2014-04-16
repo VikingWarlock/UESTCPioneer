@@ -92,9 +92,9 @@
 {
     return @{
              @"type":@"lifecareBless",
-             @"userid":[constant getUserId],
+             @"userId":[constant getUserId],
              @"typepid":@"sendbless",
-             @"username":[constant getUserName],
+             @"userName":[constant getUserName],
              @"foruserid":[NSString stringWithFormat:@"%D",foruserid]
              };
 }
@@ -103,13 +103,83 @@
 {
     return @{
              @"type":@"lifecareBless",
-             @"userid":[constant getUserId],
+             @"userId":[constant getUserId],
              @"typepid":@"blesslist",
              @"page":[NSString stringWithFormat:@"%d",page],
              };
 }
 
++ (NSDictionary *)sendNoticeRequestData:(NSString *)content
+{
+    return @{
+             @"type":@"writeNoticeOrAnnounce",
+             @"typepid":@"1",
+             @"userId":[constant getUserId],
+             @"userName":[constant getUserName],
+             @"content":content,
+             };
+}
 
++ (NSDictionary *)startActivityRequestData:(NSString *)content title:(NSString *)title
+{
+    return @{
+             @"type":@"publishEvent",
+             @"userName":[constant getUserName],
+             @"userId":[constant getUserId],
+             @"content":content,
+             @"theme":title
+             };
+}
+
++ (NSDictionary *)getDailyCareRequestData:(NSUInteger)page
+{
+    return @{
+             @"type":@"lifecareBless",
+             @"typepid":@"lifecarelist",
+             @"userId":[constant getUserId],
+             @"page":[NSString stringWithFormat:@"%d",page],
+             };
+}
+
++ (NSDictionary *)sendDailyCareRequestData:(NSString *)content
+{
+    return @{
+             @"type":@"lifecareBless",
+             @"typepid":@"sendlifecare",
+             @"userId":[constant getUserId],
+             @"userName":[constant getUserName],
+             @"content":content,
+             };
+}
+
++ (NSDictionary *)getCollectionRequestData:(NSUInteger)page;
+{
+    return @{
+             @"type":@"perAdminNotice",
+             @"typepid":@"1",
+             @"userId":[constant getUserId],
+             @"page":[NSString stringWithFormat:@"%d",page],
+             };
+}
+
++ (NSDictionary *)getListOfMessageRequestData:(NSUInteger)page
+{
+    return @{
+             @"type":@"msgRemind",
+             @"userId":[constant getUserId],
+             @"page":[NSString stringWithFormat:@"%d",page],
+             };
+}
+
++ (NSDictionary *)getSpecialMessageRequestData:(NSUInteger)msgid
+{
+    return @{
+             @"type":@"msgRemind",
+             @"userId":[constant getUserId],
+             @"typepid":@"bless",
+             @"id":[NSString stringWithFormat:@"%d",msgid],
+             };
+}
 
 
 @end

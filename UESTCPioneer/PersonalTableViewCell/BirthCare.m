@@ -42,7 +42,7 @@
 - (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
-    self.navigationItem.title = @"生日提醒";
+    self.navigationItem.title = @"生日关怀";
 }
 
 - (void)didReceiveMemoryWarning
@@ -114,9 +114,18 @@
         }
         else {
             [Alert showAlert:@"送过祝福啦"];
+            
+            UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(250,17, 60, 30)];
+            label.text = @"已送祝福";
+            label.font = [UIFont systemFontOfSize:14];
+            label.textColor = [UIColor colorWithRed:119.0/255.0 green:123.0/255.0 blue:134.0/255.0 alpha:1];
+            [((UIButton *)sender).superview addSubview:label];
+            [((UIButton *)sender) setFrame:CGRectMake(230, 25, 15, 15)];
+            [((UIButton *)sender) setBackgroundImage:[UIImage imageNamed:@"already.png"] forState:UIControlStateNormal];
         }
         
     } FailureBlock:^(AFHTTPRequestOperation *operation, NSError *error) {
+        [Alert showAlert:@"网络请求错误!"];
         NSLog(@"送祝福失败");
     }];
 }

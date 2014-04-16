@@ -14,10 +14,15 @@
     [view setBackgroundColor:[UIColor colorWithRed:0 green:0 blue:0 alpha:0.5]];
     [view.layer setCornerRadius:20];
     
-    UILabel *label =[[UILabel alloc]initWithFrame:CGRectMake(20, 20, 93, 33)];
+    UILabel *label =[[UILabel alloc]initWithFrame:CGRectMake(20, 20, 93, 50)];
     [label setBackgroundColor:[UIColor clearColor]];
     [label setTextColor:[UIColor whiteColor]];
     [label setTextAlignment:NSTextAlignmentCenter];
+    
+    //增加换行，可显示两行alert  @张众
+    label.lineBreakMode = NSLineBreakByCharWrapping;
+    label.numberOfLines = 0;
+
     [view addSubview:label];
     label.text=message;
     

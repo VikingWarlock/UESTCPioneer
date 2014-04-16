@@ -64,7 +64,19 @@
 
 + (NSDictionary *)getListOfBirthRequestData:(NSUInteger)page;
 
++ (NSDictionary *)sendNoticeRequestData:(NSString *)content;
 
++ (NSDictionary *)startActivityRequestData:(NSString *)content title:(NSString *)title;
+
++ (NSDictionary *)getDailyCareRequestData:(NSUInteger)page;
+
++ (NSDictionary *)sendDailyCareRequestData:(NSString *)content;
+
++ (NSDictionary *)getCollectionRequestData:(NSUInteger)page;
+
++ (NSDictionary *)getListOfMessageRequestData:(NSUInteger)page;
+
++ (NSDictionary *)getSpecialMessageRequestData:(NSUInteger)msgid;
 
 
 @end

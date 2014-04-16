@@ -7,6 +7,9 @@
 //
 
 #import <UIKit/UIKit.h>
-
-@interface DailyCare : UITableViewController 
+#import "MJRefresh.h"
+#import "CellForDailyCare_BodyCell.h"
+#import "CellForDailyCare_TitleCell.h"
+#import "commentView.h"
+@interface DailyCare : UITableViewController <MJRefreshBaseViewDelegate>
 @end

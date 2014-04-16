@@ -127,14 +127,14 @@
     if (cell == nil) {
         cell = [[CellForPersonalInformation alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
     }
-    if (indexPath.section == 0 )
+    if (indexPath.section == 0)
     {
         cell.staticLabel.text = array[indexPath.row];
         cell.leftImage.image = [UIImage imageNamed:@"persontx.png"];
         
         cell.textLabel.text = infoArray[indexPath.row];
     }
-    else if (indexPath.section ==1 )
+    else if (indexPath.section == 1)
     {
         cell.staticLabel.text = array[indexPath.row + 1];
         cell.textLabel.text = infoArray[indexPath.row + 1];
