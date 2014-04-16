@@ -119,7 +119,7 @@
 
 -(void)niDropDownDelegateMethod:(NIDropDown *)sender ForTitle:(NSString *)title ForIndex:(NSInteger)index{
     if ([title isEqualToString:@"全部"]){
-        requestData=[RequestData AllNewsReqeustData];
+        requestData=[RequestData AllNewsRequestData];
         [self.tableView beginRefreshing];
     }
     else if ([title isEqualToString:@"通信"]){

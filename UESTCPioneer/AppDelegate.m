@@ -7,6 +7,7 @@
 //
 
 #import "AppDelegate.h"
+#import "LoginViewController.h"
 #import "PioneerViewController.h"
 #import "PPRevealSideViewController.h"
 #import "LeveyTabBarController.h"
@@ -19,7 +20,7 @@
 #import "PartyNoticeViewController.h"
 #import "UPMainViewController.h"
 
-@interface AppDelegate()<PPRevealSideViewControllerDelegate>{
+@interface AppDelegate()<PPRevealSideViewControllerDelegate,UINavigationControllerDelegate>{
     LeveyTabBarController *tab;
 }
 @end
@@ -35,21 +36,8 @@
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
     
-    //调试模式
-#if debugMode
-    [Unread setUnreadNum:10 ForKey:kUnreadMoodShare];
-    [Unread setUnreadNum:10 ForKey:kUnreadPioneerKey];
-    
-    [constant setUserId:@"001002200011"];
-    [constant setUserName:@"IOS test"];
-    [constant setName:@"TestName"];
-#endif
-    
-    
-    
-    self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
-    
-    //    RootViewController *main = [[RootViewController alloc] initWithStyle:UITableViewStyleGrouped];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(login) name:@"login" object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(logout) name:@"logout" object:nil];
     
     ///////////////CoreDate Init
     [MagicalRecord setupCoreDataStack];
@@ -83,6 +71,25 @@
     
     [PublicMethod refreshStaticCoreData];
     
+    //运营商和时间的风格
+    [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent];
+    
+    //白色
+    [[UINavigationBar appearance]setTintColor:[UIColor whiteColor]];
+    
+    
+    
+    if(IS_IOS7)[[UINavigationBar appearance]setBarTintColor:kNavigationBarColor];
+    else [[UINavigationBar appearance] setTintColor:kNavigationBarColor];
+    [[UINavigationBar appearance] setTitleTextAttributes:@{NSForegroundColorAttributeName:[UIColor whiteColor]}];
+    
+    
+    
+     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
+    //    RootViewController *main = [[RootViewController alloc] initWithStyle:UITableViewStyleGrouped];
+    
+    
+    
     /////////////// APN register
     [application registerForRemoteNotificationTypes:UIRemoteNotificationTypeBadge|UIRemoteNotificationTypeAlert|UIRemoteNotificationTypeSound];
     
@@ -95,65 +102,44 @@
     }
     
     ////////////////
-    PioneerViewController *main = [[PioneerViewController alloc]init];
-    CommunicationViewController *communicationViewController =[[CommunicationViewController alloc] init];
-    PartyDataViewController *partyDataViewController = [[PartyDataViewController alloc]init];
-    PersonalViewController *personalViewController =  [[PersonalViewController alloc]init];
+//@这是注册界面和登陆界面的代码，暂时用宏定义隐藏起来
+#if debugMode
+
+#else
+    NSUserDefaults * defaultData = [NSUserDefaults standardUserDefaults];
+    BOOL login = [defaultData boolForKey:@"login"];
+    if (!login){
+        LoginViewController *loginViewController  = [[LoginViewController alloc]init];
+        UINavigationController *nav = [[UINavigationController alloc]initWithRootViewController:loginViewController];
+        nav.navigationBar.translucent=NO;
+        self.window.rootViewController=nav;
+        
+        self.window.backgroundColor = [UIColor whiteColor];
+        [self.window makeKeyAndVisible];
+        return YES;
+        
+    }
+#endif
+    
+    //调试模式
+#if debugMode
+    [Unread setUnreadNum:10 ForKey:kUnreadMoodShare];
+    [Unread setUnreadNum:10 ForKey:kUnreadPioneerKey];
+    
+    [constant setUserId:@"001002200011"];
+    [constant setUserName:@"IOS test"];
+    [constant setName:@"TestName"];
+#endif
     
     
     
-    if(IS_IOS7)[[UINavigationBar appearance]setBarTintColor:kNavigationBarColor];
-    else [[UINavigationBar appearance] setTintColor:kNavigationBarColor];
+   
     
-    
-    NSMutableDictionary *imgDic = [NSMutableDictionary dictionaryWithCapacity:3];
-	[imgDic setObject:[UIImage imageNamed:@"home.png"] forKey:@"Default"];
-	[imgDic setObject:[UIImage imageNamed:@"home_highlighted.png"] forKey:@"Highlighted"];
-	[imgDic setObject:[UIImage imageNamed:@"home_highlighted"] forKey:@"Seleted"];
-	NSMutableDictionary *imgDic2 = [NSMutableDictionary dictionaryWithCapacity:3];
-	[imgDic2 setObject:[UIImage imageNamed:@"chat.png"] forKey:@"Default"];
-	[imgDic2 setObject:[UIImage imageNamed:@"chat_highlighted.png"] forKey:@"Highlighted"];
-	[imgDic2 setObject:[UIImage imageNamed:@"chat_highlighted"] forKey:@"Seleted"];
-	NSMutableDictionary *imgDic3 = [NSMutableDictionary dictionaryWithCapacity:3];
-	[imgDic3 setObject:[UIImage imageNamed:@"file.png"] forKey:@"Default"];
-	[imgDic3 setObject:[UIImage imageNamed:@"file_highlighted.png"] forKey:@"Highlighted"];
-	[imgDic3 setObject:[UIImage imageNamed:@"file_highlighted"] forKey:@"Seleted"];
-	NSMutableDictionary *imgDic4 = [NSMutableDictionary dictionaryWithCapacity:3];
-	[imgDic4 setObject:[UIImage imageNamed:@"personal.png"] forKey:@"Default"];
-	[imgDic4 setObject:[UIImage imageNamed:@"personal_highlighted.png"] forKey:@"Highlighted"];
-	[imgDic4 setObject:[UIImage imageNamed:@"personal_highlighted.png"] forKey:@"Seleted"];
-    NSArray *imgArr = [NSArray arrayWithObjects:imgDic,imgDic2,imgDic3,imgDic4,nil];
-    
-    
-    NSArray *titleArray = @[@"首页",@"交流",@"资料",@"个人"];
-    
-    
-    tab = [[LeveyTabBarController alloc] initWithViewControllers:@[main,communicationViewController,partyDataViewController,personalViewController] imageArray:imgArr titles:titleArray];
-    
-    UINavigationController *nav=[[UINavigationController alloc]initWithRootViewController:tab];
-    [tab.navigationController.navigationBar setTitleTextAttributes:@{UITextAttributeTextColor:[UIColor whiteColor]}];
-    [nav.navigationBar setTranslucent:NO];
-    //    [nav.navigationBar setTintColor:kNavigationBarColor];
-    //    [nav.navigationBar setBarTintColor:[UIColor redColor]];
-    [constant setCenterController:nav];
-    
-    
-    self.revealSideViewController = [[PPRevealSideViewController alloc] initWithRootViewController:nav];
-    nav.revealSideViewController.delegate=self;
-    
-    [self.revealSideViewController preloadViewController:[[LeftMenuTableViewController alloc]init] forSide:PPRevealSideDirectionLeft withOffset:70];
-    
-    [self.revealSideViewController setDirectionsToShowBounce:PPRevealSideDirectionNone];
-    [self.revealSideViewController setPanInteractionsWhenClosed:PPRevealSideInteractionContentView | PPRevealSideInteractionNavigationBar];
-    self.window.rootViewController = self.revealSideViewController;
-    
-    self.window.backgroundColor = [UIColor whiteColor];
-    [self.window makeKeyAndVisible];
+    [self login];
     // Override point for customization after application launch.
     
     
-    //运营商和时间的风格
-    [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent];
+
     
     
     
@@ -285,5 +271,102 @@
 //    [up.view setUserInteractionEnabled:YES];
 //    [centerController.view setUserInteractionEnabled:NO];
 
+}
+
+
+#pragma mark - login success
+-(void)login{
+    
+    //@用户信息
+                NSUserDefaults * defaultData = [NSUserDefaults standardUserDefaults];
+    NSDictionary *userInfo=[defaultData objectForKey:@"personalInfo"];
+    [constant setPersonalInfo:userInfo];
+    [constant setName:userInfo[@"name"]];
+    [constant setUserId:userInfo[@"userID"]];
+    [constant setUserName:userInfo[@"userName"]];
+    
+    
+    PioneerViewController *main = [[PioneerViewController alloc]init];
+    CommunicationViewController *communicationViewController =[[CommunicationViewController alloc] init];
+    PartyDataViewController *partyDataViewController = [[PartyDataViewController alloc]init];
+    PersonalViewController *personalViewController =  [[PersonalViewController alloc]init];
+    
+    
+    
+    
+    
+    
+    NSMutableDictionary *imgDic = [NSMutableDictionary dictionaryWithCapacity:3];
+	[imgDic setObject:[UIImage imageNamed:@"home.png"] forKey:@"Default"];
+	[imgDic setObject:[UIImage imageNamed:@"home_highlighted.png"] forKey:@"Highlighted"];
+	[imgDic setObject:[UIImage imageNamed:@"home_highlighted"] forKey:@"Seleted"];
+	NSMutableDictionary *imgDic2 = [NSMutableDictionary dictionaryWithCapacity:3];
+	[imgDic2 setObject:[UIImage imageNamed:@"chat.png"] forKey:@"Default"];
+	[imgDic2 setObject:[UIImage imageNamed:@"chat_highlighted.png"] forKey:@"Highlighted"];
+	[imgDic2 setObject:[UIImage imageNamed:@"chat_highlighted"] forKey:@"Seleted"];
+	NSMutableDictionary *imgDic3 = [NSMutableDictionary dictionaryWithCapacity:3];
+	[imgDic3 setObject:[UIImage imageNamed:@"file.png"] forKey:@"Default"];
+	[imgDic3 setObject:[UIImage imageNamed:@"file_highlighted.png"] forKey:@"Highlighted"];
+	[imgDic3 setObject:[UIImage imageNamed:@"file_highlighted"] forKey:@"Seleted"];
+	NSMutableDictionary *imgDic4 = [NSMutableDictionary dictionaryWithCapacity:3];
+	[imgDic4 setObject:[UIImage imageNamed:@"personal.png"] forKey:@"Default"];
+	[imgDic4 setObject:[UIImage imageNamed:@"personal_highlighted.png"] forKey:@"Highlighted"];
+	[imgDic4 setObject:[UIImage imageNamed:@"personal_highlighted.png"] forKey:@"Seleted"];
+    NSArray *imgArr = [NSArray arrayWithObjects:imgDic,imgDic2,imgDic3,imgDic4,nil];
+    
+    
+    NSArray *titleArray = @[@"首页",@"交流",@"资料",@"个人"];
+    
+    
+    tab = [[LeveyTabBarController alloc] initWithViewControllers:@[main,communicationViewController,partyDataViewController,personalViewController] imageArray:imgArr titles:titleArray];
+    
+    UINavigationController *nav=[[UINavigationController alloc]initWithRootViewController:tab];
+    nav.delegate=self;
+    //    [tab.navigationController.navigationBar setTitleTextAttributes:@{NSForegroundColorAttributeName:[UIColor whiteColor]}];
+    [nav.navigationBar setTranslucent:NO];
+    //    [nav.navigationBar setTintColor:kNavigationBarColor];
+    //    [nav.navigationBar setBarTintColor:[UIColor redColor]];
+    [constant setCenterController:nav];
+    
+    
+    self.revealSideViewController = [[PPRevealSideViewController alloc] initWithRootViewController:nav];
+    nav.revealSideViewController.delegate=self;
+    
+    [self.revealSideViewController preloadViewController:[[LeftMenuTableViewController alloc]init] forSide:PPRevealSideDirectionLeft withOffset:70];
+    
+    [self.revealSideViewController setDirectionsToShowBounce:PPRevealSideDirectionNone];
+    [self.revealSideViewController setPanInteractionsWhenClosed:PPRevealSideInteractionContentView | PPRevealSideInteractionNavigationBar];
+    self.window.rootViewController = self.revealSideViewController;
+    
+    self.window.backgroundColor = [UIColor whiteColor];
+    [self.window makeKeyAndVisible];
+    // Override point for customization after application launch.
+    
+    
+    
+
+
+}
+
+-(void)logout{
+    LoginViewController *loginViewController  = [[LoginViewController alloc]init];
+    UINavigationController *nav = [[UINavigationController alloc]initWithRootViewController:loginViewController];
+    nav.navigationBar.translucent=NO;
+    self.window.rootViewController=nav;
+    
+    self.window.backgroundColor = [UIColor whiteColor];
+    [self.window makeKeyAndVisible];
+
+    
+    
+}
+
+#pragma mark - navigationController delegate
+
+-(void)navigationController:(UINavigationController *)navigationController willShowViewController:(UIViewController *)viewController animated:(BOOL)animated{
+    if ([viewController isKindOfClass:[LeveyTabBarController class]]){
+        LeveyTabBarController *v = (LeveyTabBarController*)viewController;
+        [v.selectedViewController viewWillAppear:animated];
+    }
 }
 @end

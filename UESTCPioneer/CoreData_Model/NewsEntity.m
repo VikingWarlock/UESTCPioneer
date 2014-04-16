@@ -2,7 +2,7 @@
 //  NewsEntity.m
 //  UESTCPioneer
 //
-//  Created by Sway on 14-3-28.
+//  Created by Sway on 14-4-15.
 //  Copyright (c) 2014年 Sway. All rights reserved.
 //
 

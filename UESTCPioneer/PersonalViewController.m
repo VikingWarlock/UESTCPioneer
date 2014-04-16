@@ -56,12 +56,13 @@
     [self.view addSubview:self.PersonalTableView];
     [self.view addSubview:self.headPicture];
     [self.view addSubview:self.name];
-    //[self setPersonalInformation:xxpp];
+    [self setPersonalInformation];
 }
 -(void)viewWillAppear:(BOOL)animated{
     [self.leveyTabBarController.navigationItem setTitle:@"个人"];
     [self.view setUserInteractionEnabled:YES];
     [self.PersonalTableView setScrollEnabled:YES];
+    
     
     UIView *customView = [[UIView alloc]initWithFrame:CGRectMake(0, 0, 20, 20)];
     UIButton *button = [UIButton buttonWithType:UIButtonTypeCustom];
@@ -74,16 +75,19 @@
     
 }
 
--(void)viewDidDisappear:(BOOL)animated{
+-(void)viewWillDisappear:(BOOL)animated{
     [self.leveyTabBarController.navigationItem setRightBarButtonItem:Nil];
 }
 
 
-- (void)setPersonalInformation:(id)person
+- (void)setPersonalInformation
 {
-    self.headPictureImage = person;
-    self.department.text = person;
-    self.name.text = person;
+    if ((NSString *)[[constant getPersonalInfo] objectForKey:@"headpicture"] != nil)
+        self.headPictureImage = [[constant getPersonalInfo] objectForKey:@"headpicture"];
+    if ((NSString *)[[constant getPersonalInfo] objectForKey:@"branch"] != nil)
+        self.department.text = [[constant getPersonalInfo] objectForKey:@"branch"];
+    if ((NSString *)[[constant getPersonalInfo] objectForKey:@"name"] != nil)
+        self.name.text = [[constant getPersonalInfo] objectForKey:@"name"];
 }//获得个人信息的接口
 
 #pragma mark -datasource
@@ -291,7 +295,10 @@
 
 #pragma mark - logout function 
 -(void)logout:(id)sender{
-    
+    NSUserDefaults * defaultData = [NSUserDefaults standardUserDefaults];
+    [defaultData setBool:NO forKey:@"login"];
+    [defaultData synchronize];
+    [[NSNotificationCenter defaultCenter]postNotificationName:@"logout" object:nil];
 }
 
 @end

@@ -1,14 +1,14 @@
 //
-//  ShortMainInfocell.m
+//  ShortTitleCell.m
 //  UESTCPioneer
 //
 //  Created by 张众 on 3/22/14.
 //  Copyright (c) 2014 Sway. All rights reserved.
 //
 
-#import "ShortMainInfocell.h"
+#import "CellForDailyCare_TitleCell.h"
 
-@implementation ShortMainInfocell
+@implementation CellForDailyCare_TitleCell
 
 - (id)initWithFrame:(CGRect)frame
 {

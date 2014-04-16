@@ -1,29 +1,28 @@
 //
-//  FirstEditCell.m
+//  ShortCell.m
 //  UESTCPioneer
 //
-//  Created by 张众 on 3/29/14.
+//  Created by 张众 on 3/20/14.
 //  Copyright (c) 2014 Sway. All rights reserved.
 //
 
-#import "FirstEditCell.h"
+#import "CellForPersonalInformation.h"
 
-@implementation FirstEditCell
+@implementation CellForPersonalInformation
 
 - (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier
 {
     self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
     if (self) {
-        [self.contentView addSubview:self.touXiang];
         [self.contentView addSubview:self.staticLabel];
-        // Initialization code
+        [self.contentView addSubview:self.leftImage];
     }
     return self;
 }
 
 - (void)awakeFromNib
 {
-    // Initialization code
+    
 }
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated
@@ -37,17 +36,16 @@
 {
     frame.origin.x += 10;
     frame.size.width -= 2 * 10;
-    frame.size.height = 64;
     [super setFrame:frame];
 }
 
-- (UIButton *)touXiang
+- (UIImageView *)leftImage
 {
-    if (!_touXiang) {
-        _touXiang = [[UIButton alloc] initWithFrame:CGRectMake(100,4,55,55)];
-        [_touXiang setBackgroundImage:[UIImage imageNamed:@"touxiang.png"] forState:UIControlStateNormal];
+    if (!_leftImage)
+    {
+        _leftImage = [[UIImageView alloc] initWithFrame:CGRectMake(self.frame.origin.x ,4,55,55)];
     }
-    return _touXiang;
+    return _leftImage;
 }
 
 - (UILabel *)staticLabel
@@ -55,6 +53,7 @@
     if (!_staticLabel)
     {
         _staticLabel = [[UILabel alloc] initWithFrame:CGRectMake(10, self.frame.origin.y, 70, self.frame.size.height)];
+        _staticLabel.textColor = [UIColor colorWithRed:119.0/255.0 green:123.0/255.0 blue:134.0/255.0 alpha:1];
     }
     return _staticLabel;
 }

@@ -254,6 +254,7 @@ static NSString *cellIdentifier=@"cell";
             NSDictionary *dic = [NSJSONSerialization JSONObjectWithData:resultObject options:NSJSONReadingMutableLeaves error:nil];
             if ([dic[@"result"] isEqualToString:@"success"]){
                 [Alert showAlert:@"评论成功"];
+                [self.tableView beginRefreshing];
             }
             else {
                 [Alert showAlert:@"评论失败"];

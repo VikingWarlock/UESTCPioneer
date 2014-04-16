@@ -8,6 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-@interface ShortCell : UITableViewCell
+@interface CellForPersonalInformation : UITableViewCell
+@property (nonatomic,strong) UIImageView *leftImage;
 @property (nonatomic,strong) UILabel *staticLabel;
 @end

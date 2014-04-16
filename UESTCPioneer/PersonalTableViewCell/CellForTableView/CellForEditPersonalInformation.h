@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-@interface EditCell : UITableViewCell 
+@interface CellForEditPersonalInformation : UITableViewCell 
 @property (nonatomic,strong) UILabel *staticLabel;
 @property (nonatomic,strong) UITextField *textfield;
 @end

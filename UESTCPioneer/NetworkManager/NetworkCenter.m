@@ -74,6 +74,17 @@
 
 }
 
+///with key path
++(void)RKRequestWithData:(NSDictionary*)data  EntityName:(NSString*)entity Mapping:(NSDictionary*)mapping KeyPath:(NSString*)keyPath  SuccessBlock:(void (^)(NSArray* resultArray))successBlock failure:(void (^) (NSError *error))failureBlock{
+    [self requestWithUrlPattern:tempPattern Type:@"GET" Data:data TimeoutInterval:kDefaultTimeInterval EntityName:entity Mapping:mapping KeyPath:keyPath SuccessBlock:^(NSArray *resultArray){
+        successBlock(resultArray);
+    } failure:^(NSError *error){
+        failureBlock(error);
+        
+    }];
+}
+
+
 +(void)requestWithUrlPattern:(NSString*)pattern Data:(NSDictionary*)data  EntityName:(NSString*)entity Mapping:(NSDictionary*)mapping  SuccessBlock:(void (^)(NSArray* resultArray))successBlock failure:(void (^) (NSError *error))failureBlock{
     [self requestWithUrlPattern:pattern Type:@"GET" Data:data TimeoutInterval:kDefaultTimeInterval EntityName:entity Mapping:mapping KeyPath:nil SuccessBlock:^(NSArray *resultArray){
         successBlock(resultArray);
@@ -91,6 +102,8 @@
         
     }];
 }
+
+
 
 +(void)requestWithUrlPattern:(NSString*)pattern Type:(NSString*)type Data:(NSDictionary*)data  EntityName:(NSString*)entity Mapping:(NSDictionary*)mapping KeyPath:(NSString*)keyPath SuccessBlock:(void (^)(NSArray* resultArray))successBlock failure:(void (^) (NSError *error))failureBlock{
     [self requestWithUrlPattern:pattern Type:type Data:data TimeoutInterval:kDefaultTimeInterval EntityName:entity Mapping:mapping KeyPath:keyPath SuccessBlock:^(NSArray *resultArray){

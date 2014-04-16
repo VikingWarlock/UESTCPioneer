@@ -8,8 +8,8 @@
 
 #import "EditPersonalInformation.h"
 #import "constant.h"
-#import "EditCell.h"
-#import "FirstEditCell.h"
+#import "CellForEditPersonalInformation.h"
+#import "CellForEditPersonalInformation_FirstCell.h"
 @interface EditPersonalInformation ()
 {
     NSArray *array;
@@ -34,8 +34,8 @@
     [super viewDidLoad];
     self.tableView.delegate = self;
     self.tableView.dataSource = self;
-    [self.tableView registerClass:[EditCell class] forCellReuseIdentifier:@"setcell"];
-    [self.tableView registerClass:[FirstEditCell class] forCellReuseIdentifier:@"Firstcell"];
+    [self.tableView registerClass:[CellForEditPersonalInformation class] forCellReuseIdentifier:@"setcell"];
+    [self.tableView registerClass:[CellForEditPersonalInformation_FirstCell class] forCellReuseIdentifier:@"Firstcell"];
     self.tableView.allowsSelection = NO;
     self.tableView.separatorInset = UIEdgeInsetsZero;
     array = @[@"头像",@"昵称",@"姓名",@"性别",@"民族",@"籍贯",@"原始密码",@"新的密码",@"确认密码"];
@@ -92,7 +92,7 @@
         pickedImage = [info objectForKey:@"UIImagePickerControllerOriginalImage"];
     else
         pickedImage = [info objectForKey:@"UIImagePickerControllerEditedImage"];
-    [((FirstEditCell *)[self.tableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:0]]).touXiang setBackgroundImage:pickedImage forState:UIControlStateNormal];
+    [((CellForEditPersonalInformation_FirstCell *)[self.tableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:0]]).touXiang setBackgroundImage:pickedImage forState:UIControlStateNormal];
     //[self.thumbnail setBackgroundImage:pickedImage forState:UIControlStateNormal];
     [self dismissViewControllerAnimated:YES completion:NULL];
 }
@@ -120,9 +120,9 @@
     if (indexPath.section == 0 &&indexPath.row ==0)
     {
         static NSString *CellIdentifier = @"Firstcell";
-        FirstEditCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+        CellForEditPersonalInformation_FirstCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
         if (cell == nil) {
-            cell = [[FirstEditCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
+            cell = [[CellForEditPersonalInformation_FirstCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
         }
         cell.staticLabel.text = array[indexPath.row];
         [cell.touXiang addTarget:self.choseImageSheet action:@selector(showInView:) forControlEvents:UIControlEventTouchUpInside];
@@ -131,9 +131,9 @@
     else
     {
         static NSString *CellIdentifier = @"setcell";
-        EditCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+        CellForEditPersonalInformation *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
         if (cell == nil) {
-            cell = [[EditCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
+            cell = [[CellForEditPersonalInformation alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
         }
         cell.staticLabel.text = array[indexPath.row + 1];
         cell.textfield.placeholder = [NSString stringWithFormat:@"请输入您的%@",array[indexPath.row + 1]];
@@ -163,7 +163,7 @@
 
 - (void)scrollViewWillBeginDragging:(UIScrollView *)scrollView
 {
-    [((EditCell *)[self.tableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:(tag < 1 ? tag + 1 : tag -1) inSection:(tag < 1 ? 0 : 1)]]).textfield resignFirstResponder];
+    [((CellForEditPersonalInformation *)[self.tableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:(tag < 1 ? tag + 1 : tag -1) inSection:(tag < 1 ? 0 : 1)]]).textfield resignFirstResponder];
 }
 
 - (void)textFieldDidBeginEditing:(UITextField *)textField

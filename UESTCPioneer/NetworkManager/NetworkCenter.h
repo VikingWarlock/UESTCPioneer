@@ -20,6 +20,8 @@
  */
 +(void)RKRequestWithData:(NSDictionary*)data  EntityName:(NSString*)entity Mapping:(NSDictionary*)mapping  SuccessBlock:(void (^)(NSArray* resultArray))successBlock failure:(void (^) (NSError *error))failureBlock;
 
+///带keyPath参数
++(void)RKRequestWithData:(NSDictionary*)data  EntityName:(NSString*)entity Mapping:(NSDictionary*)mapping KeyPath:(NSString*)keyPath  SuccessBlock:(void (^)(NSArray* resultArray))successBlock failure:(void (^) (NSError *error))failureBlock;
 /*
  [NetworkCenter AFRequestWithData:dictionary SuccessBlock:^(AFHTTPRequestOperation *operation,id resultObject){
  NSLog(@"请求成功");

@@ -8,6 +8,6 @@
 
 #import <UIKit/UIKit.h>
 
-@interface PopCell : UITableViewCell
+@interface CellForMyMessage_PopCell : UITableViewCell
 @property (nonatomic,strong) UILabel *label;
 @end

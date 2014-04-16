@@ -8,7 +8,7 @@
 
 #import "MyCollection.h"
 #import "constant.h"
-#import "LongCell.h"
+#import "CellWithCustomLeftImageAndLabel.h"
 @interface MyCollection ()
 
 @end
@@ -29,7 +29,7 @@
     [super viewDidLoad];
     self.tableView.delegate = self;
     self.tableView.dataSource = self;
-    [self.tableView registerClass:[LongCell class] forCellReuseIdentifier:@"setcell"];
+    [self.tableView registerClass:[CellWithCustomLeftImageAndLabel class] forCellReuseIdentifier:@"setcell"];
     if(IS_IOS7)
         self.tableView.separatorInset = UIEdgeInsetsZero;
     [self setExtraCellLineHidden];
@@ -70,14 +70,12 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     static NSString *CellIdentifier = @"setcell";
-    LongCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+    CellWithCustomLeftImageAndLabel *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
     if (cell == nil) {
-    cell = [[LongCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
+        cell = [[CellWithCustomLeftImageAndLabel alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
     }
     cell.leftImage.image = [UIImage imageNamed:@"col.png"];
     cell.label.text = @"天气通知";
-
-    // Configure the cell...
     
     return cell;
 }

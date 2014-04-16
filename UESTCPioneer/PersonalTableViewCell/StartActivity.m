@@ -7,16 +7,19 @@
 //
 
 #import "StartActivity.h"
-
+#import "CellForStartActivity.h"
+#import "StartActivity_displaySelectedImage.h"
 @interface StartActivity ()
 {
-    BOOL isFirstEdit1;
+        //edit by @黄卓越 ：移到头文件
+//    BOOL isFirstEdit1;
     BOOL isFirstEdit2;
+
     BOOL isTitleNotNull;
     BOOL isBodyNotNull;
-    UIImage *pickedImage;
-    int i;
-    id temp;
+    NSMutableArray *pickedImage;//用来保存pick的图片
+    NSIndexPath *index;//用成员变量保存每次点击的item是哪一个
+    int increment;//插入、删除item的时候要给代理方法加上或者减去一个增量否则报错
     
 }
 @end
@@ -29,10 +32,6 @@
     if (self) {
         isFirstEdit1 = YES;
         isFirstEdit2 = YES;
-        [self.tableView addSubview:self.editBody];
-        [self.tableView addSubview:self.editTitle];
-        [self.tableView addSubview:self.layoutImage];
-        // Custom initialization
     }
     return self;
 }
@@ -40,19 +39,30 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    pickedImage = [[NSMutableArray alloc] initWithCapacity:4];
+    [self.tableView addSubview:self.editBody];
+    [self.tableView addSubview:self.editTitle];
+    [self.tableView addSubview:self.collectionview];
+    [self.collectionview registerClass:[CellForStartActivity class] forCellWithReuseIdentifier:@"GradientCell"];
+    [self.collectionview setScrollEnabled:NO];
     
-    UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(hideKeyboard)];
-    [self.tableView addGestureRecognizer:tap];
+    //edit by @黄卓越 2014-4-15
+    //不能滑动
+    [self.tableView setScrollEnabled:NO];
 }
 
 - (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
     self.navigationItem.title = @"发起活动";
-
+    
     UIBarButtonItem *right=[[UIBarButtonItem alloc] initWithTitle:@"发起" style:UIBarButtonItemStyleDone target:self action:@selector(commit:)];
     self.navigationItem.rightBarButtonItem = right;
-    self.navigationItem.rightBarButtonItem.enabled = NO;
+    
+    if (self.editBody.text.length && self.editTitle.text.length && !isFirstEdit1 && !isFirstEdit2)
+        self.navigationItem.rightBarButtonItem.enabled = YES;
+    else
+        self.navigationItem.rightBarButtonItem.enabled = NO;
 }
 
 - (void)commit:(id)sender
@@ -61,12 +71,6 @@
 }
 
 #pragma mark actionSheet delegate and imagePicker
-
-- (void)popActionSheet:(id)sender
-{
-    [self.choseImageSheet showInView:self.tableView];
-    temp = sender;
-}
 
 -(void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex
 {
@@ -102,11 +106,17 @@
 - (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info
 {
     if (picker.sourceType == UIImagePickerControllerSourceTypePhotoLibrary)
-        pickedImage = [info objectForKey:@"UIImagePickerControllerOriginalImage"];
+    {
+        ((CellForStartActivity *)[self.collectionview cellForItemAtIndexPath:index]).thumbnail.image = [info objectForKey:@"UIImagePickerControllerOriginalImage"];
+        [pickedImage addObject:[info objectForKey:@"UIImagePickerControllerOriginalImage"]];
+    }
     else
-        pickedImage = [info objectForKey:@"UIImagePickerControllerEditedImage"];
-    [temp setBackgroundImage:pickedImage forState:UIControlStateNormal];
-    [self.layoutImage addSubview:self.thumbnail];
+    {
+        ((CellForStartActivity *)[self.collectionview cellForItemAtIndexPath:index]).thumbnail.image = [info objectForKey:@"UIImagePickerControllerEditedImage"];
+        [pickedImage addObject:[info objectForKey:@"UIImagePickerControllerEditedImage"]];
+    }
+    increment ++;
+    [self.collectionview insertItemsAtIndexPaths:[NSArray arrayWithObject:[NSIndexPath indexPathForItem:index.row + 1 inSection:0]]];
     [self dismissViewControllerAnimated:YES completion:NULL];
 }
 
@@ -144,7 +154,6 @@
 
 - (void)textViewDidChange:(UITextView *)textView
 {
-    //if (isBodyNotNull && isTitleNotNull)
     if (self.editBody.text.length && self.editTitle.text.length && !isFirstEdit1 && !isFirstEdit2)
         self.navigationItem.rightBarButtonItem.enabled = YES;
     else
@@ -162,6 +171,72 @@
     [self.editBody resignFirstResponder];
 }
 
+#pragma mark - collection view delegate
+
+- (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section
+{
+    return 1 + increment;
+}
+
+- (NSInteger)numberOfSectionsInCollectionView:(UICollectionView *)collectionView
+{
+    return 1;
+}
+
+- (CGFloat)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout minimumInteritemSpacingForSectionAtIndex:(NSInteger)section
+{
+    return 12;
+}
+
+- (CGFloat)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout minimumLineSpacingForSectionAtIndex:(NSInteger)section
+{
+    return 10;
+}
+
+- (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath
+{
+    static NSString * CellIdentifier = @"GradientCell";
+    CellForStartActivity * cell = [collectionView dequeueReusableCellWithReuseIdentifier:CellIdentifier forIndexPath:indexPath];
+    if (cell == nil)
+        cell = [[CellForStartActivity alloc] init];
+    return cell;
+}
+
+- (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath
+{
+    return CGSizeMake(60, 60);
+}
+
+-(void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath
+{
+    CellForStartActivity * cell = (CellForStartActivity *)[collectionView cellForItemAtIndexPath:indexPath];
+    if (cell.thumbnail.image == nil) {
+        [self.choseImageSheet showInView:self.tableView];
+    }
+    else
+    {
+        StartActivity_displaySelectedImage *vc = [[StartActivity_displaySelectedImage alloc] init];
+        vc.imageview.image = pickedImage[indexPath.row];
+        
+        UIBarButtonItem *right=[[UIBarButtonItem alloc] initWithTitle:@"删除" style:UIBarButtonItemStyleDone target:self action:@selector(deletePicture)];
+        vc.navigationItem.rightBarButtonItem = right;
+        
+        [self.navigationController pushViewController:vc animated:YES];
+    }
+    index = indexPath;
+}
+
+- (void)deletePicture
+{
+    [self.navigationController popViewControllerAnimated:YES];
+    increment--;
+    ((CellForStartActivity *)[self.collectionview cellForItemAtIndexPath:index]).thumbnail.image = nil;
+    [self.collectionview deleteItemsAtIndexPaths:[NSArray arrayWithObject:index]];
+    [pickedImage removeObjectAtIndex:index.row];
+    [self.collectionview reloadData];
+    NSLog(@"%@",pickedImage);
+}
+
 #pragma mark - Table view data source
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
@@ -175,6 +250,7 @@
     // Return the number of rows in the section.
     return 0;
 }
+
 
 #pragma mark - Lazy initialization
 
@@ -211,31 +287,20 @@
     return _editBody;
 }
 
-- (UIView *)layoutImage
+- (UICollectionView *)collectionview
 {
-    if (!_layoutImage)
-    {
-        _layoutImage = [[UIView alloc] initWithFrame:CGRectMake(10, 270, 300, 80)];
-        _layoutImage.layer.borderColor = [[UIColor colorWithRed:187.0/255.0 green:187.0/255.0 blue:187.0/255.0 alpha:1] CGColor];
-        _layoutImage.layer.borderWidth =1.0;
-        _layoutImage.layer.cornerRadius =4.0;
-        _layoutImage.backgroundColor = [UIColor whiteColor];
-        [_layoutImage addSubview:self.thumbnail];
+    if (!_collectionview) {
+        UICollectionViewFlowLayout *layout= [[UICollectionViewFlowLayout alloc] init];
+        layout.sectionInset = UIEdgeInsetsMake(10, 12, 10, 12);
+        _collectionview = [[UICollectionView alloc] initWithFrame:CGRectMake(10, 270, 300, 80) collectionViewLayout:layout];
+        _collectionview.layer.borderColor = [[UIColor colorWithRed:187.0/255.0 green:187.0/255.0 blue:187.0/255.0 alpha:1] CGColor];
+        _collectionview.layer.borderWidth = 1.0;
+        _collectionview.layer.cornerRadius = 4.0;
+        _collectionview.backgroundColor = [UIColor whiteColor];
+        _collectionview.delegate = self;
+        _collectionview.dataSource = self;
     }
-    return _layoutImage;
-}
-
-- (UIButton *)thumbnail
-{
-    if(i < 4)
-    {
-        _thumbnail = [[UIButton alloc] initWithFrame:CGRectMake(12 + (i++)*72, 10, 60, 60)];
-        [_thumbnail setBackgroundImage:[UIImage imageNamed:@"addpic.png"] forState:UIControlStateNormal];
-        [_thumbnail addTarget:self action:@selector(popActionSheet:) forControlEvents:UIControlEventTouchUpInside];
-        return _thumbnail;
-    }
-    else
-        return nil;
+    return _collectionview;
 }
 
 - (UIActionSheet *)choseImageSheet
@@ -244,20 +309,20 @@
     {
         if ([UIImagePickerController isSourceTypeAvailable: UIImagePickerControllerSourceTypeCamera]) {
             _choseImageSheet = [[UIActionSheet alloc]
-                           initWithTitle:nil
-                           delegate:self
-                           cancelButtonTitle:@"取消"
-                           destructiveButtonTitle:@"拍照"
-                           otherButtonTitles:@"从手机相册选择",nil];
+                                initWithTitle:nil
+                                delegate:self
+                                cancelButtonTitle:@"取消"
+                                destructiveButtonTitle:@"拍照"
+                                otherButtonTitles:@"从手机相册选择",nil];
         }
         else
         {
             _choseImageSheet = [[UIActionSheet alloc]
-                           initWithTitle:nil
-                           delegate:self
-                           cancelButtonTitle:@"取消"
-                           destructiveButtonTitle:@"从手机相册选择"
-                           otherButtonTitles:nil];
+                                initWithTitle:nil
+                                delegate:self
+                                cancelButtonTitle:@"取消"
+                                destructiveButtonTitle:@"从手机相册选择"
+                                otherButtonTitles:nil];
         }
     }
     return _choseImageSheet;
@@ -277,5 +342,7 @@
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
+
+
 
 @end

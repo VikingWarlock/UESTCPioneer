@@ -80,7 +80,11 @@
     // Uncomment the following line to preserve selection between presentations.
     // self.clearsSelectionOnViewWillAppear = NO;
     // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-    // self.navigationItem.rightBarButtonItem = self.editButtonItem;
+    // self.navigationItem.rightBarButtonItem = self.editButtonItem
+    
+#pragma mark 未读信息读取
+    [self unreadRequest];
+    
 }
 
 -(void)viewWillAppear:(BOOL)animated
@@ -262,5 +266,77 @@
  }
  
  */
+
+#pragma mark - unread Request
+-(void)unreadRequest{
+    //未读新闻
+    /*
+     type=getUnLookNews&userName=ping
+     */
+    
+    NSDictionary *unreadNews =@{@"type":@"getUnLookNews"
+                                ,@"userName":[constant getUserName]};
+    
+    [NetworkCenter AFRequestWithData:unreadNews SuccessBlock:^(AFHTTPRequestOperation *operation, id resultObject) {
+        NSDictionary *dic = [NSJSONSerialization JSONObjectWithData:resultObject options:NSJSONReadingMutableLeaves error:nil];
+        NSString *num =dic[@"result"];
+        
+        [Unread setUnreadNum:[num integerValue] ForKey:kUnreadPioneerKey];
+    } FailureBlock:^(AFHTTPRequestOperation *operation, NSError *error) {
+        
+    }];
+    
+    //未读党委通知
+    /*
+type=unreadNotice&userId=0012005130022&userName=xiaopangzi
+     */
+    
+    NSDictionary *unreadNotice = @{@"type":@"unreadNotice"
+                                   ,@"userId":[constant getUserId]
+                                   ,@"userName":[constant getUserName]};
+    
+    [NetworkCenter AFRequestWithData:unreadNotice SuccessBlock:^(AFHTTPRequestOperation *operation, id resultObject) {
+        NSDictionary *dic = [NSJSONSerialization JSONObjectWithData:resultObject options:NSJSONReadingMutableLeaves error:nil];
+        NSString *num =dic[@"result"];
+        [Unread setUnreadNum:[num integerValue] ForKey:kUnreadPartyNoticeKey];
+    } FailureBlock:^(AFHTTPRequestOperation *operation, NSError *error) {
+        
+    }];
+    
+    //未读活动
+    /*
+        type=getUnLookEventCount&userNa
+     
+     */
+    NSDictionary *unreadEvent = @{@"type":@"getUnLookEventCount"
+                                   ,@"userId":[constant getUserId]
+                                   ,@"userName":[constant getUserName]};
+    
+    [NetworkCenter AFRequestWithData:unreadEvent SuccessBlock:^(AFHTTPRequestOperation *operation, id resultObject) {
+        NSDictionary *dic = [NSJSONSerialization JSONObjectWithData:resultObject options:NSJSONReadingMutableLeaves error:nil];
+        NSString *num =dic[@"result"];
+        [Unread setUnreadNum:[num integerValue] ForKey:kUnreadPartyActivity];
+    } FailureBlock:^(AFHTTPRequestOperation *operation, NSError *error) {
+        
+    }];
+    
+    //未读活动分享
+    NSDictionary *unreadActivity = @{@"type":@"getUnLookShare"
+                                  ,@"userId":[constant getUserId]
+                                  ,@"userName":[constant getUserName]};
+    
+    [NetworkCenter AFRequestWithData:unreadActivity SuccessBlock:^(AFHTTPRequestOperation *operation, id resultObject) {
+        NSDictionary *dic = [NSJSONSerialization JSONObjectWithData:resultObject options:NSJSONReadingMutableLeaves error:nil];
+        NSString *num =dic[@"result"];
+        [Unread setUnreadNum:[num integerValue] ForKey:kUnreadMoodShare];
+    } FailureBlock:^(AFHTTPRequestOperation *operation, NSError *error) {
+        
+    }];
+    
+    
+    
+    
+    
+}
 
 @end

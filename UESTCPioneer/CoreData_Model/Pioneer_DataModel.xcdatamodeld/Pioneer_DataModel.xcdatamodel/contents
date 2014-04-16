@@ -13,10 +13,14 @@
     <entity name="NewsEntity" representedClassName="NewsEntity" isAbstract="YES" syncable="YES">
         <attribute name="newsBody" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="numberOfComment" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
-        <attribute name="picUrl" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="picUrl" optional="YES" attributeType="Transformable" syncable="YES"/>
         <attribute name="theId" optional="YES" attributeType="Integer 32" defaultValueString="0" indexed="YES" syncable="YES"/>
         <attribute name="timeAndDate" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="titleBody" optional="YES" attributeType="String" syncable="YES"/>
+    </entity>
+    <entity name="PartiesEntity" representedClassName="PartiesEntity" syncable="YES">
+        <attribute name="partyName" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="partyNo" optional="YES" attributeType="String" indexed="YES" syncable="YES"/>
     </entity>
     <entity name="PartyActivityNewsEntity" representedClassName="PartyActivityNewsEntity" parentEntity="NewsEntity" syncable="YES">
         <attribute name="branch" optional="YES" attributeType="String" syncable="YES"/>
@@ -109,6 +113,13 @@
         <attribute name="transnum" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
         <attribute name="userId" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="userName" optional="YES" attributeType="String" syncable="YES"/>
+    </entity>
+    <entity name="PersonalBirthEntity" representedClassName="PersonalBirthEntity" syncable="YES">
+        <attribute name="content" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="daysLeft" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
+        <attribute name="flag" optional="YES" attributeType="Boolean" syncable="YES"/>
+        <attribute name="userid" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="username" optional="YES" attributeType="String" syncable="YES"/>
     </entity>
     <entity name="PioneerNewsEntity" representedClassName="PioneerNewsEntity" parentEntity="NewsEntity" syncable="YES">
         <attribute name="comeCode" optional="YES" attributeType="String" syncable="YES"/>

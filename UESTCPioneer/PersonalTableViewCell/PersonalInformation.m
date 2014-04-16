@@ -8,12 +8,13 @@
 
 #import "PersonalInformation.h"
 #import "constant.h"
-#import "ShortCell.h"
+#import "CellForPersonalInformation.h"
 #import "LeveyTabBarController.h"
 #import "EditPersonalInformation.h"
 @interface PersonalInformation ()
 {
     NSArray *array;
+    NSArray *infoArray;
 }
 @end
 
@@ -32,16 +33,33 @@
     [super viewDidLoad];
     self.tableView.delegate = self;
     self.tableView.dataSource = self;
-    [self.tableView registerClass:[ShortCell class] forCellReuseIdentifier:@"setcell"];
+    [self.tableView registerClass:[CellForPersonalInformation class] forCellReuseIdentifier:@"setcell"];
     self.tableView.allowsSelection = NO;
     self.tableView.separatorInset = UIEdgeInsetsZero;
-#warning mark - 这样的对齐方式真的好傻逼。。。
-    array = @[@"",@"姓       名",@"性       别",@"民       族",@"籍       贯",@"入党时间",@"转正时间",@"政治面貌",@"所属支部"];
+#warning mark - 对齐方式
+    array = @[@"",
+              @"姓       名",
+              @"性       别",
+              @"民       族",
+              @"籍       贯",
+              @"入党时间",@"转正时间",
+              @"政治面貌",@"所属支部"];
+    infoArray = @[[[constant getPersonalInfo] objectForKey:@"name"],
+                  [[constant getPersonalInfo] objectForKey:@"name"],
+                  [[constant getPersonalInfo] objectForKey:@"sex"],
+                  [[constant getPersonalInfo] objectForKey:@"nation"],
+                  [[constant getPersonalInfo] objectForKey:@"homeTown"],
+                  [[constant getPersonalInfo] objectForKey:@"partyTime"],
+                  [[constant getPersonalInfo] objectForKey:@"zsDate"],
+                  [[constant getPersonalInfo] objectForKey:@"state"],
+                  [[constant getPersonalInfo] objectForKey:@"branch"]];
 }
 
 -(void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
+    self.navigationItem.title = @"个人信息";
     
+    //加入导航栏rightBarButtonItem
     UIImageView *customView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, 30, 30)];
     UIButton *button = [UIButton buttonWithType:UIButtonTypeCustom];
     [button setFrame:customView.bounds];
@@ -50,20 +68,18 @@
     [button addTarget:self action:@selector(editInformation:) forControlEvents:UIControlEventTouchUpInside];
     UIBarButtonItem *right=[[UIBarButtonItem alloc] initWithCustomView:customView];
     self.navigationItem.rightBarButtonItem = right;
-    
-    self.navigationItem.title = @"个人信息";
 }
 
+//rightBarButtonItem的按钮事件调用的方法
 - (void)editInformation:(id)sender
 {
     EditPersonalInformation *edit = [[EditPersonalInformation alloc] initWithStyle:UITableViewStyleGrouped];
     [self.navigationController pushViewController:edit animated:YES];
-    
 }
 
 -(void)viewDidDisappear:(BOOL)animated{
     [super viewDidDisappear:animated];
-    [self.leveyTabBarController.navigationItem setRightBarButtonItem:Nil];
+    [self.navigationController.navigationItem setRightBarButtonItem:Nil];
 }
 
 - (void)didReceiveMemoryWarning
@@ -107,24 +123,28 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     static NSString *CellIdentifier = @"setcell";
-    ShortCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+    CellForPersonalInformation *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
     if (cell == nil) {
-        cell = [[ShortCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
+        cell = [[CellForPersonalInformation alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
     }
     if (indexPath.section == 0 )
     {
         cell.staticLabel.text = array[indexPath.row];
-        UIImageView *imageview = [[UIImageView alloc] init];
-        [imageview setFrame:CGRectMake(cell.frame.origin.x ,4,55,55)];
-        imageview.image = [UIImage imageNamed:@"touxiang.png"];
-        [cell.contentView addSubview:imageview];
+        cell.leftImage.image = [UIImage imageNamed:@"persontx.png"];
+        
+        cell.textLabel.text = infoArray[indexPath.row];
     }
     else if (indexPath.section ==1 )
+    {
         cell.staticLabel.text = array[indexPath.row + 1];
+        cell.textLabel.text = infoArray[indexPath.row + 1];
+    }
     else
+    {
         cell.staticLabel.text = array[indexPath.row + 5];
+        cell.textLabel.text = infoArray[indexPath.row + 5];
+    }
     cell.textLabel.font = [UIFont systemFontOfSize:17];
-    cell.textLabel.text = @"李强";
     return cell;
 }
 
@@ -160,14 +180,14 @@
 }
 
 /*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
-{
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
+ #pragma mark - Navigation
+ 
+ // In a storyboard-based application, you will often want to do a little preparation before navigation
+ - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
+ {
+ // Get the new view controller using [segue destinationViewController].
+ // Pass the selected object to the new view controller.
+ }
+ */
 
 @end

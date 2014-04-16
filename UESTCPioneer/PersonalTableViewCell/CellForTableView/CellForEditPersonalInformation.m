@@ -6,10 +6,10 @@
 //  Copyright (c) 2014 Sway. All rights reserved.
 //
 
-#import "EditCell.h"
+#import "CellForEditPersonalInformation.h"
 
 static int i;
-@implementation EditCell
+@implementation CellForEditPersonalInformation
 
 - (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier
 {
