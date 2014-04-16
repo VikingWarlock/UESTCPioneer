@@ -11,7 +11,7 @@
 
 @interface GuideDetailViewController : UIViewController
 
-- (id)initWithTitle:(NSString *)title;
+- (id)initWithData:(NSDictionary*)data;
 @property (nonatomic,strong) NSDictionary *data;
 
 @end

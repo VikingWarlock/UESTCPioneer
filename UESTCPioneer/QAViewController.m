@@ -43,12 +43,15 @@ static NSString * cellIdentifier = @"cellIdentifier";
     self.tableView.separatorInset = UIEdgeInsetsZero;
     self.view.backgroundColor = [UIColor whiteColor];
     
+    [self.completeBtn addTarget:self action:@selector(completeBtnClick:) forControlEvents:UIControlEventTouchUpInside];//****
+    
+    
     [self.toolBar addSubview:self.questTV];
     [self.view addSubview:self.tableView];
     [self.view addSubview:self.toolBar];
     
     [self registerForKayboardNotifications];
-   // self.questField.delegate = self;
+    // self.questField.delegate = self;
     
     // Do any additional setup after loading the view.
 }
@@ -56,7 +59,7 @@ static NSString * cellIdentifier = @"cellIdentifier";
 - (UITableView *)tableView{
     if (!_tableView) {
         _tableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 0, 320, self.view.frame.size.height-100) style:UITableViewStyleGrouped];
- //       _tableView.backgroundColor = self.backGroundColor;
+        //       _tableView.backgroundColor = self.backGroundColor;
         _tableView.allowsSelection = NO;
         
     }
@@ -138,8 +141,10 @@ static NSString * cellIdentifier = @"cellIdentifier";
     if (self.questTV.text.length != 0) {
         self.completeBtn.enabled = YES;
         [self.completeBtn setBackgroundImage:[UIImage imageNamed:@"complete2.png"] forState:UIControlStateNormal];
-        [self.completeBtn addTarget:self action:@selector(completeBtnClick:) forControlEvents:UIControlEventTouchUpInside];
     }
+    NSLog(@"%@",self.questTV.text);
+    NSLog(@"%f",textView.frame.origin.y);
+    
     
     
 }
@@ -148,14 +153,14 @@ static NSString * cellIdentifier = @"cellIdentifier";
     [self.questTV resignFirstResponder];
     [self toolBarChanged];
     self.completeBtn.enabled = NO;
-
+    
 }
 
 - (void)completeBtnClick:(UIButton *)sender {
     [self.questTV resignFirstResponder];
     [self toolBarChanged];
     self.completeBtn.enabled = NO;
-
+    
 }
 
 - (void)toolBarChanged{
@@ -172,13 +177,13 @@ static NSString * cellIdentifier = @"cellIdentifier";
 - (void)registerForKayboardNotifications{
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWasShown:) name:UIKeyboardDidShowNotification object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWillBeHidden:) name:UIKeyboardWillHideNotification object:nil];
-     
+    
 }
 
 - (void)keyboardWasShown:(NSNotification *)aNotification{
     NSDictionary * info = [aNotification userInfo];
     CGSize kbSize = [[info objectForKey:UIKeyboardFrameBeginUserInfoKey] CGRectValue].size;
-
+    
     [UIView beginAnimations:nil context:NULL];
     [UIView setAnimationDelegate:self];
     [UIView setAnimationDuration:0.0];
@@ -203,7 +208,7 @@ static NSString * cellIdentifier = @"cellIdentifier";
     [self.toolBar addSubview:self.tvLabel];
     [self.toolBar addSubview:self.completeBtn];
     [self.toolBar addSubview:self.cancelBtn];
-
+    
 }
 
 - (void) keyboardWillBeHidden:(NSNotification *)aNotification{
@@ -244,14 +249,14 @@ static NSString * cellIdentifier = @"cellIdentifier";
 }
 
 /*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
-{
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
+ #pragma mark - Navigation
+ 
+ // In a storyboard-based application, you will often want to do a little preparation before navigation
+ - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
+ {
+ // Get the new view controller using [segue destinationViewController].
+ // Pass the selected object to the new view controller.
+ }
+ */
 
 @end

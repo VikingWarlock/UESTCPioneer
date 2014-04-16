@@ -15,4 +15,13 @@
 +(NSDictionary*)PartyNoticeMapping;
 +(NSDictionary*)PublicityMapping;
 +(NSDictionary*)PartyActivityMapping;
+
++(NSDictionary*)PartyDataSpiritEntityMapping;
++(NSDictionary*)PartyDataLearnEntityMapping;
++(NSDictionary*)PartyDataGuideEntityMapping;
++(NSDictionary*)PartyDataProcessEntityMapping;
++(NSDictionary*)PartyDataGuideDetailEntityMapping;
++(NSDictionary*)PartyDataMLearnEntityMapping;
+
+
 @end

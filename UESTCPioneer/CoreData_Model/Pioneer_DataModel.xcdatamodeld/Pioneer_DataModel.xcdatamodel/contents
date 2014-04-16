@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<model userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="3396" systemVersion="12F37" minimumToolsVersion="Xcode 4.3" macOSVersion="Automatic" iOSVersion="Automatic">
+<model userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="5063" systemVersion="13C64" minimumToolsVersion="Xcode 4.3" macOSVersion="Automatic" iOSVersion="Automatic">
     <entity name="MessageEntity" representedClassName="MessageEntity" syncable="YES">
         <attribute name="from" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="fromID" optional="YES" attributeType="String" syncable="YES"/>
@@ -28,6 +28,79 @@
         <attribute name="userId" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="userName" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="zipPicUrl" optional="YES" attributeType="String" syncable="YES"/>
+    </entity>
+    <entity name="PartyDataGuideDetailEntity" representedClassName="PartyDataGuideDetailEntity" syncable="YES">
+        <attribute name="content" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="frontId" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
+        <attribute name="frontTitle" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="nextId" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
+        <attribute name="nextTitle" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="picName" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="picUrl" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="theId" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
+        <attribute name="time" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="title" optional="YES" attributeType="String" syncable="YES"/>
+    </entity>
+    <entity name="PartyDataGuideEntity" representedClassName="PartyDataGuideEntity" syncable="YES">
+        <attribute name="content" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="picName" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="picUrl" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="theId" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
+        <attribute name="time" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="title" optional="YES" attributeType="String" syncable="YES"/>
+    </entity>
+    <entity name="PartyDataKnowledgeEntity" representedClassName="PartyDataKnowledgeEntity" syncable="YES">
+        <attribute name="content" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="desc" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="picName" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="picUrl" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="theId" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
+        <attribute name="time" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="title" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="type" optional="YES" attributeType="String" syncable="YES"/>
+    </entity>
+    <entity name="PartyDataLearnEntity" representedClassName="PartyDataLearnEntity" syncable="YES">
+        <attribute name="fileName" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="theId" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
+    </entity>
+    <entity name="PartyDataMLearnEntity" representedClassName="PartyDataMLearnEntity" syncable="YES">
+        <attribute name="comeCode" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="comeFrom" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="fileName" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="filePath" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="fileType" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="theId" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
+        <attribute name="time" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="type" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="typeText" optional="YES" attributeType="String" syncable="YES"/>
+    </entity>
+    <entity name="PartyDataProcessEntity" representedClassName="PartyDataProcessEntity" syncable="YES">
+        <attribute name="content" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="dangType" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="picPath" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="theId" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
+        <attribute name="time" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="title" optional="YES" attributeType="String" syncable="YES"/>
+    </entity>
+    <entity name="PartyDataSpiritEntity" representedClassName="PartyDataSpiritEntity" syncable="YES">
+        <attribute name="content" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="desc" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="picName" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="picUrl" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="theId" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
+        <attribute name="time" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="title" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="type" optional="YES" attributeType="String" syncable="YES"/>
+    </entity>
+    <entity name="PartyDataTheoryEntity" representedClassName="PartyDataTheoryEntity" syncable="YES">
+        <attribute name="content" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="desc" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="picName" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="picUrl" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="theId" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
+        <attribute name="time" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="title" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="type" optional="YES" attributeType="String" syncable="YES"/>
     </entity>
     <entity name="PartyNoticeNewsEntity" representedClassName="PartyNoticeNewsEntity" parentEntity="NewsEntity" syncable="YES">
         <attribute name="chakan" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
@@ -59,13 +132,21 @@
         <attribute name="userName" optional="YES" attributeType="String" syncable="YES"/>
     </entity>
     <elements>
-        <element name="MessageEntity" positionX="0" positionY="0" width="0" height="0"/>
-        <element name="MoodShareNewsEntity" positionX="0" positionY="0" width="0" height="0"/>
-        <element name="NewsEntity" positionX="0" positionY="0" width="0" height="0"/>
-        <element name="PioneerNewsEntity" positionX="0" positionY="0" width="0" height="0"/>
-        <element name="UserEntity" positionX="0" positionY="0" width="0" height="0"/>
-        <element name="PartyNoticeNewsEntity" positionX="0" positionY="0" width="0" height="0"/>
-        <element name="PublicityNewsEntity" positionX="0" positionY="0" width="0" height="0"/>
-        <element name="PartyActivityNewsEntity" positionX="0" positionY="0" width="0" height="0"/>
+        <element name="MessageEntity" positionX="0" positionY="0" width="128" height="118"/>
+        <element name="MoodShareNewsEntity" positionX="0" positionY="0" width="128" height="60"/>
+        <element name="NewsEntity" positionX="0" positionY="0" width="128" height="135"/>
+        <element name="PartyActivityNewsEntity" positionX="0" positionY="0" width="128" height="180"/>
+        <element name="PartyDataGuideDetailEntity" positionX="99" positionY="180" width="128" height="193"/>
+        <element name="PartyDataGuideEntity" positionX="45" positionY="153" width="128" height="133"/>
+        <element name="PartyDataKnowledgeEntity" positionX="9" positionY="99" width="128" height="163"/>
+        <element name="PartyDataLearnEntity" positionX="81" positionY="171" width="128" height="73"/>
+        <element name="PartyDataProcessEntity" positionX="63" positionY="162" width="128" height="133"/>
+        <element name="PartyDataSpiritEntity" positionX="0" positionY="72" width="128" height="163"/>
+        <element name="PartyDataTheoryEntity" positionX="27" positionY="126" width="128" height="163"/>
+        <element name="PartyNoticeNewsEntity" positionX="0" positionY="0" width="128" height="135"/>
+        <element name="PioneerNewsEntity" positionX="0" positionY="0" width="128" height="135"/>
+        <element name="PublicityNewsEntity" positionX="0" positionY="0" width="128" height="135"/>
+        <element name="UserEntity" positionX="0" positionY="0" width="128" height="90"/>
+        <element name="PartyDataMLearnEntity" positionX="54" positionY="153" width="128" height="178"/>
     </elements>
 </model>

@@ -9,9 +9,14 @@
 #import "TheoryViewController.h"
 #import "Cells.h"
 #import "TheoryDetailViewController.h"
+#import "PartyDataSpiritEntity.h"
 
-@interface TheoryViewController ()
-
+@interface TheoryViewController (){
+    NSDictionary * requestData;
+    NSString * entityName;
+    NSDictionary *mapping;
+}
+@property (strong) NSArray * tableViewEntitiseArray;
 
 @end
 
@@ -19,19 +24,17 @@
 
 static NSString *CellTableIdentifier = @"CellTableIdentifier";
 
-- (id)initWithArray:(NSArray *)data forTitle:(NSString *)title{
+- (id)initWithTitle:(NSString *)title RequestData:(NSDictionary*)RequestData EntityName:(NSString *)EntityName Mapping:(NSDictionary*)Mapping{
     if (self) {
-        self.data = data;
         self.title = title;
+        requestData = RequestData;
+        entityName = EntityName;
+        mapping = Mapping;
+        
+        //tableViewEntitiseArray = [[NSArray alloc ] initWithArray:[TheoryViewController downloadDataWithRequestData:RequestData EntityName:EntityName Mapping:Mapping]];
     }
+    
     return self;
-}
-
--(NSArray *) data{
-    if (!_data) {
-        _data = @[@{@"title":@"1",@"content":@"111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111",@"time":@"2014-3-19"},@{@"title":@"2",@"content":@"222222222222222222222222222222222222222222222222222222222222",@"time":@"2014-3-19"}];
-    }
-    return _data;
 }
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
@@ -46,7 +49,8 @@ static NSString *CellTableIdentifier = @"CellTableIdentifier";
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    self.tableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 0, 320,500) style:UITableViewStylePlain];
+    [self downloadDataWithRequestData:requestData EntityName:entityName Mapping:mapping];
+    self.tableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 0, 320,self.view.frame.size.height-65) style:UITableViewStylePlain];
     self.tableView.delegate = self;
     self.tableView.dataSource = self;
     self.tableView.separatorInset = UIEdgeInsetsZero;
@@ -71,26 +75,22 @@ static NSString *CellTableIdentifier = @"CellTableIdentifier";
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
     // Return the number of rows in the section.
-    return [self.data count];
+    
+    //return [self.data count];
+    return [self.tableViewEntitiseArray count];
 }
 
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    
     Cells *cell = [tableView dequeueReusableCellWithIdentifier:CellTableIdentifier];
     if(cell == nil){
         cell = [[Cells alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellTableIdentifier];
     }
-    NSDictionary * rowData = self.data[indexPath.row];
-    cell.titleValue.text = rowData[@"title"];
-    cell.contentValue.text = rowData[@"content"];
-    cell.contentValue.frame = CGRectMake(10, 25, 300, [cell.contentValue.text length]/30*20);
-    cell.timeValue.frame = CGRectMake(220,cell.contentValue.frame.origin.y+cell.contentValue.frame.size.height, 80, 20);
-    cell.timeValue.text = rowData[@"time"];
-    
-    // Configure the cell...
-    
+    PartyDataSpiritEntity *entity = self.tableViewEntitiseArray[indexPath.row];
+    cell.titleValue.text = entity.title;
+    cell.contentValue.text = entity.desc;
+    cell.timeValue.text = entity.time;
     return cell;
 }
 
@@ -104,13 +104,29 @@ heightForRowAtIndexPath:(NSIndexPath *)indexPath
 
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
-    NSDictionary * detailData;
-    if ([self.data[indexPath.row] isKindOfClass:[NSDictionary class]]) {
-        detailData = self.data[indexPath.row];
-    }
+    
+    PartyDataSpiritEntity * entity = self.tableViewEntitiseArray[indexPath.row];
+    NSDictionary * detailData = @{@"title": entity.title,@"content":entity.content};
+    
+    //NSDictionary * detailData;
+    //if ([self.data[indexPath.row] isKindOfClass:[NSDictionary class]]) {
+    //    detailData = self.data[indexPath.row];
+    //}
     UIViewController * viewController = [[TheoryDetailViewController alloc] initWithDictionary:detailData];
     [self.navigationController pushViewController:viewController animated:YES];
     [self.tableView deselectRowAtIndexPath:indexPath animated:YES];
+}
+
+-(void)downloadDataWithRequestData:(NSDictionary*)RequestData EntityName:(NSString *)EntityName Mapping:(NSDictionary*)Mapping{
+    [PublicMethod ClearEntity:EntityName];
+    [NetworkCenter RKRequestWithData:RequestData EntityName:EntityName Mapping:Mapping SuccessBlock:^(NSArray *resultArray) {
+        NSMutableArray * dic = [[NSMutableArray alloc] init];
+        [dic addObjectsFromArray:resultArray];
+        self.tableViewEntitiseArray = [[NSArray alloc] initWithArray:dic];
+        [self.tableView reloadData];
+    } failure:^(NSError *error) {
+        NSLog(@"加载失败");
+    }];
     
 }
 
