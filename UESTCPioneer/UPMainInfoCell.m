@@ -140,7 +140,11 @@
         if(length>4)length=4;
         for (NSInteger i=0;i<length;i++){
             newsImage *v = imageViewArray[i];
-            [v setImageWithURL:[NSURL URLWithString:imageUrlArray[i]]];
+//            [v setImageWithURL:[NSURL URLWithString:imageUrlArray[i]]];
+            [v setImageWithURL:[NSURL URLWithString:imageUrlArray[i]] completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType) {
+                
+            }];
+
         }
         
     

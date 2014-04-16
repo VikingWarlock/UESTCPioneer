@@ -27,5 +27,6 @@
 #import"Mapping.h"
 #import"Alert.h"
 #import"RequestData.h"
+#import<UIImageView+WebCache.h>
 
 #endif
