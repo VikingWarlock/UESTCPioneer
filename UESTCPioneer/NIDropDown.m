@@ -37,6 +37,7 @@
 //        self.layer.shadowOpacity = 0.5;
         
         table = [[UITableView alloc] initWithFrame:CGRectMake(0, 0, btn.size.width, 0)];
+        table.scrollEnabled = NO;
         table.delegate = self;
         table.dataSource = self;
 //        table.layer.cornerRadius = 5;
@@ -54,6 +55,8 @@
         
         [b.superview.superview addSubview:self];
         [self addSubview:table];
+        UITableView *supertable = (UITableView *)[b.superview.superview viewWithTag:27];
+        supertable.userInteractionEnabled = NO;
     }
     return self;
 }
@@ -67,6 +70,8 @@
     table.frame = CGRectMake(0, 0, btn.size.width, 0);
     [xiala.layer setAffineTransform:CGAffineTransformMakeRotation(0)];
     [UIView commitAnimations];
+    UITableView *supertable = (UITableView *)[b.superview.superview viewWithTag:27];
+    supertable.userInteractionEnabled = YES;
 }
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
