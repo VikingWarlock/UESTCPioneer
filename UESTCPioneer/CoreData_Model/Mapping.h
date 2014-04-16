@@ -22,6 +22,8 @@
 +(NSDictionary*)PartyDataProcessEntityMapping;
 +(NSDictionary*)PartyDataGuideDetailEntityMapping;
 +(NSDictionary*)PartyDataMLearnEntityMapping;
++(NSDictionary*)partiesMapping;
 
 
++ (NSDictionary *)personalBirthMapping;
 @end

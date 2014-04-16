@@ -102,8 +102,31 @@
     return [[NSDictionary alloc]initWithObjects:valueArray forKeys:keyArray];
 }
 
++ (NSDictionary *)personalBirthMapping
+{
+    NSArray *keyArray=@[
+                        @"content"
+                        ,@"date"
+                        ,@"flag"
+                        ,@"userid"
+                        ,@"username"
+                        ];
+    NSArray *valueArray=@[
+                          @"content"
+                          ,@"daysLeft"
+                          ,@"flag"
+                          ,@"userid"
+                          ,@"username"
+                          ];
+    return [[NSDictionary alloc]initWithObjects:valueArray forKeys:keyArray];
+}
+
 +(NSDictionary*)PartyDataGuideEntityMapping{
     return @{@"ZN_content":@"content",@"ZN_name":@"title",@"ZN_picName":@"piaName",@"ZN_picUrl":@"picUrl",@"ZN_time":@"time",@"id":@"theId"};
+}
+
++(NSDictionary*)partiesMapping{
+    return @{@"partyName":@"partyName",@"partyNo":@"partyNo"};
 }
 
 +(NSDictionary*)PartyDataLearnEntityMapping{
