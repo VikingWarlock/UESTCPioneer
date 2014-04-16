@@ -18,7 +18,7 @@ static NSString *customMainCellIndentifier = @"CustomMainCellIndentifier";
 static NSString *customFooterCellIndentifier = @"CustomFooterCellIndentifier";
 @interface RefreshRequestViewController ()<UPMainInfoCellDelegate,UPTitleCellDelegate,UPFooterCellDelegate>{
 
-    
+    NSMutableDictionary *_cellHeightDictionary;
 
 }
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath;
@@ -27,6 +27,10 @@ static NSString *customFooterCellIndentifier = @"CustomFooterCellIndentifier";
 @end
 
 @implementation RefreshRequestViewController
+
+
+
+
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -58,6 +62,8 @@ static NSString *customFooterCellIndentifier = @"CustomFooterCellIndentifier";
     [self.tableView registerClass:[UPTitleCell class] forCellReuseIdentifier:customTitleCellIndentifier];
     [self.tableView registerClass:[UPMainInfoCell class] forCellReuseIdentifier:customMainCellIndentifier];
     [self.tableView registerClass:[UPFooterCell class] forCellReuseIdentifier:customFooterCellIndentifier];
+    
+            _cellHeightDictionary=[[NSMutableDictionary alloc]init];
 }
 
 - (void)didReceiveMemoryWarning
@@ -75,14 +81,20 @@ static NSString *customFooterCellIndentifier = @"CustomFooterCellIndentifier";
     [PublicMethod ClearEntity:entityName];
     [NetworkCenter RKRequestWithData:requestData EntityName:entityName Mapping:entityMapping SuccessBlock:^(NSArray *resultArray) {
         
-        NSMutableArray *dic= [[NSMutableArray alloc]init];
+        NSMutableArray *dic=    [[NSMutableArray alloc]init];
         [dic addObjectsFromArray:resultArray];
         
         tableViewEntitiesArray=[[NSArray alloc]initWithArray:dic];
         
+        
+        
+        
+        
 //        for (PioneerNewsEntity* entity in tableViewEntitiesArray){
 //            NSLog(@"%@",entity.titleBody);
 //        }
+        
+        
         
 //        [PublicMethod ClearEntity:entityName];
         [self.tableView reloadData];
@@ -208,6 +220,22 @@ static NSString *customFooterCellIndentifier = @"CustomFooterCellIndentifier";
         
         //6.0后用这种方式更直接，可以省掉if（cell2＝＝nil）的判断   @黄卓越 2014-3-28
         UPMainInfoCell *cell2 = [tableView dequeueReusableCellWithIdentifier:customMainCellIndentifier forIndexPath:indexPath];;
+        NSDictionary *pic=entity.picUrl;
+        NSArray *ImageUrlArray=[pic  allValues];
+        
+        
+        NSMutableArray *temp = [[NSMutableArray alloc]init];
+        for (NSString *suffix in ImageUrlArray){
+            [temp addObject:[baseUrl stringByAppendingString:suffix]];
+        }
+        
+        NSArray *urlArray = [[NSArray alloc]initWithArray:temp];
+        
+
+        [cell2 setImageUrlArray:urlArray];
+        //@cell的高度自适应
+        if ([cell2 hasImage])_cellHeightDictionary[@(indexPath.section)]=@(110+imageViewWidth);
+        else _cellHeightDictionary[@(indexPath.section)]=@(110);
         [cell2 setNewsBody:entity.newsBody];
         cell2.theId=[entity.theId integerValue];
         cell2.delegate=self;
@@ -235,6 +263,34 @@ static NSString *customFooterCellIndentifier = @"CustomFooterCellIndentifier";
     }
     
     
+}
+
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
+    if (indexPath.row == 0) {
+        return 55;
+    }
+    else if (indexPath.row == 1){
+//        UPMainInfoCell *cell= (UPMainInfoCell*)[self tableView:self.tableView cellForRowAtIndexPath:indexPath];
+//        if (cell.hasImage)return 110+imageViewWidth;
+        
+        
+        //判断是否有图片以适应高度
+        CGFloat height;
+        
+        NewsEntity *entity =tableViewEntitiesArray[indexPath.section];
+        NSDictionary *picDic= entity.picUrl;
+        if ([picDic count]==0){
+            height=110;
+        }
+        else {
+            height=110+imageViewWidth+30;
+        }
+        
+         return height;
+//         return [_cellHeightDictionary[@(indexPath.section)] floatValue];
+    }
+    else
+        return 40;
 }
 
 @end
