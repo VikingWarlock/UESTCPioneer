@@ -7,8 +7,7 @@
 //
 
 #import "NetworkCenter.h"
-#define baseUrl @"http://222.197.183.81:8080"
-#define tempPattern @"/UestcApp/ieaction.do"
+
 
 
 
