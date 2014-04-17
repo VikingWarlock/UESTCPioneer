@@ -46,6 +46,23 @@
     [self.collectionview registerClass:[CellForStartActivity class] forCellWithReuseIdentifier:@"GradientCell"];
     [self.collectionview setScrollEnabled:NO];
     
+    
+    //隐藏默认返回按钮
+    [self.navigationItem setHidesBackButton:YES];
+    
+    //修改左边button
+    UIBarButtonItem *leftBarButton  =[[UIBarButtonItem alloc]initWithTitle:@"取消" style:UIBarButtonItemStylePlain target:self.navigationController action:@selector(popViewControllerAnimated:)];
+    [self.navigationItem setLeftBarButtonItem:leftBarButton];
+    
+    //修改背景色为白色
+    [self.navigationController.navigationBar setBarTintColor:[UIColor whiteColor]];
+    //修改字体为红色
+    [self.navigationController.navigationBar setTintColor:kNavigationBarColor];
+    [self.navigationController.navigationBar setTitleTextAttributes:@{NSForegroundColorAttributeName:kNavigationBarColor}];
+    
+    //修改顶部运营商和时间为黑色
+    [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleDefault];
+    
 }
 
 - (void)viewWillAppear:(BOOL)animated
@@ -60,6 +77,16 @@
         self.navigationItem.rightBarButtonItem.enabled = YES;
     else
         self.navigationItem.rightBarButtonItem.enabled = NO;
+}
+
+-(void)viewWillDisappear:(BOOL)animated{
+    [super viewWillDisappear:animated];
+    //还原顶部设置
+    [self.navigationController.navigationBar setBarTintColor:kNavigationBarColor];
+    [self.navigationController.navigationBar setTintColor:[UIColor whiteColor]];
+    [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent];
+    [self.navigationItem setHidesBackButton:NO];
+    [self.navigationController.navigationBar setTitleTextAttributes:@{NSForegroundColorAttributeName:[UIColor whiteColor]}];
 }
 
 - (void)commit:(id)sender

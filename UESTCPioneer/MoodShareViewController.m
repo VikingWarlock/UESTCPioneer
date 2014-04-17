@@ -65,9 +65,7 @@
     //修改顶部运营商和时间为黑色
     [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleDefault];
     
-    
-    
-    
+    //修改左边button
     UIBarButtonItem *leftBarButton  =[[UIBarButtonItem alloc]initWithTitle:@"取消" style:UIBarButtonItemStylePlain target:self action:@selector(pop:)];
     [self.navigationItem setLeftBarButtonItem:leftBarButton];
     //    [leftBarButton setTitleTextAttributes:@{NSForegroundColorAttributeName:[UIColor grayColor]} forState:UIControlStateNormal];
