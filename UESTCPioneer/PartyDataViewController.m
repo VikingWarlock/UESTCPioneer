@@ -96,7 +96,7 @@
             viewController = [[OrganTableViewController alloc] initWithStyle:UITableViewStyleGrouped];
             break;
         case 6:
-            viewController = [[GuideTableViewController alloc]initWithStyle:UITableViewStyleGrouped];
+            viewController = [[GuideTableViewController alloc]init];
             break;
         case 7:
             viewController = [[QAViewController alloc] init];

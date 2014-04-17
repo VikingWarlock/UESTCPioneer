@@ -7,6 +7,7 @@
 //
 
 #import "MLearnTableViewController.h"
+#import "LearnTableViewController.h"
 
 @interface MLearnTableViewController ()
 
@@ -82,15 +83,25 @@ static NSString * cellIdentifier = @"cellIdentifier";
     return cell;
 }
 
-- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
-    
-    if (indexPath.row == 0) {
-        
-    }
-}
 
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {
     return 0.1;
+}
+
+-(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+    NSMutableDictionary * requestDic = [[NSMutableDictionary alloc ] initWithDictionary: @{@"type":@"getMajorFile",@"dangType":@"1",@"page":@"1",@"fileType":@"document"}];
+    switch (indexPath.row) {
+        case 0:
+            break;
+        case 1:
+            [requestDic setValue:@"experience" forKey:@"fileType"];
+            break;
+        default:
+            break;
+    }
+    LearnTableViewController * viewController = [[LearnTableViewController alloc] initWithRequestData:requestDic entityName:@"PartyDataMLearnEntity" Mapping:[Mapping PartyDataMLearnEntityMapping]];
+    [self.navigationController pushViewController:viewController animated:YES];
+    [self.tableView deselectRowAtIndexPath:indexPath animated:YES];
 }
 
 /*

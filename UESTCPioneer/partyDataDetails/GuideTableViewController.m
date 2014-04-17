@@ -26,11 +26,14 @@
 static  NSString *CellTableIdentifier = @"CellTableIdentifier";
 
 
-- (id)initWithStyle:(UITableViewStyle)style
+- (id)init
 {
-    self = [super initWithStyle:style];
+    self = [super init];
     if (self) {
-        [self downloadDataWithRequestData:@{@"type":@"getZhinanList",@"page":@"1"} EntityName:@"PartyDataGuideEntity" Mapping:[Mapping PartyDataGuideEntityMapping]];
+        requestData = @{@"type":@"getZhinanList",@"page":@"1"};
+        entityName = @"PartyDataGuideEntity";
+        entityMapping = [Mapping PartyDataGuideEntityMapping];
+        [self downloadDataWithRequestData:requestData EntityName:entityName Mapping:entityMapping];
         // Custom initialization
     }
     return self;
@@ -46,15 +49,11 @@ static  NSString *CellTableIdentifier = @"CellTableIdentifier";
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    
-    [self.tableView registerClass:[UITableViewCell class] forCellReuseIdentifier:CellTableIdentifier];
+    self.tableView.delegate = self;
+    self.tableView.dataSource = self;
     self.tableView.separatorInset = UIEdgeInsetsZero;
     self.title = @"办事指南";
-    // Uncomment the following line to preserve selection between presentations.
-    // self.clearsSelectionOnViewWillAppear = NO;
-    
-    // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-    // self.navigationItem.rightBarButtonItem = self.editButtonItem;
+
 }
 
 - (void)didReceiveMemoryWarning
@@ -77,7 +76,7 @@ static  NSString *CellTableIdentifier = @"CellTableIdentifier";
     if (![detailTableViewEntitiseArray count]) {
         detailTableViewEntitiseArray = [[NSMutableArray alloc]init];
         [PublicMethod ClearEntity:@"PartyDataGuideDetailEntity"];
-        for(int i = 1;i <= [tableViewEntitiseArray count];i++){
+        for(int i = 1;i <= [tableViewEntitiesArray count];i++){
             [NetworkCenter RKRequestWithData:@{@"type":@"getOneZhinan",@"id":[NSString stringWithFormat:@"%d",i]} EntityName:@"PartyDataGuideDetailEntity" Mapping:[Mapping PartyDataGuideDetailEntityMapping] SuccessBlock:^(NSArray *resultArray) {
                 [detailTableViewEntitiseArray addObject:resultArray[0]];
                 [self.tableView reloadData];
@@ -86,17 +85,17 @@ static  NSString *CellTableIdentifier = @"CellTableIdentifier";
             }];
         }
     }
-    return [tableViewEntitiseArray count];
+    return [tableViewEntitiesArray count];
 }
 
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellTableIdentifier forIndexPath:indexPath];
+    UITableViewCell * cell = [tableView dequeueReusableCellWithIdentifier:CellTableIdentifier];
     if (cell == nil) {
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellTableIdentifier];
     }
-    PartyDataGuideEntity *entity = tableViewEntitiseArray[indexPath.row];
+    PartyDataGuideEntity *entity = tableViewEntitiesArray[indexPath.row];
     UILabel *titleValue = [[UILabel alloc] initWithFrame:CGRectMake(10, 0, 210, cell.frame.size.height)];
     titleValue.text = entity.title;
     titleValue.textColor = [UIColor grayColor];
@@ -118,10 +117,11 @@ static  NSString *CellTableIdentifier = @"CellTableIdentifier";
 }
 
 - (void) tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
-    PartyDataGuideEntity *entity = tableViewEntitiseArray[indexPath.row];
+    PartyDataGuideEntity *entity = tableViewEntitiesArray[indexPath.row];
     PartyDataGuideDetailEntity *detailEntity = detailTableViewEntitiseArray[indexPath.row];
     UIViewController * viewController = [[GuideDetailViewController alloc] initWithData:@{@"newsTitle":entity.title,@"newsContent":detailEntity.content,@"newsTime":detailEntity.time}];
     [self.navigationController pushViewController:viewController animated:YES];
+    [self.tableView deselectRowAtIndexPath:indexPath animated:YES];
 }
 
 @end

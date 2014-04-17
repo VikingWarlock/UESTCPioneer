@@ -22,15 +22,17 @@
 
 static NSString * CellTableIdentifier = @"CellTableIdentifier";
 
-- (id)initWithRequestData:(NSDictionary *)requestData entityName:(NSString *)entityName Mapping:(NSDictionary *)mapping{
+- (id)initWithRequestData:(NSDictionary *)RequestData entityName:(NSString *)EntityName Mapping:(NSDictionary *)Mapping{
     if (self) {
-        [self downloadDataWithRequestData:requestData  EntityName:entityName Mapping:mapping];
+        requestData = RequestData;
+        entityName = EntityName;
+        entityMapping = Mapping;
+        [self downloadDataWithRequestData:RequestData  EntityName:EntityName Mapping:Mapping];
     }
     return self;
-
 }
 
-
+/*
 - (id)initWithStyle:(UITableViewStyle)style
 {
     self = [super initWithStyle:style];
@@ -41,6 +43,7 @@ static NSString * CellTableIdentifier = @"CellTableIdentifier";
     }
     return self;
 }
+ */
 
 //-(NSArray *)data{
 //    if (!_data) {
@@ -52,7 +55,9 @@ static NSString * CellTableIdentifier = @"CellTableIdentifier";
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    [self.tableView registerClass:[UITableViewCell class] forCellReuseIdentifier:CellTableIdentifier];
+    self.tableView.delegate = self;
+    self.tableView.dataSource = self;
+//    [self.tableView registerClass:[UITableViewCell class] forCellReuseIdentifier:CellTableIdentifier];
     self.tableView.separatorInset = UIEdgeInsetsZero;
     
     // Uncomment the following line to preserve selection between presentations.
@@ -79,19 +84,24 @@ static NSString * CellTableIdentifier = @"CellTableIdentifier";
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
     // Return the number of rows in the section.
-    return [tableViewEntitiseArray count];
+    return [tableViewEntitiesArray count];
 }
 
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellTableIdentifier forIndexPath:indexPath];
+    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellTableIdentifier];
     if (cell == nil) {
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellTableIdentifier];
     }
     //NSDictionary * rowData = self.data[indexPath.row];
-    PartyDataLearnEntity * entity = tableViewEntitiseArray[indexPath.row];
-    cell.textLabel.text = entity.fileName;
+    PartyDataLearnEntity * entity = tableViewEntitiesArray[indexPath.row];
+    
+    UILabel * label = [[UILabel alloc] initWithFrame:CGRectMake(40, 0, 235, cell.frame.size.height)];
+    label.text = entity.fileName;
+    label.adjustsFontSizeToFitWidth = YES;
+    [cell addSubview:label];
+    
     UIImage * leftImage = [helper getCustomImage:[UIImage imageNamed:@"dxfile.png"] insets:UIEdgeInsetsMake(45, 0, 90, 65)];
     UIImageView * imageView = [[UIImageView alloc] initWithImage:leftImage];
     imageView.frame = CGRectMake(10, 0, 30, cell.frame.size.height);
@@ -115,9 +125,11 @@ static NSString * CellTableIdentifier = @"CellTableIdentifier";
 
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
-    PartyDataLearnEntity * entity = tableViewEntitiseArray[indexPath.row];
+    PartyDataLearnEntity * entity = tableViewEntitiesArray[indexPath.row];
     UIViewController * viewController = [[LearnDetailViewController alloc ] initWithFileName:entity.fileName];
     [self.navigationController pushViewController:viewController animated:YES];
+    [self.tableView deselectRowAtIndexPath:indexPath animated:YES];
+
 }
 
 @end
