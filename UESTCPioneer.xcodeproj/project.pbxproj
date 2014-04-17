@@ -229,7 +229,6 @@
 		F270ECD318FE625000DA82EA /* enter.png in Resources */ = {isa = PBXBuildFile; fileRef = F270ECD218FE625000DA82EA /* enter.png */; };
 		F270ECD618FE6CCB00DA82EA /* PartyDataMLearnEntity.m in Sources */ = {isa = PBXBuildFile; fileRef = F270ECD518FE6CCB00DA82EA /* PartyDataMLearnEntity.m */; };
 		F270ECD918FEC6DA00DA82EA /* DataRefreshTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F270ECD818FEC6DA00DA82EA /* DataRefreshTableViewController.m */; };
-		F270ECDB18FFCB4C00DA82EA /* 03.png in Resources */ = {isa = PBXBuildFile; fileRef = F270ECDA18FFCB4C00DA82EA /* 03.png */; };
 		F2830F4418FD87680046542B /* superTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F2830F4318FD87680046542B /* superTableViewController.m */; };
 		F2830F4718FD8A800046542B /* ProcessTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F2830F4618FD8A800046542B /* ProcessTableViewController.m */; };
 		F2830F4A18FD8C7E0046542B /* PartyDataKnowledgeEntity.m in Sources */ = {isa = PBXBuildFile; fileRef = F2830F4918FD8C7E0046542B /* PartyDataKnowledgeEntity.m */; };
@@ -572,7 +571,6 @@
 		F270ECD518FE6CCB00DA82EA /* PartyDataMLearnEntity.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PartyDataMLearnEntity.m; path = CoreData_Model/PartyDataMLearnEntity.m; sourceTree = "<group>"; };
 		F270ECD718FEC6DA00DA82EA /* DataRefreshTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DataRefreshTableViewController.h; path = partyDataDetails/DataRefreshTableViewController.h; sourceTree = "<group>"; };
 		F270ECD818FEC6DA00DA82EA /* DataRefreshTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = DataRefreshTableViewController.m; path = partyDataDetails/DataRefreshTableViewController.m; sourceTree = "<group>"; };
-		F270ECDA18FFCB4C00DA82EA /* 03.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 03.png; sourceTree = "<group>"; };
 		F2830F4218FD87680046542B /* superTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = superTableViewController.h; path = partyDataDetails/superTableViewController.h; sourceTree = "<group>"; };
 		F2830F4318FD87680046542B /* superTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = superTableViewController.m; path = partyDataDetails/superTableViewController.m; sourceTree = "<group>"; };
 		F2830F4518FD8A800046542B /* ProcessTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ProcessTableViewController.h; path = partyDataDetails/ProcessTableViewController.h; sourceTree = "<group>"; };
@@ -1266,7 +1264,6 @@
 			children = (
 				F214422518E9332D00B56DEE /* 01.png */,
 				F214422618E9332D00B56DEE /* 02.png */,
-				F270ECDA18FFCB4C00DA82EA /* 03.png */,
 				F270ECD218FE625000DA82EA /* enter.png */,
 				F214422718E9332D00B56DEE /* dropdownbg.png */,
 				F214422818E9332D00B56DEE /* sepline.png */,
@@ -1487,7 +1484,6 @@
 				510C56BA18E021B4007F6359 /* sendmsg.png in Resources */,
 				F214422A18E9332D00B56DEE /* 02.png in Resources */,
 				517485C518CA056F00413228 /* notice2.png in Resources */,
-				F270ECDB18FFCB4C00DA82EA /* 03.png in Resources */,
 				D24336FC18D2CA1400845121 /* news_num_tag.png in Resources */,
 				8839C32D18D96557008D01B9 /* icon114.png in Resources */,
 				D24336FA18D2CA1400845121 /* hook_blue.png in Resources */,
