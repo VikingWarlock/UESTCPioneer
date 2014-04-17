@@ -10,10 +10,11 @@
 
 @implementation CellForDailyCare_BodyCell
 
-- (id)initWithFrame:(CGRect)frame
+- (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier
 {
-    self = [super initWithFrame:frame];
+    self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
     if (self) {
+        [self.contentView addSubview:self.body];
         // Initialization code
     }
     return self;
@@ -32,5 +33,19 @@
     frame.origin.x += 10;
     frame.size.width -= 2 * 10;
     [super setFrame:frame];
+}
+
+- (UILabel *)body
+{
+    if (!_body) {
+        _body = [[UILabel alloc] initWithFrame:CGRectMake(5, 0, 290, 110)];
+        [_body setTextAlignment:NSTextAlignmentLeft];
+        _body.font = [UIFont systemFontOfSize:16];
+        _body.textColor = [UIColor blackColor];
+        _body.lineBreakMode = NSLineBreakByWordWrapping;
+        _body.numberOfLines = 0;
+        _body.text = @"Text";
+    }
+    return _body;
 }
 @end

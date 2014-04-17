@@ -15,11 +15,13 @@
 #import "GuideTableViewController.h"
 #import "LearnTableViewController.h"
 #import "QAViewController.h"
+#import "ProcessTableViewController.h"
+#import "MLearnTableViewController.h"
+
+
 @interface PartyDataViewController ()
 @property (nonatomic,strong) NSDictionary * dic;
-//@property (nonatomic,strong) NSMutableArray * views;
 @property (nonatomic,strong) NSArray *titleArray;
-@property (nonatomic,strong) NSArray * controllers;
 @end
 
 @implementation PartyDataViewController
@@ -62,38 +64,6 @@
     return _buttons;
 }
 
-- (NSArray *) controllers{
-    if (!_controllers) {
-        NSArray * data1 = @[@{@"title":@"111111111111111111111111111111111111111111111111111111111111111111111111",@"content":@"111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111",@"time":@"2014-3-19"},@{@"title":@"2",@"content":@"222222222222222222222222222222222222222222222222222222222222",@"time":@"2014-3-19"}];
-        NSArray * data2 =@[@{@"title":@"阿",@"content":@"阿阿阿阿阿阿阿阿阿阿阿阿阿阿阿阿阿阿阿阿阿阿阿阿阿阿阿阿阿阿阿阿阿阿阿阿阿阿阿阿阿阿阿阿阿阿阿阿阿阿阿阿阿阿阿阿阿阿阿阿阿阿",@"time":@"2014-3-19"},@{@"title":@"阿阿",@"content":@"阿阿阿阿阿阿阿阿阿阿阿阿阿",@"time":@"2014-3-19"}];
-        NSArray * data3 =@[@{@"title":@"111阿",@"content":@"11111阿阿阿阿阿阿阿阿阿阿阿阿阿阿阿阿阿阿阿阿阿阿阿阿阿阿阿阿阿阿阿阿阿阿阿阿阿阿阿阿阿阿阿阿阿阿阿阿阿阿阿阿阿阿阿阿阿阿阿阿阿阿",@"time":@"2014-3-19"},@{@"title":@"111阿阿",@"content":@"1111阿阿阿阿阿阿阿阿阿阿阿阿阿",@"time":@"2014-3-19"}];
-        
-        
-        
-        _controllers = @[[[TheoryViewController alloc] initWithArray:data1 forTitle:_titleArray[0]],[[TheoryViewController alloc] initWithArray:data2 forTitle:_titleArray[1]],[[TheoryViewController alloc] initWithArray:data3 forTitle:_titleArray[2]],[[LearnTableViewController alloc] initWithStyle:UITableViewStyleGrouped],[[OrganTableViewController alloc] init],[[OrganTableViewController alloc] initWithStyle:UITableViewStyleGrouped],[[GuideTableViewController alloc]initWithStyle:UITableViewStyleGrouped],[[QAViewController alloc] init]];
-    }
-    return _controllers;
-}
-
-
-/*-(NSMutableArray *)views{
- if (!_views) {
- _views = [[NSMutableArray alloc] init];
- for (int i = 1; i < 3;  i ++) {
- for (int j = 0; j<3; j++) {
- UIView * view = [[UIView alloc] initWithFrame:CGRectMake(i*100+10, j*110+20, 1, 90)];
- [view setBackgroundColor:[UIColor colorWithRed:0.9 green:0.9 blue:0.9 alpha:1]];
- [_views addObject:view];
- 
- UIView * view2 = [[UIView alloc] initWithFrame:CGRectMake(j*100+20, i*110+10, 80, 1)];
- [view2 setBackgroundColor:[UIColor colorWithRed:0.9 green:0.9 blue:0.9 alpha:1]];
- [_views addObject:view2];
- }
- }
- }
- return _views;
- }
- */
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -105,7 +75,38 @@
 }
 
 -(void) aButtonClicked:(UIButton *)sender{
-    UIViewController * viewController = self.controllers[[self.buttons indexOfObject:sender]];
+    UIViewController * viewController ;
+    switch ([self.buttons indexOfObject:sender]) {
+        case 0:
+            viewController = [[TheoryViewController alloc] initWithTitle:self.titleArray[0] RequestData:@{@"type": @"studySpirit",@"page":@"1"} EntityName:@"PartyDataSpiritEntity" Mapping:[Mapping PartyDataSpiritEntityMapping]];
+            break;
+        case 1:
+            viewController = [[TheoryViewController alloc] initWithTitle:self.titleArray[1] RequestData:@{@"type": @"studyKnowledge",@"page":@"1"} EntityName:@"PartyDataKnowledgeEntity" Mapping:[Mapping PartyDataSpiritEntityMapping]];
+            break;
+        case 2:
+            viewController = [[TheoryViewController alloc] initWithTitle:self.titleArray[2] RequestData:@{@"type":@"studyTheory",@"page":@"1"} EntityName:@"PartyDataTheoryEntity" Mapping:[Mapping PartyDataSpiritEntityMapping]];
+            break;
+        case 3:
+            viewController = [[LearnTableViewController alloc] initWithRequestData:@{@"type":@"getFilename",@"page":@"1"} entityName:@"PartyDataLearnEntity" Mapping:[Mapping PartyDataLearnEntityMapping]];
+            break;
+        case 4:
+            viewController = [[ProcessTableViewController alloc] init];
+            break;
+        case 5:
+            viewController = [[OrganTableViewController alloc] initWithStyle:UITableViewStyleGrouped];
+            break;
+        case 6:
+            viewController = [[GuideTableViewController alloc]initWithStyle:UITableViewStyleGrouped];
+            break;
+        case 7:
+            viewController = [[QAViewController alloc] init];
+            break;
+        case 8:
+            viewController = [[MLearnTableViewController alloc] initWithStyle:UITableViewStyleGrouped];
+            
+        default:
+            break;
+    }
     [self.leveyTabBarController.navigationController pushViewController:viewController animated:YES];
 }
 
@@ -119,19 +120,17 @@
     
     [self.view setBackgroundColor:ViewControllerBackgroundColor];
     
-    /*    for (UIView * view in self.views) {
-     [self.view addSubview:view];
-     }
-     */
 }
 
 -(void)viewWillAppear:(BOOL)animated{
     [self.leveyTabBarController.navigationItem setTitle:@"资料"];
 }
+
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
+
 
 @end

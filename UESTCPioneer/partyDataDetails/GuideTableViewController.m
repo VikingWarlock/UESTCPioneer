@@ -7,9 +7,14 @@
 //
 
 #import "GuideTableViewController.h"
+#import "Mapping.h"
 #import "GuideDetailViewController.h"
+#import "PartyDataGuideEntity.h"
+#import "PartyDataGuideDetailEntity.h"
 
-@interface GuideTableViewController ()
+@interface GuideTableViewController (){
+    NSMutableArray * detailTableViewEntitiseArray;
+}
 
 @property (nonatomic,strong) NSArray * data;
 
@@ -25,11 +30,11 @@ static  NSString *CellTableIdentifier = @"CellTableIdentifier";
 {
     self = [super initWithStyle:style];
     if (self) {
+        [self downloadDataWithRequestData:@{@"type":@"getZhinanList",@"page":@"1"} EntityName:@"PartyDataGuideEntity" Mapping:[Mapping PartyDataGuideEntityMapping]];
         // Custom initialization
     }
     return self;
 }
-
 
 -(NSArray *)data{
     if (!_data) {
@@ -41,6 +46,7 @@ static  NSString *CellTableIdentifier = @"CellTableIdentifier";
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    
     [self.tableView registerClass:[UITableViewCell class] forCellReuseIdentifier:CellTableIdentifier];
     self.tableView.separatorInset = UIEdgeInsetsZero;
     self.title = @"办事指南";
@@ -68,7 +74,19 @@ static  NSString *CellTableIdentifier = @"CellTableIdentifier";
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
     // Return the number of rows in the section.
-    return [self.data count];
+    if (![detailTableViewEntitiseArray count]) {
+        detailTableViewEntitiseArray = [[NSMutableArray alloc]init];
+        [PublicMethod ClearEntity:@"PartyDataGuideDetailEntity"];
+        for(int i = 1;i <= [tableViewEntitiseArray count];i++){
+            [NetworkCenter RKRequestWithData:@{@"type":@"getOneZhinan",@"id":[NSString stringWithFormat:@"%d",i]} EntityName:@"PartyDataGuideDetailEntity" Mapping:[Mapping PartyDataGuideDetailEntityMapping] SuccessBlock:^(NSArray *resultArray) {
+                [detailTableViewEntitiseArray addObject:resultArray[0]];
+                [self.tableView reloadData];
+            } failure:^(NSError *error) {
+                NSLog(@"加载失败");
+            }];
+        }
+    }
+    return [tableViewEntitiseArray count];
 }
 
 
@@ -78,13 +96,14 @@ static  NSString *CellTableIdentifier = @"CellTableIdentifier";
     if (cell == nil) {
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellTableIdentifier];
     }
-    NSDictionary * rowData = self.data[indexPath.row];
-    cell.textLabel.text = rowData[@"title"];
-    cell.textLabel.frame = CGRectMake(0, 0, 200, cell.frame.size.height);
-    cell.textLabel.textColor = [UIColor grayColor];
-    cell.textLabel.font = [UIFont boldSystemFontOfSize:17];
+    PartyDataGuideEntity *entity = tableViewEntitiseArray[indexPath.row];
+    UILabel *titleValue = [[UILabel alloc] initWithFrame:CGRectMake(10, 0, 210, cell.frame.size.height)];
+    titleValue.text = entity.title;
+    titleValue.textColor = [UIColor grayColor];
+    titleValue.font = [UIFont boldSystemFontOfSize:16];
+    [cell addSubview:titleValue];
     UILabel *timeValue = [[UILabel alloc] initWithFrame:CGRectMake(230, 0, 80, cell.frame.size.height)];
-    timeValue.text = rowData[@"time"];
+    timeValue.text = entity.time;
     timeValue.font = [UIFont systemFontOfSize:13];
     timeValue.textColor = [UIColor grayColor];
     [cell addSubview:timeValue];
@@ -99,7 +118,9 @@ static  NSString *CellTableIdentifier = @"CellTableIdentifier";
 }
 
 - (void) tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
-    UIViewController * viewController = [[GuideDetailViewController alloc] initWithTitle:@"详情"];
+    PartyDataGuideEntity *entity = tableViewEntitiseArray[indexPath.row];
+    PartyDataGuideDetailEntity *detailEntity = detailTableViewEntitiseArray[indexPath.row];
+    UIViewController * viewController = [[GuideDetailViewController alloc] initWithData:@{@"newsTitle":entity.title,@"newsContent":detailEntity.content,@"newsTime":detailEntity.time}];
     [self.navigationController pushViewController:viewController animated:YES];
 }
 

@@ -2,7 +2,9 @@
 //  PartyDataProcessEntity.h
 //  UESTCPioneer
 //
-//  Created by 马君 on 14-4-13.
+
+//  Created by 马君 on 14-4-15.
+
 //  Copyright (c) 2014年 Sway. All rights reserved.
 //
 
@@ -13,9 +15,11 @@
 @interface PartyDataProcessEntity : NSManagedObject
 
 @property (nonatomic, retain) NSString * content;
-@property (nonatomic, retain) NSNumber * dangType;
+
+@property (nonatomic, retain) NSString * dangType;
 @property (nonatomic, retain) NSNumber * theId;
-@property (nonatomic, retain) NSNumber * picPath;
+@property (nonatomic, retain) NSString * picPath;
+
 @property (nonatomic, retain) NSString * time;
 @property (nonatomic, retain) NSString * title;
 

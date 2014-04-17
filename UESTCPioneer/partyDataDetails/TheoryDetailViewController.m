@@ -10,7 +10,7 @@
 
 @interface TheoryDetailViewController ()
 @property (nonatomic,strong) UILabel * titleLabel;
-@property (nonatomic,strong)UILabel * contentLabel;
+@property (nonatomic,strong) UITextView * contentView;
 
 @end
 
@@ -77,23 +77,30 @@
     UIView * seplineView = [[UIView alloc] initWithFrame:CGRectMake(0, self.titleLabel.frame.origin.y + self.titleLabel.frame.size.height + 15.0, self.view.bounds.size.width, 1)];
     seplineView.backgroundColor = [UIColor colorWithRed:130.0/255.0 green:130.0/255.0 blue:130.0/255.0 alpha:1];
     
-    
-    _contentLabel = [[UILabel alloc] initWithFrame:CGRectMake(0,0,0,0)];
-    _contentLabel.numberOfLines = 0;
-    NSString * newsContent = self.data[@"content"];
-    UIFont * font = [UIFont boldSystemFontOfSize:15];
-    CGSize size = CGSizeMake(300, 5000);
-    CGSize labelSize = [newsContent sizeWithFont:font constrainedToSize:size lineBreakMode:NSLineBreakByWordWrapping];
-    _contentLabel.frame = CGRectMake(10.0, seplineView.frame.origin.y + 15, labelSize.width,labelSize.height);
-    _contentLabel.textColor = [UIColor blackColor];
-    _contentLabel.text = newsContent;
-    _contentLabel.font = font;
-    _contentLabel.textColor = [UIColor colorWithRed:100.0/255.0 green:100.0/255.0 blue:100.0/255.0 alpha:1];
+    /*
+     _contentLabel = [[UILabel alloc] initWithFrame:CGRectMake(0,0,0,0)];
+     _contentLabel.numberOfLines = 0;
+     NSString * newsContent = self.data[@"content"];
+     UIFont * font = [UIFont boldSystemFontOfSize:15];
+     CGSize size = CGSizeMake(300, 5000);
+     CGSize labelSize = [newsContent sizeWithFont:font constrainedToSize:size lineBreakMode:NSLineBreakByWordWrapping];
+     _contentLabel.frame = CGRectMake(10.0, seplineView.frame.origin.y + 15, labelSize.width,labelSize.height);
+     _contentLabel.textColor = [UIColor blackColor];
+     _contentLabel.text = newsContent;
+     _contentLabel.font = font;
+     _contentLabel.textColor = [UIColor colorWithRed:100.0/255.0 green:100.0/255.0 blue:100.0/255.0 alpha:1];
+     */
+    _contentView = [[UITextView alloc] initWithFrame:CGRectMake(0, seplineView.frame.origin.y + seplineView.frame.size.height, 320, self.view.frame.size.height-seplineView.frame.origin.y - seplineView.frame.size.height - self.navigationController.navigationBar.frame.size.height - 15)];
+    _contentView.editable = NO;
+    _contentView.text = self.data[@"content"];
+    _contentView.font = [UIFont boldSystemFontOfSize:15];
+    _contentView.textColor = [UIColor colorWithRed:100.0/255.0 green:100.0/255.0 blue:100.0/255.0 alpha:1];
     
     
     [self.view addSubview:seplineView];
     [self.view addSubview:self.titleLabel];
-    [self.view addSubview:_contentLabel];
+    [self.view addSubview:_contentView];
+    
     
     
     // Do any additional setup after loading the view.

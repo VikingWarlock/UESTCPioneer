@@ -46,9 +46,6 @@
     [self.collectionview registerClass:[CellForStartActivity class] forCellWithReuseIdentifier:@"GradientCell"];
     [self.collectionview setScrollEnabled:NO];
     
-    //edit by @黄卓越 2014-4-15
-    //不能滑动
-    [self.tableView setScrollEnabled:NO];
 }
 
 - (void)viewWillAppear:(BOOL)animated
@@ -67,7 +64,36 @@
 
 - (void)commit:(id)sender
 {
+    NSString static *title;
+    NSString static *content;
+    BOOL static resultsuccess;
     
+    if ([content isEqualToString:self.editBody.text] && [title isEqualToString:self.editTitle.text] && resultsuccess == YES)
+    {
+        [Alert showAlert:@"您已经发起该活动!"];
+    }
+    else
+    {
+        content = self.editBody.text;
+        title = self.editTitle.text;
+#warning 后台api好像有问题
+        [NetworkCenter AFRequestWithData:[RequestData startActivityRequestData:content title:title] SuccessBlock:^(AFHTTPRequestOperation *operation, id resultObject) {
+            NSDictionary *dic = [NSJSONSerialization JSONObjectWithData:resultObject options:NSJSONReadingMutableLeaves error:nil];
+            if ([dic[@"result"] isEqualToString:@"success"]){
+                resultsuccess = YES;
+                [Alert showAlert:@"发起活动成功!"];
+            }
+            else {
+                resultsuccess = NO;
+                [Alert showAlert:@"发起活动失败!"];
+            }
+            
+        } FailureBlock:^(AFHTTPRequestOperation *operation, NSError *error) {
+            [Alert showAlert:@"网络请求失败!"];
+            resultsuccess = NO;
+            NSLog(@"发布通知failureblock");
+        }];
+    }
 }
 
 #pragma mark actionSheet delegate and imagePicker
@@ -266,6 +292,7 @@
         _editTitle.text = @"请在此输入活动标题";
         _editTitle.tag = 0;
         _editTitle.delegate = self;
+        [_editBody setScrollEnabled:NO];
     }
     return _editTitle;
 }

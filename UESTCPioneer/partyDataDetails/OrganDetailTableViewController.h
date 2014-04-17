@@ -10,6 +10,6 @@
 
 @interface OrganDetailTableViewController : UITableViewController
 
-@property (nonatomic,strong) NSArray * data;
+- (id)initWithArray:(NSArray*)arr;
 
 @end

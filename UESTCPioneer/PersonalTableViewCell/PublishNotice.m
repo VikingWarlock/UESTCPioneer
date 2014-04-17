@@ -47,7 +47,34 @@
 
 - (void)commit:(id)sender
 {
-    
+    NSString static *content;
+    BOOL static resultsuccess;
+
+    if ([content isEqualToString:self.textView.text] && resultsuccess == YES)
+    {
+        [Alert showAlert:@"您已经发布该通知!"];
+    }
+    else
+    {
+        content = self.textView.text;
+        
+        [NetworkCenter AFRequestWithData:[RequestData sendNoticeRequestData:content] SuccessBlock:^(AFHTTPRequestOperation *operation, id resultObject) {
+            NSDictionary *dic = [NSJSONSerialization JSONObjectWithData:resultObject options:NSJSONReadingMutableLeaves error:nil];
+            if ([dic[@"result"] isEqualToString:@"success"]){
+                resultsuccess = YES;
+                [Alert showAlert:@"发布通知成功!"];
+            }
+            else {
+                resultsuccess = NO;
+                [Alert showAlert:@"发布通知失败!"];
+            }
+            
+        } FailureBlock:^(AFHTTPRequestOperation *operation, NSError *error) {
+            resultsuccess = NO;
+            [Alert showAlert:@"网络请求失败!"];
+            NSLog(@"发布通知failureblock");
+        }];
+    }
 }
 
 - (void)textViewDidBeginEditing:(UITextView *)textView

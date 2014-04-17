@@ -6,8 +6,8 @@
 //  Copyright (c) 2014 Sway. All rights reserved.
 //
 
-#import "UPMainInfoCell.h"
+#import <UIKit/UIKit.h>
 
-@interface CellForDailyCare_BodyCell : UPMainInfoCell
-
+@interface CellForDailyCare_BodyCell : UITableViewCell
+@property (nonatomic,strong) UILabel *body;
 @end

@@ -8,19 +8,20 @@
 
 #import "OrganDetailTableViewController.h"
 
-@interface OrganDetailTableViewController ()
+@interface OrganDetailTableViewController (){
+    NSArray * data;
+}
 
 @end
 
 @implementation OrganDetailTableViewController
 
 static NSString * CellIdentifier = @"cellIdentifier";
-
-- (NSArray *) data{
-    if (!_data) {
-        _data = @[@"001 通信与信息工程学院党委",@"002 电子工程学院党委",@"003 微电子与固体电子学院党委",@"004 物理电子学院党委",@"005 光电信息学院党委"];
+- (id)initWithArray:(NSArray*)arr{
+    if (self) {
+        data = arr;
     }
-    return _data;
+    return self;
 }
 
 - (id)initWithStyle:(UITableViewStyle)style
@@ -62,7 +63,7 @@ static NSString * CellIdentifier = @"cellIdentifier";
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
     // Return the number of rows in the section.
-    return [self.data count];
+    return [data count];
 }
 
 
@@ -72,7 +73,8 @@ static NSString * CellIdentifier = @"cellIdentifier";
     if (cell == nil) {
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
     }
-    cell.textLabel.text = self.data[indexPath.row];
+    NSDictionary * rowData = data[indexPath.row];
+    cell.textLabel.text = [NSString stringWithFormat:@"%@ %@",rowData[@"partyNo"],rowData[@"partyName"]];
     // Configure the cell...
     
     return cell;

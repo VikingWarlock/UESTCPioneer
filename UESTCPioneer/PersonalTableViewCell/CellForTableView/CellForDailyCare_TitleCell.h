@@ -6,8 +6,10 @@
 //  Copyright (c) 2014 Sway. All rights reserved.
 //
 
-#import "UPTitleCell.h"
+#import <UIKit/UIKit.h>
 
-@interface CellForDailyCare_TitleCell : UPTitleCell
-
+@interface CellForDailyCare_TitleCell : UITableViewCell
+@property (nonatomic,strong) UILabel *title;
+@property (nonatomic,strong) UILabel *time;
+@property (nonatomic,strong) UIImageView *head;
 @end
