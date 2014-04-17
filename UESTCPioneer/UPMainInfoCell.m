@@ -20,11 +20,13 @@
 @implementation newsImage
 -(id)initWithIndex:(NSInteger)index{
     
-    CGRect rect =CGRectMake(10+index*imageViewWidth+5, 95, imageViewWidth, imageViewWidth);
+    CGRect rect =CGRectMake(10+index*(imageViewWidth+10), 115, imageViewWidth, imageViewWidth);
     
     self=[super initWithFrame:rect];
     if (self){
-    
+        //改变缩略图的显示，使得不变形 @张众
+        self.contentMode = UIViewContentModeScaleAspectFill;
+        self.clipsToBounds = YES;
     }
     return self;
 }
@@ -99,9 +101,9 @@
         //如果设置过就不用再设置
         if ([imageViewArray count])return;
         
-        CGRect btnRect =btnLabel.frame;
-        btnRect.origin.y+=imageViewWidth+20;
-        [btnLabel setFrame:btnRect];
+//        CGRect btnRect =btnLabel.frame;
+//        btnRect.origin.y+=imageViewWidth+20;
+//        [btnLabel setFrame:btnRect];
         
         
         
@@ -136,11 +138,18 @@
         [self setHasImage:YES];
         
         
-        NSInteger index=0;
-        for (newsImage *v in imageViewArray){
-            [v setImageWithURL:[NSURL URLWithString:imageUrlArray[index]]];
-            index++;
+        NSInteger length =[imageUrlArray count];
+        if(length>4)length=4;
+        for (NSInteger i=0;i<length;i++){
+            newsImage *v = imageViewArray[i];
+//            [v setImageWithURL:[NSURL URLWithString:imageUrlArray[i]]];
+            [v setImageWithURL:[NSURL URLWithString:imageUrlArray[i]] completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType) {
+                
+            }];
+
         }
+        
+    
     }
 }
 

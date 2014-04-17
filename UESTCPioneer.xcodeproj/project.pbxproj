@@ -196,6 +196,7 @@
 		DCB63E0B18E6565100AA0B58 /* Alert.m in Sources */ = {isa = PBXBuildFile; fileRef = DCB63E0A18E6565100AA0B58 /* Alert.m */; };
 		DCB6DE5318E2947D00001701 /* commentViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DCB6DE5118E2947D00001701 /* commentViewController.m */; };
 		DCBD910C18ED835700E03781 /* PartiesEntity.m in Sources */ = {isa = PBXBuildFile; fileRef = DCBD910B18ED835700E03781 /* PartiesEntity.m */; };
+		DCFB714718FF6784005F004B /* PartyDataLearnEntity.m in Sources */ = {isa = PBXBuildFile; fileRef = DCFB714618FF6784005F004B /* PartyDataLearnEntity.m */; };
 		F214420318E8605700B56DEE /* QAViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F214420218E8605700B56DEE /* QAViewController.m */; };
 		F214420E18E863CF00B56DEE /* bottombg.png in Resources */ = {isa = PBXBuildFile; fileRef = F214420518E863CF00B56DEE /* bottombg.png */; };
 		F214420F18E863CF00B56DEE /* cancel.png in Resources */ = {isa = PBXBuildFile; fileRef = F214420618E863CF00B56DEE /* cancel.png */; };
@@ -233,7 +234,6 @@
 		F2830F4718FD8A800046542B /* ProcessTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F2830F4618FD8A800046542B /* ProcessTableViewController.m */; };
 		F2830F4A18FD8C7E0046542B /* PartyDataKnowledgeEntity.m in Sources */ = {isa = PBXBuildFile; fileRef = F2830F4918FD8C7E0046542B /* PartyDataKnowledgeEntity.m */; };
 		F2830F4D18FD8C7E0046542B /* PartyDataSpiritEntity.m in Sources */ = {isa = PBXBuildFile; fileRef = F2830F4C18FD8C7E0046542B /* PartyDataSpiritEntity.m */; };
-		F2830F5018FD8C7E0046542B /* PartyDataLearnEntity.m in Sources */ = {isa = PBXBuildFile; fileRef = F2830F4F18FD8C7E0046542B /* PartyDataLearnEntity.m */; };
 		F2830F5318FD8C7E0046542B /* PartyDataTheoryEntity.m in Sources */ = {isa = PBXBuildFile; fileRef = F2830F5218FD8C7E0046542B /* PartyDataTheoryEntity.m */; };
 		F2830F5618FD8C7F0046542B /* PartyDataGuideEntity.m in Sources */ = {isa = PBXBuildFile; fileRef = F2830F5518FD8C7F0046542B /* PartyDataGuideEntity.m */; };
 		F2830F5918FD8C7F0046542B /* PartyDataProcessEntity.m in Sources */ = {isa = PBXBuildFile; fileRef = F2830F5818FD8C7F0046542B /* PartyDataProcessEntity.m */; };
@@ -525,6 +525,8 @@
 		DCB6DE5218E2947D00001701 /* commentViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = commentViewController.h; sourceTree = "<group>"; };
 		DCBD910A18ED835700E03781 /* PartiesEntity.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PartiesEntity.h; path = CoreData_Model/PartiesEntity.h; sourceTree = "<group>"; };
 		DCBD910B18ED835700E03781 /* PartiesEntity.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PartiesEntity.m; path = CoreData_Model/PartiesEntity.m; sourceTree = "<group>"; };
+		DCFB714518FF6784005F004B /* PartyDataLearnEntity.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PartyDataLearnEntity.h; path = partyDataDetails/PartyDataLearnEntity.h; sourceTree = "<group>"; };
+		DCFB714618FF6784005F004B /* PartyDataLearnEntity.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PartyDataLearnEntity.m; path = partyDataDetails/PartyDataLearnEntity.m; sourceTree = "<group>"; };
 		F214420118E8605700B56DEE /* QAViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QAViewController.h; sourceTree = "<group>"; };
 		F214420218E8605700B56DEE /* QAViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QAViewController.m; sourceTree = "<group>"; };
 		F214420518E863CF00B56DEE /* bottombg.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = bottombg.png; sourceTree = "<group>"; };
@@ -579,8 +581,6 @@
 		F2830F4918FD8C7E0046542B /* PartyDataKnowledgeEntity.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PartyDataKnowledgeEntity.m; path = CoreData_Model/PartyDataKnowledgeEntity.m; sourceTree = "<group>"; };
 		F2830F4B18FD8C7E0046542B /* PartyDataSpiritEntity.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PartyDataSpiritEntity.h; path = CoreData_Model/PartyDataSpiritEntity.h; sourceTree = "<group>"; };
 		F2830F4C18FD8C7E0046542B /* PartyDataSpiritEntity.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PartyDataSpiritEntity.m; path = CoreData_Model/PartyDataSpiritEntity.m; sourceTree = "<group>"; };
-		F2830F4E18FD8C7E0046542B /* PartyDataLearnEntity.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PartyDataLearnEntity.h; path = CoreData_Model/PartyDataLearnEntity.h; sourceTree = "<group>"; };
-		F2830F4F18FD8C7E0046542B /* PartyDataLearnEntity.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PartyDataLearnEntity.m; path = CoreData_Model/PartyDataLearnEntity.m; sourceTree = "<group>"; };
 		F2830F5118FD8C7E0046542B /* PartyDataTheoryEntity.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PartyDataTheoryEntity.h; path = CoreData_Model/PartyDataTheoryEntity.h; sourceTree = "<group>"; };
 		F2830F5218FD8C7E0046542B /* PartyDataTheoryEntity.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PartyDataTheoryEntity.m; path = CoreData_Model/PartyDataTheoryEntity.m; sourceTree = "<group>"; };
 		F2830F5418FD8C7F0046542B /* PartyDataGuideEntity.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PartyDataGuideEntity.h; path = CoreData_Model/PartyDataGuideEntity.h; sourceTree = "<group>"; };
@@ -621,16 +621,16 @@
 		513CED1018E2EE3600C1E424 /* CellForTableView */ = {
 			isa = PBXGroup;
 			children = (
-				5156D88018F8100F0044A020 /* CellForBirthCare.h */,
-				5156D88118F8100F0044A020 /* CellForBirthCare.m */,
-				5156D88218F8100F0044A020 /* CellForDailyCare_BodyCell.h */,
-				5156D88318F8100F0044A020 /* CellForDailyCare_BodyCell.m */,
-				5156D88418F8100F0044A020 /* CellForDailyCare_TitleCell.h */,
-				5156D88518F8100F0044A020 /* CellForDailyCare_TitleCell.m */,
 				5156D88618F8100F0044A020 /* CellForEditPersonalInformation_FirstCell.h */,
 				5156D88718F8100F0044A020 /* CellForEditPersonalInformation_FirstCell.m */,
 				5156D88818F8100F0044A020 /* CellForEditPersonalInformation.h */,
 				5156D88918F8100F0044A020 /* CellForEditPersonalInformation.m */,
+				5156D88218F8100F0044A020 /* CellForDailyCare_BodyCell.h */,
+				5156D88318F8100F0044A020 /* CellForDailyCare_BodyCell.m */,
+				5156D88418F8100F0044A020 /* CellForDailyCare_TitleCell.h */,
+				5156D88518F8100F0044A020 /* CellForDailyCare_TitleCell.m */,
+				5156D88018F8100F0044A020 /* CellForBirthCare.h */,
+				5156D88118F8100F0044A020 /* CellForBirthCare.m */,
 				5156D88A18F8100F0044A020 /* CellForMyMessage_PopCell.h */,
 				5156D88B18F8100F0044A020 /* CellForMyMessage_PopCell.m */,
 				5156D88C18F8100F0044A020 /* CellForPersonalInformation.h */,
@@ -808,10 +808,10 @@
 				F2830F5818FD8C7F0046542B /* PartyDataProcessEntity.m */,
 				F2830F5418FD8C7F0046542B /* PartyDataGuideEntity.h */,
 				F2830F5518FD8C7F0046542B /* PartyDataGuideEntity.m */,
+				DCFB714518FF6784005F004B /* PartyDataLearnEntity.h */,
+				DCFB714618FF6784005F004B /* PartyDataLearnEntity.m */,
 				F2830F5118FD8C7E0046542B /* PartyDataTheoryEntity.h */,
 				F2830F5218FD8C7E0046542B /* PartyDataTheoryEntity.m */,
-				F2830F4E18FD8C7E0046542B /* PartyDataLearnEntity.h */,
-				F2830F4F18FD8C7E0046542B /* PartyDataLearnEntity.m */,
 				F2830F4B18FD8C7E0046542B /* PartyDataSpiritEntity.h */,
 				F2830F4C18FD8C7E0046542B /* PartyDataSpiritEntity.m */,
 				F2830F4818FD8C7E0046542B /* PartyDataKnowledgeEntity.h */,
@@ -1563,7 +1563,6 @@
 				DC0BFFB018E24C4C002E3D38 /* RefreshTableViewController.m in Sources */,
 				DC0BFFDB18E255F7002E3D38 /* MJRefreshBaseView.m in Sources */,
 				F2830F4718FD8A800046542B /* ProcessTableViewController.m in Sources */,
-				F2830F5018FD8C7E0046542B /* PartyDataLearnEntity.m in Sources */,
 				DC0BFFC618E24CFA002E3D38 /* UIViewController+Network.m in Sources */,
 				DCB22CFA18CC9F37004F36D0 /* helper.m in Sources */,
 				5153824018DAE1CE007C4675 /* CheckForSuggestion.m in Sources */,
@@ -1635,6 +1634,7 @@
 				DC14F9F018E6B109003D6B2C /* RequestData.m in Sources */,
 				DC376ED118E522C6005F7DC8 /* MoodShareNewsEntity.m in Sources */,
 				F23FA50B18E3EB6500E174A2 /* OrganTableViewController.m in Sources */,
+				DCFB714718FF6784005F004B /* PartyDataLearnEntity.m in Sources */,
 				5156D89A18F8100F0044A020 /* CellWithCustomLeftImageAndLabel.m in Sources */,
 				DCB5145818C6DDFD00B7EE95 /* UPTableView.m in Sources */,
 				F23FA51118E3EBFE00E174A2 /* TheoryViewController.m in Sources */,

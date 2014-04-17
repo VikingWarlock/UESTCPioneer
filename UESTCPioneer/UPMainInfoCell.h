@@ -10,7 +10,7 @@
 #import "UPCell.h"
 #define wordsTag          2
 #define wordsFontSize    16
-#define imageViewWidth 100
+#define imageViewWidth 60
 @protocol UPMainInfoCellDelegate<NSObject>
 @optional
 -(void)WholeNewsButtonClick:(NSInteger)theId;

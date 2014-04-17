@@ -98,7 +98,6 @@
 
 -(void)_init{
         [self addHeader];
-        
         // 3.2.上拉加载更多
         [self addFooter];
 }
@@ -120,7 +119,6 @@
     MJRefreshHeaderView *header = [MJRefreshHeaderView header];
 //    [header setBackgroundColor:[UIColor blackColor]];
     header.scrollView = self;
-    
     
     
     

@@ -48,19 +48,24 @@
     
     isFirstEdit1=NO;
     
+    
+    //隐藏默认返回按钮
     [self.navigationItem setHidesBackButton:YES];
+    //修改标题
         self.navigationItem.title=@"编辑分享";
     [self.view setBackgroundColor:ViewControllerBackgroundColor];
     
     
+    //修改背景色为白色
     [self.navigationController.navigationBar setBarTintColor:[UIColor whiteColor]];
+    //修改字体为红色
     [self.navigationController.navigationBar setTintColor:kNavigationBarColor];
     [self.navigationController.navigationBar setTitleTextAttributes:@{NSForegroundColorAttributeName:kNavigationBarColor}];
+    
+    //修改顶部运营商和时间为黑色
     [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleDefault];
     
-    
-    
-    
+    //修改左边button
     UIBarButtonItem *leftBarButton  =[[UIBarButtonItem alloc]initWithTitle:@"取消" style:UIBarButtonItemStylePlain target:self action:@selector(pop:)];
     [self.navigationItem setLeftBarButtonItem:leftBarButton];
     //    [leftBarButton setTitleTextAttributes:@{NSForegroundColorAttributeName:[UIColor grayColor]} forState:UIControlStateNormal];
@@ -113,6 +118,7 @@
 
 -(void)viewWillDisappear:(BOOL)animated{
     [super viewWillDisappear:animated];
+    //还原顶部设置
         [self.navigationController.navigationBar setBarTintColor:kNavigationBarColor];
         [self.navigationController.navigationBar setTintColor:[UIColor whiteColor]];
         [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent];
@@ -418,14 +424,7 @@
 
 //修改行高度的位置
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
-    if (indexPath.row == 0) {
-        return 55;
-    }
-    else if (indexPath.row == 1){
-        return 110;
-    }
-    else
-        return 40;
+    return [super tableView:tableView heightForRowAtIndexPath:indexPath];
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section{

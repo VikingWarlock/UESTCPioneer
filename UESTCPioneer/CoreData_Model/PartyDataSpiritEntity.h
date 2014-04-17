@@ -2,7 +2,9 @@
 //  PartyDataSpiritEntity.h
 //  UESTCPioneer
 //
+
 //  Created by 马君 on 14-4-15.
+
 //  Copyright (c) 2014年 Sway. All rights reserved.
 //
 
@@ -13,12 +15,14 @@
 @interface PartyDataSpiritEntity : NSManagedObject
 
 @property (nonatomic, retain) NSString * content;
+
 @property (nonatomic, retain) NSNumber * theId;
 @property (nonatomic, retain) NSString * picName;
 @property (nonatomic, retain) NSString * picUrl;
 @property (nonatomic, retain) NSString * time;
 @property (nonatomic, retain) NSString * title;
 @property (nonatomic, retain) NSString * type;
+
 @property (nonatomic, retain) NSString * desc;
 
 @end

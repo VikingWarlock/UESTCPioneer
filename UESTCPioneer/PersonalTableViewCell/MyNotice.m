@@ -9,7 +9,23 @@
 #import "MyNotice.h"
 #import "constant.h"
 #import "CellWithCustomLeftImageAndLabel.h"
-@interface MyNotice ()
+#import "PullRefreshTableView.h"
+
+@interface freshTableView :PullRefreshTableView
+
+@end
+
+
+@implementation freshTableView
+
+
+@end
+
+
+@interface MyNotice (){
+    
+
+}
 
 @end
 
@@ -28,6 +44,28 @@
     [super viewDidLoad];
     self.tableView.delegate = self;
     self.tableView.dataSource = self;
+    
+    
+    freshTableView *table = [[freshTableView alloc]init];
+    
+    
+    
+    __weak MyNotice* weakSelf =self;
+    [table setPullDownBeginRefreshBlock:^(MJRefreshBaseView *refreshView) {
+        [weakSelf pullDown:refreshView];
+    }];
+    
+    
+    [table setPullUpBeginRefreshBlock:^(MJRefreshBaseView *refreshView) {
+        [weakSelf pullUp:refreshView];
+    }];
+    
+    
+    
+    
+    
+    
+    
     [self.tableView registerClass:[CellWithCustomLeftImageAndLabel class] forCellReuseIdentifier:@"setcell"
      ];    if(IS_IOS7)
          self.tableView.separatorInset = UIEdgeInsetsZero;
@@ -99,6 +137,13 @@
     // Pass the selected object to the new view controller.
 }
 
+-(void)pullDown:(MJRefreshBaseView*)refreshView{
+
+}
+
+-(void)pullUp:(MJRefreshBaseView*)refreshView{
+
+}
 
 @end
 

@@ -32,6 +32,27 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    
+    
+    
+    //隐藏默认返回按钮
+    [self.navigationItem setHidesBackButton:YES];
+    
+    //修改左边button
+    UIBarButtonItem *leftBarButton  =[[UIBarButtonItem alloc]initWithTitle:@"取消" style:UIBarButtonItemStylePlain target:self.navigationController action:@selector(popViewControllerAnimated:)];
+    [self.navigationItem setLeftBarButtonItem:leftBarButton];
+    
+    //修改背景色为白色
+    [self.navigationController.navigationBar setBarTintColor:[UIColor whiteColor]];
+    //修改字体为红色
+    [self.navigationController.navigationBar setTintColor:kNavigationBarColor];
+    [self.navigationController.navigationBar setTitleTextAttributes:@{NSForegroundColorAttributeName:kNavigationBarColor}];
+    
+    //修改顶部运营商和时间为黑色
+    [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleDefault];
+    
+    
+    
     self.tableView.delegate = self;
     self.tableView.dataSource = self;
     [self.tableView registerClass:[CellForEditPersonalInformation class] forCellReuseIdentifier:@"setcell"];
@@ -44,8 +65,19 @@
 - (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
+    self.navigationItem.title=@"修改信息";
     UIBarButtonItem *right=[[UIBarButtonItem alloc] initWithTitle:@"提交" style:UIBarButtonItemStyleDone target:self action:@selector(complete:)];
     self.navigationItem.rightBarButtonItem = right;
+}
+
+-(void)viewWillDisappear:(BOOL)animated{
+    [super viewWillDisappear:animated];
+    //还原顶部设置
+    [self.navigationController.navigationBar setBarTintColor:kNavigationBarColor];
+    [self.navigationController.navigationBar setTintColor:[UIColor whiteColor]];
+    [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent];
+    [self.navigationItem setHidesBackButton:NO];
+    [self.navigationController.navigationBar setTitleTextAttributes:@{NSForegroundColorAttributeName:[UIColor whiteColor]}];
 }
 
 - (void)complete:(id)sender
