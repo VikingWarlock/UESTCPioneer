@@ -24,7 +24,9 @@
     
     self=[super initWithFrame:rect];
     if (self){
-    
+        //改变缩略图的显示，使得不变形 @张众
+        self.contentMode = UIViewContentModeScaleAspectFill;
+        self.clipsToBounds = YES;
     }
     return self;
 }
