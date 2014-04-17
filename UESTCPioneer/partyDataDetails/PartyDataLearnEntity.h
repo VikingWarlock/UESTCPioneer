@@ -13,6 +13,6 @@
 @interface PartyDataLearnEntity : NSManagedObject
 
 @property (nonatomic, retain) NSNumber * theId;
-@property (nonatomic, retain) NSString * filename;
+@property (nonatomic, retain) NSString * fileName;
 
 @end

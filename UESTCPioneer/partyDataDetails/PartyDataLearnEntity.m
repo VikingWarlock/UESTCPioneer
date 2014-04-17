@@ -12,6 +12,6 @@
 @implementation PartyDataLearnEntity
 
 @dynamic theId;
-@dynamic filename;
+@dynamic fileName;
 
 @end
