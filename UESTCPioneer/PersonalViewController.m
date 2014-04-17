@@ -95,7 +95,7 @@
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
     NSString *userId = [constant getUserId];
-    NSUInteger flag = [[userId substringFromIndex:userId.length - 1] intValue];//管理员id号末尾是1和2，如果是不是管理员则把部分功能隐藏
+    NSUInteger flag = [[userId substringFromIndex:userId.length - 1] intValue];//管理员id号末尾是1和2，如果不是管理员则把部分功能隐藏
 
     if (flag == 0) {
         return 2;

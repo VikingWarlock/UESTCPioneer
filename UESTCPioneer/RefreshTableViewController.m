@@ -34,15 +34,18 @@
     PullUpRefreshTimes=0;
     [self _loadUPTableView];
     
+    
+    
+    
+    
     __weak RefreshTableViewController *weakSelf = self;
-
     [self.tableView setPullDownBeginRefreshBlock:^(MJRefreshBaseView *refreshView) {
         [weakSelf pullDownRefresh:refreshView];
-    }];
+    }];//设置下拉刷新的回调
     
     [self.tableView setPullUpBeginRefreshBlock:^(MJRefreshBaseView *refreshView) {
         [weakSelf pullUpRefresh:refreshView];
-    }];
+    }];//设置上拉加载的回调
     
     
         [self.tableView beginRefreshing];
@@ -99,7 +102,9 @@
 }
 
 #pragma mark - 下拉刷新和上拉加载
--(void)pullDownRefresh:(MJRefreshBaseView*)refreshView{}
+-(void)pullDownRefresh:(MJRefreshBaseView*)refreshView{
+   // [refreshView endRefreshing]
+}
 
 -(void)pullUpRefresh:(MJRefreshBaseView *)refreshView{}
 

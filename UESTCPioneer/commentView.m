@@ -172,6 +172,8 @@
         return;
     }
     self.commitBlock(commentTextField.text);
+
+    
 }
 
 
