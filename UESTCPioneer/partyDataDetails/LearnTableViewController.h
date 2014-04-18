@@ -8,9 +8,10 @@
 
 #import <UIKit/UIKit.h>
 #import "superTableViewController.h"
+#import "DataRefreshTableViewController.h"
 
-@interface LearnTableViewController : superTableViewController
+@interface LearnTableViewController : DataRefreshTableViewController<UITableViewDelegate,UITableViewDataSource>
 
-- (id)initWithRequestData:(NSDictionary *)requestData entityName:(NSString *)entityName Mapping:(NSDictionary *)mapping;
+- (id)initWithRequestData:(NSDictionary *)RequestData entityName:(NSString *)EntityName Mapping:(NSDictionary *)Mapping;
 
 @end

@@ -12,7 +12,7 @@
 #import "AFJSONRequestOperation.h"
 
 @interface OrganTableViewController (){
-    NSDictionary * detailData;
+    NSArray * detailArr;
 }
 
 @property (nonatomic,strong) NSArray * data;
@@ -27,39 +27,25 @@ static  NSString *CellTableIdentifier = @"CellTableIdentifier";
 - (id)initWithRequestData:(NSDictionary*)RequestData EntityName:(NSString *)EntityName Mapping:(NSDictionary*)Mapping{
     if (self) {
         self.title = @"组织架构";
+        
+        UIAlertView * alert = [[UIAlertView alloc] initWithTitle:@"Loading..." message:nil delegate:nil cancelButtonTitle:nil otherButtonTitles:nil];
+        [alert show];
+        
         NSString * requestUrl = @"http://222.197.183.81:8080/UestcApp/ieaction.do?type=getInstitute";
         NSURL * url = [NSURL URLWithString:requestUrl];
         NSURLRequest * request = [NSURLRequest requestWithURL:url];
         [AFJSONRequestOperation JSONRequestOperationWithRequest:request success:^(NSURLRequest *request, NSHTTPURLResponse *response, id JSON) {
-            detailData = (NSDictionary*)JSON;
+ //           detailData = (NSDictionary*)JSON;
         } failure:^(NSURLRequest *request, NSHTTPURLResponse *response, NSError *error, id JSON) {
             NSLog(@"加载失败");
         }];
         
+        [self.tableView reloadData];
+        [alert dismissWithClickedButtonIndex:0 animated:YES];
+        
     }
     return self;
 }
-/*    NSString *weatherUrl = [NSString stringWithFormat:@"%@weather.php?format=json", BaseURLString];
- NSURL *url = [NSURL URLWithString:weatherUrl];
- NSURLRequest *request = [NSURLRequest requestWithURL:url];
- 
- // 2
- AFJSONRequestOperation *operation =
- [AFJSONRequestOperation JSONRequestOperationWithRequest:request
- // 3
- success:^(NSURLRequest *request, NSHTTPURLResponse *response, id JSON) {
- self.weather  = (NSDictionary *)JSON;
- self.title = @"JSON Retrieved";
- [self.tableView reloadData];
- }
- // 4
- failure:^(NSURLRequest *request, NSHTTPURLResponse *response, NSError *error, id JSON) {
- UIAlertView *av = [[UIAlertView alloc] initWithTitle:@"Error Retrieving Weather"
- message:[NSString stringWithFormat:@"%@",error]
- delegate:nil
- cancelButtonTitle:@"OK" otherButtonTitles:nil];
- [av show];
- */
 
 - (id)initWithStyle:(UITableViewStyle)style
 {
@@ -82,19 +68,19 @@ static  NSString *CellTableIdentifier = @"CellTableIdentifier";
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    
     [self.tableView registerClass:[UITableViewCell class] forCellReuseIdentifier: CellTableIdentifier];
-    NSString * requestUrl = @"http://222.197.183.81:8080/UestcApp/ieaction.do?type=getInstitute";
-    NSURL * url = [NSURL URLWithString:requestUrl];
-    NSURLRequest * request = [NSURLRequest requestWithURL:url];
-    [AFJSONRequestOperation JSONRequestOperationWithRequest:request success:^(NSURLRequest *request, NSHTTPURLResponse *response, id JSON) {
-        detailData = (NSDictionary*)JSON;
-        if(detailData == nil) {
-            NSLog(@"aaaaaaa");
-        }
+    
+    
+    
+
+    [NetworkCenter AFRequestWithData:@{@"type":@"getInstitute"} SuccessBlock:^(AFHTTPRequestOperation *operation, id resultObject) {
+        detailArr = [NSJSONSerialization JSONObjectWithData:resultObject options:NSJSONReadingMutableLeaves error:nil];
         
-    } failure:^(NSURLRequest *request, NSHTTPURLResponse *response, NSError *error, id JSON) {
-        NSLog(@"加载失败");
+    } FailureBlock:^(AFHTTPRequestOperation *operation, NSError *error) {
+        
     }];
+    
     // [self.tableView setFrame:CGRectMake(0, 0, 320, 300)];
     
     self.tableView.separatorInset = UIEdgeInsetsZero;
@@ -147,12 +133,15 @@ static  NSString *CellTableIdentifier = @"CellTableIdentifier";
 
 
 - (void) tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
-    NSArray * detailArr;
+    NSDictionary * dic = detailArr[0];
+    NSArray * arr;
     if (indexPath.row == 0) {
-        detailArr = detailData[@"content1"];
-    }else
-        detailArr = detailData[@"content2"];
-    UIViewController * viewController = [[OrganDetailTableViewController alloc] initWithArray:detailArr];
+        arr = dic[@"content1"];
+    }
+    else{
+        arr = dic[@"content2"];
+    }
+    UIViewController * viewController = [[OrganDetailTableViewController alloc] initWithArray:arr];
     [self.navigationController pushViewController:viewController animated:YES];
 }
 

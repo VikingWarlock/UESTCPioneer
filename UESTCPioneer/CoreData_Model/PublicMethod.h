@@ -12,7 +12,6 @@
 
 @interface PublicMethod : NSObject
 
-
 ///以id获取某实体
 +(id)entity:(NSString*)entityName WithId:(NSInteger)theId;
 

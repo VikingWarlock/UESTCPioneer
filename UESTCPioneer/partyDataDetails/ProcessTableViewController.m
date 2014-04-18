@@ -49,15 +49,21 @@ static  NSString *CellTableIdentifier = @"CellTableIdentifier";
 {
     [super viewDidLoad];
     self.title = @"入党流程";
+    
+    UIAlertView *alert;
+    alert = [[UIAlertView alloc] initWithTitle:@"Loading..." message:nil delegate:nil cancelButtonTitle:nil otherButtonTitles: nil];
+    [alert show];
+    
     for (NSString * dangType  in @[@"2",@"3",@"1"]) {
         tableViewEntitiseArray = [[NSMutableArray alloc] init];
         [NetworkCenter RKRequestWithData:@{@"type":@"getParty",@"dangType":dangType} EntityName:@"PartyDataProcessEntity" Mapping:[Mapping PartyDataProcessEntityMapping] SuccessBlock:^(NSArray *resultArray) {
             [tableViewEntitiseArray addObject:resultArray[0]];
-            [self.tableView reloadData];
         } failure:^(NSError *error) {
             NSLog(@"加载失败");
         }];
     }
+    [self.tableView reloadData];
+    [alert dismissWithClickedButtonIndex:0 animated:YES];
     
     [self.tableView registerClass:[UITableViewCell class] forCellReuseIdentifier: CellTableIdentifier];
     

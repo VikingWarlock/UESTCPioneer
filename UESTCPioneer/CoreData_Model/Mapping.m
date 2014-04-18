@@ -122,7 +122,7 @@
 }
 
 +(NSDictionary*)PartyDataGuideEntityMapping{
-    return @{@"ZN_content":@"content",@"ZN_name":@"title",@"ZN_picName":@"piaName",@"ZN_picUrl":@"picUrl",@"ZN_time":@"time",@"id":@"theId"};
+    return @{@"ZN_content":@"content",@"ZN_name":@"title",@"ZN_picName":@"picName",@"ZN_picUrl":@"picUrl",@"ZN_time":@"time",@"id":@"theId"};
 }
 
 +(NSDictionary*)partiesMapping{
@@ -146,8 +146,7 @@
 }
 
 +(NSDictionary*)PartyDataMLearnEntityMapping{
-    return @{@"comeCode":@"comeCode",@"comeFrom":@"comeFrome",@"fileName":@"fileName",@"filePath":@"filePath",@"fileTyoe":@"fileType",@"id":@"theId",@"time":@"time",@"type":@"type",@"typeText":@"typeText"};
+    return @{@"comeCode":@"comeCode",@"comeFrom":@"comeFrom",@"fileName":@"fileName",@"filePath":@"filePath",@"fileTyoe":@"fileType",@"id":@"theId",@"time":@"time",@"type":@"type",@"typeText":@"typeText"};
 }
-
 
 @end

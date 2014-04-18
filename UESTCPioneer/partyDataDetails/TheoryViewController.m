@@ -12,11 +12,11 @@
 #import "PartyDataSpiritEntity.h"
 
 @interface TheoryViewController (){
-    NSDictionary * requestData;
-    NSString * entityName;
-    NSDictionary *mapping;
+//    NSDictionary * requestData;
+//    NSString * entityName;
+  //  NSDictionary *mapping;
 }
-@property (strong) NSArray * tableViewEntitiseArray;
+//@property (strong) NSArray * tableViewEntitiseArray;
 
 @end
 
@@ -29,9 +29,8 @@ static NSString *CellTableIdentifier = @"CellTableIdentifier";
         self.title = title;
         requestData = RequestData;
         entityName = EntityName;
-        mapping = Mapping;
+        entityMapping = Mapping;
         
-        //tableViewEntitiseArray = [[NSArray alloc ] initWithArray:[TheoryViewController downloadDataWithRequestData:RequestData EntityName:EntityName Mapping:Mapping]];
     }
     
     return self;
@@ -49,19 +48,17 @@ static NSString *CellTableIdentifier = @"CellTableIdentifier";
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    [self downloadDataWithRequestData:requestData EntityName:entityName Mapping:mapping];
-    self.tableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 0, 320,self.view.frame.size.height-65) style:UITableViewStylePlain];
+    self.view.backgroundColor = [UIColor whiteColor];
+//    self.tableView = [[UPTableView alloc] initWithFrame:CGRectMake(0, 0, 320,self.view.frame.size.height-65) style:UITableViewStyleGrouped];
+//    self.tableView=[[UPTableView alloc]initWithFrame:CGRectMake(0, 0, 320, 400) style:UITableViewStyleGrouped];
     self.tableView.delegate = self;
     self.tableView.dataSource = self;
     self.tableView.separatorInset = UIEdgeInsetsZero;
     [self.view addSubview:self.tableView];
-    
-    // Uncomment the following line to preserve selection between presentations.
-    // self.clearsSelectionOnViewWillAppear = NO;
-    
-    // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-    // self.navigationItem.rightBarButtonItem = self.editButtonItem;
+    NSLog(@"高度:%f",self.tableView.frame.size.height);
 }
+
+
 
 - (void)didReceiveMemoryWarning
 {
@@ -77,7 +74,7 @@ static NSString *CellTableIdentifier = @"CellTableIdentifier";
     // Return the number of rows in the section.
     
     //return [self.data count];
-    return [self.tableViewEntitiseArray count];
+    return [tableViewEntitiesArray count];
 }
 
 
@@ -87,11 +84,16 @@ static NSString *CellTableIdentifier = @"CellTableIdentifier";
     if(cell == nil){
         cell = [[Cells alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellTableIdentifier];
     }
-    PartyDataSpiritEntity *entity = self.tableViewEntitiseArray[indexPath.row];
+    PartyDataSpiritEntity *entity = tableViewEntitiesArray[indexPath.row];
     cell.titleValue.text = entity.title;
     cell.contentValue.text = entity.desc;
     cell.timeValue.text = entity.time;
     return cell;
+}
+
+
+- (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section{
+    return 0.1;
 }
 
 
@@ -104,8 +106,7 @@ heightForRowAtIndexPath:(NSIndexPath *)indexPath
 
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
-    
-    PartyDataSpiritEntity * entity = self.tableViewEntitiseArray[indexPath.row];
+    PartyDataSpiritEntity * entity = tableViewEntitiesArray[indexPath.row];
     NSDictionary * detailData = @{@"title": entity.title,@"content":entity.content};
     
     //NSDictionary * detailData;
@@ -115,19 +116,6 @@ heightForRowAtIndexPath:(NSIndexPath *)indexPath
     UIViewController * viewController = [[TheoryDetailViewController alloc] initWithDictionary:detailData];
     [self.navigationController pushViewController:viewController animated:YES];
     [self.tableView deselectRowAtIndexPath:indexPath animated:YES];
-}
-
--(void)downloadDataWithRequestData:(NSDictionary*)RequestData EntityName:(NSString *)EntityName Mapping:(NSDictionary*)Mapping{
-    [PublicMethod ClearEntity:EntityName];
-    [NetworkCenter RKRequestWithData:RequestData EntityName:EntityName Mapping:Mapping SuccessBlock:^(NSArray *resultArray) {
-        NSMutableArray * dic = [[NSMutableArray alloc] init];
-        [dic addObjectsFromArray:resultArray];
-        self.tableViewEntitiseArray = [[NSArray alloc] initWithArray:dic];
-        [self.tableView reloadData];
-    } failure:^(NSError *error) {
-        NSLog(@"加载失败");
-    }];
-    
 }
 
 @end

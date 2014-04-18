@@ -7,9 +7,9 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "superTableViewController.h"
+#import "DataRefreshTableViewController.h"
 
-@interface GuideTableViewController : superTableViewController
+@interface GuideTableViewController : DataRefreshTableViewController<UITableViewDelegate,UITableViewDataSource>
 
 
 @end

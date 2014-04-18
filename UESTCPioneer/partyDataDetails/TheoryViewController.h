@@ -7,9 +7,10 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "DataRefreshTableViewController.h"
 
-@interface TheoryViewController : UIViewController<UITableViewDelegate,UITableViewDataSource>
-@property(nonatomic,strong)UITableView * tableView;
+@interface TheoryViewController : DataRefreshTableViewController<UITableViewDelegate,UITableViewDataSource>
+//@property (nonatomic,strong) UPTableView* tableView;
 @property (nonatomic,strong) NSArray * data;
 
 - (id)initWithTitle:(NSString *)title RequestData:(NSDictionary*)RequestData EntityName:(NSString *)EntityName Mapping:(NSDictionary*)Mapping;

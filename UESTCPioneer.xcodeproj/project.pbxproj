@@ -231,6 +231,7 @@
 		F270ECD118FE5F3F00DA82EA /* MLearnTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F270ECD018FE5F3F00DA82EA /* MLearnTableViewController.m */; };
 		F270ECD318FE625000DA82EA /* enter.png in Resources */ = {isa = PBXBuildFile; fileRef = F270ECD218FE625000DA82EA /* enter.png */; };
 		F270ECD618FE6CCB00DA82EA /* PartyDataMLearnEntity.m in Sources */ = {isa = PBXBuildFile; fileRef = F270ECD518FE6CCB00DA82EA /* PartyDataMLearnEntity.m */; };
+		F270ECD918FEC6DA00DA82EA /* DataRefreshTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F270ECD818FEC6DA00DA82EA /* DataRefreshTableViewController.m */; };
 		F2830F4418FD87680046542B /* superTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F2830F4318FD87680046542B /* superTableViewController.m */; };
 		F2830F4718FD8A800046542B /* ProcessTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F2830F4618FD8A800046542B /* ProcessTableViewController.m */; };
 		F2830F4A18FD8C7E0046542B /* PartyDataKnowledgeEntity.m in Sources */ = {isa = PBXBuildFile; fileRef = F2830F4918FD8C7E0046542B /* PartyDataKnowledgeEntity.m */; };
@@ -576,6 +577,8 @@
 		F270ECD218FE625000DA82EA /* enter.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = enter.png; sourceTree = "<group>"; };
 		F270ECD418FE6CCB00DA82EA /* PartyDataMLearnEntity.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PartyDataMLearnEntity.h; path = CoreData_Model/PartyDataMLearnEntity.h; sourceTree = "<group>"; };
 		F270ECD518FE6CCB00DA82EA /* PartyDataMLearnEntity.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PartyDataMLearnEntity.m; path = CoreData_Model/PartyDataMLearnEntity.m; sourceTree = "<group>"; };
+		F270ECD718FEC6DA00DA82EA /* DataRefreshTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DataRefreshTableViewController.h; path = partyDataDetails/DataRefreshTableViewController.h; sourceTree = "<group>"; };
+		F270ECD818FEC6DA00DA82EA /* DataRefreshTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = DataRefreshTableViewController.m; path = partyDataDetails/DataRefreshTableViewController.m; sourceTree = "<group>"; };
 		F2830F4218FD87680046542B /* superTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = superTableViewController.h; path = partyDataDetails/superTableViewController.h; sourceTree = "<group>"; };
 		F2830F4318FD87680046542B /* superTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = superTableViewController.m; path = partyDataDetails/superTableViewController.m; sourceTree = "<group>"; };
 		F2830F4518FD8A800046542B /* ProcessTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ProcessTableViewController.h; path = partyDataDetails/ProcessTableViewController.h; sourceTree = "<group>"; };
@@ -1307,6 +1310,8 @@
 				F23FA50D18E3EBA300E174A2 /* TheoryDetailViewController.m */,
 				F23FA50F18E3EBFE00E174A2 /* TheoryViewController.h */,
 				F23FA51018E3EBFE00E174A2 /* TheoryViewController.m */,
+				F270ECD718FEC6DA00DA82EA /* DataRefreshTableViewController.h */,
+				F270ECD818FEC6DA00DA82EA /* DataRefreshTableViewController.m */,
 			);
 			name = partyDataDetail;
 			sourceTree = "<group>";
@@ -1627,6 +1632,7 @@
 				5153825518DB03A4007C4675 /* PublishNotice.m in Sources */,
 				DC376EDB18E55B60005F7DC8 /* PublicityNewsEntity.m in Sources */,
 				DCA5962918C81AED00F001D9 /* UPComplexSwitch.m in Sources */,
+				F270ECD918FEC6DA00DA82EA /* DataRefreshTableViewController.m in Sources */,
 				F2830F5C18FD90BA0046542B /* PartyDataGuideDetailEntity.m in Sources */,
 				F2830F5618FD8C7F0046542B /* PartyDataGuideEntity.m in Sources */,
 				DCA4DB2118ECEB76001BDA59 /* inputRectView.m in Sources */,
