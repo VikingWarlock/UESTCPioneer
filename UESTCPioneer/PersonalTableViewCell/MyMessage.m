@@ -18,6 +18,7 @@
     NSIndexPath *clickIndex;
     
     NSMutableArray *info;
+    NSMutableArray *message;
     int page;
 }
 @end
@@ -49,6 +50,7 @@
     }];
 
     info = [[NSMutableArray alloc] init];
+    message = [[NSMutableArray alloc] init];
     page = 2;
     // Uncomment the following line to preserve selection between presentations.
     // self.clearsSelectionOnViewWillAppear = NO;
@@ -89,6 +91,11 @@
     return [info count] + increment;
 }
 
+- (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
+{
+    return 0.1;
+}
+
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     if (!choseMessageCell)
@@ -116,20 +123,32 @@
         if (popcell == nil) {
             popcell = [[CellForMyMessage_PopCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:PopCellIdentifier];
         }
-        popcell.label.text = @"xxx祝您生日快乐!";
+        if ([message count] > 0) {
+            popcell.label.text = [message[0] valueForKey:@"content"];
+        }
+        else
+        {
+            popcell.label.text = @"(null)";
+        }
         choseMessageCell = NO;
         return popcell;
     }
     return nil;
 }
 
-- (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
-{
-    return 0.1;
-}
-
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
+    [NetworkCenter AFRequestWithData:[RequestData getSpecialMessageRequestDataWithMsgid:[[info[indexPath.row] valueForKey:@"id"] intValue]] SuccessBlock:^(AFHTTPRequestOperation *operation, id resultObject) {
+        [message removeAllObjects];
+        [message addObjectsFromArray:[NSJSONSerialization JSONObjectWithData:resultObject options:NSJSONReadingMutableContainers error:nil]];
+        
+    } FailureBlock:^(AFHTTPRequestOperation *operation, NSError *error) {
+        [Alert showAlert:@"网络请求失败!"];
+    }];
+
+    
+    
+    
     NSIndexPath *indexOfInsert = [NSIndexPath indexPathForRow:indexPath.row + 1 inSection:indexPath.section];
     [self.refreshTableView beginUpdates];
     if (isSelected == NO)

@@ -80,8 +80,7 @@
 
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
 {
-    NSLog(@"%@",self.textbody);
-    return 400;
+    return 350;
 }
 
 - (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
@@ -181,30 +180,14 @@
 //                                                    attributes:@{NSFontAttributeName: _textbody.font}
 //                                                       context:nil].size;
 //        
-//        _textbody.frame = CGRectMake(10, 0, 300, textSize.height);
+        _textbody.frame = CGRectMake(10, 0, 300, 0.1);
         _textbody.backgroundColor = [UIColor whiteColor];
         _textbody.text = @"texttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttext";
-        _textbody.selectable = NO;
-        _textbody.font = [UIFont systemFontOfSize:16];
-        NSLog(@"%@",_textbody);
+        _textbody.font = [UIFont systemFontOfSize:17];
+        _textbody.editable = NO;
     }
     return _textbody;
 }
 
-
-//- (UILabel *)textbody
-//{
-//    if (!_textbody) {
-//        _textbody = [[UILabel alloc] initWithFrame:CGRectMake(10, 0, 300,30)];
-//        _textbody.numberOfLines = 0;
-//        
-//        _textbody.frame = CGRectMake(10, 0, 300, ([_textbody.text boundingRectWithSize:_textbody.bounds.size
-//                        options:NSStringDrawingUsesLineFragmentOrigin | NSStringDrawingUsesFontLeading
-//                    attributes:@{NSFontAttributeName: [UIFont systemFontOfSize:[UIFont systemFontSize]]}
-//                    context:nil].size).height);
-//        _textbody.backgroundColor = [UIColor whiteColor];
-//    }
-//    return _textbody;
-//}
 
 @end

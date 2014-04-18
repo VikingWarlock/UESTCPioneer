@@ -104,9 +104,12 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     UIViewController *vc = [[UIViewController alloc] init];
-    UITextView *textview = [[UITextView alloc] initWithFrame:vc.view.frame];
-    
+    vc.view.backgroundColor = ViewControllerBackgroundColor;
+    UITextView *textview = [[UITextView alloc] initWithFrame:CGRectMake(10, 5, 300, vc.view.frame.size.height - 44- 20)];
+    textview.editable = NO;
+    textview.font = [UIFont systemFontOfSize:17];
     [NetworkCenter AFRequestWithData:[RequestData getPerAdminNoticeRequestDataWithNoticeid:[[info[indexPath.row] valueForKey:@"id"] intValue]]  SuccessBlock:^(AFHTTPRequestOperation *operation, id resultObject) {
+        [content removeAllObjects];
         [content addObjectsFromArray:[NSJSONSerialization JSONObjectWithData:resultObject options:NSJSONReadingMutableContainers error:nil]];
         if ([content count] > 0) {
             textview.text = [content[0] valueForKey:@"content"];
@@ -120,7 +123,6 @@
     }];
     
     [vc.view addSubview:textview];
-    NSLog(@"%@",textview.text);
     [self.leveyTabBarController.navigationController pushViewController:vc animated:YES];
     [self.refreshTableView deselectRowAtIndexPath:indexPath animated:YES];
 }

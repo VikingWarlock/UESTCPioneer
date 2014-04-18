@@ -11,6 +11,7 @@
 
 @interface MyNotice (){
     NSMutableArray *info;
+    NSMutableArray *content;
     int page;
 
 }
@@ -42,6 +43,7 @@
         [weakSelf pullUp:refreshView];
     }];
     info = [[NSMutableArray alloc] init];
+    content = [[NSMutableArray alloc] init];
     page = 2;
 }
 
@@ -77,6 +79,11 @@
     return [info count];
 }
 
+- (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
+{
+    return 0.1;
+}
+
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     static NSString *CellIdentifier = @"setcell";
@@ -86,13 +93,33 @@
     }
     cell.leftImage.image = [UIImage imageNamed:@"mn.png"];
     cell.label.text = [info[indexPath.row] valueForKey:@"title"];
-    
     return cell;
 }
 
-- (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    return 0.1;
+    UIViewController *vc = [[UIViewController alloc] init];
+    vc.view.backgroundColor = ViewControllerBackgroundColor;
+    UITextView *textview = [[UITextView alloc] initWithFrame:CGRectMake(10, 5, 300, vc.view.frame.size.height - 44- 20)];
+    textview.editable = NO;
+    textview.font = [UIFont systemFontOfSize:17];
+    [NetworkCenter AFRequestWithData:[RequestData getPerAdminNoticeRequestDataWithNoticeid:[[info[indexPath.row] valueForKey:@"id"] intValue]]  SuccessBlock:^(AFHTTPRequestOperation *operation, id resultObject) {
+        [content removeAllObjects];
+        [content addObjectsFromArray:[NSJSONSerialization JSONObjectWithData:resultObject options:NSJSONReadingMutableContainers error:nil]];
+        if ([content count] > 0) {
+            textview.text = [content[0] valueForKey:@"content"];
+        }
+        else
+        {
+            textview.text = @"数据请求错误!";
+        }
+    } FailureBlock:^(AFHTTPRequestOperation *operation, NSError *error) {
+        [Alert showAlert:@"网络请求失败!"];
+    }];
+    
+    [vc.view addSubview:textview];
+    [self.leveyTabBarController.navigationController pushViewController:vc animated:YES];
+    [self.refreshTableView deselectRowAtIndexPath:indexPath animated:YES];
 }
 
 - (PullRefreshTableView *)refreshTableView
