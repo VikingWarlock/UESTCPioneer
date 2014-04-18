@@ -9,6 +9,7 @@
 #import <Foundation/Foundation.h>
 #define baseUrl @"http://222.197.183.81:8080"
 #define tempPattern @"/UestcApp/ieaction.do"
+#define appPattern @"/UestcApp"
 
 @interface NetworkCenter : NSObject
 
@@ -36,10 +37,26 @@
 
 
 /**
+ lastPattern 指例子中的ieaction.do
+ 例子： UestcApp/ieaction.do"
+ 注意，不需要填写那个问号
+ */
++(void)RKRequestWithLastPattern:(NSString*)lastPattern Data:(NSDictionary*)data  EntityName:(NSString*)entity Mapping:(NSDictionary*)mapping  SuccessBlock:(void (^)(NSArray* resultArray))successBlock failure:(void (^) (NSError *error))failureBlock;
+
+
+/**
  AFNetworking的GET请求 ，返回Json数据
  @param data 请求参数如@{@"type":@"getNews",@"page":"1"}
  @param successBlock:请求成功后返回调用的回调
  @param failureBLock:请求失败后的回调
  */
 +(void)AFRequestWithData:(NSDictionary*)data SuccessBlock:(void (^)(AFHTTPRequestOperation *operation,id resultObject))successBlock FailureBlock:(void (^)(AFHTTPRequestOperation *operation,NSError *error))failureBlock;
+
+/**
+ lastPattern 指例子中的ieaction.do
+ 例子： UestcApp/ieaction.do"
+ 注意，不需要填写那个问号
+ */
++(void)AFRequestWithLastPattern:(NSString*)lastPattern Data:(NSDictionary*)data SuccessBlock:(void (^)(AFHTTPRequestOperation *operation,id resultObject))successBlock FailureBlock:(void (^)(AFHTTPRequestOperation *operation,NSError *error))failureBlock;
+
 @end
