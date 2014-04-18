@@ -7,7 +7,9 @@
 //
 
 #import <UIKit/UIKit.h>
-
-@interface BirthCare : UITableViewController
-
+#import "PullRefreshTableView.h"
+#import "constant.h"
+@interface BirthCare : UIViewController <UITableViewDelegate,UITableViewDataSource>
+@property (nonatomic,strong) PullRefreshTableView *refreshTableView;
+@property (nonatomic,strong) UILabel *label;
 @end

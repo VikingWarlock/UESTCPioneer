@@ -86,7 +86,7 @@
     {
         content = self.textView.text;
         
-        [NetworkCenter AFRequestWithData:[RequestData sendNoticeRequestData:content] SuccessBlock:^(AFHTTPRequestOperation *operation, id resultObject) {
+        [NetworkCenter AFRequestWithData:[RequestData sendNoticeRequestDataWithContent:content] SuccessBlock:^(AFHTTPRequestOperation *operation, id resultObject) {
             NSDictionary *dic = [NSJSONSerialization JSONObjectWithData:resultObject options:NSJSONReadingMutableLeaves error:nil];
             if ([dic[@"result"] isEqualToString:@"success"]){
                 resultsuccess = YES;

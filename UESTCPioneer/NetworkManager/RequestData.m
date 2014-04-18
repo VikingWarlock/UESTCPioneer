@@ -88,7 +88,7 @@
 
 
 //个人管理模块请求数据
-+ (NSDictionary *)sendBirthCareRequestData:(NSUInteger)foruserid
++ (NSDictionary *)sendBirthCareRequestDataWithForuserid:(NSUInteger)foruserid
 {
     return @{
              @"type":@"lifecareBless",
@@ -99,7 +99,7 @@
              };
 }
 
-+ (NSDictionary *)getListOfBirthRequestData:(NSUInteger)page
++ (NSDictionary *)getListOfBirthRequestDataWithPage:(NSUInteger)page
 {
     return @{
              @"type":@"lifecareBless",
@@ -109,7 +109,7 @@
              };
 }
 
-+ (NSDictionary *)sendNoticeRequestData:(NSString *)content
++ (NSDictionary *)sendNoticeRequestDataWithContent:(NSString *)content
 {
     return @{
              @"type":@"writeNoticeOrAnnounce",
@@ -120,7 +120,7 @@
              };
 }
 
-+ (NSDictionary *)startActivityRequestData:(NSString *)content title:(NSString *)title
++ (NSDictionary *)startActivityRequestDataWithContent:(NSString *)content title:(NSString *)title
 {
     return @{
              @"type":@"publishEvent",
@@ -131,7 +131,7 @@
              };
 }
 
-+ (NSDictionary *)getDailyCareRequestData:(NSUInteger)page
++ (NSDictionary *)getDailyCareRequestDataWithPage:(NSUInteger)page
 {
     return @{
              @"type":@"lifecareBless",
@@ -141,7 +141,7 @@
              };
 }
 
-+ (NSDictionary *)sendDailyCareRequestData:(NSString *)content
++ (NSDictionary *)sendDailyCareRequestDataWithContent:(NSString *)content
 {
     return @{
              @"type":@"lifecareBless",
@@ -152,7 +152,7 @@
              };
 }
 
-+ (NSDictionary *)getCollectionRequestData:(NSUInteger)page;
++ (NSDictionary *)getCollectionRequestDataWithPage:(NSUInteger)page;
 {
     return @{
              @"type":@"perAdminNotice",
@@ -162,7 +162,7 @@
              };
 }
 
-+ (NSDictionary *)getListOfMessageRequestData:(NSUInteger)page
++ (NSDictionary *)getListOfMessageRequestDataWithPage:(NSUInteger)page
 {
     return @{
              @"type":@"msgRemind",
@@ -171,7 +171,7 @@
              };
 }
 
-+ (NSDictionary *)getSpecialMessageRequestData:(NSUInteger)msgid
++ (NSDictionary *)getSpecialMessageRequestDataWithMsgid:(NSUInteger)msgid
 {
     return @{
              @"type":@"msgRemind",
@@ -181,5 +181,51 @@
              };
 }
 
++ (NSDictionary *)getListOfNoticeRequestDataWithPage:(NSUInteger)page
+{
+    return @{
+             @"type":@"perAdminNotice",
+             @"typepid":@"0",
+             @"userId":[constant getUserId],
+             @"page":[NSString stringWithFormat:@"%d",page],
+             };
+}
+
++ (NSDictionary *)getListOfAnnounceRequestDataWithPage:(NSUInteger)page
+{
+    return @{
+             @"type":@"perAdminAnnounce",
+             @"typepid":@"getAnnnouncelist",
+             @"userId":[constant getUserId],
+             @"page":[NSString stringWithFormat:@"%d",page],
+             };
+}
+
++ (NSDictionary *)getAnnounceContentRequestDataWithAnnounceid:(NSUInteger)announceid
+{
+    return @{
+             @"type":@"perAdminNotice",
+             @"noticeid":[NSString stringWithFormat:@"%d",announceid],
+             };
+}
+
++ (NSDictionary *)getAnnnounceProposalRequestDataWithAnnounceid:(NSUInteger)announceid page:(NSUInteger)page
+{
+    return @{
+             @"type":@"perAdminAnnounce",
+             @"typepid":@"getAnnnounceProposal",
+             @"userId":[constant getUserId],
+             @"announceid":[NSString stringWithFormat:@"%d",announceid],
+             @"page":[NSString stringWithFormat:@"%d",page],
+             };
+}
+
++ (NSDictionary *)getPerAdminNoticeRequestDataWithNoticeid:(NSUInteger)noticeid
+{
+    return @{
+             @"type":@"perAdminNotice",
+             @"noticeid":[NSString stringWithFormat:@"%d",noticeid],
+             };
+}
 
 @end

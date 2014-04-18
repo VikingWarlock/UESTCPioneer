@@ -10,8 +10,6 @@
 
 @interface DailyCare ()
 {
-    MJRefreshHeaderView *header;
-    MJRefreshFooterView *footer;
     NSMutableArray *info;
     int page;
 }
@@ -19,35 +17,30 @@
 
 @implementation DailyCare
 
-- (id)initWithStyle:(UITableViewStyle)style
+- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
-    self = [super initWithStyle:style];
+    self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
         page = 2;
+        [self.view addSubview:self.refreshTableView];
     }
     return self;
 }
+
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    self.tableView.delegate = self;
-    self.tableView.dataSource = self;
-    [self.tableView setAllowsSelection:NO];
-    self.tableView.separatorInset = UIEdgeInsetsZero;
-    [self.tableView registerClass:[CellForDailyCare_TitleCell class] forCellReuseIdentifier:@"title"];
-    [self.tableView registerClass:[CellForDailyCare_BodyCell class] forCellReuseIdentifier:@"body"];
+    info = [[NSMutableArray alloc] init];
     
+    //使用定制的tableview，设置上下拉刷新
+    __weak DailyCare* weakSelf =self;
+    [self.refreshTableView setPullDownBeginRefreshBlock:^(MJRefreshBaseView *refreshView) {
+        [weakSelf pullDown:refreshView];
+    }];
+    [self.refreshTableView setPullUpBeginRefreshBlock:^(MJRefreshBaseView *refreshView) {
+        [weakSelf pullUp:refreshView];
+    }];
     
-    //上下拉刷新
-    
-    header = [MJRefreshHeaderView header];
-    header.scrollView = self.tableView;
-    header.delegate = self;
-    header.tag = MJRefreshViewTypeHeader;
-    footer = [MJRefreshFooterView footer];
-    footer.scrollView = self.tableView;
-    footer.delegate = self;
-    footer.tag = MJRefreshViewTypeFooter;
 }
 
 - (void)viewWillAppear:(BOOL)animated
@@ -65,14 +58,11 @@
     UIBarButtonItem *right=[[UIBarButtonItem alloc] initWithCustomView:customView];
     self.navigationItem.rightBarButtonItem = right;
     
-    [header beginRefreshing];
-
+    [self.refreshTableView beginRefreshing];
 }
 
-- (void)dealloc
-{
-    [header free];
-    [footer free];
+-(void)dealloc{
+    [self.refreshTableView freeHeaderFooter];
 }
 
 - (void)sendCare:(id)sender
@@ -80,11 +70,11 @@
     commentView *co = [[commentView alloc] init];
     [co popUpCommentViewWithCommitBlock:^(NSString *commentBody) {
         
-        [NetworkCenter AFRequestWithData:[RequestData sendDailyCareRequestData:commentBody] SuccessBlock:^(AFHTTPRequestOperation *operation, id resultObject) {
+        [NetworkCenter AFRequestWithData:[RequestData sendDailyCareRequestDataWithContent:commentBody] SuccessBlock:^(AFHTTPRequestOperation *operation, id resultObject) {
             NSDictionary *dic = [NSJSONSerialization JSONObjectWithData:resultObject options:NSJSONReadingMutableLeaves error:nil];
             if ([dic[@"result"] isEqualToString:@"success"]){
                 [Alert showAlert:@"发送关怀成功!"];
-                [header beginRefreshing];
+                [self.refreshTableView beginRefreshing];
                 [co closeCommentView];
             }
             else {
@@ -96,51 +86,6 @@
             NSLog(@"发布通知failureblock");
         }];
     }];
-}
-
-#pragma 下拉刷新代理
-
-
-// 开始进入刷新状态就会调用
-- (void)refreshViewBeginRefreshing:(MJRefreshBaseView *)refreshView
-{
-    if (refreshView.tag == MJRefreshViewTypeHeader) {
-        [NetworkCenter AFRequestWithData:[RequestData getDailyCareRequestData:1] SuccessBlock:^(AFHTTPRequestOperation *operation, id resultObject) {
-            [info removeAllObjects];
-            info = [NSJSONSerialization JSONObjectWithData:resultObject options:NSJSONReadingMutableContainers error:nil];
-            [refreshView endRefreshing];
-        } FailureBlock:^(AFHTTPRequestOperation *operation, NSError *error) {
-            [Alert showAlert:@"网络请求失败!"];
-            [refreshView endRefreshing];
-        }];
-    }
-    else if (refreshView.tag == MJRefreshViewTypeFooter)
-    {
-        if ([info count]%10 == 0)//如果一页没填满就不刷新
-        {
-            [NetworkCenter AFRequestWithData:[RequestData getDailyCareRequestData:page] SuccessBlock:^(AFHTTPRequestOperation *operation, id resultObject) {
-                [info addObjectsFromArray:[NSJSONSerialization JSONObjectWithData:resultObject options:NSJSONReadingMutableContainers error:nil]];
-                [refreshView endRefreshing];
-            } FailureBlock:^(AFHTTPRequestOperation *operation, NSError *error) {
-                [Alert showAlert:@"网络请求失败!"];
-                [refreshView endRefreshing];
-            }];
-        }
-        [refreshView endRefreshing];
-    }
-    
-}
-
-// 刷新完毕就会调用
-- (void)refreshViewEndRefreshing:(MJRefreshBaseView *)refreshView
-{
-    [self.tableView reloadData];
-}
-
-// 刷新状态变更就会调用
-- (void)refreshView:(MJRefreshBaseView *)refreshView stateChange:(MJRefreshState)state
-{
-    
 }
 
 #pragma tableview delegate
@@ -207,7 +152,70 @@
     // Dispose of any resources that can be recreated.
 }
 
+- (PullRefreshTableView *)refreshTableView
+{
+    if (!_refreshTableView) {
+        _refreshTableView = [[PullRefreshTableView alloc] initWithFrame:CGRectMake(0, 0, 320, self.view.frame.size.height - 44- 20) style:UITableViewStyleGrouped];
+        _refreshTableView.delegate = self;
+        _refreshTableView.dataSource = self;
+        [_refreshTableView setAllowsSelection:NO];
+        _refreshTableView.separatorInset = UIEdgeInsetsZero;
+        [_refreshTableView registerClass:[CellForDailyCare_TitleCell class] forCellReuseIdentifier:@"title"];
+        [_refreshTableView registerClass:[CellForDailyCare_BodyCell class] forCellReuseIdentifier:@"body"];
+    }
+    return _refreshTableView;
+}
 
+-(void)pullDown:(MJRefreshBaseView*)refreshView
+{
+    [NetworkCenter AFRequestWithData:[RequestData getDailyCareRequestDataWithPage:1] SuccessBlock:^(AFHTTPRequestOperation *operation, id resultObject) {
+        [info removeAllObjects];
+        [info addObjectsFromArray:[NSJSONSerialization JSONObjectWithData:resultObject options:NSJSONReadingMutableContainers error:nil]];
+        [refreshView endRefreshing];
+        [self.refreshTableView reloadData];
+        page = 2;
+    } FailureBlock:^(AFHTTPRequestOperation *operation, NSError *error) {
+        [Alert showAlert:@"网络请求失败!"];
+        [refreshView endRefreshing];
+    }];
+}
+
+-(void)pullUp:(MJRefreshBaseView*)refreshView
+{
+    if ([info count]%10 == 0)//如果一页没填满就不刷新
+    {
+        [NetworkCenter AFRequestWithData:[RequestData getDailyCareRequestDataWithPage:page] SuccessBlock:^(AFHTTPRequestOperation *operation, id resultObject) {
+            [info addObjectsFromArray:[NSJSONSerialization JSONObjectWithData:resultObject options:NSJSONReadingMutableContainers error:nil]];
+            [refreshView endRefreshing];
+            [self.refreshTableView reloadData];
+            if ([info count] == 0) {
+                self.label.text = @"您暂时没有任何消息!";
+            }
+            else
+            {
+                self.label = nil;
+            }
+            page++;
+        } FailureBlock:^(AFHTTPRequestOperation *operation, NSError *error) {
+            [Alert showAlert:@"网络请求失败!"];
+            [refreshView endRefreshing];
+        }];
+    }
+    else
+        [refreshView endRefreshing];
+}
+
+- (UILabel *)label
+{
+    if (!_label) {
+        _label = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, 320, 30)];
+        _label.center = self.refreshTableView.center;
+        _label.textAlignment = NSTextAlignmentCenter;
+        _label.textColor = [UIColor grayColor];
+        [self.refreshTableView addSubview:_label];
+    }
+    return _label;
+}
 
 @end
 

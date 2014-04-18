@@ -175,13 +175,13 @@
                     aCell = [[PersonalInformation alloc] initWithStyle:UITableViewStyleGrouped];
                     break;
                 case 1:
-                    aCell = [[MyCollection alloc] initWithStyle:UITableViewStyleGrouped];
+                    aCell = [[MyCollection alloc] init];
                     break;
                 case 2:
-                    aCell = [[CheckForSuggestion alloc] initWithStyle:UITableViewStyleGrouped];
+                    aCell = [[CheckForSuggestion alloc] init];
                     break;
                 case 3:
-                    aCell = [[MyMessage alloc] initWithStyle:UITableViewStyleGrouped];
+                    aCell = [[MyMessage alloc] init];
                     break;
                 default:
                     break;
@@ -190,10 +190,10 @@
         case 1:
             switch (indexPath.row) {
                 case 0:
-                    aCell = [[BirthCare alloc] initWithStyle:UITableViewStyleGrouped];
+                    aCell = [[BirthCare alloc] init];
                     break;
                 case 1:
-                    aCell = [[DailyCare alloc] initWithStyle:UITableViewStyleGrouped];
+                    aCell = [[DailyCare alloc] init];
                     break;
                     
                 default:
@@ -209,7 +209,7 @@
                     aCell = [[PublishNotice alloc] init];
                     break;
                 case 2:
-                    aCell = [[MyNotice alloc] initWithStyle:UITableViewStyleGrouped];
+                    aCell = [[MyNotice alloc] init];
                     break;
                 default:
                     break;

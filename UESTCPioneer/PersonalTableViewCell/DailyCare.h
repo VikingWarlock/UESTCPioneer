@@ -7,9 +7,13 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "MJRefresh.h"
 #import "CellForDailyCare_BodyCell.h"
 #import "CellForDailyCare_TitleCell.h"
 #import "commentView.h"
-@interface DailyCare : UITableViewController <MJRefreshBaseViewDelegate>
+#import "PullRefreshTableView.h"
+
+@interface DailyCare : UIViewController <UITableViewDelegate,UITableViewDataSource>
+@property (nonatomic,strong) PullRefreshTableView *refreshTableView;
+@property (nonatomic,strong) UILabel *label;
+
 @end

@@ -7,23 +7,11 @@
 //
 
 #import "MyNotice.h"
-#import "constant.h"
 #import "CellWithCustomLeftImageAndLabel.h"
-#import "PullRefreshTableView.h"
-
-@interface freshTableView :PullRefreshTableView
-
-@end
-
-
-@implementation freshTableView
-
-
-@end
-
 
 @interface MyNotice (){
-    
+    NSMutableArray *info;
+    int page;
 
 }
 
@@ -31,10 +19,12 @@
 
 @implementation MyNotice
 
-- (id)initWithStyle:(UITableViewStyle)style
+- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
-    self = [super initWithStyle:style];
+    self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
+        // Custom initialization
+        [self.view addSubview:self.refreshTableView];
     }
     return self;
 }
@@ -42,45 +32,29 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    self.tableView.delegate = self;
-    self.tableView.dataSource = self;
     
-    
-    freshTableView *table = [[freshTableView alloc]init];
-    
-    
-    
+    //使用定制的tableview，设置上下拉刷新
     __weak MyNotice* weakSelf =self;
-    [table setPullDownBeginRefreshBlock:^(MJRefreshBaseView *refreshView) {
+    [self.refreshTableView setPullDownBeginRefreshBlock:^(MJRefreshBaseView *refreshView) {
         [weakSelf pullDown:refreshView];
     }];
-    
-    
-    [table setPullUpBeginRefreshBlock:^(MJRefreshBaseView *refreshView) {
+    [self.refreshTableView setPullUpBeginRefreshBlock:^(MJRefreshBaseView *refreshView) {
         [weakSelf pullUp:refreshView];
     }];
-    
-    
-    
-    
-    
-    
-    
-    [self.tableView registerClass:[CellWithCustomLeftImageAndLabel class] forCellReuseIdentifier:@"setcell"
-     ];    if(IS_IOS7)
-         self.tableView.separatorInset = UIEdgeInsetsZero;
-    [self setExtraCellLineHidden];
-    // Uncomment the following line to preserve selection between presentations.
-    // self.clearsSelectionOnViewWillAppear = NO;
-    
-    // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-    // self.navigationItem.rightBarButtonItem = self.editButtonItem;
+    info = [[NSMutableArray alloc] init];
+    page = 2;
 }
 
 - (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
     self.navigationItem.title = @"我的通知";
+    [self.refreshTableView beginRefreshing];
+
+}
+
+-(void)dealloc{
+    [self.refreshTableView freeHeaderFooter];
 }
 
 - (void)didReceiveMemoryWarning
@@ -100,7 +74,7 @@
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
     // Return the number of rows in the section.
-    return 4;
+    return [info count];
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -111,7 +85,7 @@
         cell = [[CellWithCustomLeftImageAndLabel alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
     }
     cell.leftImage.image = [UIImage imageNamed:@"mn.png"];
-    cell.label.text = @"天气通知";
+    cell.label.text = [info[indexPath.row] valueForKey:@"title"];
     
     return cell;
 }
@@ -121,29 +95,69 @@
     return 0.1;
 }
 
--(void)setExtraCellLineHidden
+- (PullRefreshTableView *)refreshTableView
 {
-    UIView *view = [[UIView alloc] init];
-    view.backgroundColor = [UIColor clearColor];
-    [self.tableView setTableFooterView:view];
+    if (!_refreshTableView) {
+        _refreshTableView = [[PullRefreshTableView alloc] initWithFrame:CGRectMake(0, 0, 320, self.view.frame.size.height - 44- 20) style:UITableViewStyleGrouped];
+        _refreshTableView.delegate = self;
+        _refreshTableView.dataSource = self;
+        [_refreshTableView registerClass:[CellWithCustomLeftImageAndLabel class] forCellReuseIdentifier:@"setcell"
+         ];
+        if(IS_IOS7)
+            _refreshTableView.separatorInset = UIEdgeInsetsZero;
+    }
+    return _refreshTableView;
 }
 
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
+-(void)pullDown:(MJRefreshBaseView*)refreshView
 {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
+    [NetworkCenter AFRequestWithData:[RequestData getListOfNoticeRequestDataWithPage:1] SuccessBlock:^(AFHTTPRequestOperation *operation, id resultObject) {
+        [info removeAllObjects];
+        [info addObjectsFromArray:[NSJSONSerialization JSONObjectWithData:resultObject options:NSJSONReadingMutableContainers error:nil]];
+        [refreshView endRefreshing];
+        [self.refreshTableView reloadData];
+        page = 2;
+    } FailureBlock:^(AFHTTPRequestOperation *operation, NSError *error) {
+        [Alert showAlert:@"网络请求失败!"];
+        [refreshView endRefreshing];
+    }];
 }
 
--(void)pullDown:(MJRefreshBaseView*)refreshView{
-
+-(void)pullUp:(MJRefreshBaseView*)refreshView
+{
+    if ([info count]%10 == 0)//如果一页没填满就不刷新
+    {
+        [NetworkCenter AFRequestWithData:[RequestData getListOfNoticeRequestDataWithPage:page] SuccessBlock:^(AFHTTPRequestOperation *operation, id resultObject) {
+            [info addObjectsFromArray:[NSJSONSerialization JSONObjectWithData:resultObject options:NSJSONReadingMutableContainers error:nil]];
+            [refreshView endRefreshing];
+            [self.refreshTableView reloadData];
+            if ([info count] == 0) {
+                self.label.text = @"您暂时没有任何通知!";
+            }
+            else
+            {
+                self.label = nil;
+            }
+            page++;
+        } FailureBlock:^(AFHTTPRequestOperation *operation, NSError *error) {
+            [Alert showAlert:@"网络请求失败!"];
+            [refreshView endRefreshing];
+        }];
+    }
+    else
+        [refreshView endRefreshing];
 }
 
--(void)pullUp:(MJRefreshBaseView*)refreshView{
-
+- (UILabel *)label
+{
+    if (!_label) {
+        _label = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, 320, 30)];
+        _label.center = self.refreshTableView.center;
+        _label.textAlignment = NSTextAlignmentCenter;
+        _label.textColor = [UIColor grayColor];
+        [self.refreshTableView addSubview:_label];
+    }
+    return _label;
 }
-
 @end
 
