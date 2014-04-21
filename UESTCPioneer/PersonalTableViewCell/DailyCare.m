@@ -59,6 +59,10 @@
     self.navigationItem.rightBarButtonItem = right;
     
     [self.refreshTableView beginRefreshing];
+    
+    
+    self.leveyTabBarController.navigationItem.title = @"";
+
 }
 
 -(void)dealloc{

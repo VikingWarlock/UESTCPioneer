@@ -52,6 +52,9 @@
     [super viewWillAppear:animated];
     self.navigationItem.title = @"我的通知";
     [self.refreshTableView beginRefreshing];
+    
+    
+    self.leveyTabBarController.navigationItem.title = @"";
 
 }
 
@@ -118,6 +121,7 @@
     }];
     
     [vc.view addSubview:textview];
+    vc.navigationItem.title = @"通知内容";
     [self.leveyTabBarController.navigationController pushViewController:vc animated:YES];
     [self.refreshTableView deselectRowAtIndexPath:indexPath animated:YES];
 }

@@ -50,6 +50,11 @@
 {
     [super viewWillAppear:animated];
     [self.refreshTableView beginRefreshing];
+    
+    
+    self.navigationItem.title = @"查看意见";
+    self.leveyTabBarController.navigationItem.title = @"";
+
 }
 
 -(void)dealloc{
@@ -85,7 +90,10 @@
 
 - (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
 {
-    return self.textbody;
+    UIView *aview = [[UIView alloc] init];
+    aview.backgroundColor = [UIColor whiteColor];
+    [aview addSubview:self.textbody];
+    return aview;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -180,11 +188,13 @@
 //                                                    attributes:@{NSFontAttributeName: _textbody.font}
 //                                                       context:nil].size;
 //        
-        _textbody.frame = CGRectMake(10, 0, 300, 0.1);
+        _textbody.frame = CGRectMake(10, 0, 300, 350);
         _textbody.backgroundColor = [UIColor whiteColor];
-        _textbody.text = @"texttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttexttext";
+        _textbody.text = @"";
         _textbody.font = [UIFont systemFontOfSize:17];
         _textbody.editable = NO;
+        _textbody.layer.borderWidth = 1;
+        _textbody.layer.borderColor = [[UIColor colorWithRed:154.0/255.0 green:154.0/255.0 blue:154.0/255.0 alpha:1] CGColor];
     }
     return _textbody;
 }

@@ -9,5 +9,9 @@
 #import <UIKit/UIKit.h>
 
 @interface CellForMyMessage_PopCell : UITableViewCell
-@property (nonatomic,strong) UILabel *label;
+@property (nonatomic,strong) UIImageView *leftImage;
+@property (nonatomic,strong) UIImageView *popView;
+@property (nonatomic,strong) UILabel *title;
+@property (nonatomic,strong) UILabel *content;
+@property (nonatomic,assign) BOOL isOpen;
 @end

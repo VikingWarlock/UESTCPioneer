@@ -50,6 +50,11 @@
     self.navigationItem.title = @"生日关怀";
     
     [self.refreshTableView beginRefreshing];
+    
+    
+    
+    self.leveyTabBarController.navigationItem.title = @"";
+
 }
 
 -(void)dealloc{

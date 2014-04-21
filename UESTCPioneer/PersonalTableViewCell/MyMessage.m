@@ -9,13 +9,14 @@
 #import "MyMessage.h"
 #import "CellWithCustomLeftImageAndLabel.h"
 #import "CellForMyMessage_PopCell.h"
+#define RowHeight     44
+#define RowSubHeight  30
 @interface MyMessage ()
 {
-    int increment;
-    BOOL isSelected;
-    BOOL choseMessageCell;
-    NSIndexPath *popIndex;
-    NSIndexPath *clickIndex;
+    BOOL isOpen;
+    NSIndexPath *lastClickIndex;
+    BOOL isClickSameCell;
+    NSMutableArray *array;
     
     NSMutableArray *info;
     NSMutableArray *message;
@@ -37,7 +38,14 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    popIndex = [NSIndexPath indexPathForRow:-1 inSection:0];
+    [_refreshTableView registerClass:[CellForMyMessage_PopCell class] forCellReuseIdentifier:@"reusecell"];
+    array = [[NSMutableArray alloc] init];
+    isOpen = YES;
+    isClickSameCell = NO;
+    lastClickIndex = [[NSIndexPath alloc] init];
+    lastClickIndex = nil;
+    
+    
     
     
     //使用定制的tableview，设置上下拉刷新
@@ -48,7 +56,7 @@
     [self.refreshTableView setPullUpBeginRefreshBlock:^(MJRefreshBaseView *refreshView) {
         [weakSelf pullUp:refreshView];
     }];
-
+    
     info = [[NSMutableArray alloc] init];
     message = [[NSMutableArray alloc] init];
     page = 2;
@@ -65,6 +73,15 @@
     self.navigationItem.title = @"我的消息";
     
     [self.refreshTableView beginRefreshing];
+    
+    
+    self.leveyTabBarController.navigationItem.title = @"";
+    
+}
+
+- (void)viewDidAppear:(BOOL)animated
+{
+    [super viewDidAppear:animated];
 }
 
 -(void)dealloc{
@@ -81,14 +98,12 @@
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
-    // Return the number of sections.
     return 1;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    // Return the number of rows in the section.
-    return [info count] + increment;
+    return [info count];;
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
@@ -96,95 +111,128 @@
     return 0.1;
 }
 
-- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    if (!choseMessageCell)
-    {
-        static NSString *CellIdentifier = @"setcell";
-        CellWithCustomLeftImageAndLabel *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
-        if (cell == nil) {
-            cell = [[CellWithCustomLeftImageAndLabel alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
+    if ([indexPath isEqual:lastClickIndex]) {
+        if (isOpen == YES) {
+            
+            return RowHeight + RowSubHeight;
+            
+        }else{
+            
+            return RowHeight;
         }
-        if ([[info[indexPath.row] valueForKey:@"chaKan"] isEqualToString:@"1"])
-        {
-            cell.leftImage.image = nil;
-        }
-        else
-        {
-            cell.leftImage.image = [UIImage imageNamed:@"mm.png"];
-        }
-        cell.label.text = [NSString stringWithFormat:@"来自%@的消息",[info[indexPath.row] valueForKey:@"userName"]];
-        return cell;
+        
     }
     else
-    {
-        static NSString *PopCellIdentifier = @"setpopcell";
-        CellForMyMessage_PopCell *popcell = [tableView dequeueReusableCellWithIdentifier:PopCellIdentifier];
-        if (popcell == nil) {
-            popcell = [[CellForMyMessage_PopCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:PopCellIdentifier];
-        }
-        if ([message count] > 0) {
-            popcell.label.text = [message[0] valueForKey:@"content"];
-        }
-        else
-        {
-            popcell.label.text = @"(null)";
-        }
-        choseMessageCell = NO;
-        return popcell;
+        return RowHeight;
+    
+}
+
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    static NSString *cellReuserId = @"reusecell";
+    CellForMyMessage_PopCell *cell = [tableView dequeueReusableCellWithIdentifier:cellReuserId];
+    cell.leftImage.image = [UIImage imageNamed:@"mm.png"];//cell重用的时候重置image
+    if (cell == nil) {
+        cell = [[CellForMyMessage_PopCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellReuserId];
     }
-    return nil;
+    
+    if (indexPath.row == lastClickIndex.row && lastClickIndex != nil) {
+        //如果是展开
+        if (isOpen == YES) {
+            cell.isOpen = YES;
+
+        }else{
+            //收起
+            cell.isOpen = NO;
+            cell.content.text = nil;
+        }
+        
+        //不是自身
+    } else {
+        cell.isOpen = NO;
+        cell.content.text = nil;
+    }
+    cell.title.text = [NSString stringWithFormat:@"来自%@的消息",[info[indexPath.row] valueForKeyPath:@"userName"] ];
+    //cell.content.text = [message[indexPath.row] valueForKeyPath:@"content"];
+    
+    for (NSIndexPath *obj in array) {
+        if ([obj isEqual:indexPath]) {
+            cell.leftImage.image = nil;
+        }
+    }
+    return cell;
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
+//    [NetworkCenter AFRequestWithData:[RequestData getSpecialMessageRequestDataWithMsgid:[[info[indexPath.row] valueForKey:@"id"] intValue]] SuccessBlock:^(AFHTTPRequestOperation *operation, id resultObject) {
+//        [message removeAllObjects];
+//        [message addObjectsFromArray:[NSJSONSerialization JSONObjectWithData:resultObject options:NSJSONReadingMutableContainers error:nil]];
+//        
+//    } FailureBlock:^(AFHTTPRequestOperation *operation, NSError *error) {
+//        [Alert showAlert:@"网络请求失败!"];
+//    }];
+//    
+//    
+//    
+//    
+//    NSIndexPath *indexOfInsert = [NSIndexPath indexPathForRow:indexPath.row + 1 inSection:indexPath.section];
+//    [self.refreshTableView beginUpdates];
+//    if (isSelected == NO)
+//    {
+//        [((CellWithCustomLeftImageAndLabel *)[self.refreshTableView cellForRowAtIndexPath:indexPath]).leftImage removeFromSuperview];
+//        increment++;
+//        [self.refreshTableView insertRowsAtIndexPaths:[NSArray arrayWithObject:indexOfInsert] withRowAnimation:UITableViewRowAnimationTop];
+//        isSelected = YES;
+//        choseMessageCell = YES;
+//#warning magic number following!!!
+//        UIButton *mask = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, 320, 568)];
+//        [self.view insertSubview:mask aboveSubview:self.view];
+//        [mask addTarget:self action:@selector(popBack:) forControlEvents:UIControlEventTouchUpInside];
+//        self.refreshTableView.scrollEnabled = NO;
+//    }
+//    popIndex = indexOfInsert;
+//    clickIndex = indexPath;
+//    [self.refreshTableView endUpdates];
+    
+
     [NetworkCenter AFRequestWithData:[RequestData getSpecialMessageRequestDataWithMsgid:[[info[indexPath.row] valueForKey:@"id"] intValue]] SuccessBlock:^(AFHTTPRequestOperation *operation, id resultObject) {
         [message removeAllObjects];
         [message addObjectsFromArray:[NSJSONSerialization JSONObjectWithData:resultObject options:NSJSONReadingMutableContainers error:nil]];
-        
+        ((CellForMyMessage_PopCell *)[tableView cellForRowAtIndexPath:indexPath]).content.text = [message[0] valueForKey:@"content"];
+
     } FailureBlock:^(AFHTTPRequestOperation *operation, NSError *error) {
         [Alert showAlert:@"网络请求失败!"];
     }];
-
     
     
     
-    NSIndexPath *indexOfInsert = [NSIndexPath indexPathForRow:indexPath.row + 1 inSection:indexPath.section];
-    [self.refreshTableView beginUpdates];
-    if (isSelected == NO)
-    {
-        [((CellWithCustomLeftImageAndLabel *)[self.refreshTableView cellForRowAtIndexPath:indexPath]).leftImage removeFromSuperview];
-        increment++;
-        [self.refreshTableView insertRowsAtIndexPaths:[NSArray arrayWithObject:indexOfInsert] withRowAnimation:UITableViewRowAnimationTop];
-        isSelected = YES;
-        choseMessageCell = YES;
-#warning magic number following!!!
-        UIButton *mask = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, 320, 568)];
-        [self.view insertSubview:mask aboveSubview:self.view];
-        [mask addTarget:self action:@selector(popBack:) forControlEvents:UIControlEventTouchUpInside];
-        self.refreshTableView.scrollEnabled = NO;
+    //将索引加到数组中
+    NSArray *indexPaths = [NSArray arrayWithObject:indexPath];
+    //判断选中不同row状态时候
+    if (lastClickIndex != nil && indexPath.row == lastClickIndex.row) {
+        //将选中的和所有索引都加进数组中
+        //        indexPaths = [NSArray arrayWithObjects:indexPath,selectedIndex, nil];
+        isOpen = !isOpen;
+    }else if (lastClickIndex != nil && indexPath.row != lastClickIndex.row) {
+        indexPaths = [NSArray arrayWithObjects:indexPath,lastClickIndex, nil];
+        isOpen = YES;
     }
-    popIndex = indexOfInsert;
-    clickIndex = indexPath;
-    [self.refreshTableView endUpdates];
+    //记下选中的索引
+    lastClickIndex = indexPath;
+    //刷新
+    ((CellForMyMessage_PopCell *)[tableView cellForRowAtIndexPath:indexPath]).leftImage.image = nil;
+    [array addObject:indexPath];
+    [tableView reloadRowsAtIndexPaths:indexPaths withRowAnimation:UITableViewRowAnimationFade];
 }
 
-- (void)popBack:(id)sender
-{
-    increment--;
-    [self.refreshTableView deleteRowsAtIndexPaths:[NSArray arrayWithObject:popIndex] withRowAnimation:UITableViewRowAnimationTop];
-    [self.refreshTableView deselectRowAtIndexPath:clickIndex animated:NO];
-    isSelected = NO;
-    [sender removeFromSuperview];
-    self.refreshTableView.scrollEnabled = YES;
-}
 
 - (PullRefreshTableView *)refreshTableView
 {
     if (!_refreshTableView) {
         _refreshTableView = [[PullRefreshTableView alloc] initWithFrame:CGRectMake(0, 0, 320, self.view.frame.size.height - 44- 20) style:UITableViewStyleGrouped];
-        [_refreshTableView registerClass:[CellWithCustomLeftImageAndLabel class] forCellReuseIdentifier:@"setcell"];
-        [_refreshTableView registerClass:[CellForMyMessage_PopCell class] forCellReuseIdentifier:@"setpopcell"];
         if(IS_IOS7)
             _refreshTableView.separatorInset = UIEdgeInsetsZero;
         _refreshTableView.delegate = self;
@@ -205,6 +253,9 @@
         [Alert showAlert:@"网络请求失败!"];
         [refreshView endRefreshing];
     }];
+    
+    
+    
 }
 
 -(void)pullUp:(MJRefreshBaseView*)refreshView

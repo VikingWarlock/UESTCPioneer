@@ -14,10 +14,10 @@
 {
     self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
     if (self) {
-        [self addSubview:self.name];
-        [self addSubview:self.date];
-        [self addSubview:self.headImage];
-        [self addSubview:self.content];
+        [self.contentView addSubview:self.name];
+        [self.contentView addSubview:self.date];
+        [self.contentView addSubview:self.headImage];
+        [self.contentView addSubview:self.content];
         // Initialization code
     }
     return self;

@@ -57,6 +57,10 @@
     
     [self.refreshTableView beginRefreshing];
 
+    
+    
+    self.leveyTabBarController.navigationItem.title = @"";
+
 }
 
 -(void)dealloc{
