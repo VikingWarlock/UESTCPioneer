@@ -31,6 +31,9 @@
     return self;
 }
 
+
+
+
 @end
 
 @interface UPMainInfoCell(){
@@ -138,10 +141,27 @@
         [self setHasImage:YES];
         
         
+        
+        //@先隐藏所有图片
+        for (NSInteger i=0;i<4;i++){
+            newsImage *v = imageViewArray[i];
+            [v setHidden:YES];
+        }
+        
         NSInteger length =[imageUrlArray count];
         if(length>4)length=4;
         for (NSInteger i=0;i<length;i++){
+            
+            
+            
+            
             newsImage *v = imageViewArray[i];
+            [v setHidden:NO];
+            [self setImageViewFrame:v withImageNum:length Index:i];
+            
+            
+            
+            
 //            [v setImageWithURL:[NSURL URLWithString:imageUrlArray[i]]];
             [v setImageWithURL:[NSURL URLWithString:imageUrlArray[i]] completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType) {
                 
@@ -151,6 +171,28 @@
         
     
     }
+}
+
+-(void)setImageViewFrame:(UIImageView*)imageView withImageNum:(NSInteger)imageNum Index:(NSInteger)index{
+    CGFloat width;
+    switch (imageNum) {
+        case 1:
+            width=imageViewWidth+90;
+            break;
+        case 2:
+            width=imageViewWidth+60;
+            break;
+        case 3:
+            width=imageViewWidth+20;
+            break;
+        case 4:
+            width=imageViewWidth;
+            break;
+        default:
+            width=imageViewWidth;
+            break;
+    }
+    [imageView setFrame:CGRectMake(10+index*(width+10), 115, width, width)];
 }
 
 
