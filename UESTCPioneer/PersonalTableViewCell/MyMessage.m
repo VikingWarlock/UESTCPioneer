@@ -136,6 +136,10 @@
     cell.leftImage.image = [UIImage imageNamed:@"mm.png"];//cell重用的时候重置image
     if (cell == nil) {
         cell = [[CellForMyMessage_PopCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellReuserId];
+        if ([info[indexPath.row] valueForKeyPath:@"chaKan"])
+            cell.leftImage.image = nil;
+        else
+            cell.leftImage.image = [UIImage imageNamed:@"mm.png"];
     }
     
     if (indexPath.row == lastClickIndex.row && lastClickIndex != nil) {
@@ -155,7 +159,6 @@
         cell.content.text = nil;
     }
     cell.title.text = [NSString stringWithFormat:@"来自%@的消息",[info[indexPath.row] valueForKeyPath:@"userName"] ];
-    //cell.content.text = [message[indexPath.row] valueForKeyPath:@"content"];
     
     for (NSIndexPath *obj in array) {
         if ([obj isEqual:indexPath]) {

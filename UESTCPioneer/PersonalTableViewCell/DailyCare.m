@@ -72,8 +72,8 @@
 - (void)sendCare:(id)sender
 {
     commentView *co = [[commentView alloc] init];
+    [co.commentTextField becomeFirstResponder];
     [co popUpCommentViewWithCommitBlock:^(NSString *commentBody) {
-        
         [NetworkCenter AFRequestWithData:[RequestData sendDailyCareRequestDataWithContent:commentBody] SuccessBlock:^(AFHTTPRequestOperation *operation, id resultObject) {
             NSDictionary *dic = [NSJSONSerialization JSONObjectWithData:resultObject options:NSJSONReadingMutableLeaves error:nil];
             if ([dic[@"result"] isEqualToString:@"success"]){
@@ -90,6 +90,7 @@
             NSLog(@"发布通知failureblock");
         }];
     }];
+
 }
 
 #pragma tableview delegate
