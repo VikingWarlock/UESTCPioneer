@@ -91,6 +91,7 @@
             if ([dic[@"result"] isEqualToString:@"success"]){
                 resultsuccess = YES;
                 [Alert showAlert:@"发布通知成功!"];
+                
             }
             else {
                 resultsuccess = NO;

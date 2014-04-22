@@ -217,6 +217,8 @@
 		F214422A18E9332D00B56DEE /* 02.png in Resources */ = {isa = PBXBuildFile; fileRef = F214422618E9332D00B56DEE /* 02.png */; };
 		F214422B18E9332D00B56DEE /* dropdownbg.png in Resources */ = {isa = PBXBuildFile; fileRef = F214422718E9332D00B56DEE /* dropdownbg.png */; };
 		F214422C18E9332D00B56DEE /* sepline.png in Resources */ = {isa = PBXBuildFile; fileRef = F214422818E9332D00B56DEE /* sepline.png */; };
+		F23F69C019011E7000220268 /* PartyDataQAEntity.m in Sources */ = {isa = PBXBuildFile; fileRef = F23F69BF19011E7000220268 /* PartyDataQAEntity.m */; };
+		F23F69C31901250700220268 /* QATableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = F23F69C21901250700220268 /* QATableViewCell.m */; };
 		F23FA4F918E3E8AA00E174A2 /* Cells.m in Sources */ = {isa = PBXBuildFile; fileRef = F23FA4F818E3E8AA00E174A2 /* Cells.m */; };
 		F23FA4FC18E3E97300E174A2 /* GuideDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F23FA4FB18E3E97300E174A2 /* GuideDetailViewController.m */; };
 		F23FA4FF18E3E9CA00E174A2 /* GuideTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F23FA4FE18E3E9CA00E174A2 /* GuideTableViewController.m */; };
@@ -548,6 +550,10 @@
 		F214422618E9332D00B56DEE /* 02.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 02.png; sourceTree = "<group>"; };
 		F214422718E9332D00B56DEE /* dropdownbg.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = dropdownbg.png; sourceTree = "<group>"; };
 		F214422818E9332D00B56DEE /* sepline.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = sepline.png; sourceTree = "<group>"; };
+		F23F69BE19011E7000220268 /* PartyDataQAEntity.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PartyDataQAEntity.h; path = CoreData_Model/PartyDataQAEntity.h; sourceTree = "<group>"; };
+		F23F69BF19011E7000220268 /* PartyDataQAEntity.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PartyDataQAEntity.m; path = CoreData_Model/PartyDataQAEntity.m; sourceTree = "<group>"; };
+		F23F69C11901250700220268 /* QATableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = QATableViewCell.h; path = partyDataDetails/QATableViewCell.h; sourceTree = "<group>"; };
+		F23F69C21901250700220268 /* QATableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = QATableViewCell.m; path = partyDataDetails/QATableViewCell.m; sourceTree = "<group>"; };
 		F23FA4F718E3E8AA00E174A2 /* Cells.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Cells.h; path = partyDataDetails/Cells.h; sourceTree = "<group>"; };
 		F23FA4F818E3E8AA00E174A2 /* Cells.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Cells.m; path = partyDataDetails/Cells.m; sourceTree = "<group>"; };
 		F23FA4FA18E3E97300E174A2 /* GuideDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GuideDetailViewController.h; path = partyDataDetails/GuideDetailViewController.h; sourceTree = "<group>"; };
@@ -800,6 +806,8 @@
 				88E1AFD518CACC3C008D92B7 /* PublicMethod.h */,
 				88E1AFD618CACC3C008D92B7 /* PublicMethod.m */,
 				DC0BFFB518E24C89002E3D38 /* Pioneer_DataModel.xcdatamodeld */,
+				F23F69BE19011E7000220268 /* PartyDataQAEntity.h */,
+				F23F69BF19011E7000220268 /* PartyDataQAEntity.m */,
 				F270ECD418FE6CCB00DA82EA /* PartyDataMLearnEntity.h */,
 				F270ECD518FE6CCB00DA82EA /* PartyDataMLearnEntity.m */,
 				F2830F5A18FD90BA0046542B /* PartyDataGuideDetailEntity.h */,
@@ -1278,6 +1286,8 @@
 				F2830F4618FD8A800046542B /* ProcessTableViewController.m */,
 				F214420118E8605700B56DEE /* QAViewController.h */,
 				F214420218E8605700B56DEE /* QAViewController.m */,
+				F23F69C11901250700220268 /* QATableViewCell.h */,
+				F23F69C21901250700220268 /* QATableViewCell.m */,
 				F23FA4F718E3E8AA00E174A2 /* Cells.h */,
 				F23FA4F818E3E8AA00E174A2 /* Cells.m */,
 				F23FA4FA18E3E97300E174A2 /* GuideDetailViewController.h */,
@@ -1587,6 +1597,7 @@
 				DCB5136C18C6C43700B7EE95 /* AppDelegate.m in Sources */,
 				D2DA747318E19A4F008A2294 /* NIDropDown.m in Sources */,
 				DCB6DE5318E2947D00001701 /* commentViewController.m in Sources */,
+				F23F69C019011E7000220268 /* PartyDataQAEntity.m in Sources */,
 				DCB5141F18C6CC0C00B7EE95 /* LeveyTabBarController.m in Sources */,
 				5156D89518F8100F0044A020 /* CellForEditPersonalInformation_FirstCell.m in Sources */,
 				DCAFE85D18E51EAE00702864 /* Mapping.m in Sources */,
@@ -1653,6 +1664,7 @@
 				DCBD910C18ED835700E03781 /* PartiesEntity.m in Sources */,
 				F23FA4FF18E3E9CA00E174A2 /* GuideTableViewController.m in Sources */,
 				F23FA4F918E3E8AA00E174A2 /* Cells.m in Sources */,
+				F23F69C31901250700220268 /* QATableViewCell.m in Sources */,
 				DCA5962618C81A0F00F001D9 /* UPSwitch.m in Sources */,
 				5153824618DAE216007C4675 /* BirthCare.m in Sources */,
 			);

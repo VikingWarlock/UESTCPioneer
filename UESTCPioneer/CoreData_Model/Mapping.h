@@ -22,6 +22,8 @@
 +(NSDictionary*)PartyDataProcessEntityMapping;
 +(NSDictionary*)PartyDataGuideDetailEntityMapping;
 +(NSDictionary*)PartyDataMLearnEntityMapping;
++(NSDictionary*)PartyDataQAEntityMapping;
+
 +(NSDictionary*)partiesMapping;
 
 

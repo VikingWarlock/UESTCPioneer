@@ -86,6 +86,16 @@
         <attribute name="time" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="title" optional="YES" attributeType="String" syncable="YES"/>
     </entity>
+    <entity name="PartyDataQAEntity" representedClassName="PartyDataQAEntity" syncable="YES">
+        <attribute name="answer" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="answerName" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="question" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="theId" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
+        <attribute name="time_ans" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="time_que" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="userId" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
+        <attribute name="userName" optional="YES" attributeType="String" syncable="YES"/>
+    </entity>
     <entity name="PartyDataSpiritEntity" representedClassName="PartyDataSpiritEntity" syncable="YES">
         <attribute name="content" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="desc" optional="YES" attributeType="String" syncable="YES"/>
@@ -146,18 +156,21 @@
         <element name="MessageEntity" positionX="0" positionY="0" width="128" height="118"/>
         <element name="MoodShareNewsEntity" positionX="0" positionY="0" width="128" height="60"/>
         <element name="NewsEntity" positionX="0" positionY="0" width="128" height="135"/>
+        <element name="PartiesEntity" positionX="160" positionY="192" width="128" height="75"/>
         <element name="PartyActivityNewsEntity" positionX="0" positionY="0" width="128" height="180"/>
         <element name="PartyDataGuideDetailEntity" positionX="99" positionY="180" width="128" height="193"/>
         <element name="PartyDataGuideEntity" positionX="45" positionY="153" width="128" height="133"/>
         <element name="PartyDataKnowledgeEntity" positionX="9" positionY="99" width="128" height="163"/>
         <element name="PartyDataLearnEntity" positionX="81" positionY="171" width="128" height="73"/>
+        <element name="PartyDataMLearnEntity" positionX="54" positionY="153" width="128" height="178"/>
         <element name="PartyDataProcessEntity" positionX="63" positionY="162" width="128" height="133"/>
         <element name="PartyDataSpiritEntity" positionX="0" positionY="72" width="128" height="163"/>
         <element name="PartyDataTheoryEntity" positionX="27" positionY="126" width="128" height="163"/>
         <element name="PartyNoticeNewsEntity" positionX="0" positionY="0" width="128" height="135"/>
+        <element name="PersonalBirthEntity" positionX="160" positionY="192" width="128" height="120"/>
         <element name="PioneerNewsEntity" positionX="0" positionY="0" width="128" height="135"/>
         <element name="PublicityNewsEntity" positionX="0" positionY="0" width="128" height="135"/>
         <element name="UserEntity" positionX="0" positionY="0" width="128" height="90"/>
-        <element name="PartyDataMLearnEntity" positionX="54" positionY="153" width="128" height="178"/>
+        <element name="PartyDataQAEntity" positionX="81" positionY="153" width="128" height="165"/>
     </elements>
 </model>

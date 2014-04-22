@@ -99,7 +99,7 @@ static  NSString *CellTableIdentifier = @"CellTableIdentifier";
     UILabel *titleValue = [[UILabel alloc] initWithFrame:CGRectMake(10, 0, 210, cell.frame.size.height)];
     titleValue.text = entity.title;
     titleValue.textColor = [UIColor grayColor];
-    titleValue.font = [UIFont boldSystemFontOfSize:16];
+    titleValue.font = [UIFont systemFontOfSize:16];
     [cell addSubview:titleValue];
     UILabel *timeValue = [[UILabel alloc] initWithFrame:CGRectMake(230, 0, 80, cell.frame.size.height)];
     timeValue.text = entity.time;

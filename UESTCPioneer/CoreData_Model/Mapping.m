@@ -122,7 +122,13 @@
 }
 
 +(NSDictionary*)PartyDataGuideEntityMapping{
-    return @{@"ZN_content":@"content",@"ZN_name":@"title",@"ZN_picName":@"picName",@"ZN_picUrl":@"picUrl",@"ZN_time":@"time",@"id":@"theId"};
+    return @{@"ZN_content":@"content",
+             @"ZN_name":@"title",
+             @"ZN_picName":@"picName",
+             @"ZN_picUrl":@"picUrl",
+             @"ZN_time":@"time",
+             @"id":@"theId"
+             };
 }
 
 +(NSDictionary*)partiesMapping{
@@ -148,5 +154,16 @@
 +(NSDictionary*)PartyDataMLearnEntityMapping{
     return @{@"comeCode":@"comeCode",@"comeFrom":@"comeFrom",@"fileName":@"fileName",@"filePath":@"filePath",@"fileTyoe":@"fileType",@"id":@"theId",@"time":@"time",@"type":@"type",@"typeText":@"typeText"};
 }
-
++(NSDictionary*)PartyDataQAEntityMapping{
+    return
+  @{@"answer":@"answer",
+    @"answerName":@"answerName",
+    @"id":@"theId",
+    @"question":@"question",
+    @"time_ans":@"time_ans",
+    @"time_que":@"time_que",
+    @"userId":@"userId",
+    @"userName":@"userName"
+    };
+}
 @end

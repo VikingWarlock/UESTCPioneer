@@ -7,11 +7,9 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "DataRefreshTableViewController.h"
 
-@interface QAViewController : UIViewController<UITableViewDelegate,UITableViewDataSource,UITextViewDelegate>
-
-@property (nonatomic,strong)NSArray * questArr;
-@property (nonatomic,strong)NSArray * ansArr;
+@interface QAViewController : DataRefreshTableViewController<UITableViewDelegate,UITableViewDataSource,UITextViewDelegate>
 
 
 

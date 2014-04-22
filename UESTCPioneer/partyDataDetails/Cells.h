@@ -13,4 +13,6 @@
 @property (nonatomic,strong) UILabel *contentValue;
 @property (nonatomic,strong) UILabel *timeValue;
 
+-(void)setLayoutWithString:(NSString*)content;
+
 @end

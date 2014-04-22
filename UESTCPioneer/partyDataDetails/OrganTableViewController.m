@@ -24,28 +24,6 @@
 
 static  NSString *CellTableIdentifier = @"CellTableIdentifier";
 
-- (id)initWithRequestData:(NSDictionary*)RequestData EntityName:(NSString *)EntityName Mapping:(NSDictionary*)Mapping{
-    if (self) {
-        self.title = @"组织架构";
-        
-        UIAlertView * alert = [[UIAlertView alloc] initWithTitle:@"Loading..." message:nil delegate:nil cancelButtonTitle:nil otherButtonTitles:nil];
-        [alert show];
-        
-        NSString * requestUrl = @"http://222.197.183.81:8080/UestcApp/ieaction.do?type=getInstitute";
-        NSURL * url = [NSURL URLWithString:requestUrl];
-        NSURLRequest * request = [NSURLRequest requestWithURL:url];
-        [AFJSONRequestOperation JSONRequestOperationWithRequest:request success:^(NSURLRequest *request, NSHTTPURLResponse *response, id JSON) {
- //           detailData = (NSDictionary*)JSON;
-        } failure:^(NSURLRequest *request, NSHTTPURLResponse *response, NSError *error, id JSON) {
-            NSLog(@"加载失败");
-        }];
-        
-        [self.tableView reloadData];
-        [alert dismissWithClickedButtonIndex:0 animated:YES];
-        
-    }
-    return self;
-}
 
 - (id)initWithStyle:(UITableViewStyle)style
 {
@@ -71,15 +49,17 @@ static  NSString *CellTableIdentifier = @"CellTableIdentifier";
     
     [self.tableView registerClass:[UITableViewCell class] forCellReuseIdentifier: CellTableIdentifier];
     
-    
-    
+    UIAlertView * alert = [[UIAlertView alloc] initWithTitle:@"Loading..." message:nil delegate:nil cancelButtonTitle:nil otherButtonTitles:nil];
+    [alert show];
 
     [NetworkCenter AFRequestWithData:@{@"type":@"getInstitute"} SuccessBlock:^(AFHTTPRequestOperation *operation, id resultObject) {
         detailArr = [NSJSONSerialization JSONObjectWithData:resultObject options:NSJSONReadingMutableLeaves error:nil];
         
     } FailureBlock:^(AFHTTPRequestOperation *operation, NSError *error) {
-        
+        NSLog(@"加载失败");
     }];
+    [self.tableView reloadData];
+    [alert dismissWithClickedButtonIndex:0 animated:YES];
     
     // [self.tableView setFrame:CGRectMake(0, 0, 320, 300)];
     

@@ -55,7 +55,6 @@ static NSString *CellTableIdentifier = @"CellTableIdentifier";
     self.tableView.dataSource = self;
     self.tableView.separatorInset = UIEdgeInsetsZero;
     [self.view addSubview:self.tableView];
-    NSLog(@"高度:%f",self.tableView.frame.size.height);
 }
 
 
@@ -88,6 +87,9 @@ static NSString *CellTableIdentifier = @"CellTableIdentifier";
     cell.titleValue.text = entity.title;
     cell.contentValue.text = entity.desc;
     cell.timeValue.text = entity.time;
+    
+    [cell setLayoutWithString:entity.desc];
+    
     return cell;
 }
 
