@@ -37,6 +37,26 @@
 #pragma mark - NFNetworking 
 
 
+/*
+ lastPattern 指例子中的ieaction.do
+ 例子： UestcApp/ieaction.do"
+ */
++(void)AFRequestWithLastPattern:(NSString*)lastPattern Data:(NSDictionary*)data SuccessBlock:(void (^)(AFHTTPRequestOperation *operation,id resultObject))successBlock FailureBlock:(void (^)(AFHTTPRequestOperation *operation,NSError *error))failureBlock{
+    
+    AFHTTPClient *client = [AFHTTPClient clientWithBaseURL:[NSURL  URLWithString:baseUrl]];
+    [client getPath:[[baseUrl stringByAppendingString:appPattern ] stringByAppendingString:lastPattern] parameters:data success:^(AFHTTPRequestOperation *operation,id resultObject){
+        successBlock(operation,resultObject);
+    } failure:^(AFHTTPRequestOperation *operation,NSError *error){
+        failureBlock(operation,error);
+        
+    }];
+    
+    
+    
+}
+
+
+
 +(void)AFRequestWithData:(NSDictionary*)data SuccessBlock:(void (^)(AFHTTPRequestOperation *operation,id resultObject))successBlock FailureBlock:(void (^)(AFHTTPRequestOperation *operation,NSError *error))failureBlock{
     
     AFHTTPClient *client = [AFHTTPClient clientWithBaseURL:[NSURL  URLWithString:baseUrl]];
@@ -62,6 +82,20 @@
 }
 
 #pragma mark - restkit request
+
+
+/*
+ lastPattern 指例子中的ieaction.do
+例子： UestcApp/ieaction.do"
+ */
++(void)RKRequestWithLastPattern:(NSString*)lastPattern Data:(NSDictionary*)data  EntityName:(NSString*)entity Mapping:(NSDictionary*)mapping  SuccessBlock:(void (^)(NSArray* resultArray))successBlock failure:(void (^) (NSError *error))failureBlock{
+    [self requestWithUrlPattern:[[baseUrl stringByAppendingString:appPattern] stringByAppendingString:lastPattern] Data:data EntityName:entity Mapping:mapping SuccessBlock:^(NSArray *resultArray){
+        successBlock(resultArray);
+    } failure:^(NSError *error){
+        failureBlock(error);
+    }];
+    
+}
 
 
 +(void)RKRequestWithData:(NSDictionary*)data  EntityName:(NSString*)entity Mapping:(NSDictionary*)mapping  SuccessBlock:(void (^)(NSArray* resultArray))successBlock failure:(void (^) (NSError *error))failureBlock{

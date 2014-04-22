@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		0B7334DD377543298C1B3E52 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 75368970CB1E4D818A55D2DE /* libPods.a */; settings = {ATTRIBUTES = (Required, ); }; };
+		510A26791900CF8D0055F7D4 /* CheckForSuggestion_Detail.m in Sources */ = {isa = PBXBuildFile; fileRef = 510A26781900CF8D0055F7D4 /* CheckForSuggestion_Detail.m */; };
+		510A267C1900D0ED0055F7D4 /* CellForSuggestion_Detail.m in Sources */ = {isa = PBXBuildFile; fileRef = 510A267B1900D0ED0055F7D4 /* CellForSuggestion_Detail.m */; };
 		510C56A418E021B4007F6359 /* activity.png in Resources */ = {isa = PBXBuildFile; fileRef = 510C568A18E021B4007F6359 /* activity.png */; };
 		510C56A518E021B4007F6359 /* addpic.png in Resources */ = {isa = PBXBuildFile; fileRef = 510C568B18E021B4007F6359 /* addpic.png */; };
 		510C56A618E021B4007F6359 /* already.png in Resources */ = {isa = PBXBuildFile; fileRef = 510C568C18E021B4007F6359 /* already.png */; };
@@ -253,6 +255,10 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		510A26771900CF8D0055F7D4 /* CheckForSuggestion_Detail.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CheckForSuggestion_Detail.h; path = PersonalTableViewCell/CheckForSuggestion_Detail.h; sourceTree = "<group>"; };
+		510A26781900CF8D0055F7D4 /* CheckForSuggestion_Detail.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CheckForSuggestion_Detail.m; path = PersonalTableViewCell/CheckForSuggestion_Detail.m; sourceTree = "<group>"; };
+		510A267A1900D0ED0055F7D4 /* CellForSuggestion_Detail.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CellForSuggestion_Detail.h; path = PersonalTableViewCell/CellForTableView/CellForSuggestion_Detail.h; sourceTree = "<group>"; };
+		510A267B1900D0ED0055F7D4 /* CellForSuggestion_Detail.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CellForSuggestion_Detail.m; path = PersonalTableViewCell/CellForTableView/CellForSuggestion_Detail.m; sourceTree = "<group>"; };
 		510C568A18E021B4007F6359 /* activity.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = activity.png; sourceTree = "<group>"; };
 		510C568B18E021B4007F6359 /* addpic.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = addpic.png; sourceTree = "<group>"; };
 		510C568C18E021B4007F6359 /* already.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = already.png; sourceTree = "<group>"; };
@@ -645,6 +651,8 @@
 				5156D88F18F8100F0044A020 /* CellForStartActivity.m */,
 				5156D89018F8100F0044A020 /* CellWithCustomLeftImageAndLabel.h */,
 				5156D89118F8100F0044A020 /* CellWithCustomLeftImageAndLabel.m */,
+				510A267A1900D0ED0055F7D4 /* CellForSuggestion_Detail.h */,
+				510A267B1900D0ED0055F7D4 /* CellForSuggestion_Detail.m */,
 			);
 			name = CellForTableView;
 			sourceTree = "<group>";
@@ -669,6 +677,8 @@
 				5153823C18DAE132007C4675 /* MyCollection.m */,
 				5153823E18DAE1CE007C4675 /* CheckForSuggestion.h */,
 				5153823F18DAE1CE007C4675 /* CheckForSuggestion.m */,
+				510A26771900CF8D0055F7D4 /* CheckForSuggestion_Detail.h */,
+				510A26781900CF8D0055F7D4 /* CheckForSuggestion_Detail.m */,
 				5153824118DAE1F1007C4675 /* MyMessage.h */,
 				5153824218DAE1F1007C4675 /* MyMessage.m */,
 				5153824418DAE216007C4675 /* BirthCare.h */,
@@ -1586,11 +1596,13 @@
 				5156D89418F8100F0044A020 /* CellForDailyCare_TitleCell.m in Sources */,
 				8834BA2018D6F0C20023BA87 /* NetworkCenter.m in Sources */,
 				DCB5146918C6E29700B7EE95 /* PublicityViewController.m in Sources */,
+				510A26791900CF8D0055F7D4 /* CheckForSuggestion_Detail.m in Sources */,
 				DCB5141E18C6CC0C00B7EE95 /* LeveyTabBar.m in Sources */,
 				DC7A078018EBCB9E0040794B /* LoginViewController.m in Sources */,
 				DCB5143A18C6D14F00B7EE95 /* PartyNoticeViewController.m in Sources */,
 				5156D89618F8100F0044A020 /* CellForEditPersonalInformation.m in Sources */,
 				F214420318E8605700B56DEE /* QAViewController.m in Sources */,
+				510A267C1900D0ED0055F7D4 /* CellForSuggestion_Detail.m in Sources */,
 				5153823A18DAE0EA007C4675 /* PersonalInformation.m in Sources */,
 				DC0BFFDC18E255F7002E3D38 /* MJRefreshConst.m in Sources */,
 				DCB5145C18C6DE7D00B7EE95 /* UPMenuTableViewCell.m in Sources */,

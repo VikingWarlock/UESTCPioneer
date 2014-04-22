@@ -279,11 +279,24 @@ static NSString *customFooterCellIndentifier = @"CustomFooterCellIndentifier";
         
         NewsEntity *entity =tableViewEntitiesArray[indexPath.section];
         NSDictionary *picDic= entity.picUrl;
-        if ([picDic count]==0){
+        NSInteger imageNum=[picDic count];
+        if (imageNum==0){
             height=110;
         }
         else {
-            height=110+imageViewWidth+30;
+            if (imageNum==1){
+                height=110+imageViewWidth+120;
+            }
+            else if (imageNum==2){
+                height=110+imageViewWidth+90;
+            }
+            else if (imageNum==3){
+                height=110+imageViewWidth+60;
+            }
+            else {
+                height=110+imageViewWidth+30;
+            }
+            
         }
         
          return height;

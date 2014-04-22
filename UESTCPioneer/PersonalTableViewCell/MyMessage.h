@@ -7,7 +7,10 @@
 //
 
 #import <UIKit/UIKit.h>
-
-@interface MyMessage : UITableViewController
+#import "PullRefreshTableView.h"
+#import "constant.h"
+@interface MyMessage : UIViewController <UITableViewDelegate,UITableViewDataSource>
+@property (nonatomic,strong) PullRefreshTableView *refreshTableView;
+@property (nonatomic,strong) UILabel *label;
 
 @end

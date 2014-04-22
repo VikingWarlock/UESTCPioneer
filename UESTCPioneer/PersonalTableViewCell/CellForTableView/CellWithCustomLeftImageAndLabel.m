@@ -14,8 +14,8 @@
 {
     self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
     if (self) {
-        [self addSubview:self.label];
-        [self addSubview:self.leftImage];
+        [self.contentView addSubview:self.label];
+        [self.contentView addSubview:self.leftImage];
         // Initialization code
     }
     return self;

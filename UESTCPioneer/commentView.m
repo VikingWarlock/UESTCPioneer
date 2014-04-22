@@ -46,9 +46,9 @@
 }
 
 -(void)_viewsStyle{
-    [commentTextField.layer setBorderWidth:1];
-    [commentTextField.layer setBorderColor:[UIColor colorWithRed:136.0/255.0 green:136.0/255.0 blue:136.0/255.0 alpha:0.3].CGColor];
-    [commentTextField setBackgroundColor:[UIColor colorWithRed:237.0/255.0 green:237.0/255.0 blue:237.0/255.0 alpha:1]];
+    [_commentTextField.layer setBorderWidth:1];
+    [_commentTextField.layer setBorderColor:[UIColor colorWithRed:136.0/255.0 green:136.0/255.0 blue:136.0/255.0 alpha:0.3].CGColor];
+    [_commentTextField setBackgroundColor:[UIColor colorWithRed:237.0/255.0 green:237.0/255.0 blue:237.0/255.0 alpha:1]];
     
 }
 
@@ -73,22 +73,22 @@
     
     
     //文本框
-    commentTextField = [[UITextView alloc]init];
-    [commentRectView addSubview:commentTextField];
-    [commentTextField  setTranslatesAutoresizingMaskIntoConstraints:NO];
-    [commentTextField setEditable:YES];
-    [commentTextField setFont:[UIFont systemFontOfSize:18]];
+    _commentTextField = [[UITextView alloc]init];
+    [commentRectView addSubview:_commentTextField];
+    [_commentTextField  setTranslatesAutoresizingMaskIntoConstraints:NO];
+    [_commentTextField setEditable:YES];
+    [_commentTextField setFont:[UIFont systemFontOfSize:18]];
     
 
 
 
     
-    [commentRectView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-16-[commentTextField]-16-|" options:0 metrics:nil views:NSDictionaryOfVariableBindings(commentTextField)]];
-    [commentRectView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|-44-[commentTextField(==120)]" options:0 metrics:nil views:NSDictionaryOfVariableBindings(commentTextField)]];
+    [commentRectView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-16-[_commentTextField]-16-|" options:0 metrics:nil views:NSDictionaryOfVariableBindings(_commentTextField)]];
+    [commentRectView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|-44-[_commentTextField(==120)]" options:0 metrics:nil views:NSDictionaryOfVariableBindings(_commentTextField)]];
     
     
     //文本框相对于父类view的底部约束
-    NSLayoutConstraint *bottomContraint = [NSLayoutConstraint constraintWithItem:commentTextField attribute:NSLayoutAttributeBottom relatedBy:NSLayoutRelationEqual toItem:commentRectView attribute:NSLayoutAttributeBottom multiplier:1 constant:-20];
+    NSLayoutConstraint *bottomContraint = [NSLayoutConstraint constraintWithItem:_commentTextField attribute:NSLayoutAttributeBottom relatedBy:NSLayoutRelationEqual toItem:commentRectView attribute:NSLayoutAttributeBottom multiplier:1 constant:-20];
     bottomContraint.priority=10;
     [commentRectView addConstraint:bottomContraint];
 //    NSLog(@"%@",commentRectView.constraints);
@@ -167,11 +167,11 @@
 }
 
 -(void)commitButtonPress:(UIButton*)button{
-    if ([commentTextField.text isEqualToString:@""] || commentTextField.text==nil){
+    if ([_commentTextField.text isEqualToString:@""] || _commentTextField.text==nil){
         [Alert showAlert:@"请输入内容"];
         return;
     }
-    self.commitBlock(commentTextField.text);
+    self.commitBlock(_commentTextField.text);
 
     
 }

@@ -7,7 +7,9 @@
 //
 
 #import <UIKit/UIKit.h>
-
-@interface CheckForSuggestion : UITableViewController <UITableViewDelegate,UITableViewDataSource>
-
+#import "PullRefreshTableView.h"
+#import "constant.h"
+@interface CheckForSuggestion : UIViewController <UITableViewDelegate,UITableViewDataSource>
+@property (nonatomic,strong) PullRefreshTableView *refreshTableView;
+@property (nonatomic,strong) UILabel *label;
 @end

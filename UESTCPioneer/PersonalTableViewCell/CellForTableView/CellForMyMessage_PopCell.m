@@ -14,10 +14,10 @@
 {
     self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
     if (self) {
-        self.backgroundColor = [UIColor clearColor];
-        UIImageView *imageView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"msgbg.png"]];
-        self.backgroundView = imageView;
-        [self addSubview:self.label];
+        [self.contentView addSubview:self.title];
+        [self.contentView addSubview:self.leftImage];
+        self.isOpen = NO;
+        // Initialization code
     }
     return self;
 }
@@ -30,18 +30,58 @@
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated
 {
     [super setSelected:selected animated:animated];
-
+    
     // Configure the view for the selected state
 }
 
-- (UILabel *)label
+- (UIImageView *)leftImage
 {
-    if (!_label)
+    if(!_leftImage)
     {
-        _label = [[UILabel alloc] initWithFrame:CGRectMake(5, 5, 320, self.frame.size.height)];
-        _label.textColor = [UIColor whiteColor];
+        _leftImage = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, 25, 25)];
+        _leftImage.center = CGPointMake(20, 22);
+        _leftImage.image = [UIImage imageNamed:@"mm.png"];
     }
-    return _label;
+    return _leftImage;
+}
+
+- (UILabel *)title
+{
+    if(!_title)
+    {
+        _title = [[UILabel alloc] initWithFrame:CGRectMake(40, 0, 280, 44)];
+        _title.text = @"text";
+    }
+    return _title;
+}
+
+- (UIImageView *)popView
+{
+    if (!_popView) {
+        _popView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 34, 320, 40)];
+        _popView.image = [UIImage imageNamed:@"msgbg.png"];
+    }
+    return _popView;
+}
+
+- (UILabel *)content
+{
+    if (!_content) {
+        _content = [[UILabel alloc] initWithFrame:CGRectMake(10, 9, 320, 30)];
+        _content.textColor = [UIColor whiteColor];
+        [_popView addSubview:_content];
+    }
+    return _content;
+}
+
+- (void)setIsOpen:(BOOL)isOpen
+{
+    _isOpen = isOpen;
+    if (_isOpen) {
+        [self.contentView addSubview:self.popView];
+    }
+    else
+        [self.popView removeFromSuperview];
 }
 
 @end

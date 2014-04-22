@@ -60,23 +60,33 @@
 
 
 //以下是个人管理模块的数据请求 张众
-+ (NSDictionary *)sendBirthCareRequestData:(NSUInteger)foruserid;
++ (NSDictionary *)sendBirthCareRequestDataWithForuserid:(NSUInteger)foruserid;//生日关怀送祝福
 
-+ (NSDictionary *)getListOfBirthRequestData:(NSUInteger)page;
++ (NSDictionary *)getListOfBirthRequestDataWithPage:(NSUInteger)page;//得到过生日的列表
 
-+ (NSDictionary *)sendNoticeRequestData:(NSString *)content;
++ (NSDictionary *)sendNoticeRequestDataWithContent:(NSString *)content;//发布通知
 
-+ (NSDictionary *)startActivityRequestData:(NSString *)content title:(NSString *)title;
++ (NSDictionary *)startActivityRequestDataWithContent:(NSString *)content title:(NSString *)title;//发起活动
 
-+ (NSDictionary *)getDailyCareRequestData:(NSUInteger)page;
++ (NSDictionary *)getDailyCareRequestDataWithPage:(NSUInteger)page;//得到日常关怀列表
 
-+ (NSDictionary *)sendDailyCareRequestData:(NSString *)content;
++ (NSDictionary *)sendDailyCareRequestDataWithContent:(NSString *)content;//发布日常关怀
 
-+ (NSDictionary *)getCollectionRequestData:(NSUInteger)page;
++ (NSDictionary *)getCollectionRequestDataWithPage:(NSUInteger)page;//得到收藏列表
 
-+ (NSDictionary *)getListOfMessageRequestData:(NSUInteger)page;
++ (NSDictionary *)getListOfMessageRequestDataWithPage:(NSUInteger)page;//得到我的消息列表
 
-+ (NSDictionary *)getSpecialMessageRequestData:(NSUInteger)msgid;
++ (NSDictionary *)getSpecialMessageRequestDataWithMsgid:(NSUInteger)msgid;//得到我的消息内容
+
++ (NSDictionary *)getListOfNoticeRequestDataWithPage:(NSUInteger)page;//得到我的通知列表
+
++ (NSDictionary *)getListOfAnnounceRequestDataWithPage:(NSUInteger)page;//得到查看意见列表
+
++ (NSDictionary *)getAnnounceContentRequestDataWithAnnounceid:(NSUInteger)announceid;//得到查看意见点进去的内容
+
++ (NSDictionary *)getAnnnounceProposalRequestDataWithAnnounceid:(NSUInteger)announceid page:(NSUInteger)page;//得到发布的意见
+
++ (NSDictionary *)getPerAdminNoticeRequestDataWithNoticeid:(NSUInteger)noticeid;//进入我的收藏和我的通知之后，获取具体的内容
 
 
 @end

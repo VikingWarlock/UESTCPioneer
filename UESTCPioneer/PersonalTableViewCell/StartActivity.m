@@ -46,6 +46,21 @@
     [self.collectionview registerClass:[CellForStartActivity class] forCellWithReuseIdentifier:@"GradientCell"];
     [self.collectionview setScrollEnabled:NO];
     
+}
+
+- (void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+    self.navigationItem.title = @"发起活动";
+    
+    UIBarButtonItem *right=[[UIBarButtonItem alloc] initWithTitle:@"发起" style:UIBarButtonItemStyleDone target:self action:@selector(commit:)];
+    self.navigationItem.rightBarButtonItem = right;
+    
+    if (self.editBody.text.length && self.editTitle.text.length && !isFirstEdit1 && !isFirstEdit2)
+        self.navigationItem.rightBarButtonItem.enabled = YES;
+    else
+        self.navigationItem.rightBarButtonItem.enabled = NO;
+    
     
     //隐藏默认返回按钮
     [self.navigationItem setHidesBackButton:YES];
@@ -62,21 +77,7 @@
     
     //修改顶部运营商和时间为黑色
     [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleDefault];
-    
-}
 
-- (void)viewWillAppear:(BOOL)animated
-{
-    [super viewWillAppear:animated];
-    self.navigationItem.title = @"发起活动";
-    
-    UIBarButtonItem *right=[[UIBarButtonItem alloc] initWithTitle:@"发起" style:UIBarButtonItemStyleDone target:self action:@selector(commit:)];
-    self.navigationItem.rightBarButtonItem = right;
-    
-    if (self.editBody.text.length && self.editTitle.text.length && !isFirstEdit1 && !isFirstEdit2)
-        self.navigationItem.rightBarButtonItem.enabled = YES;
-    else
-        self.navigationItem.rightBarButtonItem.enabled = NO;
 }
 
 -(void)viewWillDisappear:(BOOL)animated{
@@ -104,7 +105,7 @@
         content = self.editBody.text;
         title = self.editTitle.text;
 #warning 后台api好像有问题
-        [NetworkCenter AFRequestWithData:[RequestData startActivityRequestData:content title:title] SuccessBlock:^(AFHTTPRequestOperation *operation, id resultObject) {
+        [NetworkCenter AFRequestWithData:[RequestData startActivityRequestDataWithContent:content title:title] SuccessBlock:^(AFHTTPRequestOperation *operation, id resultObject) {
             NSDictionary *dic = [NSJSONSerialization JSONObjectWithData:resultObject options:NSJSONReadingMutableLeaves error:nil];
             if ([dic[@"result"] isEqualToString:@"success"]){
                 resultsuccess = YES;

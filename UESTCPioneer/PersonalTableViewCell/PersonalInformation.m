@@ -68,6 +68,10 @@
     [button addTarget:self action:@selector(editInformation:) forControlEvents:UIControlEventTouchUpInside];
     UIBarButtonItem *right=[[UIBarButtonItem alloc] initWithCustomView:customView];
     self.navigationItem.rightBarButtonItem = right;
+    
+    
+    self.leveyTabBarController.navigationItem.title = @"";
+
 }
 
 //rightBarButtonItem的按钮事件调用的方法

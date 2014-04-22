@@ -15,7 +15,7 @@
     self = [super initWithFrame:frame];
     if (self) {
         [self setBackgroundView:[[UIImageView alloc] initWithImage:[UIImage imageNamed:@"addpic.png"]]];
-        [self addSubview:self.thumbnail];
+        [self.contentView addSubview:self.thumbnail];
     }
     return self;
 }
