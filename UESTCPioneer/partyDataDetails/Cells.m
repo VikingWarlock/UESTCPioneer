@@ -33,7 +33,6 @@
         _timeValue.numberOfLines = 1;
         _timeValue.textColor = [UIColor grayColor];
         [self.contentView addSubview:_timeValue];
-        
     }
     return self;
 }
