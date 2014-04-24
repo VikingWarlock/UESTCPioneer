@@ -60,6 +60,7 @@
 }
 -(void)viewWillAppear:(BOOL)animated{
     [self.leveyTabBarController.navigationItem setTitle:@"个人"];
+        [self.leveyTabBarController.navigationItem setLeftBarButtonItem:nil];
     [self.view setUserInteractionEnabled:YES];
     [self.PersonalTableView setScrollEnabled:YES];
     

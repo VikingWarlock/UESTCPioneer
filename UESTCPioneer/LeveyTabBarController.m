@@ -225,6 +225,7 @@ static LeveyTabBarController *leveyTabBarController;
 #pragma mark - Private methods
 - (void)displayViewAtIndex:(NSUInteger)index
 {
+
     // Before changing index, ask the delegate should change the index.
     if ([_delegate respondsToSelector:@selector(tabBarController:shouldSelectViewController:)])
     {

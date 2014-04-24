@@ -188,7 +188,7 @@ static NSString *cellIdentifier=@"cell";
     [commentButton addTarget:self action:@selector(commentButtonPress:) forControlEvents:UIControlEventTouchUpInside];
     [commentButton setTitleEdgeInsets:UIEdgeInsetsMake(0, 0, 24, 24)];
     UIBarButtonItem *rightCommentBarButton=[helper BarButtonItemWithUIButton:commentButton ButtonOrigin:CGPointMake(46, 13) CustomViewSize:CGSizeMake(88, 44)];
-    NSLog(@"%@",self.navigationController.navigationItem.leftBarButtonItems);
+//    NSLog(@"%@",self.navigationController.navigationItem.leftBarButtonItems);
     
     [self.navigationItem setRightBarButtonItem:rightCommentBarButton];
 

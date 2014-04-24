@@ -90,7 +90,12 @@
 }
 
 -(void)viewWillAppear:(BOOL)animated{
+    [super viewWillAppear:animated];
         [self.leveyTabBarController.navigationItem setTitle:@"成电视角"];
+    
+    
+    
+
 }
 
 -(void)viewDidAppear:(BOOL)animated{

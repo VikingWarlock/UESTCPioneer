@@ -33,6 +33,7 @@
 
 -(void)viewWillAppear:(BOOL)animated{
     [self.leveyTabBarController.navigationItem setTitle:@"交流"];
+    [self.leveyTabBarController.navigationItem setLeftBarButtonItem:nil];
 }
 
 - (void)didReceiveMemoryWarning

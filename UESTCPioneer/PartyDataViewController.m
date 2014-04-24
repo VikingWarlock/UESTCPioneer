@@ -124,6 +124,7 @@
 
 -(void)viewWillAppear:(BOOL)animated{
     [self.leveyTabBarController.navigationItem setTitle:@"资料"];
+        [self.leveyTabBarController.navigationItem setLeftBarButtonItem:nil];
 }
 
 - (void)didReceiveMemoryWarning
