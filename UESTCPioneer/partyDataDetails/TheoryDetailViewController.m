@@ -74,7 +74,7 @@
     
     
     
-    UIView * seplineView = [[UIView alloc] initWithFrame:CGRectMake(0, self.titleLabel.frame.origin.y + self.titleLabel.frame.size.height + 15.0, self.view.bounds.size.width, 1)];
+    UIView * seplineView = [[UIView alloc] initWithFrame:CGRectMake(0, self.titleLabel.frame.origin.y + self.titleLabel.frame.size.height + 10.0, self.view.bounds.size.width, 1)];
     seplineView.backgroundColor = [UIColor colorWithRed:130.0/255.0 green:130.0/255.0 blue:130.0/255.0 alpha:1];
     
     /*
@@ -90,7 +90,7 @@
      _contentLabel.font = font;
      _contentLabel.textColor = [UIColor colorWithRed:100.0/255.0 green:100.0/255.0 blue:100.0/255.0 alpha:1];
      */
-    _contentView = [[UITextView alloc] initWithFrame:CGRectMake(0, seplineView.frame.origin.y + seplineView.frame.size.height, 320, self.view.frame.size.height-seplineView.frame.origin.y - seplineView.frame.size.height - self.navigationController.navigationBar.frame.size.height - 15)];
+    _contentView = [[UITextView alloc] initWithFrame:CGRectMake(0, seplineView.frame.origin.y + seplineView.frame.size.height, 320, self.view.frame.size.height-seplineView.frame.origin.y - seplineView.frame.size.height - self.navigationController.navigationBar.frame.size.height - 12)];
     _contentView.editable = NO;
     _contentView.text = self.data[@"content"];
     _contentView.font = [UIFont boldSystemFontOfSize:15];

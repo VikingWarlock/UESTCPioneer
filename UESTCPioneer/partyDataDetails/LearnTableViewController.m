@@ -55,6 +55,7 @@ static NSString * CellTableIdentifier = @"CellTableIdentifier";
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    self.title = @"党校学习";
     self.tableView.delegate = self;
     self.tableView.dataSource = self;
 //    [self.tableView registerClass:[UITableViewCell class] forCellReuseIdentifier:CellTableIdentifier];

@@ -11,13 +11,13 @@
 
 @interface QATableViewCell : UITableViewCell
 
+@property(strong,nonatomic)UIImageView * userIcon;
 @property(strong,nonatomic)UILabel * userNameLabel;
 @property(strong,nonatomic)UILabel * queTimeLabel;
 @property(strong,nonatomic)UILabel * queLabel;
 @property(strong,nonatomic)UILabel * ansNameLabel;
 @property(strong,nonatomic)UILabel * ansLabel;
 @property(strong,nonatomic)UILabel * ansTimeLabel;
-
 @property(strong,nonatomic)UIView * ansView;
 @property (strong) PartyDataQAEntity * entity;
 

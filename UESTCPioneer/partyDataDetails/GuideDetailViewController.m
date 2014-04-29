@@ -57,14 +57,14 @@
     _titleLabel.textColor = [UIColor colorWithRed:100.0/255.0 green:100.0/255.0 blue:100.0/255.0 alpha:1];
     
     
-    _timeLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, _titleLabel.frame.origin.y + _titleLabel.frame.size.height +10, 320, 20)];
+    _timeLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, _titleLabel.frame.origin.y + _titleLabel.frame.size.height +5, 320, 20)];
     _timeLabel.textAlignment = NSTextAlignmentCenter;
     _timeLabel.font = [UIFont systemFontOfSize:13.0];
     _timeLabel.textColor = [UIColor grayColor];
     _timeLabel.text = self.data[@"newsTime"];
     
     
-    UIView * seplineView = [[UIView alloc] initWithFrame:CGRectMake(0, _timeLabel.frame.origin.y +_timeLabel.frame.size.height + 15.0, self.view.bounds.size.width, 1)];
+    UIView * seplineView = [[UIView alloc] initWithFrame:CGRectMake(0, _timeLabel.frame.origin.y +_timeLabel.frame.size.height + 5.0, self.view.bounds.size.width, 1)];
     seplineView.backgroundColor = [UIColor colorWithRed:130.0/255.0 green:130.0/255.0 blue:130.0/255.0 alpha:1];
     
     /*
@@ -80,7 +80,7 @@
      _contentLabel.font = font;
      _contentLabel.textColor = [UIColor colorWithRed:100.0/255.0 green:100.0/255.0 blue:100.0/255.0 alpha:1];
      */
-    _contentView = [[UITextView alloc] initWithFrame:CGRectMake(0, seplineView.frame.origin.y + seplineView.frame.size.height , 320, 410)];
+    _contentView = [[UITextView alloc] initWithFrame:CGRectMake(0, seplineView.frame.origin.y + seplineView.frame.size.height , 320, 430)];
     _contentView.editable = NO;
     _contentView.text = self.data[@"newsContent"];
     _contentView.font = [UIFont boldSystemFontOfSize:15];

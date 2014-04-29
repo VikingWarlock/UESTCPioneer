@@ -50,13 +50,6 @@
     _stateLabel.text = @"文件下载状态 :";
     
     
-    _downloadButton = [[UIButton alloc] initWithFrame:CGRectMake(100, _stateLabel.frame.origin.y + _stateLabel.frame.size.height + 20.0, 100.0, 30.0)];
-    [_downloadButton setBackgroundImage:[UIImage imageNamed:@"filedl"] forState:UIControlStateNormal];
-    [_downloadButton setBackgroundImage:[UIImage imageNamed:@"filedl"] forState:UIControlStateHighlighted];
-    [_downloadButton setBackgroundImage:[UIImage imageNamed:@"filedl"] forState:UIControlStateSelected];
-    _downloadButton.titleLabel.text = @"下载文件";
-    _downloadButton.titleLabel.textColor = [UIColor whiteColor];
-    
     
     for (int i = 0; i < 3; i ++) {
         UIView * bgView = [[UIView alloc] initWithFrame:CGRectMake(0, 60+60*i, 320, 1)];
@@ -64,7 +57,7 @@
         [self.view addSubview:bgView];
     }
     
-    [self.view addSubview:_downloadButton];
+    [self.view addSubview:self.downloadButton];
     [self.view addSubview:_nameLabel];
     [self.view addSubview:_adressLabel];
     [self.view addSubview:_stateLabel];
@@ -72,6 +65,39 @@
     
     // Do any additional setup after loading the view.
 }
+
+-(UIButton *)downloadButton{
+    if (!_downloadButton) {
+        _downloadButton = [[UIButton alloc] initWithFrame:CGRectMake(100, _stateLabel.frame.origin.y + _stateLabel.frame.size.height + 20.0, 100.0, 30.0)];
+        [_downloadButton setBackgroundImage:[UIImage imageNamed:@"filedl"] forState:UIControlStateNormal];
+        [_downloadButton setBackgroundImage:[UIImage imageNamed:@"filedl"] forState:UIControlStateHighlighted];
+        [_downloadButton setBackgroundImage:[UIImage imageNamed:@"filedl"] forState:UIControlStateSelected];
+        _downloadButton.titleLabel.text = @"下载文件";
+        _downloadButton.titleLabel.textColor = [UIColor whiteColor];
+        
+        [_downloadButton addTarget:self action:@selector(downloadButtonClick:) forControlEvents:UIControlEventTouchUpInside];
+    }
+    return _downloadButton;
+}
+
+-(void)downloadButtonClick:(UIButton *)sender{
+    NSString *urlString = [[baseUrl stringByAppendingString:@"/UestcApp/FileDownServlet.do?filename="] stringByAppendingString:self.fileName];
+    NSLog(@"%@",urlString);
+    NSURL *url = [NSURL URLWithString:urlString];
+    NSURLRequest * request = [NSURLRequest requestWithURL:url];
+    NSError * error = nil;
+    NSData * data = [NSURLConnection sendSynchronousRequest:request returningResponse:nil error:&error];
+    if (data!=nil){
+        NSLog(@"下载成功");
+        if ([data writeToFile:self.fileName atomically:YES]) {
+            NSLog(@"保存成功");
+        }else
+            NSLog(@"保存失败");
+    }else{
+        NSLog(@",,,,%@",error);
+    }
+}
+
 
 - (void)didReceiveMemoryWarning
 {

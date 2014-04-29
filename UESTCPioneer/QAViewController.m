@@ -58,6 +58,7 @@ static NSString * cellIdentifier = @"cellIdentifier";
     self.tableView.delegate = self;
     self.tableView.dataSource = self;
     self.tableView.separatorInset = UIEdgeInsetsZero;
+    self.tableView.backgroundColor = [UIColor colorWithRed:237.0/255.0 green:237.0/255.0 blue:237.0/255.0 alpha:1];
     self.view.backgroundColor = [UIColor whiteColor];
     
     [self.completeBtn addTarget:self action:@selector(completeBtnClick:) forControlEvents:UIControlEventTouchUpInside];//****
@@ -83,13 +84,17 @@ static NSString * cellIdentifier = @"cellIdentifier";
 
 -(UITextView *)questTV{
     if (!_questTV) {
-        _questTV = [[UITextView alloc] initWithFrame:CGRectMake(20, 5, self.view.frame.size.width - 30, 25)];
+        _questTV = [[UITextView alloc] initWithFrame:CGRectMake(15, 5, self.view.frame.size.width - 30, 25)];
         _questTV.editable = YES;
         _questTV.backgroundColor = self.tableView.backgroundColor;
         _questTV.delegate = self;
-        _questTV.font = [UIFont systemFontOfSize:12];
+        _questTV.font = [UIFont systemFontOfSize:13];
+        _questTV.textContainerInset = UIEdgeInsetsMake(5, 21, 5, 15);
 
-        _questTV.text = @"      写问题";
+        _questTV.layer.borderWidth = 1;
+        _questTV.layer.borderColor = [[UIColor colorWithWhite:185.0/255.0 alpha:1] CGColor];
+        _questTV.text = @"写问题";
+        _questTV.textColor = [UIColor colorWithWhite:149.0/255.0 alpha:1];
 
         tvImageView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"write1.png"]];
         tvImageView.frame = CGRectMake(5, 5, 15, 15);
@@ -144,10 +149,11 @@ static NSString * cellIdentifier = @"cellIdentifier";
 
     [self.tableView setScrollEnabled:NO];
     [self.tableView setAllowsSelection:NO];
-//    [self.tableView setBackgroundColor:[UIColor colorWithWhite:0.1 alpha:1]];
     self.questTV.frame = CGRectMake(20, 40, 280, 130);
+    self.questTV.textContainerInset = UIEdgeInsetsZero;
     self.questTV.text = text;
     self.questTV.font = [UIFont systemFontOfSize:16];
+    self.questTV.textColor = [UIColor blackColor];
     tvImageView.hidden = YES;
     
     self.tvLabel.center = CGPointMake(self.view.frame.size.width/2, 20);
@@ -169,11 +175,10 @@ static NSString * cellIdentifier = @"cellIdentifier";
     }else
         self.completeBtn.enabled = NO;
     text = textView.text;
-    
 }
 
 -(void)textViewDidEndEditing:(UITextView *)textView{
-    self.questTV.font = [UIFont systemFontOfSize:12];
+    self.questTV.font = [UIFont systemFontOfSize:13];
     [self.tableView setScrollEnabled:YES];
 }
 
@@ -192,6 +197,8 @@ static NSString * cellIdentifier = @"cellIdentifier";
             if ([dic[@"result"] isEqualToString:@"success"]){
                 [Alert showAlert:@"发布问题成功!"];
                 text = NULL;
+                self.questTV.text = text;
+                [self.tableView beginRefreshing];
             }
             else {
                 [Alert showAlert:@"发布问题失败!"];
@@ -207,11 +214,18 @@ static NSString * cellIdentifier = @"cellIdentifier";
     self.cancelBtn.hidden = YES;
     self.tvLabel.hidden = YES;
     self.toolBar.frame = CGRectMake(0, self.tableView.frame.origin.y + self.tableView.frame.size.height , self.view.frame.size.width , 135);
-    self.questTV.frame = CGRectMake(20, 5, self.view.frame.size.width - 30, 25);
+    self.questTV.frame = CGRectMake(self.questTV.frame.origin.x, 5, self.view.frame.size.width - 30, 25);
     if (self.questTV.text.length == 0) {
-        self.questTV.text = @"      写问题";
+        self.questTV.text = @"写问题";
+        self.questTV.textColor = [UIColor colorWithWhite:149.0/255.0 alpha:1];
         tvImageView.hidden = NO;
+        self.questTV.textContainerInset = UIEdgeInsetsMake(5, 21, 5, 15);
+    }else{
+        self.questTV.contentInset = UIEdgeInsetsMake(5, 0, 5, 0);
+        self.questTV.textColor = [UIColor blackColor];
     }
+
+
 }
 
 - (void)registerForKayboardNotifications{
@@ -221,7 +235,7 @@ static NSString * cellIdentifier = @"cellIdentifier";
 
 - (void)keyboardChange:(NSNotification *)aNotification{
     NSDictionary * info = [aNotification userInfo];
-    CGSize kbSize = [[info objectForKey:UIKeyboardFrameBeginUserInfoKey] CGRectValue].size;
+    CGSize kbSize = [[info objectForKey:UIKeyboardFrameEndUserInfoKey] CGRectValue].size;
  /*
     [UIView beginAnimations:nil context:NULL];
     [UIView setAnimationDelegate:self];
@@ -232,6 +246,7 @@ static NSString * cellIdentifier = @"cellIdentifier";
                      animations:^{
                          self.toolBar.frame = CGRectMake(self.toolBar.frame.origin.x, self.tableView.frame.origin.y + self.tableView.frame.size.height - kbSize.height - 150, self.view.frame.size.width, self.toolBar.frame.size.height + 180);
                      }];
+    NSLog(@"aaa");
 
   //  [UIView commitAnimations];
 }
@@ -244,9 +259,9 @@ static NSString * cellIdentifier = @"cellIdentifier";
     UITableViewCell * aCell = [self tableView:tableView cellForRowAtIndexPath:indexPath];
     QATableViewCell * cell = (QATableViewCell *)aCell;
     if (cell.ansView.hidden) {
-        return cell.queLabel.frame.origin.y + cell.queLabel.frame.size.height + 5;
+        return cell.queLabel.frame.origin.y + cell.queLabel.frame.size.height + 10;
     }else
-        return cell.ansView.frame.origin.y + cell.ansView.frame.size.height + 5;
+        return cell.ansView.frame.origin.y + cell.ansView.frame.size.height + 10;
  
 }
 
