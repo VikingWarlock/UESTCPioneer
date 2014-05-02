@@ -89,6 +89,7 @@ type=getNoticeOrAnnounce&userId=0004003990022&userName=xiao002&page=1&typepid=0
 
 
 -(void)viewWillAppear:(BOOL)animated{
+        [super viewWillAppear:animated];
             [self.leveyTabBarController.navigationItem setTitle:@"公示公告"];
 }
 

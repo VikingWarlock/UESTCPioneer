@@ -79,6 +79,7 @@ ype：请求类型；userId：请求者权限Id；userName：请求者用户名�
 }
 
 -(void)viewWillAppear:(BOOL)animated{
+        [super viewWillAppear:animated];
             [self.leveyTabBarController.navigationItem setTitle:@"组织活动"];
 }
 
