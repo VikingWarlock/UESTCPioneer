@@ -139,9 +139,12 @@
 }
 
 #pragma mark - commit share 
--(void)commitShare:(UIButton*)button{
+
+
+-(void)commit:(id)sender{
     
 }
+
 
 -(void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event{
     [writeRect resignFirstResponder];

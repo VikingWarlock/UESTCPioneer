@@ -26,6 +26,10 @@
 
 @implementation StartActivity
 
+-(NSMutableArray*)getPickedImageArray{
+    return pickedImage;
+}
+
 - (id)initWithStyle:(UITableViewStyle)style
 {
     self = [super initWithStyle:style];
