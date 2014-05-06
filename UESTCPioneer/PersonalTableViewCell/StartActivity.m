@@ -132,7 +132,7 @@
         switch (buttonIndex) {
             case 0:
                 self.pickImage.allowsEditing = YES;
-                self.pickImage.sourceType = UIImagePickerControllerSourceTypeCamera;
+                self.pickImage.sourceType = UIImagePickerControllerSourceTypePhotoLibrary;
                 [self presentViewController:self.pickImage animated:YES completion:NULL];
                 break;
             default:
