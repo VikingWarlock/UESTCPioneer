@@ -88,26 +88,25 @@
     
     
     
-//    NSURL *url = [NSURL URLWithString:@"http://222.197.183.81:8080/UestcApp/EveShare.do"];
-    NSURL *url = [NSURL URLWithString:@"http://localhost/1.php"];
+    NSURL *url = [NSURL URLWithString:@"http://222.197.183.81:8080/UestcApp/EveShare.do"];
+//    NSURL *url = [NSURL URLWithString:@"http://222.197.183.81:8080/UestcApp/EveShare.do?content=中文呀&eventTitle=看见了&type=EventShare&userId=0012001130011&userName=cdxf"];
     
     AFHTTPClient *client= [AFHTTPClient clientWithBaseURL:url];
     
 
-NSStringEncoding gbkEncoding = CFStringConvertEncodingToNSStringEncoding(kCFStringEncodingGB_18030_2000);
-    
+//NSStringEncoding gbkEncoding = CFStringConvertEncodingToNSStringEncoding(kCFStringEncodingGB_18030_2000);
     
     NSDictionary *requestD = @{@"userId":[constant getUserId]
-                               ,@"eventTitle":@"看见了"
+                               ,@"eventTitle":[helper urlencode:@"看见了"]
                                ,@"userName":[constant getUserName]
-                               ,@"content":@"测试2"
+                               ,@"content":[helper urlencode:@"测试2"]
                                ,@"type":@"EventShare"
                                };
     
 
     
     
-    
+
     
     NSMutableURLRequest *request=[client multipartFormRequestWithMethod:@"POST" path:nil parameters:requestD constructingBodyWithBlock:^(id<AFMultipartFormData> formData) {
         NSData *imageData= UIImagePNGRepresentation([UIImage imageNamed:@"icon120.png"]);
@@ -279,6 +278,8 @@ NSStringEncoding gbkEncoding = CFStringConvertEncodingToNSStringEncoding(kCFStri
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
+
+
 
 
 @end

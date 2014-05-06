@@ -19,4 +19,5 @@
 
 +(UIImage*)makeImageWithColor:(UIColor*)color;
 
++(NSString*)urlencode:(NSString*)unescaped;
 @end

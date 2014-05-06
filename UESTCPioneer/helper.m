@@ -76,7 +76,13 @@
     return image;
 }
 
-
++(NSString*)urlencode:(NSString*)unescaped{
+//    NSString *unescaped = @"http://www";
+    NSString *charactersToEscape = @"!*'();:@&=+$,/?%#[]\" ";
+    NSCharacterSet *allowedCharacters = [[NSCharacterSet characterSetWithCharactersInString:charactersToEscape] invertedSet];
+    NSString *encodedString = [unescaped stringByAddingPercentEncodingWithAllowedCharacters:allowedCharacters];
+    return encodedString;
+}
 
 
 
