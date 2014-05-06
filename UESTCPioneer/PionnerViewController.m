@@ -88,54 +88,6 @@
     
     
     
-    NSURL *url = [NSURL URLWithString:@"http://222.197.183.81:8080/UestcApp/EveShare.do"];
-//    NSURL *url = [NSURL URLWithString:@"http://222.197.183.81:8080/UestcApp/EveShare.do?content=中文呀&eventTitle=看见了&type=EventShare&userId=0012001130011&userName=cdxf"];
-    
-    AFHTTPClient *client= [AFHTTPClient clientWithBaseURL:url];
-    
-
-//NSStringEncoding gbkEncoding = CFStringConvertEncodingToNSStringEncoding(kCFStringEncodingGB_18030_2000);
-    
-    NSDictionary *requestD = @{@"userId":[constant getUserId]
-                               ,@"eventTitle":[helper urlencode:@"看见了"]
-                               ,@"userName":[constant getUserName]
-                               ,@"content":[helper urlencode:@"测试2"]
-                               ,@"type":@"EventShare"
-                               };
-    
-
-    
-    
-
-    
-    NSMutableURLRequest *request=[client multipartFormRequestWithMethod:@"POST" path:nil parameters:requestD constructingBodyWithBlock:^(id<AFMultipartFormData> formData) {
-        NSData *imageData= UIImagePNGRepresentation([UIImage imageNamed:@"icon120.png"]);
-        [formData appendPartWithFileData:imageData name:@"newsPic" fileName:@"icon120.png" mimeType:@"application/octet-stream"];
-
-//        [formData appendPartWithFormData:[@"中文" dataUsingEncoding:NSUTF8StringEncoding] name:@"content"];
-    }];
-    
-
-    
-
-    AFHTTPRequestOperation *operation = [[AFHTTPRequestOperation alloc]initWithRequest:request];
-    [operation setCompletionBlockWithSuccess:^(AFHTTPRequestOperation *operation, id responseObject) {
-       NSString *st= [[NSString alloc]initWithData:responseObject encoding:NSUTF8StringEncoding];
-        NSDictionary *dic= [NSJSONSerialization JSONObjectWithData:responseObject options:NSJSONReadingMutableLeaves error:nil];
-        NSLog(@"%@",dic);
-        
-    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-        NSLog(@"%@",error);
-    }];
-    [operation start];
-    
-    
-
-    
-    
-    
-    
-    
     
 //    NSLog(@"self.view=%f",self.view.bounds.size.height);
 	// Do any additional setup after loading the view, typically from a nib.

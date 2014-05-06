@@ -1069,7 +1069,6 @@
 				88E1AFD118CAC8B3008D92B7 /* CoreData */,
 				DCB5144318C6D37200B7EE95 /* Bottom */,
 				DCB5144218C6D2F400B7EE95 /* Center'sMainViewController */,
-				DCB5144118C6D2E900B7EE95 /* Left */,
 				DCB5142118C6D00500B7EE95 /* images */,
 				DCB5139018C6C76700B7EE95 /* OpenSourceControls */,
 				DCB22CF818CC9F37004F36D0 /* helper.h */,
@@ -1204,6 +1203,7 @@
 				DCB5146B18C6E2AF00B7EE95 /* PartyActivityViewController.m */,
 				DCB5146D18C6E2DB00B7EE95 /* MoodShareViewController.h */,
 				DCB5146E18C6E2DB00B7EE95 /* MoodShareViewController.m */,
+				DCB5144118C6D2E900B7EE95 /* Left */,
 			);
 			name = "Center'sMainViewController";
 			sourceTree = "<group>";
