@@ -142,6 +142,7 @@
 
 
 -(void)commit:(id)sender{
+    //@张众看这里
     NSDictionary *requestD = @{@"userId":[constant getUserId]
                                ,@"eventTitle":[helper urlencode:self.editTitle.text]
                                ,@"userName":[constant getUserName]
@@ -168,7 +169,7 @@
             [Alert showAlert:@"发生错误"];
         }
     } failure:^(NSError *error) {
-        
+                        [Alert showAlert:@"发生错误"];
     }];
 }
 
