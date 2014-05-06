@@ -71,7 +71,8 @@
         
         _userNameField=[[UITextField alloc]init];
         [self addSubview:_userNameField];
-        [_userNameField setPlaceholder:@"请输入用户名或Email"];
+        [_userNameField setKeyboardType:UIKeyboardTypeEmailAddress];
+        [_userNameField setPlaceholder:@"请输入用户名s"];
         [_userNameField setTranslatesAutoresizingMaskIntoConstraints:NO];
         [self addConstraint:[NSLayoutConstraint constraintWithItem:_userNameField attribute:NSLayoutAttributeLeft relatedBy:NSLayoutRelationEqual toItem:_userNameLabel attribute:NSLayoutAttributeRight multiplier:1 constant:0]];
         [self addConstraint:[NSLayoutConstraint constraintWithItem:_userNameField attribute:NSLayoutAttributeHeight relatedBy:NSLayoutRelationEqual toItem:backgroundImageView attribute:NSLayoutAttributeHeight multiplier:0.5 constant:0]];

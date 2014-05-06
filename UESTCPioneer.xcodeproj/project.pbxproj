@@ -150,6 +150,10 @@
 		DCA5962918C81AED00F001D9 /* UPComplexSwitch.m in Sources */ = {isa = PBXBuildFile; fileRef = DCA5962818C81AED00F001D9 /* UPComplexSwitch.m */; };
 		DCA7D9E518EC52C60006BDAF /* registViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DCA7D9E418EC52C60006BDAF /* registViewController.m */; };
 		DCA7D9EC18EC55E00006BDAF /* entranceViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DCA7D9EB18EC55E00006BDAF /* entranceViewController.m */; };
+		DCAD846A19186C6100323B2B /* AGPhotoBrowserCell.m in Sources */ = {isa = PBXBuildFile; fileRef = DCAD846019186C6100323B2B /* AGPhotoBrowserCell.m */; };
+		DCAD846B19186C6100323B2B /* AGPhotoBrowserOverlayView.m in Sources */ = {isa = PBXBuildFile; fileRef = DCAD846519186C6100323B2B /* AGPhotoBrowserOverlayView.m */; };
+		DCAD846C19186C6100323B2B /* AGPhotoBrowserView.m in Sources */ = {isa = PBXBuildFile; fileRef = DCAD846719186C6100323B2B /* AGPhotoBrowserView.m */; };
+		DCAD846D19186C6100323B2B /* AGPhotoBrowserZoomableView.m in Sources */ = {isa = PBXBuildFile; fileRef = DCAD846919186C6100323B2B /* AGPhotoBrowserZoomableView.m */; };
 		DCAFE85D18E51EAE00702864 /* Mapping.m in Sources */ = {isa = PBXBuildFile; fileRef = DCAFE85C18E51EAE00702864 /* Mapping.m */; };
 		DCB22CFA18CC9F37004F36D0 /* helper.m in Sources */ = {isa = PBXBuildFile; fileRef = DCB22CF918CC9F37004F36D0 /* helper.m */; };
 		DCB22CFD18CCBCD0004F36D0 /* constant.m in Sources */ = {isa = PBXBuildFile; fileRef = DCB22CFC18CCBCD0004F36D0 /* constant.m */; };
@@ -455,6 +459,17 @@
 		DCA7D9E418EC52C60006BDAF /* registViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = registViewController.m; sourceTree = "<group>"; };
 		DCA7D9EA18EC55E00006BDAF /* entranceViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = entranceViewController.h; sourceTree = "<group>"; };
 		DCA7D9EB18EC55E00006BDAF /* entranceViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = entranceViewController.m; sourceTree = "<group>"; };
+		DCAD845F19186C6100323B2B /* AGPhotoBrowserCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AGPhotoBrowserCell.h; sourceTree = "<group>"; };
+		DCAD846019186C6100323B2B /* AGPhotoBrowserCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AGPhotoBrowserCell.m; sourceTree = "<group>"; };
+		DCAD846119186C6100323B2B /* AGPhotoBrowserCellProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AGPhotoBrowserCellProtocol.h; sourceTree = "<group>"; };
+		DCAD846219186C6100323B2B /* AGPhotoBrowserDataSource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AGPhotoBrowserDataSource.h; sourceTree = "<group>"; };
+		DCAD846319186C6100323B2B /* AGPhotoBrowserDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AGPhotoBrowserDelegate.h; sourceTree = "<group>"; };
+		DCAD846419186C6100323B2B /* AGPhotoBrowserOverlayView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AGPhotoBrowserOverlayView.h; sourceTree = "<group>"; };
+		DCAD846519186C6100323B2B /* AGPhotoBrowserOverlayView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AGPhotoBrowserOverlayView.m; sourceTree = "<group>"; };
+		DCAD846619186C6100323B2B /* AGPhotoBrowserView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AGPhotoBrowserView.h; sourceTree = "<group>"; };
+		DCAD846719186C6100323B2B /* AGPhotoBrowserView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AGPhotoBrowserView.m; sourceTree = "<group>"; };
+		DCAD846819186C6100323B2B /* AGPhotoBrowserZoomableView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AGPhotoBrowserZoomableView.h; sourceTree = "<group>"; };
+		DCAD846919186C6100323B2B /* AGPhotoBrowserZoomableView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AGPhotoBrowserZoomableView.m; sourceTree = "<group>"; };
 		DCAFE85B18E51EAE00702864 /* Mapping.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Mapping.h; path = CoreData_Model/Mapping.h; sourceTree = "<group>"; };
 		DCAFE85C18E51EAE00702864 /* Mapping.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Mapping.m; path = CoreData_Model/Mapping.m; sourceTree = "<group>"; };
 		DCB22CF818CC9F37004F36D0 /* helper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = helper.h; sourceTree = "<group>"; };
@@ -990,6 +1005,25 @@
 			name = superClass;
 			sourceTree = "<group>";
 		};
+		DCAD845E19186C6100323B2B /* AGPhotoBrowser */ = {
+			isa = PBXGroup;
+			children = (
+				DCAD845F19186C6100323B2B /* AGPhotoBrowserCell.h */,
+				DCAD846019186C6100323B2B /* AGPhotoBrowserCell.m */,
+				DCAD846119186C6100323B2B /* AGPhotoBrowserCellProtocol.h */,
+				DCAD846219186C6100323B2B /* AGPhotoBrowserDataSource.h */,
+				DCAD846319186C6100323B2B /* AGPhotoBrowserDelegate.h */,
+				DCAD846419186C6100323B2B /* AGPhotoBrowserOverlayView.h */,
+				DCAD846519186C6100323B2B /* AGPhotoBrowserOverlayView.m */,
+				DCAD846619186C6100323B2B /* AGPhotoBrowserView.h */,
+				DCAD846719186C6100323B2B /* AGPhotoBrowserView.m */,
+				DCAD846819186C6100323B2B /* AGPhotoBrowserZoomableView.h */,
+				DCAD846919186C6100323B2B /* AGPhotoBrowserZoomableView.m */,
+			);
+			name = AGPhotoBrowser;
+			path = src;
+			sourceTree = "<group>";
+		};
 		DCB5134F18C6C43700B7EE95 = {
 			isa = PBXGroup;
 			children = (
@@ -1083,6 +1117,7 @@
 		DCB5139018C6C76700B7EE95 /* OpenSourceControls */ = {
 			isa = PBXGroup;
 			children = (
+				DCAD845E19186C6100323B2B /* AGPhotoBrowser */,
 				DCB5142018C6CC1100B7EE95 /* LeveyTabBarController */,
 				DCB5141918C6C82700B7EE95 /* PPRevealSideViewController */,
 			);
@@ -1603,6 +1638,7 @@
 				5156D89618F8100F0044A020 /* CellForEditPersonalInformation.m in Sources */,
 				F214420318E8605700B56DEE /* QAViewController.m in Sources */,
 				510A267C1900D0ED0055F7D4 /* CellForSuggestion_Detail.m in Sources */,
+				DCAD846A19186C6100323B2B /* AGPhotoBrowserCell.m in Sources */,
 				5153823A18DAE0EA007C4675 /* PersonalInformation.m in Sources */,
 				DC0BFFDC18E255F7002E3D38 /* MJRefreshConst.m in Sources */,
 				DCB5145C18C6DE7D00B7EE95 /* UPMenuTableViewCell.m in Sources */,
@@ -1615,12 +1651,14 @@
 				DCAFE85D18E51EAE00702864 /* Mapping.m in Sources */,
 				DC0BFFC018E24CD7002E3D38 /* commentView.m in Sources */,
 				F2830F4418FD87680046542B /* superTableViewController.m in Sources */,
+				DCAD846D19186C6100323B2B /* AGPhotoBrowserZoomableView.m in Sources */,
 				DCB5141818C6C81000B7EE95 /* PPRevealSideViewController.m in Sources */,
 				F2830F4D18FD8C7E0046542B /* PartyDataSpiritEntity.m in Sources */,
 				DCB63E0B18E6565100AA0B58 /* Alert.m in Sources */,
 				DCB5146618C6DF4500B7EE95 /* UPFooterCell.m in Sources */,
 				F23FA50818E3EB2B00E174A2 /* OrganDetailTableViewController.m in Sources */,
 				DCB5146018C6DF1C00B7EE95 /* UPTitleCell.m in Sources */,
+				DCAD846C19186C6100323B2B /* AGPhotoBrowserView.m in Sources */,
 				515212C818F96A6A00A9D417 /* PersonalBirthEntity.m in Sources */,
 				DCA7D9E518EC52C60006BDAF /* registViewController.m in Sources */,
 				F23FA50218E3EA4A00E174A2 /* LearnDetailViewController.m in Sources */,
@@ -1667,6 +1705,7 @@
 				5153823D18DAE132007C4675 /* MyCollection.m in Sources */,
 				5156D89818F8100F0044A020 /* CellForPersonalInformation.m in Sources */,
 				8834BA2318D6F12F0023BA87 /* MessageEntity.m in Sources */,
+				DCAD846B19186C6100323B2B /* AGPhotoBrowserOverlayView.m in Sources */,
 				8889F91918D02E13001416C0 /* UserEntity.m in Sources */,
 				DC376ED818E53124005F7DC8 /* RefreshRequestViewController.m in Sources */,
 				F270ECD118FE5F3F00DA82EA /* MLearnTableViewController.m in Sources */,

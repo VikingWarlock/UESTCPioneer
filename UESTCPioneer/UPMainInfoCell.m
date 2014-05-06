@@ -7,11 +7,11 @@
 //
 
 #import "UPMainInfoCell.h"
-
+#import <objc/runtime.h>
 #define wholeNewsButtonColor         [UIColor colorWithRed:93.0/255.0 green:107.0/255.0 blue:142.0/255.0 alpha:1]
 
 
-
+const NSString *RecognizerIndexKey =@"recognizerIndexKey";
 
 @interface newsImage : UIImageView
 
@@ -27,6 +27,10 @@
         //改变缩略图的显示，使得不变形 @张众
         self.contentMode = UIViewContentModeScaleAspectFill;
         self.clipsToBounds = YES;
+        
+        
+        
+        
     }
     return self;
 }
@@ -36,9 +40,10 @@
 
 @end
 
-@interface UPMainInfoCell(){
+@interface UPMainInfoCell()<AGPhotoBrowserDataSource,AGPhotoBrowserDelegate>{
     UIButton *btnLabel;
     NSArray *imageViewArray;
+    AGPhotoBrowserView *AGBrowser;
 }
 
 @end
@@ -74,6 +79,17 @@
         [btnLabel addTarget:self action:@selector(WholeNewsContentButtonPress:) forControlEvents:UIControlEventTouchUpInside];
         [btnLabel.titleLabel setTextAlignment:NSTextAlignmentCenter];
         [self.contentView addSubview:btnLabel];
+        
+        
+        //@AGPhotoBrowser
+        AGPhotoBrowserView *AGPhotoBrowser = [[AGPhotoBrowserView alloc]init];
+        AGPhotoBrowser.delegate=self;
+        AGPhotoBrowser.dataSource=self;
+        [AGPhotoBrowser.doneButton addTarget:self action:@selector(doneButtonClick:) forControlEvents:UIControlEventTouchUpInside];
+        
+        AGBrowser=AGPhotoBrowser;
+        
+        
     }
     return self;
 }
@@ -114,6 +130,18 @@
         for (NSInteger i=0;i<4;i++){
             newsImage *imageV = [[newsImage alloc]initWithIndex:i];
             [self addSubview:imageV];
+            
+            
+            //@给图片添加点击事件
+            UITapGestureRecognizer *tapRecognizer = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(imageTap:)];
+            
+            
+            objc_setAssociatedObject(tapRecognizer, &RecognizerIndexKey, @(i),OBJC_ASSOCIATION_RETAIN);
+            
+            [imageV addGestureRecognizer:tapRecognizer];
+            [imageV setUserInteractionEnabled:YES];
+            
+            
             [mut addObject:imageV];
         }
         imageViewArray=[[NSArray alloc]initWithArray:mut];
@@ -196,6 +224,41 @@
 }
 
 
+#pragma mark AGPhotoBrwoser 
+
+-(NSInteger) numberOfPhotosForPhotoBrowser:(AGPhotoBrowserView *)photoBrowser{
+    return [imageViewArray count];
+}
+
+-(UIImage*)photoBrowser:(AGPhotoBrowserView *)photoBrowser imageAtIndex:(NSInteger)index{
+    UIImageView *imageView = imageViewArray[index];
+    return imageView.image;
+}
+
+
+//取消按钮事件
+-(void)doneButtonClick:(UIButton*)button{
+    [AGBrowser hideWithCompletion:NULL];
+}
+
+
+
+#pragma mark image Tap 
+-(void)imageTap:(UITapGestureRecognizer*)recognizer{
+    NSInteger index =[objc_getAssociatedObject(recognizer, &RecognizerIndexKey) integerValue];
+    [AGBrowser showFromIndex:index];
+}
+
+
+
+
+
+-(void)dealloc{
+    for (newsImage *v in imageViewArray){
+        UITapGestureRecognizer* re= [v.gestureRecognizers lastObject];
+        objc_removeAssociatedObjects(re);
+    }
+}
 
 
 

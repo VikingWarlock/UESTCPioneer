@@ -129,7 +129,7 @@
 
 -(void)popUpCommentViewWithCommitBlock:(void(^)(NSString *commentBody))commitBlock{
         UIView *keyWindow=[[UIApplication sharedApplication]keyWindow];
-    
+    [_commentTextField becomeFirstResponder];
     //把self加到window
     [keyWindow addSubview:self];
     [self setBackgroundColor:[UIColor redColor]];

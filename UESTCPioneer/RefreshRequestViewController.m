@@ -64,6 +64,10 @@ static NSString *customFooterCellIndentifier = @"CustomFooterCellIndentifier";
     [self.tableView registerClass:[UPFooterCell class] forCellReuseIdentifier:customFooterCellIndentifier];
     
             _cellHeightDictionary=[[NSMutableDictionary alloc]init];
+    
+    //@AGPhotoBrowser
+    AGPhotoBrowserView *photoBrowser = [[AGPhotoBrowserView alloc]init];
+    
 }
 
 - (void)didReceiveMemoryWarning
@@ -305,5 +309,8 @@ static NSString *customFooterCellIndentifier = @"CustomFooterCellIndentifier";
     else
         return 40;
 }
+
+
+
 
 @end

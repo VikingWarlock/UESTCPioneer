@@ -42,7 +42,7 @@
 //    [self.view addSubview:label];
     self.tableView.delegate = self;
     self.tableView.dataSource = self;
-        [dropbtn setTitle:@"支部" forState:UIControlStateNormal];
+        [dropbtn setTitle:@"校级" forState:UIControlStateNormal];
     
     //链接请求参数
     
@@ -55,7 +55,7 @@
                   ,@"userName":[constant getUserName]
                   ,@"page":@"1"
                   ,@"typepid":@"1"
-                  ,@"level":@"2"};
+                  ,@"level":@"0"};
     entityName=kPartyNoticeNewsEntityName;
     entityMapping=[Mapping PartyNoticeMapping];
     
@@ -157,10 +157,11 @@
 
         UPTitleCell *titleCell = (UPTitleCell*)cell;
         
-        
-        
+
+        [titleCell setTitle:entity.userName];
         titleCell.delegate=self;
         [titleCell setCollectButtonEnable:YES];
+
         
         //收藏按钮
         BOOL collected = [entity.shoucang boolValue];
@@ -271,6 +272,7 @@
             //判断为非管理员
             [Alert showAlert:@"对不起，你不是管理员!"];
             [shareView closeCommentView];
+            return ;
         }
         
         
@@ -290,12 +292,15 @@
                 [Alert showAlert:@"转发成功"];
                 [shareView closeCommentView];
                 [self.tableView beginRefreshing];
+                return ;
             }
             else {
                 [Alert showAlert:@"转发失败"];
+                return;
             }
         } FailureBlock:^(AFHTTPRequestOperation *operation, NSError *error) {
             [Alert showAlert:@"转发错误"];
+            return ;
         }];
         
         
@@ -374,10 +379,10 @@
     [NetworkCenter AFRequestWithData:MarkReqeustData SuccessBlock:^(AFHTTPRequestOperation *operation, id resultObject) {
         NSDictionary *dic = [NSJSONSerialization JSONObjectWithData:resultObject options:NSJSONReadingMutableLeaves error:Nil];
         if ([dic[@"result"] isEqualToString:@"success"]){
-            [Alert showAlert:@"标记成功！"];
+//            [Alert showAlert:@"标记成功！"];
         }
         else {
-            [Alert showAlert:@"标记失败!"];
+//            [Alert showAlert:@"标记失败!"];
         }
 
         
