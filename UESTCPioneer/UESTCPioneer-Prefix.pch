@@ -28,5 +28,6 @@
 #import"Alert.h"
 #import"RequestData.h"
 #import<UIImageView+WebCache.h>
+#import"AGPhotoBrowserView.h"
 
 #endif
