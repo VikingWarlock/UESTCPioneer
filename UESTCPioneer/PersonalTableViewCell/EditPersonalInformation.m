@@ -82,6 +82,22 @@
 
 - (void)complete:(id)sender
 {
+    if (((CellForEditPersonalInformation *)[self.tableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:4 inSection:1]]).textfield.text.length == 0)
+    {
+        [Alert showAlert:@"原始密码不能为空!"];
+    }
+    else if (((CellForEditPersonalInformation *)[self.tableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:5 inSection:1]]).textfield.text.length != 0 && ((CellForEditPersonalInformation *)[self.tableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:6 inSection:1]]).textfield.text.length == 0)
+    {
+        [Alert showAlert:@"请再次输入新密码!"];
+    }
+    else if (((CellForEditPersonalInformation *)[self.tableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:5 inSection:1]]).textfield.text.length == 0 && ((CellForEditPersonalInformation *)[self.tableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:6 inSection:1]]).textfield.text.length != 0)
+    {
+        [Alert showAlert:@"新的密码不能为空!"];
+    }
+    else if (((CellForEditPersonalInformation *)[self.tableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:5 inSection:1]]).textfield.text.length != 0 && ![((CellForEditPersonalInformation *)[self.tableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:6 inSection:1]]).textfield.text isEqualToString:((CellForEditPersonalInformation *)[self.tableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:5 inSection:1]]).textfield.text])
+    {
+        [Alert showAlert:@"两次输入的密码不一致!"];
+    }
     
 }
 
@@ -160,6 +176,18 @@
         [cell.touXiang addTarget:self.choseImageSheet action:@selector(showInView:) forControlEvents:UIControlEventTouchUpInside];
         return cell;
     }
+    else if (indexPath.section == 0 &&indexPath.row ==1)
+    {
+        static NSString *CellIdentifier = @"setcell";
+        CellForEditPersonalInformation *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+        if (cell == nil) {
+            cell = [[CellForEditPersonalInformation alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
+        }
+        cell.staticLabel.text = array[indexPath.row];
+        cell.textfield.placeholder = [NSString stringWithFormat:@"请输入您的%@",array[indexPath.row]];
+        cell.textfield.delegate = self;
+        return cell;
+    }
     else
     {
         static NSString *CellIdentifier = @"setcell";
@@ -167,9 +195,13 @@
         if (cell == nil) {
             cell = [[CellForEditPersonalInformation alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
         }
-        cell.staticLabel.text = array[indexPath.row + 1];
-        cell.textfield.placeholder = [NSString stringWithFormat:@"请输入您的%@",array[indexPath.row + 1]];
+        cell.staticLabel.text = array[indexPath.row + 2];
+        cell.textfield.placeholder = [NSString stringWithFormat:@"请输入您的%@",array[indexPath.row + 2]];
         cell.textfield.delegate = self;
+        
+        if (indexPath.row == 4 || indexPath.row == 5 || indexPath.row == 6) {
+            cell.textfield.secureTextEntry = YES;
+        }
         return cell;
     }
 }

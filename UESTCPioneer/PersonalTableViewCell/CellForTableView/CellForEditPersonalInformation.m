@@ -59,6 +59,7 @@ static int i;
         _textfield.layer.borderWidth =1.0;
         _textfield.layer.cornerRadius =4.0;
         _textfield.placeholder = @"请输入您的...";
+        _textfield.text = nil;
     }
     return _textfield;
 }
