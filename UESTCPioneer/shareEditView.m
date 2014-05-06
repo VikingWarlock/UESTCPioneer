@@ -41,7 +41,10 @@
     
     [commentRectView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-16-[shareSourceInfoLabel]-16-|" options:0 metrics:nil views:NSDictionaryOfVariableBindings(shareSourceInfoLabel)]];
     
-    [commentRectView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:[commentTextField]-[shareSourceInfoLabel(==80)]-|" options:0 metrics:nil views:NSDictionaryOfVariableBindings(self.commentTextField,shareSourceInfoLabel)]];
+    
+    
+    
+    [commentRectView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:[commentTextField]-[shareSourceInfoLabel(==80)]-|" options:0 metrics:nil views:@{@"commentTextField":self.commentTextField,@"shareSourceInfoLabel":shareSourceInfoLabel}]];
 }
 
 -(void)_viewStyle{

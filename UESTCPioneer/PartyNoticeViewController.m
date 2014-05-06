@@ -157,10 +157,11 @@
 
         UPTitleCell *titleCell = (UPTitleCell*)cell;
         
-        
-        
+
+        [titleCell setTitle:entity.userName];
         titleCell.delegate=self;
         [titleCell setCollectButtonEnable:YES];
+
         
         //收藏按钮
         BOOL collected = [entity.shoucang boolValue];
@@ -271,6 +272,7 @@
             //判断为非管理员
             [Alert showAlert:@"对不起，你不是管理员!"];
             [shareView closeCommentView];
+            return ;
         }
         
         
@@ -290,12 +292,15 @@
                 [Alert showAlert:@"转发成功"];
                 [shareView closeCommentView];
                 [self.tableView beginRefreshing];
+                return ;
             }
             else {
                 [Alert showAlert:@"转发失败"];
+                return;
             }
         } FailureBlock:^(AFHTTPRequestOperation *operation, NSError *error) {
             [Alert showAlert:@"转发错误"];
+            return ;
         }];
         
         
