@@ -142,7 +142,6 @@
 
 
 -(void)commit:(id)sender{
-    //@张众看这里
     NSDictionary *requestD = @{@"userId":[constant getUserId]
                                ,@"eventTitle":[helper urlencode:self.editTitle.text]
                                ,@"userName":[constant getUserName]
