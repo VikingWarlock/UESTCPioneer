@@ -379,10 +379,10 @@
     [NetworkCenter AFRequestWithData:MarkReqeustData SuccessBlock:^(AFHTTPRequestOperation *operation, id resultObject) {
         NSDictionary *dic = [NSJSONSerialization JSONObjectWithData:resultObject options:NSJSONReadingMutableLeaves error:Nil];
         if ([dic[@"result"] isEqualToString:@"success"]){
-            [Alert showAlert:@"标记成功！"];
+//            [Alert showAlert:@"标记成功！"];
         }
         else {
-            [Alert showAlert:@"标记失败!"];
+//            [Alert showAlert:@"标记失败!"];
         }
 
         
