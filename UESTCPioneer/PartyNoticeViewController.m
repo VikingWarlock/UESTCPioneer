@@ -42,7 +42,7 @@
 //    [self.view addSubview:label];
     self.tableView.delegate = self;
     self.tableView.dataSource = self;
-        [dropbtn setTitle:@"支部" forState:UIControlStateNormal];
+        [dropbtn setTitle:@"校级" forState:UIControlStateNormal];
     
     //链接请求参数
     
@@ -55,7 +55,7 @@
                   ,@"userName":[constant getUserName]
                   ,@"page":@"1"
                   ,@"typepid":@"1"
-                  ,@"level":@"2"};
+                  ,@"level":@"0"};
     entityName=kPartyNoticeNewsEntityName;
     entityMapping=[Mapping PartyNoticeMapping];
     
