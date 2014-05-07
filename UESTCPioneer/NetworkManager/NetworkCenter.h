@@ -62,4 +62,6 @@
 
 +(void)requestActivity:(NSDictionary*)requestD ImageArray:(NSArray*)imageArray SuccessBlock:(void (^)(id resultObject))successBlock failure:(void (^) (NSError *error))failureBlock;
 
++(void)changePersonalInformation:(NSDictionary*)requestD ImageArray:(NSArray*)imageArray SuccessBlock:(void (^)(id resultObject))successBlock failure:(void (^) (NSError *error))failureBlock;
+
 @end

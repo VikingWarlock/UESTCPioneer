@@ -8,7 +8,6 @@
 
 #import "CellForEditPersonalInformation.h"
 
-static int i;
 @implementation CellForEditPersonalInformation
 
 - (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier
@@ -17,7 +16,6 @@ static int i;
     if (self) {
         [self.contentView addSubview:self.textfield];
         [self.contentView addSubview:self.staticLabel];
-        self.textfield.tag = i++;
     }
     return self;
 }

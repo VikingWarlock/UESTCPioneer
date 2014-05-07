@@ -103,33 +103,22 @@
                                ,@"type":@"EventPublish"
                                };
     
-    if ([content isEqualToString:self.editBody.text] && [title isEqualToString:self.editTitle.text] && resultsuccess == YES)
-    {
-        [Alert showAlert:@"您已经发起该活动!"];
-    }
-    else
-    {
-        content = self.editBody.text;
-        title = self.editTitle.text;
-
-        [NetworkCenter AFRequestWithLastPattern:@"/EveShare.do" Data:[RequestData startActivityRequestDataWithContent:content title:title] SuccessBlock:^(AFHTTPRequestOperation *operation, id resultObject) {
-            NSDictionary *dic = [NSJSONSerialization JSONObjectWithData:resultObject options:NSJSONReadingMutableLeaves error:nil];
-            if ([dic[@"result"] isEqualToString:@"success"]){
-                resultsuccess = YES;
-                [Alert showAlert:@"发起活动成功!"];
-            }
-            else {
-                resultsuccess = NO;
-                [Alert showAlert:@"发起活动失败!"];
-            }
+    
+    
+    [NetworkCenter requestActivity:requestD ImageArray:[self getPickedImageArray] SuccessBlock:^(id resultObject) {
+        NSDictionary *dic= [NSJSONSerialization JSONObjectWithData:resultObject options:NSJSONReadingMutableLeaves error:Nil];
+        if ([dic[@"result"] isEqualToString:@"success"]){
+            [self.navigationController popViewControllerAnimated:YES];
             
-        } FailureBlock:^(AFHTTPRequestOperation *operation, NSError *error) {
-            [Alert showAlert:@"网络请求失败!"];
-            resultsuccess = NO;
-            NSLog(@"发布通知failureblock");
-        }];
-        
-    }
+            
+            
+        }
+        else {
+            [Alert showAlert:@"发生错误"];
+        }
+    } failure:^(NSError *error) {
+        [Alert showAlert:@"发生错误"];
+    }];
 }
 
 #pragma mark actionSheet delegate and imagePicker

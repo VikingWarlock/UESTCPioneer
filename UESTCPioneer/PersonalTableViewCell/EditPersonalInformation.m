@@ -14,7 +14,7 @@
 {
     NSArray *array;
     NSArray *personalInformation;
-    int tag;
+    UITextField *tag;
     UIImage *pickedImage;
 }
 @end
@@ -36,6 +36,24 @@
     
     
     
+    self.tableView.delegate = self;
+    self.tableView.dataSource = self;
+    [self.tableView registerClass:[CellForEditPersonalInformation class] forCellReuseIdentifier:@"setcell"];
+    [self.tableView registerClass:[CellForEditPersonalInformation_FirstCell class] forCellReuseIdentifier:@"Firstcell"];
+    self.tableView.allowsSelection = NO;
+    self.tableView.separatorInset = UIEdgeInsetsZero;
+    array = @[@"头像",@"昵称",@"姓名",@"性别",@"民族",@"籍贯",@"原始密码",@"新的密码",@"确认密码"];
+    personalInformation = [[NSArray alloc] initWithObjects:[[constant getPersonalInfo] valueForKey:@"userName"], [[constant getPersonalInfo] valueForKey:@"name"],[[constant getPersonalInfo] valueForKey:@"sex"],[[constant getPersonalInfo] valueForKey:@"nation"],[[constant getPersonalInfo] valueForKey:@"homeTown"],@"请输入您的原始密码",@"请输入您的新的密码",@"请输入您的确认密码",nil];
+    pickedImage = nil;
+}
+
+- (void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+    self.navigationItem.title=@"修改信息";
+    UIBarButtonItem *right=[[UIBarButtonItem alloc] initWithTitle:@"提交" style:UIBarButtonItemStyleDone target:self action:@selector(complete:)];
+    self.navigationItem.rightBarButtonItem = right;
+    
     //隐藏默认返回按钮
     [self.navigationItem setHidesBackButton:YES];
     
@@ -54,22 +72,6 @@
     
     
     
-    self.tableView.delegate = self;
-    self.tableView.dataSource = self;
-    [self.tableView registerClass:[CellForEditPersonalInformation class] forCellReuseIdentifier:@"setcell"];
-    [self.tableView registerClass:[CellForEditPersonalInformation_FirstCell class] forCellReuseIdentifier:@"Firstcell"];
-    self.tableView.allowsSelection = NO;
-    self.tableView.separatorInset = UIEdgeInsetsZero;
-    array = @[@"头像",@"昵称",@"姓名",@"性别",@"民族",@"籍贯",@"原始密码",@"新的密码",@"确认密码"];
-    personalInformation = [[NSArray alloc] initWithObjects:[[constant getPersonalInfo] valueForKey:@"userName"], [[constant getPersonalInfo] valueForKey:@"name"],[[constant getPersonalInfo] valueForKey:@"sex"],[[constant getPersonalInfo] valueForKey:@"nation"],[[constant getPersonalInfo] valueForKey:@"homeTown"],@"请输入您的原始密码",@"请输入您的新的密码",@"请输入您的确认密码",nil];
-}
-
-- (void)viewWillAppear:(BOOL)animated
-{
-    [super viewWillAppear:animated];
-    self.navigationItem.title=@"修改信息";
-    UIBarButtonItem *right=[[UIBarButtonItem alloc] initWithTitle:@"提交" style:UIBarButtonItemStyleDone target:self action:@selector(complete:)];
-    self.navigationItem.rightBarButtonItem = right;
 }
 
 -(void)viewWillDisappear:(BOOL)animated{
@@ -92,7 +94,7 @@
     NSString *sex = ((CellForEditPersonalInformation *)[self.tableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:1 inSection:1]]).textfield.text;
     NSString *nation = ((CellForEditPersonalInformation *)[self.tableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:2 inSection:1]]).textfield.text;
     NSString *hometown = ((CellForEditPersonalInformation *)[self.tableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:3 inSection:1]]).textfield.text;
-
+    
     if (oldPassword.length == 0)
     {
         [Alert showAlert:@"原始密码不能为空!"];
@@ -113,8 +115,22 @@
     {
         [Alert showAlert:@"性别只能为'男'或'女'"];;
     }
-    
-    
+    else
+    {
+        [NetworkCenter changePersonalInformation:[RequestData changePersonalInformationRequestDataWithNickname:nickname withName:name withSex:sex withNation:nation withHometown:hometown withOldPassword:oldPassword withNewPassword:newPassword] ImageArray:[NSArray arrayWithObject:pickedImage] SuccessBlock:^(id resultObject) {
+            NSDictionary *dic= [NSJSONSerialization JSONObjectWithData:resultObject options:NSJSONReadingMutableLeaves error:Nil];
+            if ([dic[@"result"] isEqualToString:@"success"]){
+                [self.navigationController popViewControllerAnimated:YES];
+            }
+            else {
+                [Alert showAlert:dic[@"cause"]];
+            }
+        } failure:^(NSError *error) {
+            [Alert showAlert:@"发生错误"];
+        }];
+
+    }
+
 }
 
 #pragma mark actionSheet delegate and imagePicker
@@ -183,10 +199,7 @@
     if (indexPath.section == 0 &&indexPath.row ==0)
     {
         static NSString *CellIdentifier = @"Firstcell";
-        CellForEditPersonalInformation_FirstCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
-        if (cell == nil) {
-            cell = [[CellForEditPersonalInformation_FirstCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
-        }
+        CellForEditPersonalInformation_FirstCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier forIndexPath:indexPath];
         cell.staticLabel.text = array[indexPath.row];
         [cell.touXiang addTarget:self.choseImageSheet action:@selector(showInView:) forControlEvents:UIControlEventTouchUpInside];
         return cell;
@@ -194,10 +207,7 @@
     else if (indexPath.section == 0 &&indexPath.row ==1)
     {
         static NSString *CellIdentifier = @"setcell";
-        CellForEditPersonalInformation *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
-        if (cell == nil) {
-            cell = [[CellForEditPersonalInformation alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
-        }
+        CellForEditPersonalInformation *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier forIndexPath:indexPath];
         cell.staticLabel.text = array[indexPath.row];
         cell.textfield.placeholder = [NSString stringWithFormat:@"%@",personalInformation[indexPath.row - 1]];
         cell.textfield.delegate = self;
@@ -206,10 +216,7 @@
     else
     {
         static NSString *CellIdentifier = @"setcell";
-        CellForEditPersonalInformation *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
-        if (cell == nil) {
-            cell = [[CellForEditPersonalInformation alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
-        }
+        CellForEditPersonalInformation *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier forIndexPath:indexPath];
         cell.staticLabel.text = array[indexPath.row + 2];
         cell.textfield.placeholder = [NSString stringWithFormat:@"%@",personalInformation[indexPath.row + 1]];
         cell.textfield.delegate = self;
@@ -242,12 +249,12 @@
 
 - (void)scrollViewWillBeginDragging:(UIScrollView *)scrollView
 {
-    [((CellForEditPersonalInformation *)[self.tableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:(tag < 1 ? tag + 1 : tag -1) inSection:(tag < 1 ? 0 : 1)]]).textfield resignFirstResponder];
+    [tag resignFirstResponder];
 }
 
 - (void)textFieldDidBeginEditing:(UITextField *)textField
 {
-    tag = textField.tag;
+    tag = textField;
 }
 
 - (BOOL)textFieldShouldReturn:(UITextField *)textField
