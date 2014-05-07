@@ -16,4 +16,10 @@ BOOL isFirstEdit1;
 @property (nonatomic,strong) UICollectionView *collectionview;
 @property (nonatomic,strong) UIActionSheet *choseImageSheet;
 @property (nonatomic,strong) UIImagePickerController *pickImage;
+
+
+-(NSMutableArray*)getPickedImageArray;
+//让子类继承
+- (void)commit:(id)sender;
+
 @end

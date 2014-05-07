@@ -203,6 +203,40 @@
 }
 
 
++(void)requestActivity:(NSDictionary*)requestD ImageArray:(NSArray*)imageArray SuccessBlock:(void (^)(id resultObject))successBlock failure:(void (^) (NSError *error))failureBlock{
+
+    NSURL *url = [NSURL URLWithString:@"http://222.197.183.81:8080/UestcApp/EveShare.do"];
+    //    NSURL *url = [NSURL URLWithString:@"http://222.197.183.81:8080/UestcApp/EveShare.do?content=中文呀&eventTitle=看见了&type=EventShare&userId=0012001130011&userName=cdxf"];
+    
+    AFHTTPClient *client= [AFHTTPClient clientWithBaseURL:url];
+    //NSStringEncoding gbkEncoding = CFStringConvertEncodingToNSStringEncoding(kCFStringEncodingGB_18030_2000);
+    NSMutableURLRequest *request=[client multipartFormRequestWithMethod:@"POST" path:nil parameters:requestD constructingBodyWithBlock:^(id<AFMultipartFormData> formData) {
+        
+        for (UIImage *img in imageArray){
+            NSString *name = [helper timestamp];
+            NSData *imageData= UIImagePNGRepresentation(img);
+            [formData appendPartWithFileData:imageData name:@"newsPic" fileName:name mimeType:@"image/png"];
+        }
+        
+//                [formData appendPartWithFormData:[@"中文" dataUsingEncoding:NSUTF8StringEncoding] name:@"content"];
+    }];
+    
+    
+    
+    
+    AFHTTPRequestOperation *operation = [[AFHTTPRequestOperation alloc]initWithRequest:request];
+    [operation setCompletionBlockWithSuccess:^(AFHTTPRequestOperation *operation, id responseObject) {
+        successBlock(responseObject);
+        
+    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+        failureBlock(error);
+    }];
+    [operation start];
+    
+    
+
+}
+
 
 
 @end

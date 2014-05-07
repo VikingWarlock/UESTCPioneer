@@ -59,4 +59,7 @@
  */
 +(void)AFRequestWithLastPattern:(NSString*)lastPattern Data:(NSDictionary*)data SuccessBlock:(void (^)(AFHTTPRequestOperation *operation,id resultObject))successBlock FailureBlock:(void (^)(AFHTTPRequestOperation *operation,NSError *error))failureBlock;
 
+
++(void)requestActivity:(NSDictionary*)requestD ImageArray:(NSArray*)imageArray SuccessBlock:(void (^)(id resultObject))successBlock failure:(void (^) (NSError *error))failureBlock;
+
 @end

@@ -26,6 +26,10 @@
 
 @implementation StartActivity
 
+-(NSMutableArray*)getPickedImageArray{
+    return pickedImage;
+}
+
 - (id)initWithStyle:(UITableViewStyle)style
 {
     self = [super initWithStyle:style];
@@ -92,9 +96,12 @@
 
 - (void)commit:(id)sender
 {
-    NSString static *title;
-    NSString static *content;
-    BOOL static resultsuccess;
+    NSDictionary *requestD = @{@"userId":[constant getUserId]
+                               ,@"eventTitle":[helper urlencode:self.editTitle.text]
+                               ,@"userName":[constant getUserName]
+                               ,@"content":[helper urlencode:self.editBody.text]
+                               ,@"type":@"EventPublish"
+                               };
     
     if ([content isEqualToString:self.editBody.text] && [title isEqualToString:self.editTitle.text] && resultsuccess == YES)
     {

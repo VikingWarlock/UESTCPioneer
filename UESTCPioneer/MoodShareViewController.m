@@ -139,9 +139,39 @@
 }
 
 #pragma mark - commit share 
--(void)commitShare:(UIButton*)button{
+
+
+-(void)commit:(id)sender{
+    NSDictionary *requestD = @{@"userId":[constant getUserId]
+                               ,@"eventTitle":[helper urlencode:self.editTitle.text]
+                               ,@"userName":[constant getUserName]
+                               ,@"content":[helper urlencode:self.editBody.text]
+                               ,@"type":@"EventShare"
+                               };
     
+    
+
+    [NetworkCenter requestActivity:requestD ImageArray:[self getPickedImageArray] SuccessBlock:^(id resultObject) {
+        NSDictionary *dic= [NSJSONSerialization JSONObjectWithData:resultObject options:NSJSONReadingMutableLeaves error:Nil];
+        if ([dic[@"result"] isEqualToString:@"success"]){
+            [self.navigationController popToRootViewControllerAnimated:YES];
+            
+            [helper performBlock:^{
+                MoodShareViewController *m= (MoodShareViewController*)self.leveyTabBarController.selectedViewController;
+                [m.tableView beginRefreshing];
+            } afterDelay:0.45];
+            
+
+            
+        }
+        else {
+            [Alert showAlert:@"发生错误"];
+        }
+    } failure:^(NSError *error) {
+                        [Alert showAlert:@"发生错误"];
+    }];
 }
+
 
 -(void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event{
     [writeRect resignFirstResponder];
