@@ -76,7 +76,7 @@ static NSString * cellIdentifier = @"cellIdentifier";
 
 
 -(void)_loadUPTableView{
-    self.tableView=[[UPTableView alloc]initWithFrame:CGRectMake(0, 0, 320,470) style:UITableViewStyleGrouped];
+    self.tableView=[[UPTableView alloc]initWithFrame:CGRectMake(0, 0, 320,self.view.frame.size.height - 35 - 64) style:UITableViewStyleGrouped];
     self.tableView.tag = 27;
     [self.view addSubview:self.tableView];
 }
@@ -114,7 +114,7 @@ static NSString * cellIdentifier = @"cellIdentifier";
 
 - (UIToolbar *)toolBar{
     if (!_toolBar) {
-        _toolBar = [[UIToolbar alloc] initWithFrame:CGRectMake(0, self.tableView.frame.origin.y + self.tableView.frame.size.height , self.view.frame.size.width , 135)];
+        _toolBar = [[UIToolbar alloc] initWithFrame:CGRectMake(0, self.tableView.frame.origin.y + self.tableView.frame.size.height , self.view.frame.size.width , 35)];
     }
     return _toolBar;
 }
@@ -149,7 +149,7 @@ static NSString * cellIdentifier = @"cellIdentifier";
 
     [self.tableView setScrollEnabled:NO];
     [self.tableView setAllowsSelection:NO];
-    self.questTV.frame = CGRectMake(20, 40, 280, 130);
+    self.questTV.frame = CGRectMake(20, 40, 280, 100);
     self.questTV.textContainerInset = UIEdgeInsetsZero;
     self.questTV.text = text;
     self.questTV.font = [UIFont systemFontOfSize:16];
@@ -213,7 +213,7 @@ static NSString * cellIdentifier = @"cellIdentifier";
     self.completeBtn.hidden = YES;
     self.cancelBtn.hidden = YES;
     self.tvLabel.hidden = YES;
-    self.toolBar.frame = CGRectMake(0, self.tableView.frame.origin.y + self.tableView.frame.size.height , self.view.frame.size.width , 135);
+    self.toolBar.frame = CGRectMake(0, self.tableView.frame.origin.y + self.tableView.frame.size.height , self.view.frame.size.width , 35);
     self.questTV.frame = CGRectMake(self.questTV.frame.origin.x, 5, self.view.frame.size.width - 30, 25);
     if (self.questTV.text.length == 0) {
         self.questTV.text = @"写问题";
@@ -244,7 +244,7 @@ static NSString * cellIdentifier = @"cellIdentifier";
   */
     [UIView animateWithDuration:[[info objectForKey:UIKeyboardAnimationDurationUserInfoKey] floatValue]
                      animations:^{
-                         self.toolBar.frame = CGRectMake(self.toolBar.frame.origin.x, self.tableView.frame.origin.y + self.tableView.frame.size.height - kbSize.height - 150, self.view.frame.size.width, self.toolBar.frame.size.height + 180);
+                         self.toolBar.frame = CGRectMake(self.toolBar.frame.origin.x, self.tableView.frame.origin.y + self.tableView.frame.size.height - kbSize.height - 120, self.view.frame.size.width, self.toolBar.frame.size.height + 150);
                      }];
   //  [UIView commitAnimations];
 }
