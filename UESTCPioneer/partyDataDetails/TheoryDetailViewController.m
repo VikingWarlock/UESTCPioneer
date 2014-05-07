@@ -83,6 +83,7 @@
     NSString * content = [title stringByAppendingString:self.data[@"content"]];
     NSMutableParagraphStyle * paragraphStyle = [[NSMutableParagraphStyle alloc]init];
     paragraphStyle.alignment = NSTextAlignmentCenter;
+    paragraphStyle.lineSpacing = 10.0;
     NSDictionary * attributes = @{NSParagraphStyleAttributeName:paragraphStyle,NSFontAttributeName:[UIFont boldSystemFontOfSize:18.0]};
     NSRange range = [content rangeOfString:self.data[@"title"]];
     
