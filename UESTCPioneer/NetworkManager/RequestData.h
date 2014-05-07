@@ -88,5 +88,6 @@
 
 + (NSDictionary *)getPerAdminNoticeRequestDataWithNoticeid:(NSUInteger)noticeid;//进入我的收藏和我的通知之后，获取具体的内容
 
++ (NSDictionary *)changePersonalInformationRequestDataWithNickname:(NSString *)Nickname withName:(NSString *)name withSex:(NSString *)sex withNation:(NSString *)nation withHometown:(NSString *)hometown withOldPassword:(NSString *)oldpassword withNewPassword:(NSString *)newpassword;//修改个人信息
 
 @end

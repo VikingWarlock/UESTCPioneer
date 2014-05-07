@@ -123,11 +123,11 @@
 + (NSDictionary *)startActivityRequestDataWithContent:(NSString *)content title:(NSString *)title
 {
     return @{
-             @"type":@"publishEvent",
+             @"type":@"EventPublish",
              @"userName":[constant getUserName],
              @"userId":[constant getUserId],
              @"content":content,
-             @"theme":title
+             @"eventTitle":title
              };
 }
 
@@ -225,6 +225,20 @@
     return @{
              @"type":@"perAdminNotice",
              @"noticeid":[NSString stringWithFormat:@"%d",noticeid],
+             };
+}
+
++ (NSDictionary *)changePersonalInformationRequestDataWithNickname:(NSString *)Nickname withName:(NSString *)name withSex:(NSString *)sex withNation:(NSString *)nation withHometown:(NSString *)hometown withOldPassword:(NSString *)oldpassword withNewPassword:(NSString *)newpassword
+{
+    return @{
+             @"id":[constant getUserId],
+             @"oldPwd":oldpassword,
+             @"name":name,
+             @"nation":nation,
+             @"hometown":hometown,
+             @"newPwd":newpassword,
+             @"sex":sex,
+             @"userName":Nickname,
              };
 }
 

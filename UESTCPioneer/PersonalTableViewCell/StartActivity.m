@@ -104,8 +104,8 @@
     {
         content = self.editBody.text;
         title = self.editTitle.text;
-#warning 后台api好像有问题
-        [NetworkCenter AFRequestWithData:[RequestData startActivityRequestDataWithContent:content title:title] SuccessBlock:^(AFHTTPRequestOperation *operation, id resultObject) {
+
+        [NetworkCenter AFRequestWithLastPattern:@"/EveShare.do" Data:[RequestData startActivityRequestDataWithContent:content title:title] SuccessBlock:^(AFHTTPRequestOperation *operation, id resultObject) {
             NSDictionary *dic = [NSJSONSerialization JSONObjectWithData:resultObject options:NSJSONReadingMutableLeaves error:nil];
             if ([dic[@"result"] isEqualToString:@"success"]){
                 resultsuccess = YES;
@@ -121,6 +121,7 @@
             resultsuccess = NO;
             NSLog(@"发布通知failureblock");
         }];
+        
     }
 }
 

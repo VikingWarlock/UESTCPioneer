@@ -13,6 +13,7 @@
 @interface EditPersonalInformation ()
 {
     NSArray *array;
+    NSArray *personalInformation;
     int tag;
     UIImage *pickedImage;
 }
@@ -60,6 +61,7 @@
     self.tableView.allowsSelection = NO;
     self.tableView.separatorInset = UIEdgeInsetsZero;
     array = @[@"头像",@"昵称",@"姓名",@"性别",@"民族",@"籍贯",@"原始密码",@"新的密码",@"确认密码"];
+    personalInformation = [[NSArray alloc] initWithObjects:[[constant getPersonalInfo] valueForKey:@"userName"], [[constant getPersonalInfo] valueForKey:@"name"],[[constant getPersonalInfo] valueForKey:@"sex"],[[constant getPersonalInfo] valueForKey:@"nation"],[[constant getPersonalInfo] valueForKey:@"homeTown"],@"请输入您的原始密码",@"请输入您的新的密码",@"请输入您的确认密码",nil];
 }
 
 - (void)viewWillAppear:(BOOL)animated
@@ -82,22 +84,36 @@
 
 - (void)complete:(id)sender
 {
-    if (((CellForEditPersonalInformation *)[self.tableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:4 inSection:1]]).textfield.text.length == 0)
+    NSString *oldPassword = ((CellForEditPersonalInformation *)[self.tableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:4 inSection:1]]).textfield.text;
+    NSString *newPassword = ((CellForEditPersonalInformation *)[self.tableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:5 inSection:1]]).textfield.text;
+    NSString *secondNewPassword = ((CellForEditPersonalInformation *)[self.tableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:6 inSection:1]]).textfield.text;
+    NSString *nickname = ((CellForEditPersonalInformation *)[self.tableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:1 inSection:0]]).textfield.text;
+    NSString *name = ((CellForEditPersonalInformation *)[self.tableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:1]]).textfield.text;
+    NSString *sex = ((CellForEditPersonalInformation *)[self.tableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:1 inSection:1]]).textfield.text;
+    NSString *nation = ((CellForEditPersonalInformation *)[self.tableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:2 inSection:1]]).textfield.text;
+    NSString *hometown = ((CellForEditPersonalInformation *)[self.tableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:3 inSection:1]]).textfield.text;
+
+    if (oldPassword.length == 0)
     {
         [Alert showAlert:@"原始密码不能为空!"];
     }
-    else if (((CellForEditPersonalInformation *)[self.tableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:5 inSection:1]]).textfield.text.length != 0 && ((CellForEditPersonalInformation *)[self.tableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:6 inSection:1]]).textfield.text.length == 0)
+    else if (newPassword.length != 0 && secondNewPassword.length == 0)
     {
         [Alert showAlert:@"请再次输入新密码!"];
     }
-    else if (((CellForEditPersonalInformation *)[self.tableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:5 inSection:1]]).textfield.text.length == 0 && ((CellForEditPersonalInformation *)[self.tableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:6 inSection:1]]).textfield.text.length != 0)
+    else if (oldPassword.length == 0 && secondNewPassword.length != 0)
     {
         [Alert showAlert:@"新的密码不能为空!"];
     }
-    else if (((CellForEditPersonalInformation *)[self.tableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:5 inSection:1]]).textfield.text.length != 0 && ![((CellForEditPersonalInformation *)[self.tableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:6 inSection:1]]).textfield.text isEqualToString:((CellForEditPersonalInformation *)[self.tableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:5 inSection:1]]).textfield.text])
+    else if (oldPassword.length != 0 && ![secondNewPassword isEqualToString:newPassword])
     {
         [Alert showAlert:@"两次输入的密码不一致!"];
     }
+    else if (sex.length != 0 && !([sex isEqualToString:@"女"] || [sex isEqualToString:@"男"]))
+    {
+        [Alert showAlert:@"性别只能为'男'或'女'"];;
+    }
+    
     
 }
 
@@ -125,7 +141,7 @@
                 [self presentViewController:self.pickImage animated:YES completion:NULL];
                 break;
             case 1:
-                self.pickImage.allowsEditing = NO;
+                self.pickImage.allowsEditing = YES;
                 self.pickImage.sourceType = UIImagePickerControllerSourceTypePhotoLibrary;
                 [self presentViewController:self.pickImage animated:YES completion:NULL];
             default:
@@ -137,11 +153,10 @@
 - (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info
 {
     if (picker.sourceType == UIImagePickerControllerSourceTypePhotoLibrary)
-        pickedImage = [info objectForKey:@"UIImagePickerControllerOriginalImage"];
-    else
+        pickedImage = [info objectForKey:@"UIImagePickerControllerEditedImage"];
+    else if (picker.sourceType == UIImagePickerControllerSourceTypeCamera)
         pickedImage = [info objectForKey:@"UIImagePickerControllerEditedImage"];
     [((CellForEditPersonalInformation_FirstCell *)[self.tableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:0]]).touXiang setBackgroundImage:pickedImage forState:UIControlStateNormal];
-    //[self.thumbnail setBackgroundImage:pickedImage forState:UIControlStateNormal];
     [self dismissViewControllerAnimated:YES completion:NULL];
 }
 
@@ -184,7 +199,7 @@
             cell = [[CellForEditPersonalInformation alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
         }
         cell.staticLabel.text = array[indexPath.row];
-        cell.textfield.placeholder = [NSString stringWithFormat:@"请输入您的%@",array[indexPath.row]];
+        cell.textfield.placeholder = [NSString stringWithFormat:@"%@",personalInformation[indexPath.row - 1]];
         cell.textfield.delegate = self;
         return cell;
     }
@@ -196,7 +211,7 @@
             cell = [[CellForEditPersonalInformation alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
         }
         cell.staticLabel.text = array[indexPath.row + 2];
-        cell.textfield.placeholder = [NSString stringWithFormat:@"请输入您的%@",array[indexPath.row + 2]];
+        cell.textfield.placeholder = [NSString stringWithFormat:@"%@",personalInformation[indexPath.row + 1]];
         cell.textfield.delegate = self;
         
         if (indexPath.row == 4 || indexPath.row == 5 || indexPath.row == 6) {
