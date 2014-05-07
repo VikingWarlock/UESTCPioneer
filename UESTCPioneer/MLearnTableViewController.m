@@ -37,6 +37,7 @@ static NSString * cellIdentifier = @"cellIdentifier";
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    self.title = @"专业学习";
     [self.tableView registerClass:[UITableViewCell class] forCellReuseIdentifier:cellIdentifier];
     self.tableView.separatorInset = UIEdgeInsetsZero;
     // Uncomment the following line to preserve selection between presentations.
@@ -99,7 +100,7 @@ static NSString * cellIdentifier = @"cellIdentifier";
         default:
             break;
     }
-    LearnTableViewController * viewController = [[LearnTableViewController alloc] initWithRequestData:requestDic entityName:@"PartyDataMLearnEntity" Mapping:[Mapping PartyDataMLearnEntityMapping]];
+    LearnTableViewController * viewController = [[LearnTableViewController alloc] initWithRequestData:requestDic entityName:@"PartyDataMLearnEntity" Mapping:[Mapping PartyDataMLearnEntityMapping] title:self.titleArr[indexPath.row]];
     [self.navigationController pushViewController:viewController animated:YES];
     [self.tableView deselectRowAtIndexPath:indexPath animated:YES];
 }

@@ -24,6 +24,7 @@ static NSString * CellTableIdentifier = @"CellTableIdentifier";
 
 - (id)initWithRequestData:(NSDictionary *)RequestData entityName:(NSString *)EntityName Mapping:(NSDictionary *)Mapping{
     if (self) {
+        self.title = @"党校学习";
         requestData = RequestData;
         entityName = EntityName;
         entityMapping = Mapping;
@@ -31,41 +32,20 @@ static NSString * CellTableIdentifier = @"CellTableIdentifier";
     }
     return self;
 }
-
-/*
-- (id)initWithStyle:(UITableViewStyle)style
-{
-    self = [super initWithStyle:style];
-    if (self) {
-        [self downloadDataWithRequestData:@{@"type":@"getFilename",@"page":@"1"}EntityName:@"PartyDataLearnEntity" Mapping:[Mapping PartyDataLearnEntityMapping]];
-
-        // Custom initialization
-    }
+- (id)initWithRequestData:(NSDictionary *)RequestData entityName:(NSString *)EntityName Mapping:(NSDictionary *)Mapping title:(NSString *)title{
+    self = [self initWithRequestData:RequestData entityName:EntityName Mapping:Mapping];
+    self.title = title;
     return self;
 }
- */
 
-//-(NSArray *)data{
-//    if (!_data) {
-//        _data = @[@{@"title":@"aaa",@"leftImage":@"dxfile.png",@"rightImage":@"learnDownload.png"},@{@"title":@"bbbb",@"leftImage":@"dxfile.png",@"rightImage":@"learnDownload.png"}];
-//    }
-//    return _data;
-//}
 
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    self.title = @"党校学习";
     self.tableView.delegate = self;
     self.tableView.dataSource = self;
-//    [self.tableView registerClass:[UITableViewCell class] forCellReuseIdentifier:CellTableIdentifier];
     self.tableView.separatorInset = UIEdgeInsetsZero;
-    
-    // Uncomment the following line to preserve selection between presentations.
-    // self.clearsSelectionOnViewWillAppear = NO;
-    
-    // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-    // self.navigationItem.rightBarButtonItem = self.editButtonItem;
+
 }
 
 - (void)didReceiveMemoryWarning
@@ -127,10 +107,31 @@ static NSString * CellTableIdentifier = @"CellTableIdentifier";
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     PartyDataLearnEntity * entity = tableViewEntitiesArray[indexPath.row];
-    UIViewController * viewController = [[LearnDetailViewController alloc ] initWithFileName:entity.fileName];
+    NSString * urlStr;
+    if ([self.title isEqualToString:@"党校学习"]) {
+        urlStr = [[baseUrl stringByAppendingString:@"/UestcApp/FileDownServlet.do?filename="] stringByAppendingString:entity.fileName];
+    }else if([self.title isEqualToString:@"学习资料"])
+    {
+        urlStr = [baseUrl stringByAppendingString:[NSString stringWithFormat:@"/UestcApp/FileDownServlet.do?filename=%@&majorType=document",entity.fileName]];
+    }else{
+        urlStr = [baseUrl stringByAppendingString:[NSString stringWithFormat:@"/UestcApp/FileDownServlet.do?filename=%@&majorType=experience",entity.fileName]];
+    }
+    UIViewController * viewController = [[LearnDetailViewController alloc ] initWithFileName:entity.fileName URLString:urlStr];
     [self.navigationController pushViewController:viewController animated:YES];
     [self.tableView deselectRowAtIndexPath:indexPath animated:YES];
 
 }
 
+- (NSInteger) numberOfPreviewItemsInPreviewController: (QLPreviewController *) controller
+{
+	return [tableViewEntitiesArray count];
+}
+/*
+- (id <QLPreviewItem>)previewController: (QLPreviewController *)controller previewItemAtIndex:(NSInteger)index
+{
+    PartyDataLearnEntity * entity = tableViewEntitiesArray[index];
+    NSString *path = [@"http://222.197.183.81:8080/UestcApp/FileDownServlet.do?filename=" stringByAppendingString:entity.fileName];
+	return [NSURL fileURLWithPath:path];
+}
+*/
 @end

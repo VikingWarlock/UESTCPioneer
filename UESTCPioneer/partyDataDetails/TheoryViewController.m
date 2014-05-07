@@ -11,12 +11,7 @@
 #import "TheoryDetailViewController.h"
 #import "PartyDataSpiritEntity.h"
 
-@interface TheoryViewController (){
-//    NSDictionary * requestData;
-//    NSString * entityName;
-  //  NSDictionary *mapping;
-}
-//@property (strong) NSArray * tableViewEntitiseArray;
+@interface TheoryViewController ()
 
 @end
 

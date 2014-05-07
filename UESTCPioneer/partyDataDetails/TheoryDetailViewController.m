@@ -40,7 +40,7 @@
     return _data;
 }
 
-
+/*
 -(UILabel *)titleLabel{
     if (!_titleLabel) {
         
@@ -64,7 +64,7 @@
     }
     return _titleLabel;
 }
-
+*/
 - (void)viewDidLoad
 {
     [super viewDidLoad];
@@ -72,33 +72,27 @@
     self.title = @"详情";
     
     
-    
-    
-    UIView * seplineView = [[UIView alloc] initWithFrame:CGRectMake(0, self.titleLabel.frame.origin.y + self.titleLabel.frame.size.height + 10.0, self.view.bounds.size.width, 1)];
-    seplineView.backgroundColor = [UIColor colorWithRed:130.0/255.0 green:130.0/255.0 blue:130.0/255.0 alpha:1];
-    
-    /*
-     _contentLabel = [[UILabel alloc] initWithFrame:CGRectMake(0,0,0,0)];
-     _contentLabel.numberOfLines = 0;
-     NSString * newsContent = self.data[@"content"];
-     UIFont * font = [UIFont boldSystemFontOfSize:15];
-     CGSize size = CGSizeMake(300, 5000);
-     CGSize labelSize = [newsContent sizeWithFont:font constrainedToSize:size lineBreakMode:NSLineBreakByWordWrapping];
-     _contentLabel.frame = CGRectMake(10.0, seplineView.frame.origin.y + 15, labelSize.width,labelSize.height);
-     _contentLabel.textColor = [UIColor blackColor];
-     _contentLabel.text = newsContent;
-     _contentLabel.font = font;
-     _contentLabel.textColor = [UIColor colorWithRed:100.0/255.0 green:100.0/255.0 blue:100.0/255.0 alpha:1];
-     */
-    _contentView = [[UITextView alloc] initWithFrame:CGRectMake(0, seplineView.frame.origin.y + seplineView.frame.size.height, 320, self.view.frame.size.height-seplineView.frame.origin.y - seplineView.frame.size.height - self.navigationController.navigationBar.frame.size.height - 12)];
+    CGRect rect = self.view.frame;
+    rect.size.height = rect.size.height - 67;
+    rect.origin.y = 3;
+    _contentView = [[UITextView alloc] initWithFrame:rect];
     _contentView.editable = NO;
     _contentView.text = self.data[@"content"];
-    _contentView.font = [UIFont boldSystemFontOfSize:15];
+    
+    NSString * title = [[[self.data[@"title"] stringByAppendingString:@"\n"] stringByAppendingString:@"______________________________________________"] stringByAppendingString:@"\n\n"];
+    NSString * content = [title stringByAppendingString:self.data[@"content"]];
+    NSMutableParagraphStyle * paragraphStyle = [[NSMutableParagraphStyle alloc]init];
+    paragraphStyle.alignment = NSTextAlignmentCenter;
+    NSDictionary * attributes = @{NSParagraphStyleAttributeName:paragraphStyle,NSFontAttributeName:[UIFont boldSystemFontOfSize:18.0]};
+    NSRange range = [content rangeOfString:self.data[@"title"]];
+    
+    NSMutableAttributedString * attrStr = [[NSMutableAttributedString alloc] initWithString:content];
+    [attrStr addAttributes:attributes range:range];
+    [attrStr addAttributes:@{NSFontAttributeName: [UIFont systemFontOfSize:14.0]} range:[content rangeOfString:self.data[@"content"]]];
+    [_contentView setAttributedText:attrStr];
     _contentView.textColor = [UIColor colorWithRed:100.0/255.0 green:100.0/255.0 blue:100.0/255.0 alpha:1];
     
     
-    [self.view addSubview:seplineView];
-    [self.view addSubview:self.titleLabel];
     [self.view addSubview:_contentView];
     
     

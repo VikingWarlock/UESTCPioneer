@@ -246,8 +246,6 @@ static NSString * cellIdentifier = @"cellIdentifier";
                      animations:^{
                          self.toolBar.frame = CGRectMake(self.toolBar.frame.origin.x, self.tableView.frame.origin.y + self.tableView.frame.size.height - kbSize.height - 150, self.view.frame.size.width, self.toolBar.frame.size.height + 180);
                      }];
-    NSLog(@"aaa");
-
   //  [UIView commitAnimations];
 }
 

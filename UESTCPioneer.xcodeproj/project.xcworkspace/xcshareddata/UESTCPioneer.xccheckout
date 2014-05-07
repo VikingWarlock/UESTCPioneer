@@ -5,41 +5,36 @@
 	<key>IDESourceControlProjectFavoriteDictionaryKey</key>
 	<false/>
 	<key>IDESourceControlProjectIdentifier</key>
-	<string>20B24D24-0E0F-4684-804B-FF05092C4C80</string>
+	<string>468D704E-5479-4228-9403-8B4F8239C50F</string>
 	<key>IDESourceControlProjectName</key>
 	<string>UESTCPioneer</string>
 	<key>IDESourceControlProjectOriginsDictionary</key>
 	<dict>
-		<key>462636AB-15FD-43A2-A5FB-B56E86A10E2C</key>
-		<string>http://www.svnchina.com/svn/uestc_pioneer</string>
+		<key>DC5E1E4A-8DF0-4246-973E-32EF50678427</key>
+		<string>https://github.com/VikingWarlock/UESTCPioneer.git</string>
 	</dict>
 	<key>IDESourceControlProjectPath</key>
-	<string>UESTCPioneer/UESTCPioneer.xcodeproj/project.xcworkspace</string>
+	<string>UESTCPioneer.xcodeproj/project.xcworkspace</string>
 	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
 	<dict>
-		<key>462636AB-15FD-43A2-A5FB-B56E86A10E2C</key>
-		<string>../../..</string>
-	</dict>
-	<key>IDESourceControlProjectRepositoryRootDictionary</key>
-	<dict>
-		<key>462636AB-15FD-43A2-A5FB-B56E86A10E2C</key>
-		<string>http://www.svnchina.com/svn/uestc_pioneer</string>
+		<key>DC5E1E4A-8DF0-4246-973E-32EF50678427</key>
+		<string>../..</string>
 	</dict>
 	<key>IDESourceControlProjectURL</key>
-	<string>http://www.svnchina.com/svn/uestc_pioneer/UESTCPioneer/UESTCPioneer.xcodeproj</string>
+	<string>https://github.com/VikingWarlock/UESTCPioneer.git</string>
 	<key>IDESourceControlProjectVersion</key>
 	<integer>110</integer>
 	<key>IDESourceControlProjectWCCIdentifier</key>
-	<string>462636AB-15FD-43A2-A5FB-B56E86A10E2C</string>
+	<string>DC5E1E4A-8DF0-4246-973E-32EF50678427</string>
 	<key>IDESourceControlProjectWCConfigurations</key>
 	<array>
 		<dict>
 			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
-			<string>public.vcs.subversion</string>
+			<string>public.vcs.git</string>
 			<key>IDESourceControlWCCIdentifierKey</key>
-			<string>462636AB-15FD-43A2-A5FB-B56E86A10E2C</string>
+			<string>DC5E1E4A-8DF0-4246-973E-32EF50678427</string>
 			<key>IDESourceControlWCCName</key>
-			<string>svn_part</string>
+			<string>UESTCPioneer</string>
 		</dict>
 	</array>
 </dict>

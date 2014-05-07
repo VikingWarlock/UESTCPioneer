@@ -8,8 +8,8 @@
 
 #import <UIKit/UIKit.h>
 
-@interface LearnDetailViewController : UIViewController
+@interface LearnDetailViewController : UIViewController<NSURLSessionDownloadDelegate,UIWebViewDelegate>
 
 
--(id) initWithFileName:(NSString *)fileName;
+-(id) initWithFileName:(NSString *)fileName URLString:(NSString *)str;
 @end

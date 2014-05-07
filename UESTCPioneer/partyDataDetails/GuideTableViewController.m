@@ -33,7 +33,6 @@ static  NSString *CellTableIdentifier = @"CellTableIdentifier";
         requestData = @{@"type":@"getZhinanList",@"page":@"1"};
         entityName = @"PartyDataGuideEntity";
         entityMapping = [Mapping PartyDataGuideEntityMapping];
-        [self downloadDataWithRequestData:requestData EntityName:entityName Mapping:entityMapping];
         // Custom initialization
     }
     return self;
@@ -53,7 +52,24 @@ static  NSString *CellTableIdentifier = @"CellTableIdentifier";
     self.tableView.dataSource = self;
     self.tableView.separatorInset = UIEdgeInsetsZero;
     self.title = @"办事指南";
+    [self.view addSubview:self.tableView];
 
+}
+-(void)viewDidAppear:(BOOL)animated{
+    
+    [super viewDidAppear:NO];
+/*    detailTableViewEntitiseArray = [[NSMutableArray alloc]init];
+    [PublicMethod ClearEntity:@"PartyDataGuideDetailEntity"];
+    for(int i = 1;i <= [tableViewEntitiesArray count];i++){
+        [NetworkCenter RKRequestWithData:@{@"type":@"getOneZhinan",@"id":[NSString stringWithFormat:@"%d",i]} EntityName:@"PartyDataGuideDetailEntity" Mapping:[Mapping PartyDataGuideDetailEntityMapping] SuccessBlock:^(NSArray *resultArray) {
+            [detailTableViewEntitiseArray addObject:resultArray[0]];
+            [self.tableView reloadData];
+        } failure:^(NSError *error) {
+            NSLog(@"加载失败");
+        }];
+    }
+    */
+    
 }
 
 - (void)didReceiveMemoryWarning
@@ -64,27 +80,11 @@ static  NSString *CellTableIdentifier = @"CellTableIdentifier";
 
 #pragma mark - Table view data source
 
-- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
-{
-    // Return the number of sections.
-    return 1;
-}
+
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
     // Return the number of rows in the section.
-    if (![detailTableViewEntitiseArray count]) {
-        detailTableViewEntitiseArray = [[NSMutableArray alloc]init];
-        [PublicMethod ClearEntity:@"PartyDataGuideDetailEntity"];
-        for(int i = 1;i <= [tableViewEntitiesArray count];i++){
-            [NetworkCenter RKRequestWithData:@{@"type":@"getOneZhinan",@"id":[NSString stringWithFormat:@"%d",i]} EntityName:@"PartyDataGuideDetailEntity" Mapping:[Mapping PartyDataGuideDetailEntityMapping] SuccessBlock:^(NSArray *resultArray) {
-                [detailTableViewEntitiseArray addObject:resultArray[0]];
-                [self.tableView reloadData];
-            } failure:^(NSError *error) {
-                NSLog(@"加载失败");
-            }];
-        }
-    }
     return [tableViewEntitiesArray count];
 }
 
@@ -96,15 +96,15 @@ static  NSString *CellTableIdentifier = @"CellTableIdentifier";
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellTableIdentifier];
     }
     PartyDataGuideEntity *entity = tableViewEntitiesArray[indexPath.row];
+    
     UILabel *titleValue = [[UILabel alloc] initWithFrame:CGRectMake(10, 0, 210, cell.frame.size.height)];
     titleValue.text = entity.title;
-    titleValue.textColor = [UIColor grayColor];
     titleValue.font = [UIFont systemFontOfSize:16];
     [cell addSubview:titleValue];
+    
     UILabel *timeValue = [[UILabel alloc] initWithFrame:CGRectMake(230, 0, 80, cell.frame.size.height)];
     timeValue.text = entity.time;
     timeValue.font = [UIFont systemFontOfSize:13];
-    timeValue.textColor = [UIColor grayColor];
     [cell addSubview:timeValue];
     
     // Configure the cell...
@@ -117,9 +117,10 @@ static  NSString *CellTableIdentifier = @"CellTableIdentifier";
 }
 
 - (void) tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+    [PublicMethod ClearEntity:@"PartyDataGuideDetailEntity"];
     PartyDataGuideEntity *entity = tableViewEntitiesArray[indexPath.row];
-    PartyDataGuideDetailEntity *detailEntity = detailTableViewEntitiseArray[indexPath.row];
-    UIViewController * viewController = [[GuideDetailViewController alloc] initWithData:@{@"newsTitle":entity.title,@"newsContent":detailEntity.content,@"newsTime":detailEntity.time}];
+    [detailTableViewEntitiseArray removeObjectAtIndex:0];
+    UIViewController * viewController = [[GuideDetailViewController alloc] initWithData:@{@"newsTitle":entity.title,@"newsId":[NSString stringWithFormat:@"%ld",indexPath.row+1]}];
     [self.navigationController pushViewController:viewController animated:YES];
     [self.tableView deselectRowAtIndexPath:indexPath animated:YES];
 }
