@@ -40,6 +40,9 @@
     UILabel *_titleLabel;
     UITextView *writeRect;
 }
+
+@property NSString *shareTitle;
+
 @end
 @implementation EditShareViewController
 
@@ -78,7 +81,7 @@
 
     
     self.editTitle.editable=NO;
-    self.editTitle.text=@"支部生活有你我";
+    self.editTitle.text=_shareTitle;
     [self.editTitle setTextColor:[UIColor blackColor]];
     
 //#pragma mark 标题栏
@@ -136,9 +139,39 @@
 }
 
 #pragma mark - commit share 
--(void)commitShare:(UIButton*)button{
+
+
+-(void)commit:(id)sender{
+    NSDictionary *requestD = @{@"userId":[constant getUserId]
+                               ,@"eventTitle":[helper urlencode:self.editTitle.text]
+                               ,@"userName":[constant getUserName]
+                               ,@"content":[helper urlencode:self.editBody.text]
+                               ,@"type":@"EventShare"
+                               };
     
+    
+
+    [NetworkCenter requestActivity:requestD ImageArray:[self getPickedImageArray] SuccessBlock:^(id resultObject) {
+        NSDictionary *dic= [NSJSONSerialization JSONObjectWithData:resultObject options:NSJSONReadingMutableLeaves error:Nil];
+        if ([dic[@"result"] isEqualToString:@"success"]){
+            [self.navigationController popToRootViewControllerAnimated:YES];
+            
+            [helper performBlock:^{
+                MoodShareViewController *m= (MoodShareViewController*)self.leveyTabBarController.selectedViewController;
+                [m.tableView beginRefreshing];
+            } afterDelay:0.45];
+            
+
+            
+        }
+        else {
+            [Alert showAlert:@"发生错误"];
+        }
+    } failure:^(NSError *error) {
+                        [Alert showAlert:@"发生错误"];
+    }];
 }
+
 
 -(void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event{
     [writeRect resignFirstResponder];
@@ -170,7 +203,7 @@
     UITextField *searchField;
     SelectTableView *_tableView;
     NSLayoutConstraint *tableViewHeightConstraint;
-    
+    NSArray *titleArrayForDataSoruce;
 }
 
 @end
@@ -192,6 +225,11 @@
     [topRect.layer setBorderWidth:1];
     //搜索栏
     searchField = [[UITextField alloc]init];
+    
+    
+    //搜索栏改变
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(searchTextChangeNotification:) name:UITextFieldTextDidChangeNotification object:searchField];
+    
     [topRect addSubview:searchField];
     [searchField.layer setBorderWidth:1];
     [searchField.layer setBorderColor:kBorderColor.CGColor];
@@ -219,7 +257,14 @@
     [_tableView.layer setBorderColor:kBorderColor.CGColor];
     [_tableView.layer setBorderWidth:1];
     [_tableView registerClass:[UITableViewCell class] forCellReuseIdentifier:@"cell"];
+    
+    
+  
+    [self doSearchTitle:@""];
 }
+
+
+
 
 
 -(void)viewWillAppear:(BOOL)animated{
@@ -237,7 +282,7 @@
 
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    NSInteger row=20;
+    NSInteger row=[titleArrayForDataSoruce count];
     if (row>10)tableViewHeightConstraint.constant=44*10;
     else tableViewHeightConstraint.constant=row*44;
     return row;
@@ -245,14 +290,47 @@
 
 -(UITableViewCell*)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"cell" forIndexPath:indexPath];
-    cell.textLabel.text=@"1111";
+    cell.textLabel.text=titleArrayForDataSoruce[indexPath.row];
     return cell;
 }
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     EditShareViewController *editShare = [[EditShareViewController alloc]initWithStyle:UITableViewStyleGrouped];
+    editShare.shareTitle=titleArrayForDataSoruce[indexPath.row];
 //    [self.navigationController presentViewController:editShare animated:YES completion:NULL];
     [self.navigationController pushViewController:editShare animated:YES];
+    [searchField resignFirstResponder];
+}
+
+#pragma mark - do search title
+//发请求，通过关键字请求活动标题列表
+-(void)doSearchTitle:(NSString*)title{
+    //222.197.183.81:8080/UestcApp/ieaction.do?type=searchTitle&userId=0012005130022&title=
+    
+    NSDictionary *RequestD = @{@"type":@"searchTitle"
+                               ,@"userId":[constant getUserId]
+                               ,@"title":title};
+    
+    [NetworkCenter AFRequestWithData:RequestD SuccessBlock:^(AFHTTPRequestOperation *operation, id resultObject) {
+        NSArray *dic = [NSJSONSerialization JSONObjectWithData:resultObject options:NSJSONReadingMutableLeaves error:nil];
+        NSMutableArray *mut = [[NSMutableArray alloc] init];
+        for (NSDictionary *dicItem in dic){
+            [mut addObject:dicItem[@"title"]];
+        }
+        
+        titleArrayForDataSoruce=[[NSArray alloc]initWithArray:mut];
+        [_tableView reloadData];
+        
+        
+    } FailureBlock:^(AFHTTPRequestOperation *operation, NSError *error) {
+        
+    }];
+}
+
+#pragma mark - searchText Change Notification
+-(void)searchTextChangeNotification:(NSNotification*)notify{
+    UITextField *textField = [notify object];
+    [self doSearchTitle:textField.text];
 }
 
 @end
@@ -292,7 +370,6 @@
 
     
 
-    
 
     
 
@@ -515,6 +592,7 @@
     SelectShareViewController *edit = [[SelectShareViewController alloc]init];
     [self.leveyTabBarController.navigationController pushViewController:edit animated:YES];
 }
+
 
 
 @end

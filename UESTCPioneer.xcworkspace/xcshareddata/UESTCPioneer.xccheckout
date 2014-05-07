@@ -5,51 +5,34 @@
 	<key>IDESourceControlProjectFavoriteDictionaryKey</key>
 	<false/>
 	<key>IDESourceControlProjectIdentifier</key>
-	<string>E0E28654-56C8-45EE-A11B-7E09971C9955</string>
+	<string>8183B1FA-0768-4833-85FC-EDA0D7607A2E</string>
 	<key>IDESourceControlProjectName</key>
 	<string>UESTCPioneer</string>
 	<key>IDESourceControlProjectOriginsDictionary</key>
 	<dict>
-		<key>37936C59-2B83-4D54-8519-F0D79C3C30C0</key>
-		<string>http://www.svnchina.com/svn/uestc_pioneer/UESTCPioneer</string>
-		<key>551206BB-0EF0-450C-9772-678E52FAC7C1</key>
-		<string>ssh://github.com/VikingWarlock/UESTCPioneer.git</string>
+		<key>73F399E3-18DF-4CB3-8709-4BBB6AD722C2</key>
+		<string>https://github.com/VikingWarlock/UESTCPioneer.git</string>
 	</dict>
 	<key>IDESourceControlProjectPath</key>
-	<string>UESTCPoineer/UESTCPioneer/UESTCPioneer.xcworkspace</string>
+	<string>UESTCPioneer.xcworkspace</string>
 	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
 	<dict>
-		<key>37936C59-2B83-4D54-8519-F0D79C3C30C0</key>
-		<string>../../..</string>
-		<key>551206BB-0EF0-450C-9772-678E52FAC7C1</key>
+		<key>73F399E3-18DF-4CB3-8709-4BBB6AD722C2</key>
 		<string>..</string>
 	</dict>
-	<key>IDESourceControlProjectRepositoryRootDictionary</key>
-	<dict>
-		<key>37936C59-2B83-4D54-8519-F0D79C3C30C0</key>
-		<string>http://www.svnchina.com/svn/uestc_pioneer</string>
-	</dict>
 	<key>IDESourceControlProjectURL</key>
-	<string>ssh://github.com/VikingWarlock/UESTCPioneer.git</string>
+	<string>https://github.com/VikingWarlock/UESTCPioneer.git</string>
 	<key>IDESourceControlProjectVersion</key>
 	<integer>110</integer>
 	<key>IDESourceControlProjectWCCIdentifier</key>
-	<string>37936C59-2B83-4D54-8519-F0D79C3C30C0</string>
+	<string>73F399E3-18DF-4CB3-8709-4BBB6AD722C2</string>
 	<key>IDESourceControlProjectWCConfigurations</key>
 	<array>
 		<dict>
 			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
-			<string>public.vcs.subversion</string>
-			<key>IDESourceControlWCCIdentifierKey</key>
-			<string>37936C59-2B83-4D54-8519-F0D79C3C30C0</string>
-			<key>IDESourceControlWCCName</key>
-			<string>UESTC_Party</string>
-		</dict>
-		<dict>
-			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
 			<string>public.vcs.git</string>
 			<key>IDESourceControlWCCIdentifierKey</key>
-			<string>551206BB-0EF0-450C-9772-678E52FAC7C1</string>
+			<string>73F399E3-18DF-4CB3-8709-4BBB6AD722C2</string>
 			<key>IDESourceControlWCCName</key>
 			<string>UESTCPioneer</string>
 		</dict>

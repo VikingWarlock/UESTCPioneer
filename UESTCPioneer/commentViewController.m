@@ -174,6 +174,21 @@ static NSString *cellIdentifier=@"cell";
 //    [self.view setNeedsLayout];
 //    [self.tableView setContentInset:UIEdgeInsetsMake(-30, 0, 0, 0)];
     
+
+    
+ 
+    
+//    [self.tableView beginRefreshing];
+    
+	// Do any additional setup after loading the view.
+}
+
+
+
+//@设置评论数的方法
+-(void)setNumberOfComment:(NSInteger)numberOfComment{
+    _numberOfComment=numberOfComment;
+    [self.navigationItem setRightBarButtonItem:Nil];
 #pragma mark 加导航栏按钮
     //    UIView *customView=[[UIView alloc]initWithFrame:CGRectMake(0, 0, 88, 44)];
     UIButton *commentButton = [UIButton buttonWithType:UIButtonTypeCustom];
@@ -188,16 +203,10 @@ static NSString *cellIdentifier=@"cell";
     [commentButton addTarget:self action:@selector(commentButtonPress:) forControlEvents:UIControlEventTouchUpInside];
     [commentButton setTitleEdgeInsets:UIEdgeInsetsMake(0, 0, 24, 24)];
     UIBarButtonItem *rightCommentBarButton=[helper BarButtonItemWithUIButton:commentButton ButtonOrigin:CGPointMake(46, 13) CustomViewSize:CGSizeMake(88, 44)];
-    NSLog(@"%@",self.navigationController.navigationItem.leftBarButtonItems);
+    //    NSLog(@"%@",self.navigationController.navigationItem.leftBarButtonItems);
     
     [self.navigationItem setRightBarButtonItem:rightCommentBarButton];
-
     
- 
-    
-//    [self.tableView beginRefreshing];
-    
-	// Do any additional setup after loading the view.
 }
 
 - (void)didReceiveMemoryWarning
@@ -254,6 +263,7 @@ static NSString *cellIdentifier=@"cell";
             NSDictionary *dic = [NSJSONSerialization JSONObjectWithData:resultObject options:NSJSONReadingMutableLeaves error:nil];
             if ([dic[@"result"] isEqualToString:@"success"]){
                 [Alert showAlert:@"评论成功"];
+                self.numberOfComment++;
                 [self.tableView beginRefreshing];
             }
             else {

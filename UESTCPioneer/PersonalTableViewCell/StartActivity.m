@@ -26,6 +26,10 @@
 
 @implementation StartActivity
 
+-(NSMutableArray*)getPickedImageArray{
+    return pickedImage;
+}
+
 - (id)initWithStyle:(UITableViewStyle)style
 {
     self = [super initWithStyle:style];
@@ -92,36 +96,29 @@
 
 - (void)commit:(id)sender
 {
-    NSString static *title;
-    NSString static *content;
-    BOOL static resultsuccess;
+    NSDictionary *requestD = @{@"userId":[constant getUserId]
+                               ,@"eventTitle":[helper urlencode:self.editTitle.text]
+                               ,@"userName":[constant getUserName]
+                               ,@"content":[helper urlencode:self.editBody.text]
+                               ,@"type":@"EventPublish"
+                               };
     
-    if ([content isEqualToString:self.editBody.text] && [title isEqualToString:self.editTitle.text] && resultsuccess == YES)
-    {
-        [Alert showAlert:@"您已经发起该活动!"];
-    }
-    else
-    {
-        content = self.editBody.text;
-        title = self.editTitle.text;
-#warning 后台api好像有问题
-        [NetworkCenter AFRequestWithData:[RequestData startActivityRequestDataWithContent:content title:title] SuccessBlock:^(AFHTTPRequestOperation *operation, id resultObject) {
-            NSDictionary *dic = [NSJSONSerialization JSONObjectWithData:resultObject options:NSJSONReadingMutableLeaves error:nil];
-            if ([dic[@"result"] isEqualToString:@"success"]){
-                resultsuccess = YES;
-                [Alert showAlert:@"发起活动成功!"];
-            }
-            else {
-                resultsuccess = NO;
-                [Alert showAlert:@"发起活动失败!"];
-            }
+    
+    
+    [NetworkCenter requestActivity:requestD ImageArray:[self getPickedImageArray] SuccessBlock:^(id resultObject) {
+        NSDictionary *dic= [NSJSONSerialization JSONObjectWithData:resultObject options:NSJSONReadingMutableLeaves error:Nil];
+        if ([dic[@"result"] isEqualToString:@"success"]){
+            [self.navigationController popViewControllerAnimated:YES];
             
-        } FailureBlock:^(AFHTTPRequestOperation *operation, NSError *error) {
-            [Alert showAlert:@"网络请求失败!"];
-            resultsuccess = NO;
-            NSLog(@"发布通知failureblock");
-        }];
-    }
+            
+            
+        }
+        else {
+            [Alert showAlert:@"发生错误"];
+        }
+    } failure:^(NSError *error) {
+        [Alert showAlert:@"发生错误"];
+    }];
 }
 
 #pragma mark actionSheet delegate and imagePicker
@@ -132,7 +129,7 @@
         switch (buttonIndex) {
             case 0:
                 self.pickImage.allowsEditing = YES;
-                self.pickImage.sourceType = UIImagePickerControllerSourceTypeCamera;
+                self.pickImage.sourceType = UIImagePickerControllerSourceTypePhotoLibrary;
                 [self presentViewController:self.pickImage animated:YES completion:NULL];
                 break;
             default:

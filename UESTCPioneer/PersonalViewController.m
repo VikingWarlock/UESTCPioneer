@@ -48,7 +48,6 @@
     nameArray = @[@"个人信息",@"我的收藏",@"查看意见",@"我的消息",@"生日关怀",@"日常关怀",@"发起活动",@"发布通知",@"我的通知"];
     cellIcon = @[@"inf.png",@"pcollect.png",@"view.png",@"mymsg.png",@"birth.png",@"care.png",@"activity.png",@"sendmsg.png",@"mynotice.png"];
     pushArray = @[@"personalinformation",@"mycollection",@"checkforsuggestion",@"mymessage",@"birthcare",@"dailycare",@"startactivity",@"publishnotice",@"mynotice"];
-    //self.PersonalTableView.rowHeight = 42;
     if(IS_IOS7)
         self.PersonalTableView.separatorInset = UIEdgeInsetsZero;
     [self.view addSubview:self.department];
@@ -58,8 +57,10 @@
     [self.view addSubview:self.name];
     [self setPersonalInformation];
 }
+
 -(void)viewWillAppear:(BOOL)animated{
     [self.leveyTabBarController.navigationItem setTitle:@"个人"];
+        [self.leveyTabBarController.navigationItem setLeftBarButtonItem:nil];
     [self.view setUserInteractionEnabled:YES];
     [self.PersonalTableView setScrollEnabled:YES];
     
@@ -259,8 +260,9 @@
 
 - (UITableView *)PersonalTableView{
     if (!_PersonalTableView) {
-        _PersonalTableView = [[UITableView alloc] initWithFrame:CGRectMake(0,self.topBackground.frame.size.height+35, 320,247) style:UITableViewStyleGrouped];
+        _PersonalTableView = [[UITableView alloc] initWithFrame:CGRectMake(0,self.topBackground.frame.size.height+35, 320,[UIApplication sharedApplication].keyWindow.frame.size.height - 20 - 44 - _topBackground.frame.size.height - _name.frame.size.height - self.leveyTabBarController.tabBar.frame.size.height - 35) style:UITableViewStyleGrouped];
     }
+    
     return _PersonalTableView;
 }
 

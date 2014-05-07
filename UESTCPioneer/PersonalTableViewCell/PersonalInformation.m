@@ -44,7 +44,7 @@
               @"籍       贯",
               @"入党时间",@"转正时间",
               @"政治面貌",@"所属支部"];
-    infoArray = @[[[constant getPersonalInfo] objectForKey:@"name"],
+    infoArray = @[[[constant getPersonalInfo] objectForKey:@"userName"],
                   [[constant getPersonalInfo] objectForKey:@"name"],
                   [[constant getPersonalInfo] objectForKey:@"sex"],
                   [[constant getPersonalInfo] objectForKey:@"nation"],

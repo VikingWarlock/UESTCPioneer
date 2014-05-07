@@ -76,8 +76,17 @@
     return image;
 }
 
++(NSString*)urlencode:(NSString*)unescaped{
+//    NSString *unescaped = @"http://www";
+    NSString *charactersToEscape = @"!*'();:@&=+$,/?%#[]\" ";
+    NSCharacterSet *allowedCharacters = [[NSCharacterSet characterSetWithCharactersInString:charactersToEscape] invertedSet];
+    NSString *encodedString = [unescaped stringByAddingPercentEncodingWithAllowedCharacters:allowedCharacters];
+    return encodedString;
+}
 
-
-
++(NSString*)timestamp{
+    NSString *timeSp = [NSString stringWithFormat:@"%ld", (long)[[NSDate date] timeIntervalSince1970]];
+    return timeSp;
+}
 
 @end

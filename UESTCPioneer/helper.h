@@ -19,4 +19,9 @@
 
 +(UIImage*)makeImageWithColor:(UIColor*)color;
 
++(NSString*)urlencode:(NSString*)unescaped;
+
+
++(NSString*)timestamp;
+
 @end

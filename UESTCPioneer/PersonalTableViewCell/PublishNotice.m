@@ -90,8 +90,7 @@
             NSDictionary *dic = [NSJSONSerialization JSONObjectWithData:resultObject options:NSJSONReadingMutableLeaves error:nil];
             if ([dic[@"result"] isEqualToString:@"success"]){
                 resultsuccess = YES;
-                [Alert showAlert:@"发布通知成功!"];
-                
+                [self.navigationController popViewControllerAnimated:YES];
             }
             else {
                 resultsuccess = NO;

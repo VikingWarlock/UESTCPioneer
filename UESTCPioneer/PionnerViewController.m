@@ -85,12 +85,21 @@
     
     
     
+    
+    
+    
+    
 //    NSLog(@"self.view=%f",self.view.bounds.size.height);
 	// Do any additional setup after loading the view, typically from a nib.
 }
 
 -(void)viewWillAppear:(BOOL)animated{
+    [super viewWillAppear:animated];
         [self.leveyTabBarController.navigationItem setTitle:@"成电视角"];
+    
+    
+    
+
 }
 
 -(void)viewDidAppear:(BOOL)animated{
@@ -221,6 +230,8 @@
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
+
+
 
 
 @end

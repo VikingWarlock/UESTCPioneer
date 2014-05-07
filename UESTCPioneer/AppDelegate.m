@@ -19,6 +19,7 @@
 #import "constant.h"
 #import "PartyNoticeViewController.h"
 #import "UPMainViewController.h"
+#import "PersonalViewController.h"
 
 @interface AppDelegate()<PPRevealSideViewControllerDelegate,UINavigationControllerDelegate>{
     LeveyTabBarController *tab;
@@ -195,6 +196,13 @@
 
 - (PPRevealSideDirection)pprevealSideViewController:(PPRevealSideViewController *)controller directionsAllowedForPanningOnView:(UIView *)view{
 //    NSLog(@"aaa");
+    
+    
+    //@根据要求，除了首页，其他页面不能右滑
+    if (tab.selectedIndex){
+        return NO;
+    }
+    
     return PPRevealSideDirectionRight|PPRevealSideDirectionLeft;
 }
 
@@ -272,6 +280,9 @@
 //    [centerController.view setUserInteractionEnabled:NO];
 
 }
+
+
+
 
 
 #pragma mark - login success
@@ -369,4 +380,8 @@
         [v.selectedViewController viewWillAppear:animated];
     }
 }
+
+
+
+
 @end
